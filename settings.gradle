@@ -1,0 +1,2 @@
+rootProject.name = "Muscle Monster-FitnessApp"
+include ':app'
