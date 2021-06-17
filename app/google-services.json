@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "95627665163",
+    "project_id": "muscle-monster-fitnessap-8b451",
+    "storage_bucket": "muscle-monster-fitnessap-8b451.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95627665163:android:147aa18deb694d1d1f8c0e",
+        "android_client_info": {
+          "package_name": "com.example.musclemonster_fitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95627665163-4g31msmq5ilik55765pt9o6c254n116u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcAR9lxV4iE9234_DNucHOXcXwHRTmFsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95627665163-4g31msmq5ilik55765pt9o6c254n116u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

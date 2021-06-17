@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Muscle Monster-FitnessApp</string>
     <string name="main_page_selected">%s page is selected</string>
+    <string name="title_activity_menu">Menu</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
 </resources>
