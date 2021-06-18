@@ -1,11 +1,10 @@
 package com.example.musclemonster_fitnessapp;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
@@ -48,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Unit invoke(MeowBottomNavigation.Model item) {
                 String name;
-
                 switch(item.getId()){
                     case ID_Home:
                         name = "Home";
-                        
                         break;
                     case ID_Message:
                         name = "Message";
@@ -62,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case ID_More:
                         name = "More";
-
-                        Intent intent = new Intent(getApplicationContext(), Menu.class);
-                        startActivity(intent);
                         break;
                     default:
                         name="";
@@ -72,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 selected_page.setText(getString(R.string.main_page_selected,name));
                 return null;
             }
-
-
         });
 
 
