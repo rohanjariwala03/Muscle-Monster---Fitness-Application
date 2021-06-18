@@ -1,10 +1,12 @@
 package com.example.musclemonster_fitnessapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        TextView selected_page=findViewById(R.id.selected_page);
+        /*TextView selected_page=findViewById(R.id.selected_page);*/
         MeowBottomNavigation bottomNavigation=findViewById(R.id.bottomNavigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_Home,R.drawable.ic_baseline_home_24));
@@ -47,34 +49,51 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Unit invoke(MeowBottomNavigation.Model item) {
                 String name;
+
                 switch(item.getId()){
                     case ID_Home:
                         name = "Home";
+                        //Creating Instance of Fragment
+                        Fragment_Exercise_Home FragmentExerciseHome = new Fragment_Exercise_Home();
+                        //Calling Method to load Fragment in our Frame
+                        LoadFragment(FragmentExerciseHome);
                         break;
                     case ID_Message:
                         name = "Message";
+                        Fragment_Chat FragmentChat = new Fragment_Chat();
+                        LoadFragment(FragmentChat);
                         break;
                     case ID_Note:
-                        name = "Note";
+                        name = "Shopping";
+                        Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
+                        LoadFragment(Fragmentshopping);
                         break;
                     case ID_More:
                         name = "More";
+                        Fragment_More Fragmentmore = new Fragment_More();
+                        LoadFragment(Fragmentmore);
                         break;
                     default:
                         name="";
                 }
-                selected_page.setText(getString(R.string.main_page_selected,name));
+               /* selected_page.setText(getString(R.string.main_page_selected,name));*/
                 return null;
             }
+
         });
-
-
 
         bottomNavigation.setCount(ID_Note,"4");
         bottomNavigation.show(ID_Home,true);
 
+    }
 
-
+    //Method to Load Fragment in a Frame
+    public void LoadFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.FrameLayout,fragment);
+        transaction.commit();
 
     }
 }
