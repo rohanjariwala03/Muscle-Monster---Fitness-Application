@@ -1,7 +1,6 @@
 package com.example.musclemonster_fitnessapp;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
             public Unit invoke(MeowBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this,"Clicked item : " + item.getId(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this,"Clicked item : " + item.getId(),Toast.LENGTH_SHORT).show();
 
                 return null;
             }
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        bottomNavigation.setCount(ID_Note,"4");
+        /*bottomNavigation.setCount(ID_Note,"4");*/
         bottomNavigation.show(ID_Home,true);
 
     }

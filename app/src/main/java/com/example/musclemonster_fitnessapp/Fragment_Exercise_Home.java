@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 public class Fragment_Exercise_Home extends Fragment {
 
-
     public Fragment_Exercise_Home() {
         // Required empty public constructor
     }
@@ -19,6 +18,13 @@ public class Fragment_Exercise_Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
+
+
+
+    }
+
+    private void setContentView(int activity_main) {
     }
 
     @Override
