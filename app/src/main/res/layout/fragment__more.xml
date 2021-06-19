@@ -1,15 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment_More">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:text="More Fragment"
-        tools:ignore="HardcodedText" />
+        android:gravity="center">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/btnMyProfile"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="My Profile"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnFindTrainer"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Find Trainer"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnSellProducts"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Sell Products"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnViewMyProduct"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="View My Products"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnGymPackage"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Gym Package"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnMyCalender"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="My Calender"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnMyWorkoutHistory"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="My Workout History"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnMyCoupons"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="My Coupons"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnFeedback"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Feedback"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Logout"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>
