@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_Shopping">
+    tools:context=".Fragment_Shopping"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=" Shopping Fragment"
-        tools:ignore="HardcodedText" />
+        android:layout_gravity="top"
+        android:layout_marginTop="1dp"
+        android:text="@string/Products"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlCompat,SpUsage" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <SearchView
+        android:id="@+id/SearchView"
+        android:layout_width="270dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+</LinearLayout>
