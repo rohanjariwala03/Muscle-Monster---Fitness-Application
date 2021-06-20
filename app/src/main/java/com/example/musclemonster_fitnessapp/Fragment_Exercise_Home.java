@@ -68,10 +68,10 @@ public class Fragment_Exercise_Home extends Fragment {
 
                     if (snapshot.hasChildren()) {
 
-                        String Description = dataSnapshot.child("tName").getValue(String.class);
+                        String Description = dataSnapshot.child("tCat").getValue(String.class);
                         list.add(Description);
 
-                        Log.i(getTag(), "Data : " + dataSnapshot.child("tName").getValue(String.class));
+                        Log.i(getTag(), "Data : " + dataSnapshot.child("tCat").getValue(String.class));
                     }
                     else
                     {
