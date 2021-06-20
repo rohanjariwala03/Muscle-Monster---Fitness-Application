@@ -51,7 +51,7 @@ public class Fragment_Exercise_Home extends Fragment {
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=v.findViewById(R.id.recycler1);
-       database=FirebaseDatabase.getInstance().getReference("Exercise");
+       database=FirebaseDatabase.getInstance().getReference("ExerciseCategory");
         recyclerView.setHasFixedSize(true);
 
 
@@ -66,12 +66,12 @@ public class Fragment_Exercise_Home extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
-                    if (snapshot.hasChildren()) {
+                    if (dataSnapshot.exists()) {
 
-                        String Description = dataSnapshot.child("tCat").getValue(String.class);
+                        String Description = dataSnapshot.getValue(String.class);
                         list.add(Description);
 
-                        Log.i(getTag(), "Data : " + dataSnapshot.child("tCat").getValue(String.class));
+                        Log.i(getTag(), "Data : " + dataSnapshot.getValue(String.class));
                     }
                     else
                     {
@@ -79,6 +79,7 @@ public class Fragment_Exercise_Home extends Fragment {
                     }
                 }
                 myAdapter_exercise.notifyDataSetChanged();
+
             }
 
             @Override
@@ -86,6 +87,7 @@ public class Fragment_Exercise_Home extends Fragment {
 
             }
         });
+
         return v;
     }
     @Override

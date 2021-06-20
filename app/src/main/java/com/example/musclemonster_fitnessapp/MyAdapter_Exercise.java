@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,14 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
         String p =list.get(position);
         holder.EName.setText(p.toString());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context,""+p,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
