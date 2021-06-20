@@ -9,10 +9,18 @@ import androidx.fragment.app.Fragment;
 
 public class Fragment_Exercise_Home extends Fragment {
 
+
     public Fragment_Exercise_Home() {
         // Required empty public constructor
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v=  inflater.inflate(R.layout.fragment__exercise__home, container, false);
+        return v;
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,13 +33,11 @@ public class Fragment_Exercise_Home extends Fragment {
     }
 
     private void setContentView(int activity_main) {
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return  inflater.inflate(R.layout.fragment__exercise__home, container, false);
-    }
+
+
+
 
 }
