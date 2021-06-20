@@ -90,7 +90,7 @@ public class Fragment_Exercise_Home extends Fragment {
                         }
 
                     }else{
-                        Toast.makeText(getActivity(),"The data do not exist",Toast.LENGTH_LONG);
+                        Toast.makeText(getActivity(),"The data do not exist",Toast.LENGTH_LONG).show();
                     }
                 }
 
