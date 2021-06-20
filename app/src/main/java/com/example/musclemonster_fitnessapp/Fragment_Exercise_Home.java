@@ -1,6 +1,7 @@
 package com.example.musclemonster_fitnessapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,26 +9,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Tag;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_Exercise_Home extends Fragment {
-    // creating a variable for
-    // our Firebase Database.
-    FirebaseDatabase firebaseDatabase;
 
-    // creating a variable for our
-    // Database Reference for Firebase.
-    DatabaseReference databaseReference;
-    TextView textView;
+    RecyclerView recyclerView;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference database;
+    MyAdapter_Exercise myAdapter_exercise;
+    ArrayList<String> list;
 
     public Fragment_Exercise_Home() {
         // Required empty public constructor
@@ -39,11 +45,47 @@ public class Fragment_Exercise_Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v=  inflater.inflate(R.layout.fragment__exercise__home, container, false);
-        // initializing our object class variable.
 
-        textView = v.findViewById(R.id.textView2);
+        View v=  inflater.inflate(R.layout.fragment__exercise__home, container, false);
+
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        //database=firebaseDatabase.getReference();
+        recyclerView=v.findViewById(R.id.recycler1);
+       database=FirebaseDatabase.getInstance().getReference("Exercise");
+        recyclerView.setHasFixedSize(true);
+
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list=new ArrayList<>();
+        myAdapter_exercise=new MyAdapter_Exercise(getContext(),list);
+        recyclerView.setAdapter(myAdapter_exercise);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+
+                    if (snapshot.hasChildren()) {
+
+                        String Description = dataSnapshot.child("tName").getValue(String.class);
+                        list.add(Description);
+
+                        Log.i(getTag(), "Data : " + dataSnapshot.child("tName").getValue(String.class));
+                    }
+                    else
+                    {
+                        Log.i(getTag(), "NO Data : " );
+                    }
+                }
+                myAdapter_exercise.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
         return v;
     }
     @Override
@@ -51,59 +93,7 @@ public class Fragment_Exercise_Home extends Fragment {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        // below line is used to get the instance
-        // of our Firebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance();
 
-        // below line is used to get
-        // reference for our database.
-        databaseReference = firebaseDatabase.getReference("Exercises").child("Abs").child("Ex01");
-//
-
-//
-//        // calling method
-//        // for getting data.
-        getdata();
-
-
-
-    }
-
-    private void getdata() {
-        try {
-
-
-//             calling add value event listener method
-//             for getting the values from database.
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()) {
-                        for(DataSnapshot ds : snapshot.getChildren()) {
-                            List<String> list = new ArrayList<>();
-                            String Description = snapshot.child("Exercise Description").getValue(String.class);
-                            String name = snapshot.child("Exercise Name").getValue(String.class);
-                            String id = snapshot.child("Exercise ID").getValue(String.class);
-                            String send = "ID: " + id + " name: " + name + " Description: " + Description;
-
-                            textView.setText(send);
-                        }
-
-                    }else{
-                        Toast.makeText(getActivity(),"The data do not exist",Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // calling on cancelled method when we receive
-                    // any error or we are not able to get the data.
-                    Toast.makeText(getActivity(), "Fail to get data.", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }catch (Exception e){
-            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
     }
 
 

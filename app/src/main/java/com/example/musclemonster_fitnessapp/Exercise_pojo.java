@@ -1,17 +1,35 @@
 package com.example.musclemonster_fitnessapp;
 
 public class Exercise_pojo {
-    private String Exercise;
+    private String ExerciseName,ExerciseCat,ExerciseDesc;
 
-    public Exercise_pojo(){
-
+    public Exercise_pojo(String exerciseName, String exerciseCat, String exerciseDesc) {
+        ExerciseName = exerciseName;
+        ExerciseCat = exerciseCat;
+        ExerciseDesc = exerciseDesc;
     }
 
-    public String getExercise(){
-        return  Exercise;
+    public String getExerciseName() {
+        return ExerciseName;
     }
 
-    public void setExercise(String Exercise){
-        this.Exercise=Exercise;
+    public void setExerciseName(String exerciseName) {
+        ExerciseName = exerciseName;
+    }
+
+    public String getExerciseCat() {
+        return ExerciseCat;
+    }
+
+    public void setExerciseCat(String exerciseCat) {
+        ExerciseCat = exerciseCat;
+    }
+
+    public String getExerciseDesc() {
+        return ExerciseDesc;
+    }
+
+    public void setExerciseDesc(String exerciseDesc) {
+        ExerciseDesc = exerciseDesc;
     }
 }
