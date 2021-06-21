@@ -1,6 +1,7 @@
 package com.example.musclemonster_fitnessapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.MyViewHolder> {
+public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.MyViewHolder>  {
 
     Context context;
     ArrayList<String> list;
@@ -35,6 +37,8 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
         return new MyViewHolder(v);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
         String p =list.get(position);
@@ -46,12 +50,16 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
 
                 String a="Abs";
                 Toast.makeText(context,""+p,Toast.LENGTH_SHORT).show();
+
+               // Fragment ExerciseSubFragment=new ExerciseSubFragment();
+                //FragmentManager fragmentManager=context.getSupportFragmentManager();
+
                 if(p==a){
-                    /*ExerciseSubFragment exerciseSubFragment=new ExerciseSubFragment();
-                    FragmentManager manager= exerciseSubFragment.getFragmentManager();
-                    manager.beginTransaction().replace(R.id.Exercise_Sub,exerciseSubFragment,exerciseSubFragment.getTag())
-                            .commit();*/
+                    /**/
+
+
                 }
+
             }
         });
     }
