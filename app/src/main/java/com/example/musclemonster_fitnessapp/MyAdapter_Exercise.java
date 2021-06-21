@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,10 +44,18 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
             @Override
             public void onClick(View v) {
 
+                String a="Abs";
                 Toast.makeText(context,""+p,Toast.LENGTH_SHORT).show();
+                if(p==a){
+                    /*ExerciseSubFragment exerciseSubFragment=new ExerciseSubFragment();
+                    FragmentManager manager= exerciseSubFragment.getFragmentManager();
+                    manager.beginTransaction().replace(R.id.Exercise_Sub,exerciseSubFragment,exerciseSubFragment.getTag())
+                            .commit();*/
+                }
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
