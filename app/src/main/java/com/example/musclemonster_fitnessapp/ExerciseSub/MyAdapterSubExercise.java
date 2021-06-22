@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.AdapterClasses;
+package com.example.musclemonster_fitnessapp.ExerciseSub;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,18 +10,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.MyViewHolder>  {
+public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExercise.MyViewHolder>{
+
 
     Context context;
     ArrayList<String> list;
 
-    public MyAdapter_Exercise(Context context, ArrayList<String> list) {
+    public MyAdapterSubExercise(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -29,15 +31,13 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
     @NonNull
     @NotNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public MyAdapterSubExercise.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(context).inflate(R.layout.exercise_list,parent,false);
         return new MyViewHolder(v);
     }
 
-
-
     @Override
-    public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull MyAdapterSubExercise.MyViewHolder holder, int position) {
         String p =list.get(position);
         holder.EName.setText(p.toString());
 
@@ -62,13 +62,14 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
     }
 
 
+
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView EName;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);

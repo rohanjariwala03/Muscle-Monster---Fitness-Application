@@ -9,6 +9,10 @@ public class Exercise_pojo {
         ExerciseDesc = exerciseDesc;
     }
 
+    public Exercise_pojo() {
+
+    }
+
     public String getExerciseName() {
         return ExerciseName;
     }

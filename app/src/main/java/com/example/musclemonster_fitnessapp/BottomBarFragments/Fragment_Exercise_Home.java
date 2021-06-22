@@ -47,7 +47,7 @@ public class Fragment_Exercise_Home extends Fragment {
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=v.findViewById(R.id.recycler1);
-       database=FirebaseDatabase.getInstance().getReference("ExerciseCategory");
+        database=FirebaseDatabase.getInstance().getReference("ExerciseCategory");
         recyclerView.setHasFixedSize(true);
 
 

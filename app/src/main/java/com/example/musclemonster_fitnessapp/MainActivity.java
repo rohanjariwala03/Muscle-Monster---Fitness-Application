@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
+import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case ID_Message:
                         name = "Message";
-                        Fragment_Chat FragmentChat = new Fragment_Chat();
+                        ExerciseSubFragment FragmentChat = new ExerciseSubFragment();
                         LoadFragment(FragmentChat);
                         break;
                     case ID_Note:
