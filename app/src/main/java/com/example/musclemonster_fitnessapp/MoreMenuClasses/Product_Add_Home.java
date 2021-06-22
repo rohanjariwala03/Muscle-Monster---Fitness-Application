@@ -21,10 +21,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
+import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,11 +36,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
+import java.util.UUID;
 
 public class Product_Add_Home extends AppCompatActivity {
 
-    private static int id = 1;
     private String Storage_Path;
     private String Database_Path;
     private Button BtnUpload,BtnSubmit;
@@ -115,21 +121,23 @@ public class Product_Add_Home extends AppCompatActivity {
 
     private void UploadData() {
 
-       /* String ProductName = ProName.getText().toString().trim();
-        String ProductWeight = ProWeight.getText().toString().trim();
-        String ProductPrice = ProPrice.getText().toString().trim();
-        String ProductCat = ProCat.getText().toString().trim();
-        String ProductDesc = ProDesc.getText().toString().trim();
-        String ImgUri = "Default";
+        /*String ProductName ;
+        String ProductWeight ;
+        String ProductPrice;
+        String ProductCat;
+        String ProductDesc;
+        String ImgUri = "Default";*/
 
-        ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
+        /*ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
         String id = databaseReference.push().getKey();
         //databaseReference.child(id).setValue(ProUploadPOJO);
         databaseReference.push().setValue(ProUploadPOJO);
         Log.i("Product_Add_Home", "Datax : " + id);
         Log.i("Product_Add_Home", "Datax : " + ProUploadPOJO.getProductName());
-        Toast.makeText(Product_Add_Home.this,"Inserted",Toast.LENGTH_LONG).show();*/
+        Toast.makeText(Product_Add_Home.this,"Inserted",Toast.LENGTH_LONG).show();
+
+        */
 
 
 
@@ -137,7 +145,7 @@ public class Product_Add_Home extends AppCompatActivity {
         if (resultUri != null) {
 
             // Setting progressDialog Title.
-            progressDialog.setTitle("Image is Uploading...");
+            progressDialog.setTitle("Advertisement is Publishing....");
 
             // Showing progressDialog.
             progressDialog.show();
@@ -145,9 +153,51 @@ public class Product_Add_Home extends AppCompatActivity {
             // Creating second StorageReference.
             StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(resultUri));
 
+
+            storageReference2nd.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) {
+                    task.getResult().getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String ProID = UUID.randomUUID().toString();
+                            String ProductName = ProName.getText().toString().trim();
+                            String ProductWeight = ProWeight.getText().toString().trim();
+                            String ProductPrice = ProPrice.getText().toString().trim();
+                            String ProductCat = ProCat.getText().toString().trim();
+                            String ProductDesc = ProDesc.getText().toString().trim();
+                            String ImgUri = uri.toString();
+                            String UserKey = "N";
+                            progressDialog.dismiss();
+
+                            // Showing toast message after done uploading.
+                            Toast.makeText(getApplicationContext(), "Advertisement Published Successfully ", Toast.LENGTH_LONG).show();
+
+                            @SuppressWarnings("VisibleForTests")
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey);
+                            //ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, taskSnapshot.getDownloadUrl().toString());
+
+                            // Getting image upload ID.
+                            String ImageUploadId = databaseReference.push().getKey();
+
+                            // Adding image upload id s child element into databaseReference.
+                            //databaseReference.child(ImageUploadId).setValue(ProUploadPOJO);
+                            databaseReference.push().setValue(ProUploadPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.putExtra("fragmentNumber",3); //for example
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
             //Log.i("Product ADd",storageReference.getDownloadUrl().toString());
             // Adding addOnSuccessListener to second StorageReference.
-            storageReference2nd.putFile(resultUri)
+           /* storageReference2nd.putFile(resultUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -158,7 +208,7 @@ public class Product_Add_Home extends AppCompatActivity {
                             String ProductPrice = ProPrice.getText().toString().trim();
                             String ProductCat = ProCat.getText().toString().trim();
                             String ProductDesc = ProDesc.getText().toString().trim();
-                            String ImgUri = taskSnapshot.getUploadSessionUri().toString();
+                            String ImgUri = taskSnapshot.getMetadata().getPath();
                             // Hiding the progressDialog after done uploading.
                             progressDialog.dismiss();
 
@@ -199,7 +249,7 @@ public class Product_Add_Home extends AppCompatActivity {
                             progressDialog.setTitle("Image is Uploading...");
 
                         }
-                    });
+                    });*/
         }
         else {
 

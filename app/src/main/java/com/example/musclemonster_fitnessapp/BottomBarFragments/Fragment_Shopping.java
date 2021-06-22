@@ -9,6 +9,7 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,7 @@ public class Fragment_Shopping extends Fragment {
     DatabaseReference database;
     Adapter_Prod_Shopping AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
+
 
     public Fragment_Shopping() {
         // Required empty public constructor
@@ -64,8 +66,15 @@ public class Fragment_Shopping extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list=new ArrayList<ProductUpload_POJO>();
+        /*AdapterShopping=new Adapter_Prod_Shopping(getContext(),list);
+        recyclerView.setAdapter(AdapterShopping);*/
+
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
+        //  call the constructor of CustomAdapter to send the reference and data to Adapter
         AdapterShopping=new Adapter_Prod_Shopping(getContext(),list);
-        recyclerView.setAdapter(AdapterShopping);
+        recyclerView.setAdapter(AdapterShopping); // set the Adapter to RecyclerView
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
