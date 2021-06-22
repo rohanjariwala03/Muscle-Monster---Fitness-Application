@@ -5,13 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
+import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,7 +78,6 @@ public class Fragment_Exercise_Home extends Fragment {
                     }
                 }
                 myAdapter_exercise.notifyDataSetChanged();
-
             }
 
             @Override
@@ -83,6 +85,18 @@ public class Fragment_Exercise_Home extends Fragment {
 
             }
         });
+
+       /* Button b;
+        b=v.findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.FrameLayout,new ExerciseSubFragment());
+                fr.commit();
+            }
+        });
+*/
 
         return v;
     }

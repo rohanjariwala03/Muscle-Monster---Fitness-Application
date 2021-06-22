@@ -43,8 +43,17 @@
             app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
             tools:ignore="VectorDrawableCompat" />
 
-    </LinearLayout>
 
     </LinearLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+    </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>

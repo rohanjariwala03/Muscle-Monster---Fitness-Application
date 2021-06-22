@@ -8,8 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
+import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSub_Pojo;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +36,7 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(context).inflate(R.layout.exercise_list,parent,false);
+        
         return new MyViewHolder(v);
     }
 
@@ -39,7 +45,7 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
         String p =list.get(position);
-        holder.EName.setText(p.toString());
+        holder.EName.setText(p);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +56,9 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
 
                 // Fragment ExerciseSubFragment=new ExerciseSubFragment();
                 //FragmentManager fragmentManager=context.getSupportFragmentManager();
-
-                if(p==a){
-                    /**/
-
-
-                }
+                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new ExerciseSubFragment())
+                        .addToBackStack(null).commit();
 
             }
         });
