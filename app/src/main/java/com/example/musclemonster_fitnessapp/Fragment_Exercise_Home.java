@@ -71,7 +71,7 @@ public class Fragment_Exercise_Home extends Fragment {
                         String Description = dataSnapshot.getValue(String.class);
                         list.add(Description);
 
-                        Log.i(getTag(), "Data : " + dataSnapshot.getValue(String.class));
+                        //Log.i(getTag(), "Data : " + dataSnapshot.getValue(String.class));
                     }
                     else
                     {
