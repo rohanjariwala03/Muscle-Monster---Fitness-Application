@@ -143,7 +143,34 @@
     </LinearLayout>
 
 
-    <!--<LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        tools:ignore="UselessParent"
+        android:gravity="center">
+
+        <!--<Button
+            android:id="@+id/BtnShowImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="Choose Image"
+            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />-->
+
+        <Button
+            android:id="@+id/BtnUploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ImgLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -158,32 +185,6 @@
             android:layout_below="@+id/textview"
             android:layout_marginTop="20dp"
             tools:ignore="ContentDescription" />
-
-    </LinearLayout>-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        tools:ignore="UselessParent">
-
-    <Button
-        android:id="@+id/BtnShowImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:text="Choose Image"
-        tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
-
-        <Button
-            android:id="@+id/BtnUploadImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Upload Image"
-            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
-
 
     </LinearLayout>
 
