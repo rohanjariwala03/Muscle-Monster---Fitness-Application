@@ -5,9 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/custom_button.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/activity_profile_page.xml" value="0.2812144208003803" />
+        <entry key="app/src/main/res/layout/activity_update_profile.xml" value="0.10239798506473433" />
         <entry key="app/src/main/res/layout/fragment__more.xml" value="0.13994565217391305" />
       </map>
     </option>

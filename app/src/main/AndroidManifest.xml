@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
         <activity
+            android:name=".Update_Profile"
+            android:exported="true" />
+        <activity
             android:name=".Profile_Page"
             android:exported="true" />
         <activity
