@@ -23,6 +23,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
+            android:textColor="@color/black"
             android:text="My Profile"
             android:textAllCaps="true"
             android:textSize="20sp"
@@ -40,7 +41,8 @@
             android:text="Find Trainer"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnSellProducts"
@@ -54,7 +56,8 @@
             android:text="Sell Products"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnViewMyProduct"
@@ -68,7 +71,8 @@
             android:text="View My Products"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnGymPackage"
@@ -82,7 +86,8 @@
             android:text="Gym Package"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnMyCalender"
@@ -96,7 +101,8 @@
             android:text="My Calender"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnMyWorkoutHistory"
@@ -110,7 +116,8 @@
             android:text="My Workout History"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnMyCoupons"
@@ -124,7 +131,8 @@
             android:text="My Coupons"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnFeedback"
@@ -138,7 +146,8 @@
             android:text="Feedback"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnLogout"
@@ -152,7 +161,8 @@
             android:text="Logout"
             android:textAllCaps="true"
             android:textSize="20sp"
-            app:backgroundTint="@color/MenuButtonColor" />
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>

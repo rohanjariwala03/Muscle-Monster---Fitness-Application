@@ -46,9 +46,9 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
         //ProductUpload_POJO Obj = list.get(position);
         holder.ProdName.setText(list.get(position).getProductName());
         holder.ProdPrice.setText(list.get(position).getProductPrice());
-        /*Glide.with(context)
+        Glide.with(context)
                 .load(list.get(position).getImageUri())
-                .into(holder.ImgV);*/
+                .into(holder.ImgV);
         Log.i("Product Adapter ", "Image URL " + list.get(position) + list.get(position).getImageUri() );
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -8,10 +8,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
-import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
+//import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         /*TextView selected_page=findViewById(R.id.selected_page);*/
         MeowBottomNavigation bottomNavigation=findViewById(R.id.bottomNavigation);
 
@@ -37,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_Message,R.drawable.ic_baseline_message_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_Note,R.drawable.ic_baseline_add_shopping_cart_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_More,R.drawable.ic_baseline_more_horiz_24));
+
+        /*try {
+            FragmentChoice(getIntent().getIntExtra("fragmentNumber",1));
+        }catch (Exception e)
+        {*/
+            bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",1),true);
+
 
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
@@ -51,34 +58,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
             public Unit invoke(MeowBottomNavigation.Model item) {
-                String name;
+                FragmentChoice(item.getId());
 
-                switch(item.getId()){
-                    case ID_Home:
-                        name = "Home";
-                        //Creating Instance of Fragment
-                        Fragment_Exercise_Home FragmentExerciseHome = new Fragment_Exercise_Home();
-                        //Calling Method to load Fragment in our Frame
-                        LoadFragment(FragmentExerciseHome);
-                        break;
-                    case ID_Message:
-                        name = "Message";
-                        ExerciseSubFragment FragmentChat = new ExerciseSubFragment();
-                        LoadFragment(FragmentChat);
-                        break;
-                    case ID_Note:
-                        name = "Shopping";
-                        Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
-                        LoadFragment(Fragmentshopping);
-                        break;
-                    case ID_More:
-                        name = "More";
-                        Fragment_More Fragmentmore = new Fragment_More();
-                        LoadFragment(Fragmentmore);
-                        break;
-                    default:
-                        name="";
-                }
                /* selected_page.setText(getString(R.string.main_page_selected,name));*/
                 return null;
             }
@@ -86,9 +67,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*bottomNavigation.setCount(ID_Note,"4");*/
-        bottomNavigation.show(ID_Home,true);
+
 
     }
+
+    public void FragmentChoice(int item)
+    {
+        String name;
+        switch(item){
+            case ID_Home:
+                name = "Home";
+                //Creating Instance of Fragment
+                Fragment_Exercise_Home FragmentExerciseHome = new Fragment_Exercise_Home();
+                //Calling Method to load Fragment in our Frame
+                LoadFragment(FragmentExerciseHome);
+                break;
+            case ID_Message:
+                name = "Message";
+                Fragment_Chat FragmentChat = new Fragment_Chat();
+                LoadFragment(FragmentChat);
+                break;
+            case ID_Note:
+                name = "Shopping";
+                Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
+                LoadFragment(Fragmentshopping);
+                break;
+            case ID_More:
+                name = "More";
+                Fragment_More Fragmentmore = new Fragment_More();
+                LoadFragment(Fragmentmore);
+                break;
+            default:
+                name="";
+        }
+    }
+
 
     //Method to Load Fragment in a Frame
     public void LoadFragment(Fragment fragment)
