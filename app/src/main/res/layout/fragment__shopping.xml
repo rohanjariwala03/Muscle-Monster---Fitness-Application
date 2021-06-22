@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_Shopping"
-    android:orientation="vertical">
+    tools:context=".BottomBarFragments.Fragment_Shopping"
+    android:orientation="vertical"
+    android:background="@color/BackGroundColor">
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +40,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Product_Add_Home"
-    android:orientation="vertical">
+    tools:context=".MoreMenuClasses.Product_Add_Home"
+    android:orientation="vertical"
+    android:background="@color/BackGroundColor">
 
 
     <LinearLayout
@@ -30,7 +31,8 @@
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Product Name"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:background="@drawable/rounded_edittext"/>
 
     </LinearLayout>
 
@@ -57,7 +59,8 @@
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Per Item Weight"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:background="@drawable/rounded_edittext"/>
 
     </LinearLayout>
 
@@ -84,7 +87,8 @@
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Select Category"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:background="@drawable/rounded_edittext"/>
 
     </LinearLayout>
 
@@ -111,6 +115,7 @@
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Price"
+            android:background="@drawable/rounded_edittext"
             android:importantForAutofill="no" />
 
     </LinearLayout>
@@ -134,11 +139,12 @@
         <EditText
             android:id="@+id/EditProdDesc"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Description"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:background="@drawable/rounded_edittext"/>
 
     </LinearLayout>
 
@@ -164,6 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Image"
+            android:background="@drawable/rounded_button"
             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
 
 
@@ -201,7 +208,8 @@
             android:id="@+id/BtnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Publish Advertisement"/>
+            android:text="Publish Advertisement"
+            android:background="@drawable/rounded_button"/>
 
 
     </LinearLayout>

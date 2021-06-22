@@ -1,6 +1,5 @@
-package com.example.musclemonster_fitnessapp;
+package com.example.musclemonster_fitnessapp.BottomBarFragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
+import com.example.musclemonster_fitnessapp.R;
 
 
 public class Fragment_More extends Fragment {

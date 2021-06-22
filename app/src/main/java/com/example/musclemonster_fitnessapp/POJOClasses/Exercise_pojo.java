@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp;
+package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Exercise_pojo {
     private String ExerciseName,ExerciseCat,ExerciseDesc;

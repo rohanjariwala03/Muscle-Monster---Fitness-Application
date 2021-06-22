@@ -13,7 +13,7 @@
             android:name=".Profile_Page"
             android:exported="true" />
         <activity
-            android:name=".Product_Add_Home"
+            android:name=".MoreMenuClasses.Product_Add_Home"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

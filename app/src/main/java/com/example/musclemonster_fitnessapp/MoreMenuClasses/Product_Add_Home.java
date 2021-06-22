@@ -1,10 +1,9 @@
-package com.example.musclemonster_fitnessapp;
+package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -13,7 +12,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -21,9 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
+import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.security.PrivateKey;
 
 public class Product_Add_Home extends AppCompatActivity {
 
@@ -147,6 +145,7 @@ public class Product_Add_Home extends AppCompatActivity {
             // Creating second StorageReference.
             StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(resultUri));
 
+            //Log.i("Product ADd",storageReference.getDownloadUrl().toString());
             // Adding addOnSuccessListener to second StorageReference.
             storageReference2nd.putFile(resultUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -159,7 +158,7 @@ public class Product_Add_Home extends AppCompatActivity {
                             String ProductPrice = ProPrice.getText().toString().trim();
                             String ProductCat = ProCat.getText().toString().trim();
                             String ProductDesc = ProDesc.getText().toString().trim();
-                            String ImgUri = "Default";
+                            String ImgUri = taskSnapshot.getUploadSessionUri().toString();
                             // Hiding the progressDialog after done uploading.
                             progressDialog.dismiss();
 
@@ -167,7 +166,7 @@ public class Product_Add_Home extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
 
                             @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
                             //ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, taskSnapshot.getDownloadUrl().toString());
 
                             // Getting image upload ID.

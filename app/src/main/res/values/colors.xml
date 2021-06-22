@@ -11,6 +11,8 @@
     
     <color name="MenuButtonColor">#10A4B6</color>
 
+    <color name="BackGroundColor">#222C3B</color>
+
 
     <color name="selectedIconColor">#04E1F8</color>
     <color name="defaultIconColor">#F6F6F6</color>
