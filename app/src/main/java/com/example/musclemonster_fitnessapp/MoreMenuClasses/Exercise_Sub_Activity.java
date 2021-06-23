@@ -1,87 +1,72 @@
-package com.example.musclemonster_fitnessapp.ExerciseSub;
-
-import android.os.Bundle;
+package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
+import com.example.musclemonster_fitnessapp.ExerciseSub.Exercise_Sub_Pojo;
+import com.example.musclemonster_fitnessapp.ExerciseSub.MyAdapter_Exercise_Sub;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+public class Exercise_Sub_Activity extends AppCompatActivity {
 
-public class ExerciseSubFragment extends Fragment {
-
-    //Initializing variables
-
+    String ExerciseCat;
+    TextView Catagory;
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    MyAdapterSubExercise AdapterSubExercise;
-    ArrayList<ExerciseSub_Pojo> list;
-
-    public ExerciseSubFragment() {
-        // Required empty public constructor
-    }
-
+    MyAdapter_Exercise_Sub AdapterSubExercise;
+    ArrayList<Exercise_Sub_Pojo> list;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exercise_sub);
 
-        setContentView(R.layout.activity_main);
-
-    }
-
-    private void setContentView(int activity_main) {
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        View view=inflater.inflate(R.layout.fragment_exercise__sub_, container, false);
+        ExerciseCat = getIntent().getStringExtra("ExerciseCat");
+        Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
+        Log.i("asd", "Data : " + ExerciseCat);
 
         //Giving drefernce to Firebase database References
         firebaseDatabase=FirebaseDatabase.getInstance();
 
-        recyclerView=view.findViewById(R.id.recycler2);
+        recyclerView=findViewById(R.id.recycler2);
 
         //Giving path to taking data
-        database=FirebaseDatabase.getInstance().getReference("Exercise");
+        //database=FirebaseDatabase.getInstance().getReference("Exercise");
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Initializing list view to print
-        list=new ArrayList<ExerciseSub_Pojo>();
+        list=new ArrayList<Exercise_Sub_Pojo>();
 
-        AdapterSubExercise=new MyAdapterSubExercise(getContext(),list);
+        AdapterSubExercise=new MyAdapter_Exercise_Sub(this,list);
         recyclerView.setAdapter(AdapterSubExercise);
 
+
+        Query query=FirebaseDatabase.getInstance().getReference("Exercise")
+                .orderByChild("tCat").equalTo(ExerciseCat);
+
         //Database event listner for success or failure
-        database.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             //If database get some data then this will fire
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -89,18 +74,18 @@ public class ExerciseSubFragment extends Fragment {
 
                     if (dataSnapshot.exists()) {
 
-                        ExerciseSub_Pojo Obj = new ExerciseSub_Pojo();
+                        Exercise_Sub_Pojo Obj = new Exercise_Sub_Pojo();
 
                         //Final collection name to get some data data.
                         //It will be singular or multiple
 
                         Obj.setExerciseName((dataSnapshot.child("tName").getValue(String.class)));
                         list.add(Obj);
-                        Toast.makeText(getContext(),"Connect",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Log.i(getTag(), "NO Data : " );
+                        Log.i("Tag : ", "NO Data : " );
                     }
                 }
                 AdapterSubExercise.notifyDataSetChanged();
@@ -113,8 +98,10 @@ public class ExerciseSubFragment extends Fragment {
             }
         });
 
-        return view;
     }
-
-
 }
+
+/* Query query=FirebaseDatabase.getInstance().getReference("Exercise")
+                .orderByChild("tCat").equalTo("Chest");
+        */
+//query.addValue......

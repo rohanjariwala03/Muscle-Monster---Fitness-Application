@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".BottomBarFragments.Fragment_Exercise_Home">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--<TextView
+
+    <!--<Button
+        android:id="@+id/ac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Exercise Frangment"
-        tools:ignore="HardcodedText" />-->
-
+        android:text="AV"
+        tools:ignore="MissingConstraints" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler2"
@@ -23,6 +22,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+<!--    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtView"
+        android:textSize="30dp"
+        tools:ignore="MissingConstraints" />-->
 
 
 

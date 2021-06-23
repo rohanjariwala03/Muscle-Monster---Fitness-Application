@@ -1,14 +1,39 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Exercise_pojo {
-    private String ExerciseName,ExerciseCat,ExerciseDesc;
+    private String ExerciseName,ExerciseCat,ExerciseDesc,ImageUri,FKey,UserKey;;
 
-    public Exercise_pojo(String exerciseName, String exerciseCat, String exerciseDesc) {
+    public Exercise_pojo(String exerciseName, String exerciseCat, String exerciseDesc, String imageUri, String userKey) {
         ExerciseName = exerciseName;
         ExerciseCat = exerciseCat;
         ExerciseDesc = exerciseDesc;
+        ImageUri = imageUri;
+        UserKey = userKey;
     }
 
+    public String getUserKey() {
+        return UserKey;
+    }
+
+    public void setUserKey(String userKey) {
+        UserKey = userKey;
+    }
+
+    public String getFKey() {
+        return FKey;
+    }
+
+    public void setFKey(String FKey) {
+        this.FKey = FKey;
+    }
+
+    public void setImageUri(String imageUri) {
+        ImageUri = imageUri;
+    }
+
+    public String getImageUri() {
+        return ImageUri;
+    }
     public Exercise_pojo() {
 
     }

@@ -1,34 +1,32 @@
 package com.example.musclemonster_fitnessapp.ExerciseSub;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
+import com.example.musclemonster_fitnessapp.ExerciseDescription.Exercise_Description_Activity;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Exercise_Sub_Activity;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExercise.MyViewHolder>{
+public class MyAdapter_Exercise_Sub extends RecyclerView.Adapter<MyAdapter_Exercise_Sub.MyViewHolder> {
 
     //Initializing variable
     Context context;
-    ArrayList<ExerciseSub_Pojo> list;
+    ArrayList<Exercise_Sub_Pojo> list;
 
-    public MyAdapterSubExercise(Context context, ArrayList<ExerciseSub_Pojo> list) {
+    public MyAdapter_Exercise_Sub(Context context, ArrayList<Exercise_Sub_Pojo> list) {
         this.context = context;
         this.list = list;
     }
@@ -37,9 +35,9 @@ public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExerc
     @NonNull
     @NotNull
     @Override
-    public MyAdapterSubExercise.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public MyAdapter_Exercise_Sub.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(context).inflate(R.layout.exercise_sub_list,parent,false);
-        return new MyAdapterSubExercise.MyViewHolder(v);
+        return new MyAdapter_Exercise_Sub.MyViewHolder(v);
     }
 
     @Override
@@ -55,6 +53,10 @@ public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExerc
                 //Displaying a message to get to know on which card or
                 //item did you click
                 Toast.makeText(context,""+list.get(position).getExerciseName(),Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, Exercise_Description_Activity.class);
+                intent.putExtra("ExerciseName",list.get(position).getExerciseName());
+                v.getContext().startActivity(intent);
 
             }
         });

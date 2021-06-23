@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ID_Message:
                 name = "Message";
+
                 Fragment_Chat FragmentChat = new Fragment_Chat();
                 LoadFragment(FragmentChat);
                 break;

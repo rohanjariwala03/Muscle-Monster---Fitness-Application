@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".MoreMenuClasses.ViewProductDetail"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ExerciseDescription.Exercise_Description_Activity"></activity>
+        <activity android:name=".MoreMenuClasses.Exercise_Sub_Activity" />
+        <activity
+            android:name=".MoreMenuClasses.ViewProductDetail"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Update_Profile"
             android:exported="true" />
