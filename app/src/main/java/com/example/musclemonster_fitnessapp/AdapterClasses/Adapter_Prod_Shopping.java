@@ -1,6 +1,7 @@
 package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.MainActivity;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.ViewProductDetail;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 
@@ -59,12 +64,18 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
 
                 // Fragment ExerciseSubFragment=new ExerciseSubFragment();
                 //FragmentManager fragmentManager=context.getSupportFragmentManager();
-
-
+                Intent intent = new Intent(context, ViewProductDetail.class);
+                intent.putExtra("ItemKey",list.get(position).getFKey());
+                intent.putExtra("ItemName",list.get(position).getProductName());
+                intent.putExtra("ItemPrice",list.get(position).getProductPrice());
+                intent.putExtra("ItemCat",list.get(position).getProductCat());
+                intent.putExtra("ItemDesc",list.get(position).getProductDesc());
+                intent.putExtra("ItemImageUri",list.get(position).getImageUri());
+                intent.putExtra("ItemWeight",list.get(position).getProductWeight());
+                v.getContext().startActivity(intent);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {

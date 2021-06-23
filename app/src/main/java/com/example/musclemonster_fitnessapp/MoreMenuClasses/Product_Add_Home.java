@@ -91,12 +91,12 @@ public class Product_Add_Home extends AppCompatActivity {
 
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
 
-        ImageLL.setVisibility(View.INVISIBLE) ;
+        //ImageLL.setVisibility(View.INVISIBLE) ;
 
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageLL.setVisibility(View.VISIBLE) ;
+               // ImageLL.setVisibility(View.VISIBLE) ;
                 // Creating intent.
                 Intent intent = new Intent();
 
@@ -178,7 +178,7 @@ public class Product_Add_Home extends AppCompatActivity {
                             //ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, taskSnapshot.getDownloadUrl().toString());
 
                             // Getting image upload ID.
-                            String ImageUploadId = databaseReference.push().getKey();
+                            //String ImageUploadId = databaseReference.push().getKey();
 
                             // Adding image upload id s child element into databaseReference.
                             //databaseReference.child(ImageUploadId).setValue(ProUploadPOJO);
