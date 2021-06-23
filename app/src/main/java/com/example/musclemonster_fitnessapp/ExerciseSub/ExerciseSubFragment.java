@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 public class ExerciseSubFragment extends Fragment {
 
+    //Initializing variables
+
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
@@ -47,6 +49,11 @@ public class ExerciseSubFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
+
+    }
+
+    private void setContentView(int activity_main) {
     }
 
     @Override
@@ -55,36 +62,41 @@ public class ExerciseSubFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view=inflater.inflate(R.layout.fragment_exercise__sub_, container, false);
-        //mySearchView = (SearchView) view.findViewById(R.id.SearchView);
 
+        //Giving drefernce to Firebase database References
         firebaseDatabase=FirebaseDatabase.getInstance();
-        //database=firebaseDatabase.getReference();
+
         recyclerView=view.findViewById(R.id.recycler2);
+
+        //Giving path to taking data
         database=FirebaseDatabase.getInstance().getReference("Exercise");
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //Initializing list view to print
         list=new ArrayList<ExerciseSub_Pojo>();
+
         AdapterSubExercise=new MyAdapterSubExercise(getContext(),list);
         recyclerView.setAdapter(AdapterSubExercise);
 
+        //Database event listner for success or failure
         database.addValueEventListener(new ValueEventListener() {
+            //If database get some data then this will fire
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
 
-
                         ExerciseSub_Pojo Obj = new ExerciseSub_Pojo();
 
-                        Obj.setExerciseName((dataSnapshot.child("tName").getValue(String.class)));
+                        //Final collection name to get some data data.
+                        //It will be singular or multiple
 
+                        Obj.setExerciseName((dataSnapshot.child("tName").getValue(String.class)));
                         list.add(Obj);
-                        /* }*/
                         Toast.makeText(getContext(),"Connect",Toast.LENGTH_SHORT).show();
-                        //Log.i(getTag(), "Data : " + dataSnapshot.getValue(String.class));
                     }
                     else
                     {
@@ -103,5 +115,6 @@ public class ExerciseSubFragment extends Fragment {
 
         return view;
     }
+
 
 }

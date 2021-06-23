@@ -2,6 +2,7 @@ package com.example.musclemonster_fitnessapp.ExerciseSub;
 
 public class ExerciseSub_Pojo {
 
+    //Initializing data
     private String ExerciseName,ExerciseCat, ExerciseDesc,FKey;
 
     public ExerciseSub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc) {
@@ -26,8 +27,11 @@ public class ExerciseSub_Pojo {
         this.FKey = FKey;
     }
 
+    //Constructor class
     public ExerciseSub_Pojo() {
     }
+
+    //Getter and Setter for all variable
 
     public void setExerciseName(String exerciseName) {
         this.ExerciseName = exerciseName;

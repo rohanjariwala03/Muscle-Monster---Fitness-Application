@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExercise.MyViewHolder>{
 
+    //Initializing variable
     Context context;
     ArrayList<ExerciseSub_Pojo> list;
 
@@ -44,17 +45,16 @@ public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExerc
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
 
+        //Calling variable and objects from method
         holder.ExerName.setText(list.get(position).getExerciseName());
 
+        //On click listner for View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Displaying a message to get to know on which card or
+                //item did you click
                 Toast.makeText(context,""+list.get(position).getExerciseName(),Toast.LENGTH_SHORT).show();
-
-                // Fragment ExerciseSubFragment=new ExerciseSubFragment();
-                //FragmentManager fragmentManager=context.getSupportFragmentManager();
-
 
             }
         });
@@ -66,6 +66,7 @@ public class MyAdapterSubExercise extends RecyclerView.Adapter<MyAdapterSubExerc
         return list.size();
     }
 
+    //Methods for Data
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView ExerName;
