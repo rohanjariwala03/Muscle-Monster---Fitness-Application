@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnMyProfileAdmin"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="My Profile"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor" />
+
+        <Button
+            android:id="@+id/btnAddTrainer"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Add Trainer"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+
+        <Button
+            android:id="@+id/btnViewTrainer"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="View Trainer"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnSellProductsAdmin"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Sell Products"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnViewUsers"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="View Users"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnManageGymPackage"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Manage Gym Package"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnBuyProductsAdmin"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="Buy Products"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnMyProductsAdmin"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:text="My Products"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_weight="5"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="10dp"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:paddingTop="10dp">
+           <LinearLayout
+               android:layout_width="200dp"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_gravity="center"
+               android:background="rou">
+           <ImageButton
+               android:layout_width="100dp"
+               android:layout_height="50dp"
+               android:background="@drawable/ic_baseline_add_shopping_cart_24"
+               android:id="@+id/btnHome"
+               android:layout_marginLeft="50dp"/>
+           </LinearLayout>
+
+           <View
+               android:layout_width="0.5dp"
+               android:layout_height="match_parent"
+               android:layout_weight="0.5"
+               android:background="@android:color/darker_gray"
+               />
+            <LinearLayout
+               android:layout_width="200dp"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_gravity="center">
+           <ImageButton
+               android:layout_width="100dp"
+               android:layout_height="50dp"
+               android:background="@drawable/ic_baseline_logout_24"
+               android:id="@+id/btnLogout"
+               android:layout_marginLeft="50dp"/>
+           </LinearLayout>
+
+
+
+       </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>
