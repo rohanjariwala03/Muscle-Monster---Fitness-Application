@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.musclemonster_fitnessapp.Admin.Admin_Home_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.R;
 import com.example.musclemonster_fitnessapp.Update_Profile;
@@ -42,7 +43,7 @@ public class Fragment_More extends Fragment {
         btn_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Update_Profile.class);
+                Intent intent = new Intent(getContext(), Admin_Home_Activity.class);
                 startActivity(intent);
             }
         });
