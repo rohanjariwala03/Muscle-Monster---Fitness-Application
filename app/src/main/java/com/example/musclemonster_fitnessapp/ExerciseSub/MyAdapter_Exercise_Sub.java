@@ -52,10 +52,15 @@ public class MyAdapter_Exercise_Sub extends RecyclerView.Adapter<MyAdapter_Exerc
             public void onClick(View v) {
                 //Displaying a message to get to know on which card or
                 //item did you click
-                Toast.makeText(context,""+list.get(position).getExerciseName(),Toast.LENGTH_SHORT).show();
-
+                /*Toast.makeText(context,""+list.get(position).getExerciseName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,""+list.get(position).getExerciseCat(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,""+list.get(position).getExerciseDesc(),Toast.LENGTH_SHORT).show();
+*/
                 Intent intent = new Intent(context, Exercise_Description_Activity.class);
                 intent.putExtra("ExerciseName",list.get(position).getExerciseName());
+                intent.putExtra("ExerciseCat",list.get(position).getExerciseCat());
+                intent.putExtra("ExerciseDesc",list.get(position).getExerciseDesc());
+                intent.putExtra("ItemImageUri",list.get(position).getImageUri());
                 v.getContext().startActivity(intent);
 
             }

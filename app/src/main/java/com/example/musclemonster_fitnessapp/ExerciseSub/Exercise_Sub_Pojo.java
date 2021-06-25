@@ -3,18 +3,13 @@ package com.example.musclemonster_fitnessapp.ExerciseSub;
 public class Exercise_Sub_Pojo {
 
     //Initializing data
-        private String ExerciseName,ExerciseCat, ExerciseDesc,FKey;
+        private String ExerciseName,ExerciseCat, ExerciseDesc,FKey,ImageUri;
 
-        public Exercise_Sub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc) {
+        public Exercise_Sub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc,String ImageUri, String FKey) {
             this.ExerciseName=ExerciseName;
             this.ExerciseCat=ExerciseCat;
             this.ExerciseDesc=ExerciseDesc;
-        }
-
-        public Exercise_Sub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc, String FKey) {
-            this.ExerciseName = ExerciseName;
-            this.ExerciseCat=ExerciseCat;
-            this.ExerciseDesc=ExerciseDesc;
+            this.ImageUri=ImageUri;
 
             this.FKey = FKey;
         }
@@ -57,6 +52,12 @@ public class Exercise_Sub_Pojo {
             return ExerciseName;
         }
 
+    public void setImageUri(String imageUri) {
+        ImageUri = imageUri;
+    }
 
+    public String getImageUri() {
+        return ImageUri;
+    }
 
 }

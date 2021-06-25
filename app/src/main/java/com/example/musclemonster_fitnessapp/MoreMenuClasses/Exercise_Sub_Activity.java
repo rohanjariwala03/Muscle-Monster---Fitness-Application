@@ -80,8 +80,12 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
                         //It will be singular or multiple
 
                         Obj.setExerciseName((dataSnapshot.child("tName").getValue(String.class)));
+                        Obj.setExerciseCat((dataSnapshot.child("tCat").getValue(String.class)));
+                        Obj.setExerciseDesc((dataSnapshot.child("tDesc").getValue(String.class)));
+                        Obj.setImageUri((dataSnapshot.child("imgUri1").getValue(String.class)));
+
                         list.add(Obj);
-                        Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
