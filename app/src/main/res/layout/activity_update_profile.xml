@@ -59,6 +59,7 @@
             android:layout_marginLeft="70dp"
             android:layout_toRightOf="@+id/email"
             android:id="@+id/editemail"
+            android:gravity="center"
             android:background="@drawable/rounded_edittext"/>
 
         <TextView
@@ -79,6 +80,7 @@
             android:layout_below="@+id/editemail"
             android:layout_height="30dp"
             android:layout_marginLeft="70dp"
+            android:gravity="center"
             android:layout_toRightOf="@+id/email"
             android:background="@drawable/rounded_edittext"/>
 
@@ -100,6 +102,7 @@
             android:layout_below="@+id/editcontact"
             android:layout_height="30dp"
             android:layout_marginLeft="70dp"
+            android:gravity="center"
             android:layout_toRightOf="@+id/email"
             android:background="@drawable/rounded_edittext"/>
 
@@ -122,40 +125,33 @@
             android:layout_height="30dp"
             android:layout_marginLeft="70dp"
             android:layout_toRightOf="@+id/email"
+            android:gravity="center"
             android:background="@drawable/rounded_edittext"/>
-
-
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/firstname"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:text="Password :"
-            android:textColor="#596879"
-            android:textSize="23dp" />
-
-        <EditText
-            android:id="@+id/editpassword"
-            android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editfirstname"
-            android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
-            android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
-
 
         <Button
+            android:id="@+id/btn_UpdateInfo"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editpassword"
+            android:layout_below="@+id/editfirstname"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/rounded_button"
+            android:onClick="update"
             android:text="Update Info"
             android:textColor="#596879" />
+
+        <TextView
+            android:id="@+id/DataUpdate"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_UpdateInfo"
+            android:layout_marginTop="30dp"
+            android:text="Data Updated"
+            android:gravity="center"
+            android:layout_marginLeft="110dp"
+            android:textColor="#596879"
+            android:textSize="20dp"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 

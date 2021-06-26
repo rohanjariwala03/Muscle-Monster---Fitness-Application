@@ -16,6 +16,7 @@ import com.example.musclemonster_fitnessapp.Admin.Admin_Home_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.R;
 import com.example.musclemonster_fitnessapp.Update_Profile;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class Fragment_More extends Fragment {
@@ -24,6 +25,9 @@ public class Fragment_More extends Fragment {
     Button btn_logout;
     Button btn_MyProfile;
     Button addTrainer;
+
+
+    FirebaseAuth mAuth;
 
     public Fragment_More() {
         // Required empty public constructor
@@ -52,7 +56,7 @@ public class Fragment_More extends Fragment {
         btn_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Admin_Home_Activity.class);
+                Intent intent = new Intent(getContext(), Update_Profile.class);
                 startActivity(intent);
             }
         });
@@ -67,7 +71,9 @@ public class Fragment_More extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //mAuth.signOut();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(),ActivityLogIn.class));
             }
         });
         return view;

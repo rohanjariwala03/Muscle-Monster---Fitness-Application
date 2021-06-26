@@ -18,6 +18,8 @@ import com.example.musclemonster_fitnessapp.Admin_Home_Activity;
 import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +40,9 @@ public class ActivityLogIn extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    MyAdapter_Exercise myAdapter_exercise;
     TextView txtInvalid;
+
+    String fr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,7 @@ public class ActivityLogIn extends AppCompatActivity {
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
-        database=FirebaseDatabase.getInstance().getReference("Users");
-
+        database=firebaseDatabase.getReference("Users");
 
         txtInvalid=findViewById(R.id.Invalid);
                 email = findViewById(R.id.SignInEmail);
@@ -78,11 +80,19 @@ public class ActivityLogIn extends AppCompatActivity {
             }
 
 
+            protected void onStart() {
+                super.onStart();
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }
+            }
+
+
             private void SignIn() {
 
                 String Email = email.getText().toString();
                 String Password = password.getText().toString();
-                int flag=0;
 
                 if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
 
@@ -92,12 +102,12 @@ public class ActivityLogIn extends AppCompatActivity {
                     password.setError("Enter valid email id");
                     password.requestFocus();
                 }else {
-                    /*database.addValueEventListener(new ValueEventListener() {
+
+                   /* database.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            String fl=snapshot.child("sflag").getValue().toString();
-                            Log.i("Data bsadghgah :    ",fl.toString());
-
+                            fr=snapshot.child("firstName").getValue(String.class);
+                            email.setText(fr);
                         }
 
                         @Override
@@ -105,14 +115,12 @@ public class ActivityLogIn extends AppCompatActivity {
 
                         }
                     });*/
+
+
                     mAuth.signInWithEmailAndPassword(Email,Password)
                             .addOnCompleteListener(ActivityLogIn.this,new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                                    if(flag==1){
-                                       /* Intent intent = new Intent(ActivityLogIn.this, Admin_Home_Activity.class);
-                                        startActivity(intent);*/
-                                    }else {
                                         if (task.isSuccessful()) {
                                             Intent intent = new Intent(ActivityLogIn.this, MainActivity.class);
                                             startActivity(intent);
@@ -123,11 +131,12 @@ public class ActivityLogIn extends AppCompatActivity {
                                             Toast.makeText(ActivityLogIn.this, "Login UnSuccessfull", Toast.LENGTH_SHORT).show();
                                         }
                                     }
-                                }
+
                             });
+
+
                 }
 
-            }
-
-
     }
+
+}
