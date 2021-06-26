@@ -54,7 +54,6 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
         Glide.with(context)
                 .load(list.get(position).getImageUri())
                 .into(holder.ImgV);
-        Log.i("Product Adapter ", "Image URL " + list.get(position) + list.get(position).getImageUri() );
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
