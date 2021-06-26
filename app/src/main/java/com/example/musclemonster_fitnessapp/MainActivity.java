@@ -13,7 +13,6 @@ import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
-import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
 //import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 
 import kotlin.Unit;
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         /*TextView selected_page=findViewById(R.id.selected_page);*/
         MeowBottomNavigation bottomNavigation=findViewById(R.id.bottomNavigation);
 
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e)
         {*/
             bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",1),true);
+
 
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {

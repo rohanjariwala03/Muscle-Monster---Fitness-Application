@@ -2,7 +2,6 @@ package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.app.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.MainActivity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.ViewProductDetail;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.ViewProductDetail;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 
@@ -54,7 +50,6 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
         Glide.with(context)
                 .load(list.get(position).getImageUri())
                 .into(holder.ImgV);
-        Log.i("Product Adapter ", "Image URL " + list.get(position) + list.get(position).getImageUri() );
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,13 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Exercise_Sub_Activity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.ViewProductDetail;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;

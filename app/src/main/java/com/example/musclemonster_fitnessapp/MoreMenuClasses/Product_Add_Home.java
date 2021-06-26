@@ -21,18 +21,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
 import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
