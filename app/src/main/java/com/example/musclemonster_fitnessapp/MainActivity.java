@@ -12,7 +12,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Shopping;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Fragment_Shopping;
 //import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 
 import kotlin.Unit;

@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
         <activity android:name=".LoginSignUp.ActivitySignUp"></activity>
-        <activity android:name=".LoginSignUp.ActivityLogIn" />
+
+        <activity android:name=".MainActivity" />
+
         <activity android:name=".Admin_Home_Activity" />
         <activity android:name=".Admin.Admin_Home_Activity"></activity>
         <activity android:name=".ExerciseDescription.Exercise_Description_Activity" />
         <activity android:name=".MoreMenuClasses.Exercise_Sub_Activity" />
         <activity
-            android:name=".MoreMenuClasses.ViewProductDetail"
+            android:name=".BottomBarFragments.Products.ViewProductDetail"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Update_Profile"
@@ -29,7 +31,7 @@
         <activity
             android:name=".MoreMenuClasses.Product_Add_Home"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginSignUp.ActivityLogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
