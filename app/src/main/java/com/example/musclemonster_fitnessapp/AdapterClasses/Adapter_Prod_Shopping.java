@@ -2,7 +2,6 @@ package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.app.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.MainActivity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.ViewProductDetail;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.ViewProductDetail;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 

@@ -3,20 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomBarFragments.Fragment_Shopping"
+    tools:context=".BottomBarFragments.Products.Fragment_Shopping"
     android:orientation="vertical"
     android:background="@color/BackGroundColor">
 
-    <!--<TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_marginTop="1dp"
         android:text="@string/Products"
+        android:textColor="@color/white"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText,RtlCompat,SpUsage" />-->
+        tools:ignore="HardcodedText,RtlCompat,SpUsage" />
 
     <LinearLayout
         android:layout_width="match_parent"
