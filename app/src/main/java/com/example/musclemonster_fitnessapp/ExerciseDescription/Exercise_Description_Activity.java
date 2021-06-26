@@ -2,21 +2,20 @@ package com.example.musclemonster_fitnessapp.ExerciseDescription;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.R;
-import com.google.firebase.database.DataSnapshot;
 
 public class Exercise_Description_Activity extends AppCompatActivity {
 
     String ExerciseCat,ExerciseName,ExerciseDesc,ItemImageUri;
     TextView Name,Catagory,Description;
-    ImageView ImgView;
+    ImageView ImgView,playbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,14 @@ public class Exercise_Description_Activity extends AppCompatActivity {
         Catagory.setText(ExerciseCat);
         Description.setText(ExerciseDesc);
         ImgView = (ImageView) findViewById(R.id.imgView);
+        playbtn=findViewById(R.id.PlayVideo);
+        playbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              /* Intent intent = new Intent(Exercise_Description_Activity.this, ActivityDisplayVideo.class);
+                startActivity(intent);*/
+            }
+        });
 
         Glide.with(this)
                 .load(ItemImageUri)

@@ -39,18 +39,21 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
-    //implementation 'com.google.firebase:firebase-storage:20.0.0'
-    //implementation 'com.google.firebase:firebase-auth:21.0.1'
-    //implementation 'com.firebase:firebase-client-android:2.4.0'
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31"
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
-
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.github.bumptech.glide:compiler:4.11.0'
+    compile 'com.google.android.exoplayer:exoplayer:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer-core:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer-dash:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer-hls:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
+    implementation 'com.firebaseui:firebase-ui-database:6.3.0'
+
 
 
 

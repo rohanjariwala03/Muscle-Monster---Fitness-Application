@@ -23,6 +23,7 @@ public class Fragment_More extends Fragment {
     Button btn_addItem;
     Button btn_logout;
     Button btn_MyProfile;
+    Button addTrainer;
 
     public Fragment_More() {
         // Required empty public constructor
@@ -66,8 +67,7 @@ public class Fragment_More extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivitySignUp.class);
-                startActivity(intent);
+
             }
         });
         return view;

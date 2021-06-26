@@ -2,6 +2,7 @@ package com.example.musclemonster_fitnessapp.LoginSignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.musclemonster_fitnessapp.Admin_Home_Activity;
+import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,6 +65,7 @@ public class ActivityLogIn extends AppCompatActivity {
 
                 String Email = email.getText().toString();
                 String Password = password.getText().toString();
+                int flag=1;
 
                 if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
 
@@ -75,10 +79,17 @@ public class ActivityLogIn extends AppCompatActivity {
                             .addOnCompleteListener(ActivityLogIn.this,new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(ActivityLogIn.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        Toast.makeText(ActivityLogIn.this, "Login UnSuccessfull", Toast.LENGTH_SHORT).show();
+                                    if(flag==1){
+                                        Intent intent = new Intent(ActivityLogIn.this, Admin_Home_Activity.class);
+                                        startActivity(intent);
+                                    }else {
+                                        if (task.isSuccessful()) {
+                                            Intent intent = new Intent(ActivityLogIn.this, MainActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(ActivityLogIn.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(ActivityLogIn.this, "Login UnSuccessfull", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             });

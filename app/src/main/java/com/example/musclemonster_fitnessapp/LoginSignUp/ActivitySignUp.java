@@ -23,6 +23,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
     EditText firstName,lastName,email,phone,password,confirmPassword;
     Button signup;
+    int Sflag=0;
 
 
     FirebaseAuth mAuth;
@@ -66,7 +67,7 @@ public class ActivitySignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            Model model = new Model(fName,lName,Semail,Sphone);
+                            Model model = new Model(fName,lName,Semail,Sphone,Sflag);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
