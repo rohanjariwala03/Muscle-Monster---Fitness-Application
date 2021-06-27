@@ -5,16 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ExerciseDescription.Exercise_Description_Activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/BackgroundTheme">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginTop="30dp">
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="331dp"
         tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginTop="30dp"/>
-    <LinearLayout
+     />
+</LinearLayout>
+<LinearLayout
         android:layout_width="40sp"
         android:layout_height="40dp"
         tools:context=".ExerciseDescription.Exercise_Description_Activity"
@@ -28,6 +34,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/PlayVideo"
+
             android:background="@drawable/ic_baseline_play_circle_filled_24"/>
     </LinearLayout>
 
@@ -37,7 +44,7 @@
         tools:context=".ExerciseDescription.Exercise_Description_Activity"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/rounded_textview_smalldata">
     <TextView
         android:id="@+id/txtExerciseName"

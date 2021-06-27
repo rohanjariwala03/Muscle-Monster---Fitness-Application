@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MoreMenuClasses.Product_Add_Home"
     android:orientation="vertical"
-    android:background="@color/design_default_color_secondary_variant">
+    android:background="@color/BackgroundTheme">
 
 
     <LinearLayout
@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product Name : "
+            android:textColor="@color/textColor"
             android:layout_marginLeft="30dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -51,6 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Per Item Weight : "
+            android:textColor="@color/textColor"
+
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -81,6 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category : "
+            android:textColor="@color/textColor"
+
             android:layout_marginLeft="60dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -110,6 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price : "
+            android:textColor="@color/textColor"
+
             android:layout_marginLeft="85dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -139,6 +146,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description : "
+            android:textColor="@color/textColor"
+
             android:layout_marginLeft="45dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
