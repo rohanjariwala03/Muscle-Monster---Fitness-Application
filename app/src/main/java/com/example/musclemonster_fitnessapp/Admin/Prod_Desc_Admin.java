@@ -48,8 +48,8 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         EditProCat = (TextView)findViewById(R.id.txtItemCat);
         EditProDesc = (TextView)findViewById(R.id.txtItemDesc);
         EditProWeight = (TextView)findViewById(R.id.txtItemWeight);
-        /*TxtPubMail = (TextView)findViewById(R.id.txtItemPublisherMail);
-        TxtPubName = (TextView)findViewById(R.id.txtItemPublisherName);*/
+        TxtPubMail = (TextView)findViewById(R.id.txtItemPublisherMail);
+        TxtPubName = (TextView)findViewById(R.id.txtItemPublisherName);
         ImgView = (ImageView) findViewById(R.id.ItemImageView);
 
         ItemKey = getIntent().getStringExtra("ItemKey");
@@ -62,14 +62,17 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         UserKey = getIntent().getStringExtra("UserKey");
         Log.i("PRod_Desc_Admin","UserKey"+ UserKey);
 
-        /*database = FirebaseDatabase.getInstance();
-        database.getReference("Users").child(UserKey).addValueEventListener(new ValueEventListener() {
+        database = FirebaseDatabase.getInstance();
+        reff = database.getReference("Users").child("F5OL8WlwvfMerGvEAdkxycA2OY72");
+        reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-
-                    PubName = (snapshot.child("firstName").getValue(String.class)) + " " + snapshot.child("lastName").getValue(String.class) ;
-                    PubMail = snapshot.child("email").getValue(String.class);
+                    Log.i("PRod_Desc_Admin","Entered If ");
+                            /*PubMail = ;
+                            PubName =  ;*/
+                    TxtPubMail.setText(snapshot.child("email").getValue(String.class));
+                    TxtPubName.setText((snapshot.child("firstName").getValue(String.class)) + " " + snapshot.child("lastName").getValue(String.class));
                 }
                 else
                 {
@@ -79,12 +82,15 @@ public class Prod_Desc_Admin extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                Log.i("Prod_Desc_Admin : ", "Cancelled : " );
             }
         });
+
+
+
         Log.i("PRod_Desc_Admin","PName"+ PubName);
         Log.i("PRod_Desc_Admin","PMail"+ PubMail);
-*/
+        Log.i("PRod_Desc_Admin","REff : " + reff.toString());
 
 
 
@@ -93,8 +99,8 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         EditProCat.setText(ItemCat);
         EditProWeight.setText(ItemWeight);
         EditProDesc.setText(ItemDesc);
-       /* TxtPubMail.setText(PubMail);
-        TxtPubName.setText(PubName);*/
+        TxtPubMail.setText(PubMail);
+        TxtPubName.setText(PubName);
         Glide.with(this)
                 .load(ItemImageUri)
                 .into(ImgView);
@@ -103,7 +109,7 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Prod_Desc_Admin.this, Admin_Cart.class);
+                /*Intent intent = new Intent(Prod_Desc_Admin.this, Admin_Cart.class);
                 intent.putExtra("ItemKey",ItemKey);
                 intent.putExtra("ItemName",ItemName);
                 intent.putExtra("ItemPrice",ItemPrice);
@@ -113,7 +119,9 @@ public class Prod_Desc_Admin extends AppCompatActivity {
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("UserKey",UserKey);
-                startActivity(intent);
+                startActivity(intent);*/
+
+
             }
         });
 
