@@ -18,7 +18,7 @@ public class TrainerPojo {
 
     }
 
-    public TrainerPojo(String trainerID, String firstname, String lastName, String email, String password, String experience, String weight, String height, String age, String contact, String imgUri) {
+    public TrainerPojo(String trainerID, String firstname, String lastName, String email, String password, String contact,String experience, String weight, String height, String age, String imgUri) {
         TrainerID = trainerID;
         Firstname = firstname;
         LastName = lastName;

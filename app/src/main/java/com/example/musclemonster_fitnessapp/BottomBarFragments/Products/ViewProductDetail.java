@@ -59,7 +59,7 @@ public class ViewProductDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), product_cart.class);
+                Intent intent = new Intent(ViewProductDetail.this, product_cart.class);
                 intent.putExtra("ItemKey",ItemKey);
                 intent.putExtra("ItemName",ItemName);
                 intent.putExtra("ItemPrice",ItemPrice);

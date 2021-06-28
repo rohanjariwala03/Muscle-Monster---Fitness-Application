@@ -26,8 +26,8 @@
             <TextView
                 android:id="@+id/exercise_sub_data"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal|center_vertical"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:textSize="30dp"
@@ -42,6 +42,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_marginRight="15dp"
                 android:background="@color/ExerciseList"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
                 tools:ignore="VectorDrawableCompat" />

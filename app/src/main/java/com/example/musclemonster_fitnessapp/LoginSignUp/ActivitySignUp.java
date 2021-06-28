@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public class ActivitySignUp extends AppCompatActivity {
 
     EditText firstName,lastName,email,phone,password,confirmPassword;
-    Button signup;
+    Button signup,signin;
     int Sflag=0;
 
 
@@ -42,6 +42,7 @@ public class ActivitySignUp extends AppCompatActivity {
         confirmPassword = findViewById(R.id.SignUpConfirmPassword);
 
         signup = findViewById(R.id.SignUpButtonSignUp);
+        signin = findViewById(R.id.SignUpButtonSignin);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -49,6 +50,13 @@ public class ActivitySignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Signup();
+            }
+        });
+
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivitySignUp.this,ActivityLogIn.class));
             }
         });
     }

@@ -26,10 +26,10 @@
             <TextView
                 android:id="@+id/exercise_data"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@color/ExerciseList"
-                android:gravity="center_horizontal"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -44,6 +44,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_marginRight="15dp"
                 android:background="@color/ExerciseList"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
                 tools:ignore="VectorDrawableCompat" />

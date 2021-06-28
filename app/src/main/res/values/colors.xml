@@ -10,8 +10,8 @@
     <color name="red">#FF0000</color>
 
 
-    <color name="BackgroundTheme">#222C3B</color>
-    <color name="ExerciseList">#273243</color>
+    <color name="BackgroundTheme">#FFFFFFFF</color>
+    <color name="ExerciseList">#383C4F</color>
     <color name="textColor">#737373</color>
 
 

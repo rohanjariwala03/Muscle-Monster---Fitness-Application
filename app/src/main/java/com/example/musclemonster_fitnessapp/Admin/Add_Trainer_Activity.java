@@ -21,7 +21,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.musclemonster_fitnessapp.MainActivity;
+import com.example.musclemonster_fitnessapp.*;
+import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
+import com.example.musclemonster_fitnessapp.LoginSignUp.ActivitySignUp;
+import com.example.musclemonster_fitnessapp.LoginSignUp.Model;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
@@ -29,6 +32,8 @@ import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,6 +60,8 @@ public class Add_Trainer_Activity extends AppCompatActivity {
 
     private LinearLayout ImageLL;
 
+    FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,7 @@ public class Add_Trainer_Activity extends AppCompatActivity {
         // Root Database Name for Firebase Database.
         Database_Path = "Trainer";
 
+        mAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
         Log.i("Trainer_Add_Home", "Datax : " + databaseReference);
@@ -123,6 +131,77 @@ public class Add_Trainer_Activity extends AppCompatActivity {
         // Checking whether FilePathUri Is empty or not.
         if (resultUri != null) {
 
+            String EmailId = email.getText().toString().trim();
+            String Password = password.getText().toString().trim();
+
+            mAuth.createUserWithEmailAndPassword(EmailId, Password)
+
+                    .addOnCompleteListener(Add_Trainer_Activity.this,new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if(task.isSuccessful()){
+                                StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(resultUri));
+
+
+                                storageReference2nd.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) {
+                                        task.getResult().getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+
+                                                 String TrainerFirstname = firstName.getText().toString().trim();
+                                                String LastName = lastName.getText().toString().trim();
+                                                String TrainerID = "N";
+                                                String Experience = experience.getText().toString().trim();
+                                                String Weight = weight.getText().toString().trim();
+                                                String Height = height.getText().toString().trim();
+                                                String Age = age.getText().toString().trim();
+                                                String Contact = contact.getText().toString().trim();
+
+                                                String ImgUri = uri.toString();
+                                                // Showing toast message after done uploading.
+                                                Toast.makeText(getApplicationContext(), "Trainer Added Successfully ", Toast.LENGTH_LONG).show();
+
+                                                TrainerPojo trainerPojo = new TrainerPojo(TrainerID, TrainerFirstname, LastName, EmailId, Password, Contact, Experience, Weight, Height, Age, ImgUri);
+
+
+                                                FirebaseDatabase.getInstance().getReference("Trainer")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .setValue(trainerPojo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NotNull Task<Void> task) {
+                                                        Toast.makeText(Add_Trainer_Activity.this, "User Created", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(Add_Trainer_Activity.this, Admin_Home_Activity.class));
+                                                    }
+                                                });
+                                                // Getting image upload ID.
+                                                //String ImageUploadId = databaseReference.push().getKey();
+
+                                                // Adding image upload id s child element into databaseReference.
+                                                //databaseReference.child(ImageUploadId).setValue(ProUploadPOJO);
+                                                /*databaseReference.push().setValue(trainerPojo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Intent intent = new Intent(getApplicationContext(), Admin_Home_Activity.class);
+                                                        intent.putExtra("fragmentNumber",3); //for example
+                                                        startActivity(intent);
+                                                    }
+                                                });*/
+                                            }
+                                        });
+                                    }
+                                });
+
+
+                            }else{
+                                Log.i("avc :" , "unsuccess");
+                                Toast.makeText(Add_Trainer_Activity.this, "User Created Unsuccessfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
 //            // Setting progressDialog Title.
 //            progressDialog.setTitle("Advertisement is Publishing....");
 //
@@ -130,7 +209,7 @@ public class Add_Trainer_Activity extends AppCompatActivity {
 //            progressDialog.show();
 
             // Creating second StorageReference.
-            StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(resultUri));
+         /*   StorageReference storageReference2nd = storageReference.child(Storage_Path + System.currentTimeMillis() + "." + GetFileExtension(resultUri));
 
 
             storageReference2nd.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -173,7 +252,7 @@ public class Add_Trainer_Activity extends AppCompatActivity {
                         }
                     });
                 }
-            });
+            });*/
 
 
         }

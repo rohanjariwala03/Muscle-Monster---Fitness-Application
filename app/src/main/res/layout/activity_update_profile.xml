@@ -12,24 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
-        <ImageButton
+       <!-- <ImageButton
             android:id="@+id/backbutton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#222C3B"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />-->
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="255dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_toRightOf="@+id/backbutton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="78dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="78dp"
+            android:layout_marginRight="78dp"
             android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
             android:paddingTop="10dp"
             android:text="Update Profile"
-            android:textSize="30dp"
+            android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="30dp"
             android:textStyle="bold">
 
         </TextView>
@@ -50,13 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="Email id :"
-            android:textColor="#596879"
+            android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/email"
             android:id="@+id/editemail"
             android:gravity="center"
@@ -70,16 +79,16 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:text="Contact :"
-            android:textColor="#596879"
+            android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editcontact"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/editemail"
             android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="40dp"
             android:gravity="center"
             android:layout_toRightOf="@+id/email"
             android:background="@drawable/rounded_edittext"/>
@@ -92,16 +101,16 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:text="Last Name :"
-            android:textColor="#596879"
+            android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editlastname"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/editcontact"
             android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="40dp"
             android:gravity="center"
             android:layout_toRightOf="@+id/email"
             android:background="@drawable/rounded_edittext"/>
@@ -114,16 +123,16 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:text="First Name :"
-            android:textColor="#596879"
+            android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editfirstname"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/editlastname"
             android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/email"
             android:gravity="center"
             android:background="@drawable/rounded_edittext"/>
@@ -138,7 +147,11 @@
             android:background="@drawable/rounded_button"
             android:onClick="update"
             android:text="Update Info"
-            android:textColor="#596879" />
+            android:textColor="#ffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="#366A93"
+            tools:ignore="OnClick,UsingOnClickInXml" />
 
         <TextView
             android:id="@+id/DataUpdate"
@@ -149,7 +162,7 @@
             android:text="Data Updated"
             android:gravity="center"
             android:layout_marginLeft="110dp"
-            android:textColor="#596879"
+            android:textColor="#ffff"
             android:textSize="20dp"
             android:visibility="invisible"/>
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Admin.Add_Trainer_Activity"
     android:orientation="vertical"
-    android:background="@color/BackgroundTheme">
+    android:background="@color/BackGroundColor">
 
     <LinearLayout
         android:layout_width="match_parent"

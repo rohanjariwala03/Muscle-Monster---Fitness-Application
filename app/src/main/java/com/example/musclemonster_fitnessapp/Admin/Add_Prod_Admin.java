@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses;
+package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.musclemonster_fitnessapp.Admin_Home_Activity;
 import com.example.musclemonster_fitnessapp.MainActivity;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,12 +41,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.UUID;
 
-public class Product_Add_Home extends AppCompatActivity {
+public class Add_Prod_Admin extends AppCompatActivity {
 
     private String Storage_Path;
     private String Database_Path;
-    private Button BtnUpload,BtnSubmit;
-    private EditText ProName,ProWeight,ProCat,ProPrice,ProDesc;
+    private Button BtnUpload, BtnSubmit;
+    private EditText ProName, ProWeight, ProCat, ProPrice, ProDesc;
 
     private ImageView ImgView;
     private StorageReference storageReference;
@@ -52,7 +54,7 @@ public class Product_Add_Home extends AppCompatActivity {
 
     private Uri resultUri;
 
-    private ProgressDialog progressDialog ;
+    private ProgressDialog progressDialog;
 
     private LinearLayout ImageLL;
 
@@ -61,8 +63,7 @@ public class Product_Add_Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_add_home);
-
+        setContentView(R.layout.activity_add_prod_admin);
         getSupportActionBar().setTitle("Sell Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -72,7 +73,7 @@ public class Product_Add_Home extends AppCompatActivity {
         // Root Database Name for Firebase Database.
         Database_Path = "Product_Detail_Database";
 
-        myAuth =FirebaseAuth.getInstance();
+        myAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
         Log.i("Product_Add_Home", "Datax : " + databaseReference);
@@ -88,7 +89,7 @@ public class Product_Add_Home extends AppCompatActivity {
 
         ImgView = (ImageView) findViewById(R.id.ShowImageView);
 
-        progressDialog = new ProgressDialog(Product_Add_Home.this);
+        progressDialog = new ProgressDialog(Add_Prod_Admin.this);
 
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
 
@@ -97,14 +98,14 @@ public class Product_Add_Home extends AppCompatActivity {
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // ImageLL.setVisibility(View.VISIBLE) ;
+                // ImageLL.setVisibility(View.VISIBLE) ;
                 // Creating intent.
                 Intent intent = new Intent();
 
                 // Setting intent type as image to select image from phone storage.
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
                 //startActivityForResult(Intent.createChooser(intent, "Please Select Image"),1);
 
             }
@@ -141,7 +142,6 @@ public class Product_Add_Home extends AppCompatActivity {
         */
 
 
-
         // Checking whether FilePathUri Is empty or not.
         if (resultUri != null) {
 
@@ -175,13 +175,12 @@ public class Product_Add_Home extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Advertisement Published Successfully ", Toast.LENGTH_LONG).show();
 
                             @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey);
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID, ProductName, ProductWeight, ProductPrice, ProductCat, ProductDesc, ImgUri, UserKey);
 
                             databaseReference.push().setValue(ProUploadPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    intent.putExtra("fragmentNumber",3); //for example
+                                    Intent intent = new Intent(getApplicationContext(), Admin_Home_Activity.class);
                                     startActivity(intent);
                                 }
                             });
@@ -245,10 +244,9 @@ public class Product_Add_Home extends AppCompatActivity {
 
                         }
                     });*/
-        }
-        else {
+        } else {
 
-            Toast.makeText(Product_Add_Home.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
+            Toast.makeText(Add_Prod_Admin.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -261,16 +259,15 @@ public class Product_Add_Home extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
 
         // Returning the file Extension.
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
     }
-
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK){
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             final Uri imageUri = data.getData();
             resultUri = imageUri;
             //ImgView.setImageURI(resultUri);
@@ -286,8 +283,7 @@ public class Product_Add_Home extends AppCompatActivity {
                 // After selecting image change choose button above text.
                 //BtnUpload.setText("Image Selected");
 
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
 
                 e.printStackTrace();
             }

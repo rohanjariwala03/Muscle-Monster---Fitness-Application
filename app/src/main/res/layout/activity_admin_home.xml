@@ -11,7 +11,8 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/btnMyProfileAdmin"
@@ -68,7 +69,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
-            android:text="Sell Products"
+            android:text="Sell Product"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"
@@ -113,7 +114,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
-            android:text="Buy Products"
+            android:text="View Products"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"
@@ -133,7 +134,7 @@
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"
             android:textColor="@color/black"
-            android:layout_marginBottom="80dp"/>
+            android:layout_marginBottom="65dp"/>
 
      <!--   <View
             android:layout_width="match_parent"
