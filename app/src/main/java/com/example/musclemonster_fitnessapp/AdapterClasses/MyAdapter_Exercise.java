@@ -48,7 +48,6 @@ public class MyAdapter_Exercise extends RecyclerView.Adapter<MyAdapter_Exercise.
             @Override
             public void onClick(View v) {
 
-                String a="Abs";
                 Toast.makeText(context,""+p,Toast.LENGTH_SHORT).show();
 
                 // Fragment ExerciseSubFragment=new ExerciseSubFragment();

@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".Admin.ActivityTrainerViewDescription"></activity>
+        <activity android:name=".MoreMenuClasses.Find_Trainer_Activity"></activity>
+        <activity android:name=".LoginSignUp.ActivityLogIn" />
+        <activity android:name=".Admin.ActivityTrainerViewDescription" />
         <activity android:name=".Admin.ActivityViewTrainer" />
         <activity android:name=".Admin.Admin_Cart" />
         <activity android:name=".Admin.Prod_Desc_Admin" />
@@ -38,7 +40,7 @@
         <activity
             android:name=".MoreMenuClasses.Product_Add_Home"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".LoginSignUp.ActivityLogIn">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
