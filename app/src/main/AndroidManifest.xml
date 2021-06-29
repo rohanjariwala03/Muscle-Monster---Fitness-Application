@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
+        <activity android:name=".MoreMenuClasses.Find_Trainer_Activity"></activity>
+        <activity android:name=".LoginSignUp.ActivityLogIn" />
+        <activity android:name=".Admin.ActivityTrainerViewDescription" />
         <activity android:name=".MoreMenuClasses.MyProducts_User"></activity>
         <activity android:name=".Admin.MyProducts_Admin" />
         <activity android:name=".Admin.ActivityTrainerViewDescription" />

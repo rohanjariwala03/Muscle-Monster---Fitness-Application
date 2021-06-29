@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Find_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.R;
@@ -22,6 +23,8 @@ public class Fragment_More extends Fragment {
     Button btn_addItem;
     Button btn_logout;
     Button btn_MyProfile, btn_MyProducts;
+    Button btn_MyProfile,btn_findTrainer;
+    Button addTrainer;
 
 
     FirebaseAuth mAuth;
@@ -45,10 +48,13 @@ public class Fragment_More extends Fragment {
         View view=inflater.inflate(R.layout.fragment__more, container, false);
 
         btn_addItem =view.findViewById(R.id.btnSellProducts);
+
         btn_logout =view.findViewById(R.id.btnLogout);
+
         btn_MyProfile =view.findViewById(R.id.btnMyProfile);
         btn_MyProducts =view.findViewById(R.id.btnViewMyProduct);
 
+        btn_findTrainer=view.findViewById(R.id.btnFindTrainer);
 
         btn_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +86,15 @@ public class Fragment_More extends Fragment {
                 //mAuth.signOut();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getContext(),ActivityLogIn.class));
+            }
+        });
+
+        btn_findTrainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //mAuth.signOut();
+                Intent intent = new Intent(getContext(), Find_Trainer_Activity.class);
+                startActivity(intent);
             }
         });
         return view;
