@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.Admin;
+package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SearchView;
 
+import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
+import com.example.musclemonster_fitnessapp.Admin.MyProducts_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,40 +30,34 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MyProducts_Admin extends AppCompatActivity {
+public class MyProducts_User extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Admin_Adp_Prod_Shopping AdapterShopping;
+    Adapter_Prod_Shopping AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
-    EditText EditSearch;
-    Button BtnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_products_admin);
+        setContentView(R.layout.activity_my_products_user);
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
-        recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(MyProducts_Admin.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MyProducts_User.this));
 
         list=new ArrayList<ProductUpload_POJO>();
-        /*AdapterShopping=new Admin_Adp_Prod_Shopping(getContext(),list);
-        recyclerView.setAdapter(AdapterShopping);*/
-        AdapterShopping=new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,list);
+        AdapterShopping=new Adapter_Prod_Shopping(MyProducts_User.this,list);
         recyclerView.setAdapter(AdapterShopping);
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_Admin.this,2);
+        recyclerView.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
-        Log.i("Admin My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
-
+        //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
 
         //Database event listner for success or failure
@@ -73,15 +67,15 @@ public class MyProducts_Admin extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-
+                        //Log.i("MyProducts_User : ", "Key Matched" );
                         if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
-
+                            Log.i("MyProducts_User : ", "Key Matched" );
                             list.add(AddData_ToList(dataSnapshot));
                         }
                     }
                     else
                     {
-                        Log.i("Admin My Prod", "NO Data : " );
+                        Log.i("User My Prod", "NO Data : " );
                     }
                 }
                 // set the Adapter to RecyclerView
@@ -130,16 +124,16 @@ public class MyProducts_Admin extends AppCompatActivity {
 
     private ProductUpload_POJO AddData_ToList(DataSnapshot dataSnapshot)
     {
-        ProductUpload_POJO Obj = new ProductUpload_POJO();
-        Obj.setFKey(dataSnapshot.getKey());
-        Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
-        Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
-        Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
-        Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
-        Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
-        Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
-        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
-        return Obj;
+            ProductUpload_POJO Obj = new ProductUpload_POJO();
+            Obj.setFKey(dataSnapshot.getKey());
+            Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
+            Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
+            Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
+            Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
+            Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
+            Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+            Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+           return Obj;
     }
 
 
@@ -166,10 +160,10 @@ public class MyProducts_Admin extends AppCompatActivity {
                     }
                     else
                     {
-                        Log.i("MyProducts_Admin : ", "NO Data : Q" );
+                        Log.i("MyProducts_User : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,Alist);
+                AdapterShopping = new Adapter_Prod_Shopping(MyProducts_User.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 
@@ -177,7 +171,7 @@ public class MyProducts_Admin extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                Log.i("MyProducts_Admin : ", "NO Data : Q" );
+                Log.i("MyProducts_User : ", "NO Data : Q" );
             }
         });
     }
