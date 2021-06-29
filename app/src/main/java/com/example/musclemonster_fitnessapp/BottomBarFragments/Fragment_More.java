@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.fragment.app.Fragment;
 
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
@@ -23,7 +22,7 @@ public class Fragment_More extends Fragment {
     Button btn_addItem;
     Button btn_logout;
     Button btn_MyProfile, btn_MyProducts;
-    Button btn_MyProfile,btn_findTrainer;
+    Button btn_findTrainer;
     Button addTrainer;
 
 
