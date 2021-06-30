@@ -1,20 +1,19 @@
 package com.example.musclemonster_fitnessapp.AdapterClasses;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
-import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
+import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,10 +23,10 @@ import java.util.ArrayList;
 public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trainer.MyViewHolder> {
 
     Context context;
-    ArrayList<Chat_pojo> list;
+    ArrayList<Find_Trainer_pojo> list;
 
 
-    public Adapter_Find_Trainer(Context context, ArrayList<Chat_pojo> list) {
+    public Adapter_Find_Trainer(Context context, ArrayList<Find_Trainer_pojo> list) {
         this.context = context;
         this.list = list;
     }
@@ -42,6 +41,7 @@ public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trai
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_Find_Trainer.MyViewHolder holder, int position) {
 
@@ -51,11 +51,10 @@ public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trai
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                // Toast.makeText(context,""+position, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, Chat_Activity.class);
-                intent.putExtra("TrainerFName",list.get(position).getTFName());
+                intent.putExtra("TrainerFName",list.get(position).getTFName() + " " + list.get(position).getTLName());
                 intent.putExtra("TrainerID",list.get(position).getTid());
                 intent.putExtra("TrainerImageUrl",list.get(position).getTimgUrl());
                 intent.putExtra("TrainerLName",list.get(position).getTLName());

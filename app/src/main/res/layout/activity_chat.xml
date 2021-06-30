@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BottomBarFragments.Chat.Chat_Activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:contentDescription=".MessageActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="top"
-        android:gravity="top">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:id="@+id/bar"
         android:background="@color/BackgroundTheme">
 
         <ImageButton
@@ -23,6 +21,7 @@
             android:id="@+id/btnback_trainer"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"
             android:layout_marginLeft="20dp"
+
             />
 
 
@@ -38,49 +37,49 @@
             />
     </androidx.appcompat.widget.Toolbar>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="610dp"
-            android:id="@+id/recylerview_Message"/>
-    </LinearLayout>
+            android:id="@+id/recylerView_Message"
+            android:layout_below="@+id/bar"
+            android:layout_above="@id/txtChatMessage"
+            tools:ignore="NotSibling" />
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:gravity="bottom">
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="#fff"
+        android:layout_alignParentBottom="true">
 
         <EditText
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtChatMessage"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
-            android:hint="Start Writing Message"
-            android:textColor="@color/black"/>
+            android:hint="Type a Message.."
+            android:textColor="@color/black"
+            android:layout_toLeftOf="@+id/btnSendMessage"
+            android:layout_centerVertical="true"/>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp"
             android:id="@+id/btnSendMessage"
             android:background="@drawable/ic_baseline_send_24"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
-</LinearLayout>
+</RelativeLayout>
