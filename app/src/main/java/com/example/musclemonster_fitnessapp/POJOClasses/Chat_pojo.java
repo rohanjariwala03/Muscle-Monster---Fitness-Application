@@ -1,68 +1,52 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Chat_pojo {
+    private String Sender;
+    private String Receiver;
+    private String Msg;
 
-    String Tid,TFName,TLName,TEmail,TimgUrl;
-    private String FKey;
-
-    public Chat_pojo(){
-
+    public String getUserID() {
+        return UserID;
     }
 
-    public Chat_pojo(String tid, String TFName, String TLName, String temail, String timgUrl) {
-        this.Tid = tid;
-        this.TFName = TFName;
-        this.TLName = TLName;
-        this.TEmail = temail;
-        this.TimgUrl = timgUrl;
+    public void setUserID(String userID) {
+        UserID = userID;
     }
 
-    public String getTid() {
-        return Tid;
+    private String UserID;
+
+    public Chat_pojo(String sender,String msg){
+        this.Sender=sender;
+        this.Msg=msg;
     }
 
-    public void setTid(String tid) {
-        Tid = tid;
+    /*public Chat_pojo(String sender,String receiver,String msg){
+        this.Sender=sender;
+        this.Receiver=receiver;
+        this.Msg=msg;
+    }*/
+
+    public String getSender() {
+        return Sender;
     }
 
-    public String getTFName() {
-        return TFName;
+    public void setSender(String sender) {
+        Sender = sender;
     }
 
-    public void setTFName(String TFName) {
-        this.TFName = TFName;
+    public String getReceiver() {
+        return Receiver;
     }
 
-    public String getTLName() {
-        return TLName;
+    public void setReceiver(String receiver) {
+        Receiver = receiver;
     }
 
-    public void setTLName(String TLName) {
-        this.TLName = TLName;
+    public String getMsg() {
+        return Msg;
     }
 
-    public String getTEmail() {
-        return TEmail;
+    public void setMsg(String msg) {
+        Msg = msg;
     }
-
-    public void setTEmail(String TEmail) {
-        this.TEmail = TEmail;
-    }
-
-    public String getTimgUrl() {
-        return TimgUrl;
-    }
-
-    public void setTimgUrl(String timgUrl) {
-        TimgUrl = timgUrl;
-    }
-
-    public String getFKey() {
-        return FKey;
-    }
-
-    public void setFKey(String FKey) {
-        this.FKey = FKey;
-    }
-
 }
