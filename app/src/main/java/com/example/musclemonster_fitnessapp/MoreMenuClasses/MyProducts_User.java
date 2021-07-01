@@ -55,8 +55,8 @@ public class MyProducts_User extends AppCompatActivity {
         AdapterShopping=new Adapter_MyProducts(MyProducts_User.this,list);
         recyclerView.setAdapter(AdapterShopping);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+       /* GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);*/
 
 
         //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );

@@ -1,10 +1,12 @@
 package com.example.musclemonster_fitnessapp.AdapterClasses;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.ViewProductDetail;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Del_Product;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.UpdateMyProduct;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
@@ -27,6 +29,7 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
     Context context;
     ArrayList<ProductUpload_POJO> list;
 
+
     public Adapter_MyProducts(Context context, ArrayList<ProductUpload_POJO> list) {
         this.context = context;
         this.list = list;
@@ -37,7 +40,7 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
     @NotNull
     @Override
     public Adapter_MyProducts.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.prod_shopping_items,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.upd_del_prod_list_user,parent,false);
         return new Adapter_MyProducts.MyViewHolder(v);
     }
 
@@ -58,20 +61,41 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
 
                 Toast.makeText(context,""+list.get(position).getProductName(),Toast.LENGTH_SHORT).show();
 
-                // Fragment ExerciseSubFragment=new ExerciseSubFragment();
-                //FragmentManager fragmentManager=context.getSupportFragmentManager();
-                Intent intent = new Intent(context, UpdateMyProduct.class);
-                intent.putExtra("ItemKey",list.get(position).getFKey());
-                intent.putExtra("ItemName",list.get(position).getProductName());
-                intent.putExtra("ItemPrice",list.get(position).getProductPrice());
-                intent.putExtra("ItemCat",list.get(position).getProductCat());
-                intent.putExtra("ItemDesc",list.get(position).getProductDesc());
-                intent.putExtra("ItemImageUri",list.get(position).getImageUri());
-                intent.putExtra("ItemWeight",list.get(position).getProductWeight());
-                intent.putExtra("UserKey",list.get(position).getUserKey());
-                v.getContext().startActivity(intent);
+                PassData(position,v);
             }
         });
+
+        holder.ImgBtnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PassData(position,view);
+            }
+        });
+
+        holder.ImgBtnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"Deleting......" ,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, Del_Product.class);
+                intent.putExtra("ItemKey",list.get(position).getFKey());
+                view.getContext().startActivity(intent);
+
+            }
+        });
+    }
+
+    private void PassData(int position, View v)
+    {
+        Intent intent = new Intent(context, UpdateMyProduct.class);
+        intent.putExtra("ItemKey",list.get(position).getFKey());
+        intent.putExtra("ItemName",list.get(position).getProductName());
+        intent.putExtra("ItemPrice",list.get(position).getProductPrice());
+        intent.putExtra("ItemCat",list.get(position).getProductCat());
+        intent.putExtra("ItemDesc",list.get(position).getProductDesc());
+        intent.putExtra("ItemImageUri",list.get(position).getImageUri());
+        intent.putExtra("ItemWeight",list.get(position).getProductWeight());
+        intent.putExtra("UserKey",list.get(position).getUserKey());
+        v.getContext().startActivity(intent);
     }
 
     @Override
@@ -83,12 +107,15 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
 
         TextView ProdName,ProdPrice;
         ImageView ImgV;
+        ImageButton ImgBtnUpdate,ImgBtnDel;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             ImgV = itemView.findViewById(R.id.ProdImgView);
             ProdName=itemView.findViewById(R.id.TxtProductName);
             ProdPrice=itemView.findViewById(R.id.TxtProductPrice);
+            ImgBtnUpdate=itemView.findViewById(R.id.ImgBtnUpdate);
+            ImgBtnDel=itemView.findViewById(R.id.ImgBtnDel);
         }
     }
 }
