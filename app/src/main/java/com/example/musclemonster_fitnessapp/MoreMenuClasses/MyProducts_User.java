@@ -13,7 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
+import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyProducts;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.Admin.MyProducts_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
@@ -35,13 +35,15 @@ public class MyProducts_User extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Adapter_Prod_Shopping AdapterShopping;
+    Adapter_MyProducts AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_products_user);
+        getSupportActionBar().setTitle("My Product");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
@@ -50,11 +52,11 @@ public class MyProducts_User extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(MyProducts_User.this));
 
         list=new ArrayList<ProductUpload_POJO>();
-        AdapterShopping=new Adapter_Prod_Shopping(MyProducts_User.this,list);
+        AdapterShopping=new Adapter_MyProducts(MyProducts_User.this,list);
         recyclerView.setAdapter(AdapterShopping);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+       /* GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);*/
 
 
         //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
@@ -163,7 +165,7 @@ public class MyProducts_User extends AppCompatActivity {
                         Log.i("MyProducts_User : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Adapter_Prod_Shopping(MyProducts_User.this,Alist);
+                AdapterShopping = new Adapter_MyProducts(MyProducts_User.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 
