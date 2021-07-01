@@ -15,10 +15,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.musclemonster_fitnessapp.MainActivity;
@@ -41,7 +44,7 @@ import java.util.UUID;
 
 public class Product_Add_Home extends AppCompatActivity {
 
-    private String Storage_Path;
+    private String Storage_Path,DDSelected;
     private String Database_Path;
     private Button BtnUpload,BtnSubmit;
     private EditText ProName,ProWeight,ProCat,ProPrice,ProDesc;
@@ -50,11 +53,16 @@ public class Product_Add_Home extends AppCompatActivity {
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
 
+    LinearLayout LLGender;
+
     private Uri resultUri;
 
     private ProgressDialog progressDialog ;
 
     private LinearLayout ImageLL;
+
+    private Spinner spinner;
+    private static final String[] paths = {"machines", "dumbbell", "clothing","bench","barbell","bicycle","balanceball","kettlebell","plates","treadmill"};
 
     FirebaseAuth myAuth;
 
@@ -62,6 +70,8 @@ public class Product_Add_Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_add_home);
+
+        DDSelected = "";
 
         getSupportActionBar().setTitle("Sell Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,7 +102,78 @@ public class Product_Add_Home extends AppCompatActivity {
 
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
 
+        LLGender = (LinearLayout) findViewById(R.id.LinearGender);
         //ImageLL.setVisibility(View.INVISIBLE) ;
+
+        spinner = (Spinner)findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Product_Add_Home.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        break;
+                    case 1:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+                    case 2:
+                            LLGender.setVisibility(View.VISIBLE);
+                        break;
+
+                    case 3:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 4:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 5:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 6:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 7:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+
+                    case 8:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 9:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    default:
+                        LLGender.setVisibility(View.INVISIBLE);
+                        break;
+                }
+                DDSelected = adapterView.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
