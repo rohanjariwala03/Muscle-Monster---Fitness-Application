@@ -1,7 +1,6 @@
-package com.example.musclemonster_fitnessapp.BottomBarFragments.Chat;
+package com.example.musclemonster_fitnessapp.Trainer.Chat;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,30 +16,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_chat_Activity;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
 import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class Chat_Activity extends AppCompatActivity {
+public class Activity_Chat_to_user extends AppCompatActivity {
+
     EditText mGetMessage;
     ImageButton mbtnSendMessage;
 
@@ -70,32 +60,33 @@ public class Chat_Activity extends AppCompatActivity {
     ArrayList<Chat_pojo> messagesArrayList;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat_to_user);
 
-        mGetMessage=findViewById(R.id.getmessage);
-        mSendMessageCardview=findViewById(R.id.carviewofsendmessage);
-        mbtnSendMessage=findViewById(R.id.imageviewsendmessage);
-        mToolbarofChat=findViewById(R.id.toolbarofspecificchat);
-        mNameOfSpecificUser=findViewById(R.id.Nameofspecificuser);
-        mImageviewOfSpecificUser=findViewById(R.id.specificuserimageinimageview);
-        mbtnBackofSpecificChat=findViewById(R.id.backbuttonofspecificchat);
+        mGetMessage=findViewById(R.id.Trainergetmessage);
+        mSendMessageCardview=findViewById(R.id.Trainercarviewofsendmessage);
+        mbtnSendMessage=findViewById(R.id.Trainerimageviewsendmessage);
+        mToolbarofChat=findViewById(R.id.Trainertoolbarofspecificchat);
+        mNameOfSpecificUser=findViewById(R.id.TrainerNameofspecificuser);
+        mImageviewOfSpecificUser=findViewById(R.id.Trainerspecificuserimageinimageview);
+        mbtnBackofSpecificChat=findViewById(R.id.Trainerbackbuttonofspecificchat);
 
         messagesArrayList=new ArrayList<>();
-        mMessageRecyclerview=findViewById(R.id.recyclerviewofspecific);
+        mMessageRecyclerview=findViewById(R.id.Trainerrecyclerviewofspecific);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerview.setLayoutManager(linearLayoutManager);
-        messagesAdapter=new Adapter_chat_Activity(Chat_Activity.this,messagesArrayList);
+        messagesAdapter=new Adapter_chat_Activity(Activity_Chat_to_user.this,messagesArrayList);
         mMessageRecyclerview.setAdapter(messagesAdapter);
-
         intent=getIntent();
 
 
         mGetMessage.setText(null);
+
 
         //setSupportActionBar(mtoolbarofspecificchat);
        /* mtoolbarofspecificchat.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +102,9 @@ public class Chat_Activity extends AppCompatActivity {
         //calendar=Calendar.getInstance();
         //simpleDateFormat=new SimpleDateFormat("hh:mm a");
 
-
         mSenderUID=firebaseAuth.getUid();
-        mRecieverUID=getIntent().getStringExtra("TrainerFkey");
-        mRecieverName=getIntent().getStringExtra("TrainerFName");
+        mRecieverUID=getIntent().getStringExtra("UserFKey");
+        mRecieverName=getIntent().getStringExtra("UserFName");
 
 
 
@@ -124,7 +114,7 @@ public class Chat_Activity extends AppCompatActivity {
 
 
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(Senderroom).child("messages");
-        messagesAdapter=new Adapter_chat_Activity(Chat_Activity.this,messagesArrayList);
+        messagesAdapter=new Adapter_chat_Activity(Activity_Chat_to_user.this,messagesArrayList);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
