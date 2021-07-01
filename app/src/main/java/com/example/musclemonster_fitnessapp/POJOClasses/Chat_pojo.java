@@ -1,52 +1,34 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Chat_pojo {
-    private String Sender;
-    private String Receiver;
-    private String Msg;
+    String message;
+    String senderId;
 
-    public String getUserID() {
-        return UserID;
+
+    public Chat_pojo() {
     }
 
-    public void setUserID(String userID) {
-        UserID = userID;
+
+    public Chat_pojo(String message, String senderId) {
+        this.message = message;
+        this.senderId = senderId;
     }
 
-    private String UserID;
-
-    public Chat_pojo(String sender,String msg){
-        this.Sender=sender;
-        this.Msg=msg;
+    public String getMessage() {
+        return message;
     }
 
-    /*public Chat_pojo(String sender,String receiver,String msg){
-        this.Sender=sender;
-        this.Receiver=receiver;
-        this.Msg=msg;
-    }*/
-
-    public String getSender() {
-        return Sender;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setSender(String sender) {
-        Sender = sender;
+    public String getSenderId() {
+        return senderId;
     }
 
-    public String getReceiver() {
-        return Receiver;
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
     }
 
-    public void setReceiver(String receiver) {
-        Receiver = receiver;
-    }
 
-    public String getMsg() {
-        return Msg;
-    }
-
-    public void setMsg(String msg) {
-        Msg = msg;
-    }
 }

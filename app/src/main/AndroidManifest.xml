@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.musclemonster_fitnessapp">
+package="com.example.musclemonster_fitnessapp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".BottomBarFragments.Products.Del_Product"></activity>
-        <activity android:name=".MoreMenuClasses.UpdateMyProduct" />
-        <activity android:name=".BottomBarFragments.Chat.Chat_Activity" />
-        <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
-        <activity android:name=".LoginSignUp.ActivityLogIn" />
-        <activity android:name=".Admin.ActivityTrainerViewDescription" />
-        <activity
-            android:name=".MoreMenuClasses.MyProducts_User"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Admin.MyProducts_Admin" />
-        <activity android:name=".Admin.ActivityViewTrainer" />
-        <activity android:name=".Admin.Admin_Cart" />
-        <activity android:name=".Admin.Prod_Desc_Admin" />
-        <activity android:name=".Admin.View_Prod_Admin" />
-        <activity android:name=".Admin.Add_Prod_Admin" />
-        <activity android:name=".LoginSignUp.ForgotPasswordActivity" />
-        <activity android:name=".Trainer.trainer_home" />
-        <activity android:name=".Admin.Add_Trainer_Activity" />
-        <activity android:name=".LoginSignUp.ActivitySignUp" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Admin_Home_Activity" />
-        <activity android:name=".ExerciseDescription.Exercise_Description_Activity" />
-        <activity android:name=".MoreMenuClasses.Exercise_Sub_Activity" />
-        <activity android:name=".BottomBarFragments.Products.product_cart" />
-        <activity
-            android:name=".BottomBarFragments.Products.ViewProductDetail"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".Update_Profile"
-            android:exported="true" />
-        <activity
-            android:name=".Profile_Page"
-            android:exported="true" />
-        <activity
-            android:name=".MoreMenuClasses.Product_Add_Home"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.MuscleMonsterFitnessApp">
+    <activity android:name=".BottomBarFragments.Chat.Chat_Activity"></activity>
+    <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
+    <activity android:name=".LoginSignUp.ActivityLogIn" />
+    <activity android:name=".Admin.ActivityTrainerViewDescription" />
+    <activity android:name=".MoreMenuClasses.MyProducts_User"></activity>
+    <activity android:name=".Admin.MyProducts_Admin" />
+    <activity android:name=".Admin.ActivityViewTrainer" />
+    <activity android:name=".Admin.Admin_Cart" />
+    <activity android:name=".Admin.Prod_Desc_Admin" />
+    <activity android:name=".Admin.View_Prod_Admin" />
+    <activity android:name=".Admin.Add_Prod_Admin" />
+    <activity android:name=".LoginSignUp.ForgotPasswordActivity" />
+    <activity android:name=".Trainer.trainer_home" />
+    <activity android:name=".Admin.Add_Trainer_Activity" />
+    <activity android:name=".LoginSignUp.ActivitySignUp" />
+    <activity android:name=".MainActivity" />
+    <activity android:name=".Admin_Home_Activity" />
+    <activity android:name=".ExerciseDescription.Exercise_Description_Activity" />
+    <activity android:name=".MoreMenuClasses.Exercise_Sub_Activity" />
+    <activity android:name=".BottomBarFragments.Products.product_cart" />
+    <activity
+        android:name=".BottomBarFragments.Products.ViewProductDetail"
+        android:parentActivityName=".MainActivity" />
+    <activity
+        android:name=".Update_Profile"
+        android:exported="true" />
+    <activity
+        android:name=".Profile_Page"
+        android:exported="true" />
+    <activity
+        android:name=".MoreMenuClasses.Product_Add_Home"
+        android:parentActivityName=".MainActivity" />
+    <activity android:name=".SplashScreenActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
 
 </manifest>
+

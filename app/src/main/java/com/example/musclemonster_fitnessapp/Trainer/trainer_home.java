@@ -9,11 +9,12 @@ import android.widget.Button;
 
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
 import com.example.musclemonster_fitnessapp.R;
+import com.example.musclemonster_fitnessapp.Trainer.Chat.Activity_Chat_User_List;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class trainer_home extends AppCompatActivity {
 
-    Button btnlo;
+    Button btnlo,btnUserlst;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -23,7 +24,15 @@ public class trainer_home extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
         btnlo=findViewById(R.id.btnLogoutTrainer);
-        
+        btnUserlst=findViewById(R.id.btnUserListTrainer);
+
+
+        btnUserlst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(trainer_home.this, Activity_Chat_User_List.class));
+            }
+        });
         btnlo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

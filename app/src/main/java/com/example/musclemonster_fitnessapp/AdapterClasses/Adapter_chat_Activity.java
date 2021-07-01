@@ -17,53 +17,102 @@ import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activit
 import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter_chat_Activity extends RecyclerView.Adapter<ChatViewHolders>  {
+public class Adapter_chat_Activity extends RecyclerView.Adapter {
 
-    private List<Chat_pojo> chatList;
-    private Context context;
-    FirebaseAuth firebaseAuth;
+    Context context;
+    ArrayList<Chat_pojo> messagesArrayList;
 
-    public Adapter_chat_Activity(List<Chat_pojo> chatList, Context context){
-        this.chatList = chatList;
+    int ITEM_SEND=1;
+    int ITEM_RECIEVE=2;
+
+    public Adapter_chat_Activity(Context context, ArrayList<Chat_pojo> messagesArrayList) {
         this.context = context;
+        this.messagesArrayList = messagesArrayList;
     }
 
     @NonNull
-    @NotNull
     @Override
-    public ChatViewHolders onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_chat_item_left , null , false);
-        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutView.setLayoutParams(lp);
-        ChatViewHolders rcv = new ChatViewHolders(layoutView);
-        return rcv;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if(viewType==ITEM_SEND)
+        {
+            View view= LayoutInflater.from(context).inflate(R.layout.activity_chat_item_left,parent,false);
+            return new SenderViewHolder(view);
+        }
+        else
+        {
+            View view= LayoutInflater.from(context).inflate(R.layout.activity_chat_item_right,parent,false);
+            return new RecieverViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ChatViewHolders holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        holder.mMessaage.setText(chatList.get(position).getMsg());
-        if(chatList.get(position).getUserID() == FirebaseAuth.getInstance().getCurrentUser().getUid()){
-            holder.mMessaage.setGravity(Gravity.END);
-            holder.mMessaage.setTextColor(Color.parseColor("#404040"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
-        }else{
-            holder.mMessaage.setGravity(Gravity.START);
-            holder.mMessaage.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#2DB4C8"));
+        Chat_pojo messages=messagesArrayList.get(position);
+        if(holder.getClass()==SenderViewHolder.class)
+        {
+            SenderViewHolder viewHolder=(SenderViewHolder)holder;
+            viewHolder.textViewmessaage.setText(messages.getMessage());
+        }
+        else
+        {
+            RecieverViewHolder viewHolder=(RecieverViewHolder)holder;
+            viewHolder.textViewmessaage.setText(messages.getMessage());
         }
 
+
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        Chat_pojo messages=messagesArrayList.get(position);
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(messages.getSenderId()))
+
+        {
+            return  ITEM_SEND;
+        }
+        else
+        {
+            return ITEM_RECIEVE;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return chatList.size();
+        return messagesArrayList.size();
     }
+
+
+    class SenderViewHolder extends RecyclerView.ViewHolder
+    {
+
+        TextView textViewmessaage;
+
+
+        public SenderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewmessaage=itemView.findViewById(R.id.sendermessage);
+        }
+    }
+
+    class RecieverViewHolder extends RecyclerView.ViewHolder
+    {
+
+        TextView textViewmessaage;
+
+
+        public RecieverViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewmessaage=itemView.findViewById(R.id.sendermessage);
+        }
+    }
+
+
+
+
 }
