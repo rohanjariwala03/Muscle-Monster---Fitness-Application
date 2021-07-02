@@ -68,6 +68,7 @@ public class Admin_Adp_Prod_Shopping  extends RecyclerView.Adapter<Admin_Adp_Pro
                 intent.putExtra("ItemDesc",list.get(position).getProductDesc());
                 intent.putExtra("ItemImageUri",list.get(position).getImageUri());
                 intent.putExtra("ItemWeight",list.get(position).getProductWeight());
+                intent.putExtra("ItemGen",list.get(position).getProdGen());
                 intent.putExtra("UserKey",list.get(position).getUserKey());
                 v.getContext().startActivity(intent);
             }

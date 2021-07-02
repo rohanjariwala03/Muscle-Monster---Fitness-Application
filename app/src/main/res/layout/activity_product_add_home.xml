@@ -102,8 +102,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:hint="Select Category"
+                android:textAlignment="center"
                 android:drawSelectorOnTop="true"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dropdown"
+                android:gravity="center_horizontal"
+                />
 
         </androidx.cardview.widget.CardView>
 
@@ -146,7 +149,9 @@
                 android:layout_height="25dp"
                 android:hint="Select Gender"
                 android:drawSelectorOnTop="true"
-                android:spinnerMode="dropdown"/>
+                android:textAlignment="center"
+                android:spinnerMode="dropdown"
+                android:gravity="center_horizontal" />
 
         </androidx.cardview.widget.CardView>
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,12 +28,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class Prod_Desc_Admin extends AppCompatActivity {
 
-    String ItemKey,ItemName,ItemPrice,ItemDesc,ItemCat,ItemImageUri,ItemWeight,UserKey,PubName, PubMail;
+    String ItemKey,ItemName,ItemPrice,ItemDesc,ItemCat,ItemImageUri,ItemWeight,UserKey,PubName, PubMail,Gen;
     ImageView ImgView;
-    TextView EditProName, EditProPrice, EditProCat, EditProDesc, EditProWeight , TxtPubName, TxtPubMail;
+    TextView EditProName, EditProPrice, EditProCat, EditProDesc, EditProWeight , TxtPubName, TxtPubMail, TxtProGen;
     FloatingActionButton fab;
     FirebaseDatabase database;
     DatabaseReference reff;
+    LinearLayout GenLL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         TxtPubMail = (TextView)findViewById(R.id.txtItemPublisherMail);
         TxtPubName = (TextView)findViewById(R.id.txtItemPublisherName);
         ImgView = (ImageView) findViewById(R.id.ItemImageView);
+        TxtProGen = (TextView) findViewById(R.id.txtItemGen);
+
+        GenLL = (LinearLayout) findViewById(R.id.LLGen);
 
         ItemKey = getIntent().getStringExtra("ItemKey");
         ItemName = getIntent().getStringExtra("ItemName");
@@ -60,23 +65,41 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         ItemImageUri = getIntent().getStringExtra("ItemImageUri");
         ItemWeight = getIntent().getStringExtra("ItemWeight");
         UserKey = getIntent().getStringExtra("UserKey");
+        Gen = getIntent().getStringExtra("ItemGen");
         Log.i("PRod_Desc_Admin","UserKey"+ UserKey);
 
         database = FirebaseDatabase.getInstance();
-        reff = database.getReference("Users").child("F5OL8WlwvfMerGvEAdkxycA2OY72");
+        reff = database.getReference("Users").child(UserKey);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Log.i("PRod_Desc_Admin","Entered If ");
-                            /*PubMail = ;
-                            PubName =  ;*/
                     TxtPubMail.setText(snapshot.child("email").getValue(String.class));
                     TxtPubName.setText((snapshot.child("firstName").getValue(String.class)) + " " + snapshot.child("lastName").getValue(String.class));
                 }
                 else
                 {
-                    Log.i("Prod_Desc_Admin", "NO Data : " );
+                    reff = database.getReference("Admin").child(UserKey);
+                    reff.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                Log.i("PRod_Desc_Admin","Entered If ");
+                                TxtPubMail.setText(snapshot.child("email").getValue(String.class));
+                                TxtPubName.setText((snapshot.child("firstName").getValue(String.class)) + " " + snapshot.child("lastName").getValue(String.class));
+                            }
+                            else
+                            {
+                                Log.i("Prod_Desc_Admin", "NO Data : " );
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -86,14 +109,6 @@ public class Prod_Desc_Admin extends AppCompatActivity {
             }
         });
 
-
-
-        Log.i("PRod_Desc_Admin","PName"+ PubName);
-        Log.i("PRod_Desc_Admin","PMail"+ PubMail);
-        Log.i("PRod_Desc_Admin","REff : " + reff.toString());
-
-
-
         EditProName.setText(ItemName);
         EditProPrice.setText(ItemPrice);
         EditProCat.setText(ItemCat);
@@ -101,6 +116,15 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         EditProDesc.setText(ItemDesc);
         TxtPubMail.setText(PubMail);
         TxtPubName.setText(PubName);
+        if(ItemCat.equals("clothing")) {
+            TxtProGen.setText(Gen);
+            GenLL.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            GenLL.setVisibility(View.GONE);
+        }
+
         Glide.with(this)
                 .load(ItemImageUri)
                 .into(ImgView);
@@ -120,8 +144,6 @@ public class Prod_Desc_Admin extends AppCompatActivity {
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("UserKey",UserKey);
                 startActivity(intent);*/
-
-
             }
         });
 

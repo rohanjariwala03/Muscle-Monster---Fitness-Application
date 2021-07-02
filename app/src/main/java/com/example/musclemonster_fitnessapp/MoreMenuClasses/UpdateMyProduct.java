@@ -15,20 +15,20 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.MainActivity;
-import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,20 +38,19 @@ import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class UpdateMyProduct extends AppCompatActivity {
 
-    private String Storage_Path;
+    private String Storage_Path,DDSelected,GENDER;
     private String Database_Path , FLAG;
     private Button BtnUpload,BtnSubmit;
-    private EditText ProName,ProWeight,ProCat,ProPrice,ProDesc;
+    private EditText ProName,ProWeight,ProPrice,ProDesc;
 
     private ImageView ImgView;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
+
+    LinearLayout LLGender;
 
     private Uri resultUri;
 
@@ -61,12 +60,20 @@ public class UpdateMyProduct extends AppCompatActivity {
 
     private LinearLayout ImageLL;
 
+    private Spinner spinner, spinnerGen;
+    private static final String[] paths = {"machines", "dumbbell", "clothing","bench","barbell","bicycle","balanceball","kettlebell","plates","treadmill"};
+    private static final String[] gender = {"male", "female"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_my_product);
 
-        getSupportActionBar().setTitle("Sell Product");
+        getSupportActionBar().setTitle("Update a Product");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        DDSelected = "";
+        GENDER="NA";
 
         // Folder path for Firebase Storage.
         Storage_Path = "Product_Images/";
@@ -81,7 +88,7 @@ public class UpdateMyProduct extends AppCompatActivity {
 
         ProName = (EditText) findViewById(R.id.EditProdName);
         ProWeight = (EditText) findViewById(R.id.EditProdWeight);
-        ProCat = (EditText) findViewById(R.id.EditProdCategory);
+        /*ProCat = (EditText) findViewById(R.id.EditProdCategory);*/
         ProPrice = (EditText) findViewById(R.id.EditProdPrice);
         ProDesc = (EditText) findViewById(R.id.EditProdDesc);
 
@@ -98,6 +105,82 @@ public class UpdateMyProduct extends AppCompatActivity {
 
         GetData();
         SetData();
+
+        LLGender = (LinearLayout) findViewById(R.id.LinearGender);
+        //ImageLL.setVisibility(View.INVISIBLE) ;
+
+        spinner = (Spinner)findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(UpdateMyProduct.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(adapter.getPosition(ItemCat));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                    case 1:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                        LLGender.setVisibility(View.GONE);
+                        GENDER = "NA";
+                        break;
+
+                    case 2:
+                        LLGender.setVisibility(View.VISIBLE);
+                    break;
+
+                    default:
+                        LLGender.setVisibility(View.GONE);
+                        break;
+                }
+                DDSelected = adapterView.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerGen = (Spinner)findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(UpdateMyProduct.this,
+                android.R.layout.simple_spinner_item,gender);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGen.setAdapter(adapter1);
+        spinnerGen.setSelection(adapter1.getPosition(GENDER));
+        spinnerGen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    case 1:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    default:
+                        GENDER = "NA";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                GENDER = spinnerGen.getSelectedItem().toString();
+            }
+        });
 
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,14 +226,15 @@ public class UpdateMyProduct extends AppCompatActivity {
         ItemImageUri = getIntent().getStringExtra("ItemImageUri");
         ItemWeight = getIntent().getStringExtra("ItemWeight");
         UserKey = getIntent().getStringExtra("UserKey");
-
+        GENDER = getIntent().getStringExtra("ItemGen");
+        DDSelected = ItemCat;
     }
 
     private void SetData()
     {
         ProName.setText(ItemName);
         ProWeight.setText(ItemWeight);
-        ProCat.setText(ItemCat);
+        /*ProCat.setText(ItemCat);*/
         ProPrice.setText(ItemPrice);
         ProDesc.setText(ItemDesc);
         Glide.with(this)
@@ -196,14 +280,12 @@ public class UpdateMyProduct extends AppCompatActivity {
     //Method To Update Child
     private void UpdateChild( String s)
     {
-        String ProID = ItemKey;
         String ProductName = ProName.getText().toString().toLowerCase().trim();
         String ProductWeight = ProWeight.getText().toString().toLowerCase().trim();
         String ProductPrice = ProPrice.getText().toString().toLowerCase().trim();
-        String ProductCat = ProCat.getText().toString().toLowerCase().trim();
+        String ProductCat = spinner.getSelectedItem().toString();
         String ProductDesc = ProDesc.getText().toString().toLowerCase().trim();
         String ImgUri = s;
-        String UKey = UserKey;
 
         // Showing toast message after done uploading.
         Toast.makeText(getApplicationContext(), "Advertisement Updated Successfully ", Toast.LENGTH_LONG).show();
@@ -219,6 +301,7 @@ public class UpdateMyProduct extends AppCompatActivity {
         databaseReference.child("productWeight").setValue(ProductWeight);
         databaseReference.child("productPrice").setValue(ProductPrice);
         databaseReference.child("productDesc").setValue(ProductDesc);
+        databaseReference.child("prodGen").setValue(GENDER);
 
         progressDialog.dismiss();
 

@@ -85,6 +85,8 @@ public class Fragment_Shopping extends Fragment {
                         Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
                         Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
                         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+                        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+                        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
                         list.add(Obj);
                     }
                     else
@@ -224,6 +226,8 @@ public class Fragment_Shopping extends Fragment {
                         Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
                         Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
                         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+                        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+                        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
                         Alist.add(Obj);
                         Log.i("Frag_Shopping : ", Obj.getProductName() );
                         //Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
