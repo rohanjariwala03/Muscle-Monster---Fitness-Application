@@ -15,10 +15,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.musclemonster_fitnessapp.Admin_Home_Activity;
@@ -43,7 +46,7 @@ import java.util.UUID;
 
 public class Add_Prod_Admin extends AppCompatActivity {
 
-    private String Storage_Path;
+    private String Storage_Path,DDSelected,GENDER;
     private String Database_Path;
     private Button BtnUpload, BtnSubmit;
     private EditText ProName, ProWeight, ProCat, ProPrice, ProDesc;
@@ -52,11 +55,17 @@ public class Add_Prod_Admin extends AppCompatActivity {
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
 
+    LinearLayout LLGender;
+
     private Uri resultUri;
 
     private ProgressDialog progressDialog;
 
     private LinearLayout ImageLL;
+
+    private Spinner spinner, spinnerGen;
+    private static final String[] paths = {"machines", "dumbbell", "clothing","bench","barbell","bicycle","balanceball","kettlebell","plates","treadmill"};
+    private static final String[] gender = {"male", "female"};
 
     FirebaseAuth myAuth;
 
@@ -64,6 +73,10 @@ public class Add_Prod_Admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_prod_admin);
+
+        DDSelected = "";
+        GENDER="NA";
+
         getSupportActionBar().setTitle("Sell Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -80,7 +93,7 @@ public class Add_Prod_Admin extends AppCompatActivity {
 
         ProName = (EditText) findViewById(R.id.EditProdName);
         ProWeight = (EditText) findViewById(R.id.EditProdWeight);
-        ProCat = (EditText) findViewById(R.id.EditProdCategory);
+       /* ProCat = (EditText) findViewById(R.id.EditProdCategory);*/
         ProPrice = (EditText) findViewById(R.id.EditProdPrice);
         ProDesc = (EditText) findViewById(R.id.EditProdDesc);
 
@@ -94,6 +107,110 @@ public class Add_Prod_Admin extends AppCompatActivity {
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
 
         //ImageLL.setVisibility(View.INVISIBLE) ;
+
+        LLGender = (LinearLayout) findViewById(R.id.LinearGender);
+        spinner = (Spinner)findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_Prod_Admin.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        LLGender.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+                    case 2:
+                        LLGender.setVisibility(View.VISIBLE);
+                        break;
+
+                    case 3:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 4:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 5:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 6:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 7:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+
+                    case 8:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    case 9:
+                        LLGender.setVisibility(View.GONE);
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+
+                    default:
+                        LLGender.setVisibility(View.GONE);
+                        break;
+                }
+                DDSelected = adapterView.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerGen = (Spinner)findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(Add_Prod_Admin.this,
+                android.R.layout.simple_spinner_item,gender);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGen.setAdapter(adapter1);
+        spinnerGen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    case 1:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    default:
+                        GENDER = "NA";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,17 +282,18 @@ public class Add_Prod_Admin extends AppCompatActivity {
                             String ProductName = ProName.getText().toString().toLowerCase().trim();
                             String ProductWeight = ProWeight.getText().toString().toLowerCase().trim();
                             String ProductPrice = ProPrice.getText().toString().toLowerCase().trim();
-                            String ProductCat = ProCat.getText().toString().toLowerCase().trim();
+                            String ProductCat = DDSelected;
                             String ProductDesc = ProDesc.getText().toString().toLowerCase().trim();
                             String ImgUri = uri.toString();
                             String UserKey = myAuth.getCurrentUser().getUid().toString();
+                            String Gen = GENDER;
                             progressDialog.dismiss();
 
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), "Advertisement Published Successfully ", Toast.LENGTH_LONG).show();
 
                             @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID, ProductName, ProductWeight, ProductPrice, ProductCat, ProductDesc, ImgUri, UserKey);
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey,Gen);
 
                             databaseReference.push().setValue(ProUploadPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

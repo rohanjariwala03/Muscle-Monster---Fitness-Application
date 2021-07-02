@@ -44,7 +44,7 @@ import java.util.UUID;
 
 public class Product_Add_Home extends AppCompatActivity {
 
-    private String Storage_Path,DDSelected;
+    private String Storage_Path,DDSelected,GENDER;
     private String Database_Path;
     private Button BtnUpload,BtnSubmit;
     private EditText ProName,ProWeight,ProCat,ProPrice,ProDesc;
@@ -61,9 +61,9 @@ public class Product_Add_Home extends AppCompatActivity {
 
     private LinearLayout ImageLL;
 
-    private Spinner spinner;
+    private Spinner spinner, spinnerGen;
     private static final String[] paths = {"machines", "dumbbell", "clothing","bench","barbell","bicycle","balanceball","kettlebell","plates","treadmill"};
-
+    private static final String[] gender = {"male", "female"};
     FirebaseAuth myAuth;
 
     @Override
@@ -72,6 +72,7 @@ public class Product_Add_Home extends AppCompatActivity {
         setContentView(R.layout.activity_product_add_home);
 
         DDSelected = "";
+        GENDER="NA";
 
         getSupportActionBar().setTitle("Sell Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,7 +90,7 @@ public class Product_Add_Home extends AppCompatActivity {
 
         ProName = (EditText) findViewById(R.id.EditProdName);
         ProWeight = (EditText) findViewById(R.id.EditProdWeight);
-        ProCat = (EditText) findViewById(R.id.EditProdCategory);
+        /*ProCat = (EditText) findViewById(R.id.EditProdCategory);*/
         ProPrice = (EditText) findViewById(R.id.EditProdPrice);
         ProDesc = (EditText) findViewById(R.id.EditProdDesc);
 
@@ -109,6 +110,7 @@ public class Product_Add_Home extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Product_Add_Home.this,
                 android.R.layout.simple_spinner_item,paths);
 
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -116,9 +118,10 @@ public class Product_Add_Home extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
+                        LLGender.setVisibility(View.GONE);
                         break;
                     case 1:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
                     case 2:
@@ -126,43 +129,43 @@ public class Product_Add_Home extends AppCompatActivity {
                         break;
 
                     case 3:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 4:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 5:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 6:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 7:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
 
                     case 8:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 9:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         // Whatever you want to happen when the second item gets selected
                         break;
 
                     default:
-                        LLGender.setVisibility(View.INVISIBLE);
+                        LLGender.setVisibility(View.GONE);
                         break;
                 }
                 DDSelected = adapterView.getSelectedItem().toString();
@@ -174,6 +177,37 @@ public class Product_Add_Home extends AppCompatActivity {
 
             }
         });
+
+        spinnerGen = (Spinner)findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(Product_Add_Home.this,
+                android.R.layout.simple_spinner_item,gender);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGen.setAdapter(adapter1);
+        spinnerGen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    case 1:
+                        GENDER = adapterView.getSelectedItem().toString();
+                        break;
+
+                    default:
+                        GENDER = "NA";
+                        break;
+                }
+               }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,17 +280,18 @@ public class Product_Add_Home extends AppCompatActivity {
                             String ProductName = ProName.getText().toString().toLowerCase().trim();
                             String ProductWeight = ProWeight.getText().toString().toLowerCase().trim();
                             String ProductPrice = ProPrice.getText().toString().toLowerCase().trim();
-                            String ProductCat = ProCat.getText().toString().toLowerCase().trim();
+                            String ProductCat = DDSelected;
                             String ProductDesc = ProDesc.getText().toString().toLowerCase().trim();
                             String ImgUri = uri.toString();
                             String UserKey = myAuth.getCurrentUser().getUid().toString();
+                            String Gen = GENDER;
                             progressDialog.dismiss();
 
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), "Advertisement Published Successfully ", Toast.LENGTH_LONG).show();
 
                             @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey);
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey,Gen);
 
                             databaseReference.push().setValue(ProUploadPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

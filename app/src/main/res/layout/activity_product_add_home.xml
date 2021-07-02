@@ -4,38 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreMenuClasses.Product_Add_Home"
+    android:animateLayoutChanges="true"
+    android:background="@color/BackGroundColor"
     android:orientation="vertical"
-    android:background="@color/BackGroundColor">
+    tools:context=".MoreMenuClasses.Product_Add_Home">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text="Product Name : "
             android:textColor="@color/textColor"
-            android:layout_marginLeft="30dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditProdName"
-            android:textAlignment="center"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center_horizontal"
             android:hint="Enter Product Name"
             android:importantForAutofill="no"
-            android:background="@drawable/rounded_edittext"
-            android:gravity="center_horizontal" />
+            android:textAlignment="center"
+            tools:ignore="HardcodedText,RtlHardcoded,TextFields" />
 
     </LinearLayout>
 
@@ -43,31 +44,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Per Item Weight : "
-            android:textColor="@color/textColor"
-
             android:layout_marginLeft="20dp"
+            android:text="Per Item Weight : "
+
+            android:textColor="@color/textColor"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditProdWeight"
-            android:textAlignment="center"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center_horizontal"
             android:hint="Enter Per Item Weight"
             android:importantForAutofill="no"
-            android:background="@drawable/rounded_edittext"
-            android:gravity="center_horizontal" />
+            android:textAlignment="center"
+            tools:ignore="HardcodedText,RtlHardcoded,TextFields" />
 
     </LinearLayout>
 
@@ -75,98 +76,97 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category : "
+            android:layout_marginLeft="20dp"
+            android:text="Select Category : "
             android:textColor="@color/textColor"
-
-            android:layout_marginLeft="60dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
-        <Spinner
-            android:id="@+id/spinner1"
+
+        <androidx.cardview.widget.CardView
             android:layout_width="200dp"
             android:layout_height="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:autofillHints="Select Category"
-            android:hint="Select Category"
-            android:drawSelectorOnTop="true"
-            android:importantForAutofill="no"
-            android:backgroundTint="@color/white"
-            android:backgroundTintMode="add"
-            android:dropDownSelector="@color/white"
-            android:spinnerMode="dropdown"
-            android:background="@drawable/rounded_edittext"
-           />
+            app:cardCornerRadius="7dp">
 
-       <!-- <EditText
-            android:id="@+id/EditProdCategory"
-            android:gravity="center_horizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
-            android:hint="Select Category"
-            android:importantForAutofill="no"
-            android:background="@drawable/rounded_edittext"/>-->
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:hint="Select Category"
+                android:drawSelectorOnTop="true"
+                android:spinnerMode="dropdown"/>
+
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/LinearGender"
-        android:layout_marginTop="20dp"
-        tools:ignore="UselessParent"
-        android:visibility="invisible">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender : "
-            android:textColor="@color/textColor"
-
-            android:layout_marginLeft="75dp"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <EditText
-            android:id="@+id/EditProdgender"
-            android:textAlignment="center"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
-            android:hint="Enter gender"
-            android:importantForAutofill="no"
-            android:background="@drawable/rounded_edittext"
-            android:gravity="center_horizontal" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:addStatesFromChildren="false"
+        android:animateLayoutChanges="true"
+        android:animationCache="false"
+        android:keepScreenOn="false"
+        android:visibility="gone"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price : "
+            android:layout_marginLeft="75dp"
+            android:text="Gender : "
             android:textColor="@color/textColor"
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            app:cardCornerRadius="7dp">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:hint="Select Gender"
+                android:drawSelectorOnTop="true"
+                android:spinnerMode="dropdown"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="86dp"
+            android:text="Price : "
+
+            android:textColor="@color/textColor"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -174,19 +174,19 @@
             android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
-            android:hint="Enter Price"
             android:background="@drawable/rounded_edittext"
+            android:gravity="center_horizontal"
+            android:hint="Enter Price"
             android:importantForAutofill="no"
-            android:gravity="center_horizontal"/>
+            tools:ignore="HardcodedText,RtlHardcoded,TextFields" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" $"
-            android:textStyle="bold"
-            android:textSize="20sp"
             android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
     </LinearLayout>
@@ -195,18 +195,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description : "
-            android:textColor="@color/textColor"
-
             android:layout_marginLeft="45dp"
+            android:text="Description : "
+
+            android:textColor="@color/textColor"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -214,12 +214,12 @@
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
-            tools:ignore="HardcodedText,RtlHardcoded,TextFields"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center_horizontal"
             android:hint="Enter Description"
             android:importantForAutofill="no"
-            android:gravity="center_horizontal"
 
-            android:background="@drawable/rounded_edittext"/>
+            tools:ignore="HardcodedText,RtlHardcoded,TextFields" />
 
     </LinearLayout>
 
@@ -227,25 +227,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        tools:ignore="UselessParent"
-        android:gravity="center">
-
-        <!--<Button
-            android:id="@+id/BtnShowImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="Choose Image"
-            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />-->
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
         <Button
             android:id="@+id/BtnUploadImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Image"
             android:background="@drawable/rounded_button"
+            android:text="Select Image"
             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
 
 
@@ -255,15 +247,15 @@
         android:id="@+id/ImgLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
 
         <ImageView
+            android:id="@+id/ShowImageView"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
-            android:id="@+id/ShowImageView"
             android:layout_below="@+id/textview"
             android:layout_marginTop="20dp"
             tools:ignore="ContentDescription" />
@@ -271,20 +263,19 @@
     </LinearLayout>
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
         <Button
             android:id="@+id/BtnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Publish Advertisement"
-            android:background="@drawable/rounded_button"/>
+            android:background="@drawable/rounded_button"
+            android:text="Publish Advertisement" />
 
 
     </LinearLayout>
