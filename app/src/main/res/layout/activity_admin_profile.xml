@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile_Page"
-    android:background="#222C3B">
+    android:background="@color/splashScreen"
+    tools:context=".Admin.Admin_Profile">
 
     <RelativeLayout
         android:id="@+id/mainview"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
-       <!-- <ImageButton
-            android:id="@+id/backbutton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#222C3B"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24" />-->
+        <!-- <ImageButton
+                 android:id="@+id/backbutton"
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:background="#222C3B"
+                 android:src="@drawable/ic_baseline_arrow_back_ios_24" />-->
 
         <TextView
             android:layout_width="255dp"
@@ -47,27 +47,27 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/main"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/mainview">
+        android:layout_below="@+id/mainview"
+        android:layout_marginTop="18dp">
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:text="Email id :"
             android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editemail"
-            android:layout_width="200dp"
+            android:layout_width="230dp"
             android:layout_height="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/email"
             android:background="@drawable/rounded_edittext"
             android:editable="false"
@@ -79,127 +79,89 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/email"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:text="Contact :"
-            android:textColor="#ffff"
+            android:textColor="#FFFFFF"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editcontact"
-            android:layout_width="200dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editemail"
+            android:layout_width="230dp"
             android:layout_height="30dp"
+            android:layout_below="@+id/editemail"
             android:layout_marginLeft="40dp"
-            android:gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/lastname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/contact"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:text="Last Name :"
             android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editlastname"
-            android:layout_width="200dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editcontact"
+            android:layout_width="230dp"
             android:layout_height="30dp"
+            android:layout_below="@+id/editcontact"
             android:layout_marginLeft="40dp"
-            android:gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lastname"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:text="First Name :"
             android:textColor="#ffff"
             android:textSize="23dp" />
 
         <EditText
             android:id="@+id/editfirstname"
-            android:layout_width="200dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/editlastname"
-            android:layout_height="30dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:gravity="center"
-            android:background="@drawable/rounded_edittext"/>
-
-        <TextView
-            android:id="@+id/height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/firstname"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:text="Height :"
-            android:textColor="#ffff"
-            android:textSize="23dp" />
-
-        <EditText
-            android:id="@+id/editHeight"
-            android:layout_width="200dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editfirstname"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_toRightOf="@+id/email"
-            android:gravity="center"
-            android:background="@drawable/rounded_edittext"/>
-
-        <TextView
-            android:id="@+id/weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/height"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:text="Weight :"
-            android:textColor="#ffff"
-            android:textSize="23dp" />
-
-        <EditText
-            android:id="@+id/editWeight"
-            android:layout_width="200dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editHeight"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_toRightOf="@+id/email"
-            android:gravity="center"
-            android:background="@drawable/rounded_edittext"/>
-
-
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center" />
 
 
         <Button
             android:id="@+id/btn_UpdateInfo"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editWeight"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="120dp"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/editfirstname"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="102dp"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="121dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginRight="109dp"
             android:background="@drawable/rounded_button"
+            android:gravity="center"
             android:text="Update Info"
             android:textColor="#ffff"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:backgroundTint="#366A93"
+            app:backgroundTint="#4EA3E6"
             tools:ignore="OnClick,UsingOnClickInXml" />
 
         <TextView
@@ -207,48 +169,47 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_UpdateInfo"
-            android:layout_marginTop="30dp"
-            android:text="Data Updated"
-            android:gravity="center"
             android:layout_marginLeft="110dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Data Updated"
             android:textColor="#ffff"
             android:textSize="20dp"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
-   <!-- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:weightSum="2"
-        android:id="@+id/layoutBelow"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+    <!-- <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="100dp"
+         android:weightSum="2"
+         android:id="@+id/layoutBelow"
+         android:orientation="horizontal"
+         android:layout_alignParentBottom="true">
 
-        <ImageButton
-            android:id="@+id/homebutton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="100dp"
-            android:background="#222C3B"
-            android:scaleType="fitXY"
-            android:padding="20dp"
-            android:src="@drawable/ic_baseline_home_24" />
-
-
-        <ImageButton
-            android:id="@+id/logoutbutton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="100dp"
-            android:background="#222C3B"
-            android:src="@drawable/ic_baseline_close_24"
-            android:scaleType="fitXY"
-            android:padding="20dp"/>
+         <ImageButton
+             android:id="@+id/homebutton"
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="100dp"
+             android:background="#222C3B"
+             android:scaleType="fitXY"
+             android:padding="20dp"
+             android:src="@drawable/ic_baseline_home_24" />
 
 
-    </LinearLayout>-->
+         <ImageButton
+             android:id="@+id/logoutbutton"
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="100dp"
+             android:background="#222C3B"
+             android:src="@drawable/ic_baseline_close_24"
+             android:scaleType="fitXY"
+             android:padding="20dp"/>
 
+
+     </LinearLayout>-->
 
 
 </RelativeLayout>

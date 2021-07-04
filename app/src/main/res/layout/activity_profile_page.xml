@@ -37,12 +37,13 @@
 
     </RelativeLayout>
 
+
     <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/main"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/mainview">
+        android:layout_below="@+id/mainview"
+        android:layout_marginTop="3dp">
 
         <TextView
             android:id="@+id/email"
@@ -54,20 +55,20 @@
             android:textSize="23dp" />
 
         <EditText
+            android:id="@+id/editemail"
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:layout_marginLeft="70dp"
             android:layout_toRightOf="@+id/email"
-            android:id="@+id/editemail"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/email"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Contact :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -75,20 +76,20 @@
         <EditText
             android:id="@+id/editcontact"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editemail"
             android:layout_height="30dp"
+            android:layout_below="@+id/editemail"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/lastname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/contact"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Last Name :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -96,20 +97,20 @@
         <EditText
             android:id="@+id/editlastname"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editcontact"
             android:layout_height="30dp"
+            android:layout_below="@+id/editcontact"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lastname"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="First Name :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -117,20 +118,20 @@
         <EditText
             android:id="@+id/editfirstname"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editlastname"
             android:layout_height="30dp"
+            android:layout_below="@+id/editlastname"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/firstname"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Weight :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -138,20 +139,20 @@
         <EditText
             android:id="@+id/editweight"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editfirstname"
             android:layout_height="30dp"
+            android:layout_below="@+id/editfirstname"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weight"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Height :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -159,20 +160,20 @@
         <EditText
             android:id="@+id/editheight"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editweight"
             android:layout_height="30dp"
+            android:layout_below="@+id/editweight"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/height"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Age :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -180,20 +181,20 @@
         <EditText
             android:id="@+id/editage"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editheight"
             android:layout_height="30dp"
+            android:layout_below="@+id/editheight"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
         <TextView
             android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/age"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="Password :"
             android:textColor="#596879"
             android:textSize="23dp" />
@@ -201,12 +202,12 @@
         <EditText
             android:id="@+id/editpassword"
             android:layout_width="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/editage"
             android:layout_height="30dp"
+            android:layout_below="@+id/editage"
             android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/email"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext" />
 
 
         <Button
@@ -220,7 +221,6 @@
             android:textColor="#596879" />
 
     </RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"

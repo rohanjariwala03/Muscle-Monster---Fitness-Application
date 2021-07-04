@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,7 +38,7 @@ import java.util.Map;
 public class Update_Profile extends AppCompatActivity {
 
 
-    EditText mEmail,mContact,mLastName,mFirstName,mpassword;
+    EditText mEmail,mContact,mLastName,mFirstName,mpassword, mHeight, mWeight;
     Button btn_update;
 
     private FirebaseAuth mAuth;
@@ -45,7 +46,7 @@ public class Update_Profile extends AppCompatActivity {
 
     private Uri resultUri;
 
-    private String userId, Fname,LName, phone,email,password;
+    private String userId, Fname,LName, phone,email,password, Height, Weight;
 
 
     @Override
@@ -57,6 +58,8 @@ public class Update_Profile extends AppCompatActivity {
         mContact =findViewById(R.id.editcontact);
         mLastName=findViewById(R.id.editlastname);
         mFirstName=findViewById(R.id.editfirstname);
+        mHeight=findViewById(R.id.editHeight);
+        mWeight=findViewById(R.id.editWeight);
         btn_update=findViewById(R.id.btn_UpdateInfo);
 
         mAuth = FirebaseAuth.getInstance();
@@ -69,18 +72,44 @@ public class Update_Profile extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phone=mContact.getText().toString();
+              /*  phone=mContact.getText().toString();
                 Fname=mFirstName.getText().toString();
                 LName=mLastName.getText().toString();
                 email=mEmail.getText().toString();
+                Height=mHeight.getText().toString();
+                Weight=mWeight.getText().toString();*/
 
-                Map userInfo = new HashMap();
+                /*if(!LName.equals(mLastName.getText().toString()) ||
+                        !phone.equals(mContact.getText().toString()) ||
+                        !Fname.equals(mFirstName.getText().toString()) ||
+                        !Height.equals(mHeight.getText().toString()) ||
+                        !Weight.equals(mWeight.getText().toString()) ) {
+
+                    try {
+                        mUserDatabase.child("firstName").setValue(Fname);
+                        mUserDatabase.child("lastName").setValue(LName);
+                        mUserDatabase.child("phoneNumber").setValue(phone);
+                        mUserDatabase.child("height").setValue(Height);
+                        mUserDatabase.child("weight").setValue(Weight);
+                        Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Profile Not Updated", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "No Changes Made", Toast.LENGTH_LONG).show();
+*/
+
+
+                /*Map userInfo = new HashMap();
                 userInfo.put("firstName", Fname);
                 userInfo.put("lastName", LName);
                 userInfo.put("email", email);
                 userInfo.put("phoneNumber", phone);
+                userInfo.put("height", Height);
+                userInfo.put("weight", Weight);
 
-                mUserDatabase.updateChildren(userInfo);
+                mUserDatabase.updateChildren(userInfo);*/
 
 
 
@@ -89,22 +118,14 @@ public class Update_Profile extends AppCompatActivity {
                 Log.i("Error",userId.toString());*/
 
 
+                if(isFirstNameChanged() || isLastNameUpdate() || isContactUpdate() || isEmailUpdate() || isHeightUpdate() || isWeightUpdate()){
+                    Toast.makeText(getApplicationContext(),"Profile Updated", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"No Changes Made", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-    }
-    TextView txtView;
-
-    public void update(View view){
-        if(isFirstNameChanged() || isLastNameUpdate() || isContactUpdate() || isEmailUpdate()){
-
-            txtView=findViewById(R.id.DataUpdate);
-            txtView.setVisibility(View.VISIBLE);
-            Log.i("Data Updated","Yes");
-            
-        }else{
-            Log.i("Data are not Updated","No");
-        }
     }
 
     private boolean isEmailUpdate() {
@@ -129,6 +150,25 @@ public class Update_Profile extends AppCompatActivity {
     private boolean isLastNameUpdate() {
         if(!LName.equals(mLastName.getText().toString())){
             mUserDatabase.child("lastName").setValue(mLastName.getText().toString());
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean isHeightUpdate() {
+        if(!Height.equals(mHeight.getText().toString())){
+            mUserDatabase.child("height").setValue(mHeight.getText().toString());
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    private boolean isWeightUpdate() {
+        if(!Weight.equals(mWeight.getText().toString())){
+            mUserDatabase.child("weight").setValue(mWeight.getText().toString());
             return true;
         }
         else{
@@ -171,6 +211,18 @@ public class Update_Profile extends AppCompatActivity {
                         mContact.setText(phone);
                        // mLabelName.setText(Fname);
                     }
+
+                    if (map.get("height") != null) {
+                        Height= map.get("height").toString();
+                        mHeight.setText(Height);
+                    }else
+                        mHeight.setHint("Enter Height");
+
+                    if (map.get("weight") != null) {
+                        Weight= map.get("weight").toString();
+                        mWeight.setText(Weight);
+                    }else
+                        mWeight.setHint("Enter Weight");
                 }
 
             }
