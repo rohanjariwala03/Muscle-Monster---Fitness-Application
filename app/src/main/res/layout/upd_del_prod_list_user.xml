@@ -33,7 +33,7 @@
 
 
         <LinearLayout
-            android:layout_width="195dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
@@ -93,30 +93,31 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="87dp"
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/ImgBtnDel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ImgBtnDel"
-                android:background="@color/white"
-                android:src="@drawable/ic_baseline_delete_24_red"
-                android:contentDescription="DEl Button"
                 android:layout_gravity="center"
-                android:layout_marginLeft="12dp"/>
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/white"
+                android:contentDescription="DEl Button"
+                android:src="@drawable/ic_baseline_delete_24_red" />
 
             <ImageButton
+                android:id="@+id/ImgBtnUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ImgBtnUpdate"
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="15dp"
                 android:background="@color/white"
                 android:contentDescription="DEl Button"
-                android:src="@drawable/ic_baseline_update_24_gold"
-                android:layout_gravity="center"
-                android:layout_marginLeft="12dp"/>
+                android:src="@drawable/ic_baseline_update_24_gold" />
         </LinearLayout>
-
 
 
     </LinearLayout>

@@ -133,7 +133,7 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(Prod_Desc_Admin.this, Admin_Cart.class);
+                Intent intent = new Intent(Prod_Desc_Admin.this, Admin_Cart.class);
                 intent.putExtra("ItemKey",ItemKey);
                 intent.putExtra("ItemName",ItemName);
                 intent.putExtra("ItemPrice",ItemPrice);
@@ -143,13 +143,9 @@ public class Prod_Desc_Admin extends AppCompatActivity {
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("UserKey",UserKey);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
-
-        /*if(ItemKey!=null)
-            txtvid.setText(ItemKey + ItemName);*/
-
 
     }
 }

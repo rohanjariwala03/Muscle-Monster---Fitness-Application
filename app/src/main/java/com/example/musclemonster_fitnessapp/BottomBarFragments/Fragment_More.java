@@ -84,6 +84,7 @@ public class Fragment_More extends Fragment {
             public void onClick(View v) {
                 //mAuth.signOut();
                 FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
                 startActivity(new Intent(getContext(),ActivityLogIn.class));
             }
         });

@@ -110,7 +110,7 @@ public class Fragment_Shopping extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
     }
 
@@ -165,14 +165,10 @@ public class Fragment_Shopping extends Fragment {
         /*EditSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 StartSearch(s.toString());
@@ -186,7 +182,6 @@ public class Fragment_Shopping extends Fragment {
                 Log.i(getTag(), "submit : " );
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 StartSearch(newText);

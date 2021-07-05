@@ -84,7 +84,6 @@ public class UpdateMyProduct extends AppCompatActivity {
        /* myAuth = FirebaseAuth.getInstance();*/
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
-        Log.i("Product_Add_Home", "Datax : " + databaseReference);
 
         ProName = (EditText) findViewById(R.id.EditProdName);
         ProWeight = (EditText) findViewById(R.id.EditProdWeight);
@@ -293,7 +292,7 @@ public class UpdateMyProduct extends AppCompatActivity {
                             /*@SuppressWarnings("VisibleForTests")
                             ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UKey);
 */
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path).child(ItemKey);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
 
         databaseReference.child("imageUri").setValue(ImgUri);
         databaseReference.child("productCat").setValue(ProductCat);

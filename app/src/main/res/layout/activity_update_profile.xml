@@ -199,8 +199,7 @@
             android:textColor="#ffff"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:backgroundTint="#366A93"
-            tools:ignore="OnClick,UsingOnClickInXml" />
+            app:backgroundTint="#366A93"/>
 
         <TextView
             android:id="@+id/DataUpdate"

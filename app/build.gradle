@@ -53,9 +53,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
     compile 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
     implementation 'com.firebaseui:firebase-ui-database:6.3.0'
-
-
-
+    compile 'com.braintreepayments:card-form:3.1.1'
 
 
 }
