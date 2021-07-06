@@ -24,15 +24,16 @@ public class Admin_Del_Prod extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_del_prod);
-
+        progressDialog = new ProgressDialog(Admin_Del_Prod.this);
+                progressDialog.setTitle("Advertisement is Deleting....");
+                progressDialog.show();
         String ChildKey = getIntent().getStringExtra("ItemKey").toString();
         FirebaseDatabase.getInstance().getReference("Product_Detail_Database").child(ChildKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                /*progressDialog.dismiss();*/
-                Log.i("DelMyProAdmin" ,ChildKey);
                 Toast.makeText(getApplicationContext(),"Advertisement Deleted" ,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MyProducts_Admin.class);
+                progressDialog.dismiss();
                 startActivity(intent);
                 finish();
             }

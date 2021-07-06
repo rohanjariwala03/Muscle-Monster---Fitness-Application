@@ -79,7 +79,7 @@ public class Adapter_Admin_Products extends RecyclerView.Adapter<Adapter_Admin_P
             public void onClick(View view) {
                 Toast.makeText(view.getContext(),"Deleting......" ,Toast.LENGTH_SHORT).show();
                 Log.i("AdpMyProAdmin" ,list.get(position).getFKey());
-                Intent intent = new Intent(context, Admin_Del_Prod.class);
+                Intent intent = new Intent(view.getContext(), Admin_Del_Prod.class);
                 intent.putExtra("ItemKey",list.get(position).getFKey());
                 view.getContext().startActivity(intent);
 
