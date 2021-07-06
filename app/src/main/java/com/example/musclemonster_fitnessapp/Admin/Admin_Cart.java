@@ -76,9 +76,10 @@ public class Admin_Cart extends AppCompatActivity {
                             Toast.makeText(Admin_Cart.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
-                            Intent intent = new Intent(Admin_Cart.this, MainActivity.class);
+                            Intent intent = new Intent(Admin_Cart.this, View_Prod_Admin.class);
                             intent.putExtra("fragmentNumber", 3);
                             startActivity(intent);
+                            finish();
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

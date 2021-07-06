@@ -31,6 +31,7 @@ import com.example.musclemonster_fitnessapp.ExerciseSub.Exercise_Sub_Pojo;
 import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,22 +73,21 @@ public class Fragment_Shopping extends Fragment {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-
-                        //String K = dataSnapshot.getKey();
-                        //list.add(Description);
-                        //*for (DataSnapshot DtSnapshot : dataSnapshot.getChildren()) {
-                        ProductUpload_POJO Obj = new ProductUpload_POJO();
-                        // DtSnapshot.getValue(ProductUpload_POJO.class);
-                        Obj.setFKey(dataSnapshot.getKey());
-                        Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
-                        Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
-                        Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
-                        Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
-                        Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
-                        Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
-                        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
-                        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-                        list.add(Obj);
+                        String status = dataSnapshot.child("status").getValue(String.class);
+                        String PuserKey = dataSnapshot.child("userKey").getValue(String.class);
+                        if(status == null && !FirebaseAuth.getInstance().getCurrentUser().getUid().equalsIgnoreCase(PuserKey)) {
+                            ProductUpload_POJO Obj = new ProductUpload_POJO();
+                            Obj.setFKey(dataSnapshot.getKey());
+                            Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
+                            Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
+                            Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
+                            Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
+                            Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
+                            Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+                            Obj.setUserKey(PuserKey);
+                            Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
+                            list.add(Obj);
+                        }
                     }
                     else
                     {
@@ -211,21 +211,22 @@ public class Fragment_Shopping extends Fragment {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-
-                        ProductUpload_POJO Obj = new ProductUpload_POJO();
-                        // DtSnapshot.getValue(ProductUpload_POJO.class);
-                        Obj.setFKey(dataSnapshot.getKey());
-                        Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
-                        Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
-                        Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
-                        Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
-                        Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
-                        Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
-                        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
-                        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-                        Alist.add(Obj);
-                        Log.i("Frag_Shopping : ", Obj.getProductName() );
-                        //Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
+                        String status = dataSnapshot.child("status").getValue(String.class);
+                        String PuserKey = dataSnapshot.child("userKey").getValue(String.class);
+                        if(status == null && !FirebaseAuth.getInstance().getCurrentUser().getUid().equalsIgnoreCase(PuserKey)) {
+                            ProductUpload_POJO Obj = new ProductUpload_POJO();
+                            // DtSnapshot.getValue(ProductUpload_POJO.class);
+                            Obj.setFKey(dataSnapshot.getKey());
+                            Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
+                            Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
+                            Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
+                            Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
+                            Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
+                            Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+                            Obj.setUserKey(PuserKey);
+                            Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
+                            Alist.add(Obj);
+                        }
                     }
                     else
                     {
