@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
 import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
 import com.example.musclemonster_fitnessapp.R;
@@ -45,7 +46,12 @@ public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trai
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_Find_Trainer.MyViewHolder holder, int position) {
 
-        holder.TrName_chat.setText(list.get(position).getTFName() + " " + list.get(position).getTLName()) ;
+        String url;
+        holder.TrName_chat.setText(list.get(position).getTFName() + " " + list.get(position).getTLName());
+
+        Glide.with(context)
+                .load(list.get(position).getTimgUrl())
+                .into(holder.ImgV);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -76,12 +82,11 @@ public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trai
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView TrName_chat,TrLName_chat;
+        TextView TrName_chat,TrLName_chat,imgUrl;
         ImageView ImgV;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-
-            //ImgV = itemView.findViewById(R.id.ProdImgView);
+            ImgV = itemView.findViewById(R.id.TrainerImageInFindTrainerList);
             TrName_chat=itemView.findViewById(R.id.trainerNameChat);
         }
     }

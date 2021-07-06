@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +40,8 @@ import java.util.Objects;
 public class ActivityLogIn extends AppCompatActivity {
 
 
-    EditText email,password;
+    EditText email;
+    TextInputEditText password;
     Button SignIn,SignUp;
     TextView forgotPassword;
     FirebaseAuth mAuth;
@@ -64,7 +66,7 @@ public class ActivityLogIn extends AppCompatActivity {
         txtInvalid=findViewById(R.id.Invalid);
         Flag = "NON";
                 email = findViewById(R.id.SignInEmail);
-                password = findViewById(R.id.SignInPassword);
+                password = findViewById(R.id.SignInPasswor);
 
                 SignIn = findViewById(R.id.SignInButtonLogin);
                 SignUp = findViewById(R.id.SignInButtonSignup);
@@ -91,10 +93,9 @@ public class ActivityLogIn extends AppCompatActivity {
 
             protected void onStart() {
                 super.onStart();
-                /*if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     finish();}
-*/
                     Flag = "NON";
 
             }

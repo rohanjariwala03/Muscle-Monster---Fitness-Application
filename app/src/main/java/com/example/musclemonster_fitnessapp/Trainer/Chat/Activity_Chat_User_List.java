@@ -78,8 +78,8 @@ public class Activity_Chat_User_List extends AppCompatActivity {
                         Obj.setUserEmail((dataSnapshot.child("email").getValue(String.class)));
                         Obj.setFKey(dataSnapshot.getKey());
                         list.add(Obj);
-                        Log.i("First Name ", dataSnapshot.child("firstName").getValue(String.class) );
-                        Log.i("Last Name ", dataSnapshot.child("lastName").getValue(String.class) );
+                        //Log.i("First Name ", dataSnapshot.child("firstName").getValue(String.class) );
+                        //Log.i("Last Name ", dataSnapshot.child("lastName").getValue(String.class) );
                     } else {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
@@ -87,7 +87,7 @@ public class Activity_Chat_User_List extends AppCompatActivity {
                 // set the Adapter to RecyclerView
                 AdapterTrainer.notifyDataSetChanged();
 
-                Log.i("Chat List Adapter ", "List of User Binded ");
+                //Log.i("Chat List Adapter ", "List of User Binded ");
             }
 
             @Override

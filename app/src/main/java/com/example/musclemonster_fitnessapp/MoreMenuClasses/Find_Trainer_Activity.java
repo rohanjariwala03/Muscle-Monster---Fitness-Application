@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Find_Trainer;
 import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
@@ -28,6 +29,7 @@ public class Find_Trainer_Activity extends AppCompatActivity {
     DatabaseReference database;
     Adapter_Find_Trainer AdapterFindTrainer_list;
     ArrayList<Find_Trainer_pojo> list;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
