@@ -51,7 +51,7 @@ public class Adapter_Find_Trainer extends RecyclerView.Adapter<Adapter_Find_Trai
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(context,""+position, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context,""+position, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, Chat_Activity.class);
                 intent.putExtra("TrainerFName",list.get(position).getTFName() + " " + list.get(position).getTLName());

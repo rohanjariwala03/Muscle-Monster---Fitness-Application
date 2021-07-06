@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".Admin.Admin_Profile"></activity>
+        <activity android:name=".Trainer.Chat.Activity_User_Details_Trainer"/>
+        <activity android:name=".Trainer.Chat.Activity_Chat_User_List"/>
+        <activity android:name=".Trainer.Chat.Activity_Chat_to_user"/>
+        <activity android:name=".BottomBarFragments.Chat.Activity_Trainer_Details_User" />
+        <activity android:name=".Admin.Admin_Profile" />
         <activity android:name=".BottomBarFragments.Chat.Chat_Activity" />
         <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
         <activity android:name=".LoginSignUp.ActivityLogIn" />

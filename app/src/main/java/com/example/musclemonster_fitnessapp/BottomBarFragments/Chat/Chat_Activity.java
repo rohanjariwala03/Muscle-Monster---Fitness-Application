@@ -1,7 +1,6 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Chat;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,29 +15,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_chat_Activity;
 import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Chat_Activity extends AppCompatActivity {
     EditText mGetMessage;
@@ -48,6 +37,7 @@ public class Chat_Activity extends AppCompatActivity {
 
     CardView mSendMessageCardview;
     androidx.appcompat.widget.Toolbar mToolbarofChat;
+
     ImageView mImageviewOfSpecificUser;
     TextView mNameOfSpecificUser;
 
@@ -56,7 +46,7 @@ public class Chat_Activity extends AppCompatActivity {
     String mRecieverName,SenderName,mRecieverUID,mSenderUID;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String Senderroom,Recieverroom;
+    String Senderroom,Recieverroom,ImageUrl,mReceiverEmail;
 
     ImageButton mbtnBackofSpecificChat;
 
@@ -78,10 +68,10 @@ public class Chat_Activity extends AppCompatActivity {
         mGetMessage=findViewById(R.id.getmessage);
         mSendMessageCardview=findViewById(R.id.carviewofsendmessage);
         mbtnSendMessage=findViewById(R.id.imageviewsendmessage);
-        mToolbarofChat=findViewById(R.id.toolbarofspecificchat);
         mNameOfSpecificUser=findViewById(R.id.Nameofspecificuser);
-        mImageviewOfSpecificUser=findViewById(R.id.specificuserimageinimageview);
+        mImageviewOfSpecificUser=findViewById(R.id.specificTrainerImageview);
         mbtnBackofSpecificChat=findViewById(R.id.backbuttonofspecificchat);
+        mToolbarofChat=findViewById(R.id.toolbarofspecificchat);
 
         messagesArrayList=new ArrayList<>();
         mMessageRecyclerview=findViewById(R.id.recyclerviewofspecific);
@@ -92,19 +82,25 @@ public class Chat_Activity extends AppCompatActivity {
         messagesAdapter=new Adapter_chat_Activity(Chat_Activity.this,messagesArrayList);
         mMessageRecyclerview.setAdapter(messagesAdapter);
 
+
         intent=getIntent();
+        mReceiverEmail=intent.getStringExtra("TrainerEmail");
 
 
         mGetMessage.setText(null);
 
         //setSupportActionBar(mtoolbarofspecificchat);
-       /* mtoolbarofspecificchat.setOnClickListener(new View.OnClickListener() {
+
+        mToolbarofChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Toolbar is Clicked",Toast.LENGTH_SHORT).show();
-
+                Intent intent=new Intent(Chat_Activity.this, Activity_Trainer_Details_User.class);
+                intent.putExtra("TrainerName",mRecieverName);
+                intent.putExtra("TrainerEmail",mReceiverEmail);
+                intent.putExtra("ImageUrl",ImageUrl);
+                startActivity(intent);
             }
-        });*/
+        });
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -115,7 +111,11 @@ public class Chat_Activity extends AppCompatActivity {
         mSenderUID=firebaseAuth.getUid();
         mRecieverUID=getIntent().getStringExtra("TrainerFkey");
         mRecieverName=getIntent().getStringExtra("TrainerFName");
+        ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
 
+        Glide.with(this)
+                .load(ImageUrl)
+                .into(mImageviewOfSpecificUser);
 
 
         Senderroom=mSenderUID+mRecieverUID;

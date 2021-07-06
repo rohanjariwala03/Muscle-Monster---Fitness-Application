@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_chat_Activity;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
 import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
@@ -43,10 +46,10 @@ public class Activity_Chat_to_user extends AppCompatActivity {
 
     private String EnteredMessage;
     Intent intent;
-    String mRecieverName,SenderName,mRecieverUID,mSenderUID;
+    String mRecieverName,mRecieverUID,mSenderUID,mReceiverEmail;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String Senderroom,Recieverroom;
+    String Senderroom,Recieverroom,ImageUrl;
 
     ImageButton mbtnBackofSpecificChat;
 
@@ -66,6 +69,9 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_to_user);
 
+        getSupportActionBar().setTitle("Chat");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mGetMessage=findViewById(R.id.Trainergetmessage);
         mSendMessageCardview=findViewById(R.id.Trainercarviewofsendmessage);
         mbtnSendMessage=findViewById(R.id.Trainerimageviewsendmessage);
@@ -84,18 +90,29 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         mMessageRecyclerview.setAdapter(messagesAdapter);
         intent=getIntent();
 
+        //Image Display
+
+        /*ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
+
+        Glide.with(this)
+                .load(ImageUrl)
+                .into(mImageviewOfSpecificUser);*/
+
 
         mGetMessage.setText(null);
+        mReceiverEmail=getIntent().getStringExtra("UserEmail");
 
-
-        //setSupportActionBar(mtoolbarofspecificchat);
-       /* mtoolbarofspecificchat.setOnClickListener(new View.OnClickListener() {
+        //setSupportActionBar(mToolbarofChat);
+        mToolbarofChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Toolbar is Clicked",Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(getApplicationContext(),"Toolbar is Clicked",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(Activity_Chat_to_user.this,Activity_User_Details_Trainer.class);
+                intent.putExtra("UsrName",mRecieverName);
+                intent.putExtra("UsrEmail",mReceiverEmail);
+                startActivity(intent);
             }
-        });*/
+        });
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
