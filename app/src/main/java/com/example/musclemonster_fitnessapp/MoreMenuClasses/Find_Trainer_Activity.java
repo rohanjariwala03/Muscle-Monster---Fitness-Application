@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Find_Trainer;
 import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
@@ -28,6 +29,7 @@ public class Find_Trainer_Activity extends AppCompatActivity {
     DatabaseReference database;
     Adapter_Find_Trainer AdapterFindTrainer_list;
     ArrayList<Find_Trainer_pojo> list;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +62,12 @@ public class Find_Trainer_Activity extends AppCompatActivity {
                         Find_Trainer_pojo Obj = new Find_Trainer_pojo();
 
                         Obj.setFKey(dataSnapshot.getKey());
-                       // Obj.setTid(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+                        // Obj.setTid(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                         Obj.setTFName((dataSnapshot.child("firstname").getValue(String.class)));
                         Obj.setTLName((dataSnapshot.child("lastName").getValue(String.class)));
                         Obj.setTEmail((dataSnapshot.child("email").getValue(String.class)));
                         //Obj.setTid((dataSnapshot.child("trainerId").getValue(String.class)));
-                        Obj.setTimgUrl((dataSnapshot.child("imageUri").getValue(String.class)));
+                        Obj.setTimgUrl((dataSnapshot.child("imgUri").getValue(String.class)));
                         list.add(Obj);
                         /*Log.i("Chat Adapter ", "Chat List Binded ");
                         Log.i("Chat Adapter ", String.valueOf(list.size()));

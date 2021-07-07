@@ -10,9 +10,8 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.ExerciseSub.Exercise_Sub_Pojo;
-import com.example.musclemonster_fitnessapp.ExerciseSub.MyAdapter_Exercise_Sub;
+import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_Sub_Pojo;
+import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise_Sub;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

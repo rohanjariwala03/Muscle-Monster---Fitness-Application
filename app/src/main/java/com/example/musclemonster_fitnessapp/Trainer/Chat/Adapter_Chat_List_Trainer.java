@@ -50,7 +50,7 @@ public class Adapter_Chat_List_Trainer extends RecyclerView.Adapter<Adapter_Chat
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_Chat_List_Trainer.MyViewHolder holder, int position) {
 
-        holder.UsrName_chat.setText(list.get(position).getUserFName() + " " + list.get(position).getUserLName()) ;
+        holder.UsrName_chat.setText(list.get(position).getUserFName()) ;
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +59,11 @@ public class Adapter_Chat_List_Trainer extends RecyclerView.Adapter<Adapter_Chat
                 // Toast.makeText(context,""+position, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, Activity_Chat_to_user.class);
-                intent.putExtra("UserFName",list.get(position).getUserFName() + " " + list.get(position).getUserLName());
+                intent.putExtra("UserFName",list.get(position).getUserFName());
                 intent.putExtra("UserID",list.get(position).getUserID());
                 intent.putExtra("UserFKey",list.get(position).getFKey());
+                intent.putExtra("UserEmail",list.get(position).getUserEmail());
+                //intent.putExtra("UserNumber",list.get(position).getUserPhone());
                 v.getContext().startActivity(intent);
 
             }

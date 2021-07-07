@@ -23,8 +23,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +41,8 @@ import java.util.Objects;
 public class ActivityLogIn extends AppCompatActivity {
 
 
-    EditText email,password;
+    EditText email;
+    TextInputEditText password;
     Button SignIn,SignUp;
     TextView forgotPassword;
     FirebaseAuth mAuth;
@@ -47,7 +50,7 @@ public class ActivityLogIn extends AppCompatActivity {
     DatabaseReference database;
     TextView txtInvalid;
 
-    String fr;
+    String flg;
     private static String Flag = "NON";
 
     @Override
@@ -63,41 +66,104 @@ public class ActivityLogIn extends AppCompatActivity {
 
         txtInvalid=findViewById(R.id.Invalid);
         Flag = "NON";
-                email = findViewById(R.id.SignInEmail);
-                password = findViewById(R.id.SignInPassword);
+        email = findViewById(R.id.SignInEmail);
+        password = findViewById(R.id.SignInPasswor);
+        SignIn = findViewById(R.id.SignInButtonLogin);
+        SignUp = findViewById(R.id.SignInButtonSignup);
 
-                SignIn = findViewById(R.id.SignInButtonLogin);
-                SignUp = findViewById(R.id.SignInButtonSignup);
+        mAuth = FirebaseAuth.getInstance();
 
-                mAuth = FirebaseAuth.getInstance();
+        forgotPassword = findViewById(R.id.SignInForgetPassword);
 
-                forgotPassword = findViewById(R.id.SignInForgetPassword);
-
-                SignUp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(ActivityLogIn.this, ActivitySignUp.class));
-                    }
-                });
-
-                SignIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SignIn();
-                    }
-                });
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityLogIn.this, ActivitySignUp.class));
             }
+        });
 
-
-            protected void onStart() {
-                super.onStart();
-                /*if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();}
-*/
-                    Flag = "NON";
-
+        SignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignIn();
             }
+        });
+
+    }
+
+
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user!=null){
+            Query query = FirebaseDatabase.getInstance().getReference("Users").orderByKey();
+            //Database event listner for success or failure
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (dataSnapshot.exists()) {
+                            flg="User";
+                            if (dataSnapshot.child("email").getValue(String.class).toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString())) {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            }
+                        } else {
+                            Log.i("There is No User", "NO Data : ");
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                }
+            });
+
+            Query quer = FirebaseDatabase.getInstance().getReference("Trainer").orderByKey();
+            //Database event listner for success or failure
+            quer.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (dataSnapshot.exists()) {
+                            if (dataSnapshot.child("email").getValue(String.class).toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                                startActivity(new Intent(getApplicationContext(), trainer_home.class));
+                                finish();
+                            }
+                        } else {
+                            Log.i("There is No User", "NO Data : ");
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                }
+            });
+            Query que = FirebaseDatabase.getInstance().getReference("Admin").orderByKey();
+            //Database event listner for success or failure
+            que.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (dataSnapshot.exists()) {
+                            if (dataSnapshot.child("email").getValue(String.class).toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString())) {
+                                startActivity(new Intent(getApplicationContext(), Admin_Home_Activity.class));
+                                finish();
+                            }
+                        } else {
+                            Log.i("There is No User", "NO Data : ");
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                }
+            });
+        }
+
+        Flag = "NON";
+    }
 
     @Override
     protected void onDestroy() {
@@ -121,7 +187,7 @@ public class ActivityLogIn extends AppCompatActivity {
 
 
 
-                    //Qurey to look for user
+                    //Query to look for user
                     Query query=FirebaseDatabase.getInstance().getReference("Users").orderByKey();
                     //Database event listner for success or failure
                     String K;

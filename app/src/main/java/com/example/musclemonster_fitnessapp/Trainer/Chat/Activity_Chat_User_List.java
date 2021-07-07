@@ -40,6 +40,9 @@ public class Activity_Chat_User_List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_user_list);
 
+        getSupportActionBar().setTitle("Chat");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         recyclerView = findViewById(R.id.recyclerviewUserListTrainer);
         database = FirebaseDatabase.getInstance().getReference("Users");
@@ -70,13 +73,13 @@ public class Activity_Chat_User_List extends AppCompatActivity {
                         // DtSnapshot.getValue(ProductUpload_POJO.class);
 
                         Obj.setUserFName((dataSnapshot.child("firstName").getValue(String.class)
-                        + " "+ dataSnapshot.child("lastName").getValue(String.class)));
+                                + " "+ dataSnapshot.child("lastName").getValue(String.class)));
                         //Obj.setUserEmail((dataSnapshot.child("lastName").getValue(String.class)));
-                        //Obj.setUserLName((dataSnapshot.child("email").getValue(String.class)));
-                        //Obj.setFKey(dataSnapshot.getKey());
+                        Obj.setUserEmail((dataSnapshot.child("email").getValue(String.class)));
+                        Obj.setFKey(dataSnapshot.getKey());
                         list.add(Obj);
-                        Log.i("First Name ", dataSnapshot.child("firstName").getValue(String.class) );
-                        Log.i("Last Name ", dataSnapshot.child("lastName").getValue(String.class) );
+                        //Log.i("First Name ", dataSnapshot.child("firstName").getValue(String.class) );
+                        //Log.i("Last Name ", dataSnapshot.child("lastName").getValue(String.class) );
                     } else {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
@@ -84,7 +87,7 @@ public class Activity_Chat_User_List extends AppCompatActivity {
                 // set the Adapter to RecyclerView
                 AdapterTrainer.notifyDataSetChanged();
 
-                Log.i("Chat List Adapter ", "List of User Binded ");
+                //Log.i("Chat List Adapter ", "List of User Binded ");
             }
 
             @Override

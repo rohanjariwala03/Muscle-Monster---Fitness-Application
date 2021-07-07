@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.ExerciseSub;
+package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Exercise_Sub_Pojo {
 

@@ -4,6 +4,9 @@ public class Model {
     String firstName,lastName,email,phoneNumber;
     int Sflag;
 
+    public Model(){
+
+    }
 
     public Model(String firstName, String lastName, String email, String phoneNumber, int sflag) {
         this.firstName = firstName;
