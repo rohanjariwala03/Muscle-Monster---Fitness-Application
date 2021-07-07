@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Fragment_Chat;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_Exercise_Home;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Fragment_Shopping;
 //import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;

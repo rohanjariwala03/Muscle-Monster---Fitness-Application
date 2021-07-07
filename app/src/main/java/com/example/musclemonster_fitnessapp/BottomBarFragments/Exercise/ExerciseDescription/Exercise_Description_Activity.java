@@ -1,21 +1,25 @@
-package com.example.musclemonster_fitnessapp.ExerciseDescription;
+package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.ExerciseDescription;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Exercise_Video;
 import com.example.musclemonster_fitnessapp.R;
 
 public class Exercise_Description_Activity extends AppCompatActivity {
 
     String ExerciseCat,ExerciseName,ExerciseDesc,ItemImageUri;
     TextView Name,Catagory,Description;
-    ImageView ImgView,playbtn;
+    ImageView ImgView;
+    ImageButton playbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,10 @@ public class Exercise_Description_Activity extends AppCompatActivity {
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /* Intent intent = new Intent(Exercise_Description_Activity.this, ActivityDisplayVideo.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(Exercise_Description_Activity.this, Activity_Exercise_Video.class);
+               intent.putExtra("ExerName", ExerciseName);
+                startActivity(intent);
+
             }
         });
 

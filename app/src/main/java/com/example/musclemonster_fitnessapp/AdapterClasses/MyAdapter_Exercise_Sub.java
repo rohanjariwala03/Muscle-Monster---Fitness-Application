@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.ExerciseSub;
+package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.ExerciseDescription.Exercise_Description_Activity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.Exercise_Sub_Activity;
+import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_Sub_Pojo;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity;
 import com.example.musclemonster_fitnessapp.R;
 
 import org.jetbrains.annotations.NotNull;

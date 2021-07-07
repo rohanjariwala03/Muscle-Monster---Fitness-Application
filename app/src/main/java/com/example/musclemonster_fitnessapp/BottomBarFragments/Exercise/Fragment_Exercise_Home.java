@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.BottomBarFragments;
+package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise;
 
 import android.os.Bundle;
 import android.util.Log;
