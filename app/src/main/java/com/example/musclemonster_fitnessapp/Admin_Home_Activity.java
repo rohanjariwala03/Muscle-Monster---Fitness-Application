@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musclemonster_fitnessapp.Admin.ActivityViewTrainer;
+import com.example.musclemonster_fitnessapp.Admin.ActivityViewUser;
 import com.example.musclemonster_fitnessapp.Admin.Add_Prod_Admin;
 import com.example.musclemonster_fitnessapp.Admin.Add_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.Admin.Admin_Profile;
@@ -22,7 +23,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
 
     ImageButton LogOut;
     FirebaseAuth myAuth;
-    Button BtnAddTrainer,BtnAddProducts,BtnViewProduct,btnViewTrainer,BtnMyProducts, BtnProfile;
+    Button BtnAddTrainer,BtnAddProducts,BtnViewProduct,btnViewTrainer,BtnMyProducts, BtnProfile, BtnViewUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
         btnViewTrainer = (Button) findViewById(R.id.btnViewTrainer);
         BtnMyProducts = (Button) findViewById(R.id.btnMyProductsAdmin);
         BtnProfile = (Button) findViewById(R.id.btnMyProfileAdmin);
+        BtnViewUsers = (Button) findViewById(R.id.btnViewUsers);
 
         BtnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,14 @@ public class Admin_Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin_Home_Activity.this, ActivityViewTrainer.class);
+                startActivity(intent);
+            }
+        });
+
+        BtnViewUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_Home_Activity.this, ActivityViewUser.class);
                 startActivity(intent);
             }
         });
