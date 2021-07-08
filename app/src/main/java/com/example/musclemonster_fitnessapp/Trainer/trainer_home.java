@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp.Trainer;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,6 +22,9 @@ public class trainer_home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer_home);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.support_toolbar);
 
         firebaseAuth=FirebaseAuth.getInstance();
         btnlo=findViewById(R.id.btnLogoutTrainer);

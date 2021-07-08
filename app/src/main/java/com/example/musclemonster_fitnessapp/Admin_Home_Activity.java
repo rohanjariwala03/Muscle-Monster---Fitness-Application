@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musclemonster_fitnessapp.Admin.ActivityViewTrainer;
@@ -28,6 +29,8 @@ public class Admin_Home_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.support_toolbar);
 
         myAuth = FirebaseAuth.getInstance();
         LogOut = (ImageButton) findViewById(R.id.btnLogout);
