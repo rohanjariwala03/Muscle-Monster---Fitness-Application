@@ -1,8 +1,10 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,14 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
@@ -29,10 +37,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.collection.RBTreeSortedMap;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class Fragment_Shopping extends Fragment {
@@ -45,7 +57,9 @@ public class Fragment_Shopping extends Fragment {
     Adapter_Prod_Shopping AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
     EditText EditSearch;
-    Button BtnSearch;
+    Button BtnFiter;
+    String RBChecked = "Unisex";
+    Spinner SpinnerCat;
 
 
     public Fragment_Shopping() {
@@ -112,6 +126,7 @@ public class Fragment_Shopping extends Fragment {
         AdapterShopping.notifyDataSetChanged();*/
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -120,7 +135,9 @@ public class Fragment_Shopping extends Fragment {
         View view=inflater.inflate(R.layout.fragment__shopping, container, false);
 
         /*BtnSearch = (Button) view.findViewById(R.id.Btnsearch);*/
+        BtnFiter = (Button) view.findViewById(R.id.BtnFilt);
         /*EditSearch = (EditText) view.findViewById(R.id.search);*/
+
 
         /*mySearchView = (SearchView) view.findViewById(R.id.SearchView);*/
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -141,8 +158,58 @@ public class Fragment_Shopping extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
         //  call the constructor of CustomAdapter to send the reference and data to Adapter
 
+        PopupMenu popup = new PopupMenu(view.getContext(), view);
+        popup.inflate(R.menu.cat_menu);
+        popup.setGravity(Gravity.TOP);
+        BtnFiter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    // This activity implements OnMenuItemClickListener
+                    /*popup.getMenu().getItem(RBChecked).setChecked(true);*/
+                    popup.show();
+
+            }
+        });
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                RBChecked = menuItem.toString();
+                menuItem.setChecked(true);
+                Toast.makeText(getContext(),"Item " + menuItem.toString(),Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
 
+
+        /*final Spinner spinner = (Spinner)view.findViewById(R.id.SpinnerCat);
+        List<Map<String, String>> items = new ArrayList<Map<String, String>>();
+
+        Map<String, String> item0 = new HashMap<String, String>(2);
+        item0.put("text", "Browse aisles...");
+        item0.put("subText", "(Upgrade required)");
+        items.add(item0);
+
+        Map<String, String> item1 = new HashMap<String, String>(2);
+        item1.put("text", "Option 1");
+        item1.put("subText", "(sub text 1)");
+        items.add(item1);
+
+        Map<String, String> item2 = new HashMap<String, String>(2);
+        item2.put("text", "Option 2");
+        item2.put("subText", "(sub text 2)");
+        items.add(item2);
+
+        SimpleAdapter adapter1 = new SimpleAdapter(getActivity(), items,
+                android.R.layout.simple_spinner_item, // This is the layout that will be used for the standard/static part of the spinner. (You can use android.R.layout.simple_list_item_2 if you want the subText to also be shown here.)
+                new String[] {"text", "subText"},
+                new int[] {android.R.id.text1, android.R.id.text2}
+        );
+        adapter1.setDropDownViewResource(android.R.layout.simple_list_item_2);
+
+        spinner.setAdapter(adapter1);*/
 
 
        /* mySearchView.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +252,21 @@ public class Fragment_Shopping extends Fragment {
         return view;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        /*switch (item.getItemId()) {
+            case R.id.vibrate:
+            case R.id.dont_vibrate:
+                if (item.isChecked()) item.setChecked(false);
+                else item.setChecked(true);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }*/
+        Log.i("Item" , String.valueOf(item.getItemId()));
+        return false;
+    }
 
     private void StartSearch(String SQuery) {
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
