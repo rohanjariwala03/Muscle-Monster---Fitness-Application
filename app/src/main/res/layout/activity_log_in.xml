@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/BackGroundColor">
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BackGroundColor"
-    tools:context=".LoginSignUp.ActivityLogIn">
+    android:id="@+id/signin">
 
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/BackGroundColor">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackGroundColor"
+    tools:context=".LoginSignUp.ActivityLogIn"
+    android:layout_marginTop="50dp">
+
+   <!-- <TextView
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +32,20 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <ImageView
+        android:id="@+id/imgLogoLogin"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/musclemonsterlogomain"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/SignInEmail"
@@ -43,7 +62,7 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoLogin"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -100,7 +119,6 @@
         android:id="@+id/SignInForgetPassword"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="104dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
@@ -108,8 +126,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignInButtonLogin" />
 
     <TextView
@@ -125,23 +143,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="10dp"
         android:gravity="center"
-
         android:visibility="invisible"
         />
 
     <TextView
         android:id="@+id/or"
-        android:layout_width="72dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="168dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="46dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
         android:text="OR"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Invalid" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignInForgetPassword" />
 
     <Button
         android:id="@+id/SignInButtonSignup"
@@ -178,3 +195,4 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

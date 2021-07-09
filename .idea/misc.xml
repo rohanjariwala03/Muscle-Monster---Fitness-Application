@@ -7,16 +7,24 @@
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/layout/activity_add__trainer_.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_add_prod_admin.xml" value="0.16893115942028986" />
+        <entry key="app/src/main/res/layout/activity_admin_gym_packages.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_admin_home.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/activity_admin_profile.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/activity_profile_page.xml" value="0.2812144208003803" />
+        <entry key="app/src/main/res/layout/activity_trainer_details_user.xml" value="0.16893115942028986" />
+        <entry key="app/src/main/res/layout/activity_trainer_home.xml" value="0.17391304347826086" />
+        <entry key="app/src/main/res/layout/activity_trainer_profile_update.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/activity_trainer_view_description.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_update_profile.xml" value="0.10239798506473433" />
+        <entry key="app/src/main/res/layout/activity_user_details_trainer.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_user_view_description.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/activity_view_trainer.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/activity_view_user.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/fragment__more.xml" value="0.13994565217391305" />
+        <entry key="app/src/main/res/layout/upd_del_prod_list_user.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/view_trainer_admin_item.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/view_user_admin_item.xml" value="0.17844202898550723" />
       </map>

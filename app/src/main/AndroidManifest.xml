@@ -14,6 +14,12 @@
         <activity android:name=".Admin.ActivityUserViewDescription"></activity>
         <activity android:name=".Admin.ActivityViewUsers" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video"></activity>
+        <activity
+            android:name=".Admin.AdminGymPackages"
+            android:exported="true" />
+        <activity
+            android:name=".Trainer.trainer_profile_update"
+            android:exported="true" />
         <activity android:name=".Trainer.Chat.Activity_User_Details_Trainer" />
         <activity android:name=".Trainer.Chat.Activity_Chat_User_List" />
         <activity android:name=".Trainer.Chat.Activity_Chat_to_user" />
