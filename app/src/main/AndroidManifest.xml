@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
         <activity
+            android:name=".Admin.AdminGymPackages"
+            android:exported="true" />
+        <activity
             android:name=".Trainer.trainer_profile_update"
             android:exported="true" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
