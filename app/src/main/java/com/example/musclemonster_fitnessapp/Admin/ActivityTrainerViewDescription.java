@@ -83,7 +83,7 @@ public class ActivityTrainerViewDescription extends AppCompatActivity {
                             appleSnapshot.getRef().removeValue();
                         }
 
-                        Toast.makeText(getApplicationContext(),"User Deleted Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Trainer Profile Deleted Successfully",Toast.LENGTH_LONG).show();
                         Intent i=new Intent(getApplicationContext(),ActivityViewTrainer.class);
                         startActivity(i);
                         finish();

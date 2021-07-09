@@ -71,7 +71,7 @@ public class ActivityUserViewDescription extends AppCompatActivity {
                             appleSnapshot.getRef().removeValue();
                         }
 
-                        Toast.makeText(getApplicationContext(),"User Deleted Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"User Profile Deleted Successfully",Toast.LENGTH_LONG).show();
                         Intent i=new Intent(getApplicationContext(),ActivityViewUsers.class);
                         startActivity(i);
                         finish();
