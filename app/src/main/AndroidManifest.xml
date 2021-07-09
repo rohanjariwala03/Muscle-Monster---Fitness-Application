@@ -6,6 +6,7 @@
 
     <application
         android:allowBackup="true"
+        
         android:icon="@mipmap/ic_launcher"
         android:label="Muscle Monster"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,8 +23,7 @@
         <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
         <activity android:name=".LoginSignUp.ActivityLogIn" />
         <activity android:name=".Admin.ActivityTrainerViewDescription" />
-        <activity
-            android:name=".MoreMenuClasses.MyProducts_User"
+        <activity android:name=".MoreMenuClasses.MyProducts_User"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Admin.MyProducts_Admin" />
         <activity android:name=".Admin.ActivityViewTrainer" />
