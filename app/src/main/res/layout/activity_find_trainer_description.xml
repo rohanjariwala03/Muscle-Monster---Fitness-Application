@@ -8,6 +8,36 @@
     android:orientation="vertical">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <ImageButton
+            android:id="@+id/imgChatFindTrainer"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="350dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_message_24" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imgTrainerDetailProfile"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +45,6 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +59,7 @@
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
             <TextView
-                android:id="@+id/txtUserName"
+                android:id="@+id/txtUserNameProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -50,7 +79,7 @@
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
             <TextView
-                android:id="@+id/txtUserLastNameAd"
+                android:id="@+id/txtUserLastNameAdProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
@@ -72,7 +101,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/txtUserContactAd"
+                android:id="@+id/txtUserContactAdProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -95,18 +124,13 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/txtUserEmailAd"
+                android:id="@+id/txtUserEmailAdProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:textSize="20sp"/>
 
         </LinearLayout>
-
-
-
-
-
 
 
     </LinearLayout>

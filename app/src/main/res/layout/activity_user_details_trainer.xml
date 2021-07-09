@@ -8,15 +8,15 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="310dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_marginTop="30dp">
         <ImageView
             android:id="@+id/imgViewUserProfileDetailsTrainer"
-            android:layout_width="310dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             tools:layout_editor_absoluteX="120dp"
             tools:layout_editor_absoluteY="124dp"
             android:src="@drawable/ic_baseline_account_circle_24" />
