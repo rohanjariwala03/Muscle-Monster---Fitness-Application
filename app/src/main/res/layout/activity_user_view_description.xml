@@ -15,14 +15,37 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/TrainerImageViewAd"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="ItemImage"
+                android:background="@drawable/rounded_imageview"
+                tools:ignore="HardcodedText"
+                android:layout_marginLeft="60dp"
+                />
+            <ImageButton
+                android:id="@+id/btnDeleteUserAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:src="@drawable/ic_baseline_delete_24" />
+        </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -31,7 +54,7 @@
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
             <TextView
-                android:id="@+id/txtUserName"
+                android:id="@+id/txtTrainerNameAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -51,7 +74,7 @@
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
             <TextView
-                android:id="@+id/txtUserLastNameAd"
+                android:id="@+id/txtTrainerLastNameAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
@@ -73,7 +96,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/txtUserContactAd"
+                android:id="@+id/txtTrainerContactAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -96,18 +119,13 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/txtUserEmailAd"
+                android:id="@+id/txtTrainerEmailAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:textSize="20sp"/>
 
         </LinearLayout>
-
-
-
-
-
 
 
     </LinearLayout>

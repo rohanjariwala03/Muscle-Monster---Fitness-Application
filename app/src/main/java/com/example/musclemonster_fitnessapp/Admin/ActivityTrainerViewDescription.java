@@ -2,15 +2,22 @@ package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityTrainerViewDescription extends AppCompatActivity {
 
@@ -65,19 +72,28 @@ public class ActivityTrainerViewDescription extends AppCompatActivity {
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* AlertDialog.Builder dialog=new AlertDialog.Builder(ActivityTrainerViewDescription_A.this);
-                dialog.setTitle("Are you sure");
-                dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
 
-                            }
-                        });
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                Query applesQuery = ref.child("Trainer").orderByChild("email").equalTo(EditEmail.getText().toString());
+
+                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().removeValue();
+                        }
+
+                        Toast.makeText(getApplicationContext(),"Trainer Profile Deleted Successfully",Toast.LENGTH_LONG).show();
+                        Intent i=new Intent(getApplicationContext(),ActivityViewTrainer.class);
+                        startActivity(i);
+                        finish();
                     }
-                });*/
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });

@@ -1,6 +1,7 @@
 package com.example.musclemonster_fitnessapp.Trainer.Chat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,11 +26,14 @@ import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,9 +72,6 @@ public class Activity_Chat_to_user extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_to_user);
-
-        getSupportActionBar().setTitle("Chat");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mGetMessage=findViewById(R.id.Trainergetmessage);
         mSendMessageCardview=findViewById(R.id.Trainercarviewofsendmessage);
@@ -140,6 +141,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                 {
                     Chat_pojo messages=snapshot1.getValue(Chat_pojo.class);
                     messagesArrayList.add(messages);
+                    messagesAdapter.notifyDataSetChanged();
                 }
                 messagesAdapter.notifyDataSetChanged();
             }
@@ -204,9 +206,10 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                                     .setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-
+                                    messagesAdapter.notifyDataSetChanged();
                                 }
                             });
+                            messagesAdapter.notifyDataSetChanged();
                         }
                     });
 
@@ -222,6 +225,36 @@ public class Activity_Chat_to_user extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         messagesAdapter.notifyDataSetChanged();
+
+        firebaseDatabase.getReference().child("chats")
+                .child(Senderroom)
+                .child("messages")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override

@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AdminGymPackages"
+    android:background="@color/BackGroundColor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="100dp"
+            android:id="@+id/headerNameLayout"
+            android:weightSum="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Silver"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Gold"
+                android:textColor="@color/yellow"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Platinum"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/descriptionLayout"
+            android:layout_below="@+id/headerNameLayout"
+            android:weightSum="10"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Personal Trainer"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:textStyle="bold|italic"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="X"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="X"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="\u2713"
+                android:textColor="@color/green"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                />
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Tracks"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Physiotherapy"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="locker"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Massage therapy"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Sauna"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="X"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Tanning"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Excercise Classes"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Refreshment Area"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Showers"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="\u2713"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/descriptionLayout"
+            android:weightSum="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Select"
+                android:id="@+id/silverButton"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="10dp"
+                android:background="@drawable/rounded_button"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Select"
+                android:id="@+id/goldButton"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="10dp"
+                android:background="@drawable/rounded_button"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Select"
+                android:id="@+id/platinumButton"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="10dp"
+                android:background="@drawable/rounded_button"
+                />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+</ScrollView>

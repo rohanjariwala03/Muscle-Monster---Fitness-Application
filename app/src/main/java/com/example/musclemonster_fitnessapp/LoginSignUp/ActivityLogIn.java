@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,6 +76,7 @@ public class ActivityLogIn extends AppCompatActivity {
 
         forgotPassword = findViewById(R.id.SignInForgetPassword);
 
+
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +88,13 @@ public class ActivityLogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SignIn();
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityLogIn.this,ForgotPasswordActivity.class));
             }
         });
 
@@ -300,12 +309,6 @@ public class ActivityLogIn extends AppCompatActivity {
                     }
 
                 });
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ActivityLogIn.this,ForgotPasswordActivity.class));
-            }
-        });
     }
 
 }

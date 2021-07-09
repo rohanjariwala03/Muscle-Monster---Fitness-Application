@@ -7,7 +7,8 @@
     tools:context=".Trainer.trainer_home"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/BackGroundColor">
 
 
     <TextView
@@ -16,38 +17,107 @@
         android:text="Trainer Home Activity"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="30dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="300dp">
-        <Button
-            android:id="@+id/btnUserListTrainer"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Chat"
-            android:textAlignment="center"
-            tools:ignore="RtlCompat" />
-    </LinearLayout>
+        android:textSize="30dp"
+        android:textColor="@color/white"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
         android:layout_gravity="bottom"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp">
+
         <Button
-        android:id="@+id/btnLogoutTrainer"
-            android:textSize="20dp"
+        android:id="@+id/btnviewprofile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Logout"
+        android:text="View Profile"
         android:textAlignment="center"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/white"/>
+
+
 </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="150dp">
+        <Button
+            android:id="@+id/btnchat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chat"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:background="@color/purple_500"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_baseline_home_24"
+                android:id="@+id/btnhomepage"
+                android:layout_marginLeft="65dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@android:color/darker_gray"
+            />
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_baseline_logout_24"
+                android:id="@+id/btnLogout"
+                android:layout_marginLeft="65dp"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 </LinearLayout>
