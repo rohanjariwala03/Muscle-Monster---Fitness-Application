@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musclemonster_fitnessapp.Admin.ActivityViewTrainer;
-import com.example.musclemonster_fitnessapp.Admin.ActivityViewUser;
+import com.example.musclemonster_fitnessapp.Admin.ActivityViewUsers;
 import com.example.musclemonster_fitnessapp.Admin.Add_Prod_Admin;
 import com.example.musclemonster_fitnessapp.Admin.Add_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.Admin.Admin_Profile;
@@ -76,7 +76,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
         BtnViewUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Admin_Home_Activity.this, ActivityViewUser.class);
+                Intent intent = new Intent(Admin_Home_Activity.this, ActivityViewUsers.class);
                 startActivity(intent);
             }
         });

@@ -1,16 +1,19 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_View_User_Admin;
-import com.example.musclemonster_fitnessapp.LoginSignUp.Model;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageButton;
+
+import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_View_Trainer_Admin;
+import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_View_Users_Admin;
+import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
+import com.example.musclemonster_fitnessapp.POJOClasses.UsersPojo;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,18 +27,18 @@ import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ActivityViewUser extends AppCompatActivity {
+public class ActivityViewUsers extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Adapter_View_User_Admin adapterUser;
-    ArrayList<Model> list;
-
+    Adapter_View_Users_Admin AdapterUser;
+    ArrayList<UsersPojo> list;
+    ImageButton btnDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_user);
+        setContentView(R.layout.activity_view_users);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
@@ -45,16 +48,17 @@ public class ActivityViewUser extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        list=new ArrayList<UsersPojo>();
+    /*AdapterShopping=new Adapter_Prod_Shopping(getContext(),list);
+    recyclerView.setAdapter(AdapterShopping);*/
+        AdapterUser=new Adapter_View_Users_Admin(this,list);
+        recyclerView.setAdapter(AdapterUser);
 
-        list=new ArrayList<Model>();
-
-        adapterUser = new Adapter_View_User_Admin(this,list);
-
-
-
-        recyclerView.setAdapter(adapterUser);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
+        //  call the constructor of CustomAdapter to send the reference and data to Adapter
+
+
 
         Query query=FirebaseDatabase.getInstance().getReference("Users").orderByKey();
         String ema ;
@@ -71,31 +75,24 @@ public class ActivityViewUser extends AppCompatActivity {
                         //String K = dataSnapshot.getKey();
                         //list.add(Description);
                         //*for (DataSnapshot DtSnapshot : dataSnapshot.getChildren()) {
-                        Model Obj = new Model();
+                        UsersPojo Obj = new UsersPojo();
                         // DtSnapshot.getValue(ProductUpload_POJO.class);
                         // Obj.setFKey(dataSnapshot.getKey());
-                        Obj.setFirstName(dataSnapshot.child("firstname").getValue(String.class));
-                        Obj.setLastName(dataSnapshot.child("lastname").getValue(String.class));
-                        Obj.setEmail(dataSnapshot.child("lastname").getValue(String.class));
-                        Obj.setPhoneNumber(dataSnapshot.child("email").getValue(String.class));
-
-
-//                        Obj.setFirstname((dataSnapshot.child("firstname").getValue(String.class)));
-//                        Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
-//                        Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));
-//                        Obj.setContact((dataSnapshot.child("contact").getValue(String.class)));
-//                        Obj.setAge((dataSnapshot.child("age").getValue(String.class)));
-//                        Obj.setExperience((dataSnapshot.child("experience").getValue(String.class)));
-//                        Obj.setImgUri((dataSnapshot.child("imgUri").getValue(String.class)));
+                        Obj.setFirstName((dataSnapshot.child("firstName").getValue(String.class)));
+                        Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
+                        Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));
+                        Obj.setPhoneNumber((dataSnapshot.child("phoneNumber").getValue(String.class)));
+                        Obj.setImageUrl((dataSnapshot.child("imageUri").getValue(String.class)));
+                        // Obj.setSflag((dataSnapshot.child("sflag").getValue(String.class)));
                         list.add(Obj);
                     } else {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
                 }
                 // set the Adapter to RecyclerView
-                adapterUser.notifyDataSetChanged();
+                AdapterUser.notifyDataSetChanged();
 
-                Log.i("User Adapter ", "User Binded ");
+                Log.i("Product Adapter ", "Product Binded ");
             }
 
             @Override
@@ -106,7 +103,7 @@ public class ActivityViewUser extends AppCompatActivity {
 
         });
 
+
+
     }
-
-
 }
