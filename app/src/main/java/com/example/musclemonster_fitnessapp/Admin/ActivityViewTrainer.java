@@ -1,11 +1,14 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -37,6 +40,10 @@ public class ActivityViewTrainer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_trainer);
+
+        getSupportActionBar().setTitle("Trainers");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         /*BtnSearch = (Button) view.findViewById(R.id.Btnsearch);*/
         /*EditSearch = (EditText) view.findViewById(R.id.search);*/
@@ -108,7 +115,11 @@ public class ActivityViewTrainer extends AppCompatActivity {
 
         });
 
+    }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        list.clear();
     }
 }

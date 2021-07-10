@@ -78,7 +78,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         mbtnSendMessage=findViewById(R.id.Trainerimageviewsendmessage);
         mToolbarofChat=findViewById(R.id.Trainertoolbarofspecificchat);
         mNameOfSpecificUser=findViewById(R.id.TrainerNameofspecificuser);
-        mImageviewOfSpecificUser=findViewById(R.id.Trainerspecificuserimageinimageview);
+        mImageviewOfSpecificUser=findViewById(R.id.TrainerspecificuserimageinimageviewChat1);
         mbtnBackofSpecificChat=findViewById(R.id.Trainerbackbuttonofspecificchat);
 
         messagesArrayList=new ArrayList<>();
@@ -102,6 +102,10 @@ public class Activity_Chat_to_user extends AppCompatActivity {
 
         mGetMessage.setText(null);
         mReceiverEmail=getIntent().getStringExtra("UserEmail");
+        mSenderUID=firebaseAuth.getUid();
+        mRecieverUID=getIntent().getStringExtra("UserFKey");
+        mRecieverName=getIntent().getStringExtra("UserFName");
+        ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
 
         //setSupportActionBar(mToolbarofChat);
         mToolbarofChat.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +115,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                 Intent intent=new Intent(Activity_Chat_to_user.this,Activity_User_Details_Trainer.class);
                 intent.putExtra("UsrName",mRecieverName);
                 intent.putExtra("UsrEmail",mReceiverEmail);
+                intent.putExtra("TreinaerImage",ImageUrl);
                 startActivity(intent);
             }
         });
@@ -120,11 +125,20 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         //calendar=Calendar.getInstance();
         //simpleDateFormat=new SimpleDateFormat("hh:mm a");
 
-        mSenderUID=firebaseAuth.getUid();
-        mRecieverUID=getIntent().getStringExtra("UserFKey");
-        mRecieverName=getIntent().getStringExtra("UserFName");
+
+        Log.i("Image nathi", ImageUrl);
 
 
+       /* String defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
+        if(ImageUrl.equals("null")){
+            Glide.with(this)
+                    .load(defaultUrl)
+                    .into(mImageviewOfSpecificUser);
+        }else {
+            Glide.with(this)
+                    .load(ImageUrl)
+                    .into(mImageviewOfSpecificUser);
+        }*/
 
         Senderroom=mSenderUID+mRecieverUID;
         Recieverroom=mRecieverUID+mSenderUID;
@@ -164,16 +178,6 @@ public class Activity_Chat_to_user extends AppCompatActivity {
 
 
         mNameOfSpecificUser.setText(mRecieverName);
-        String uri=intent.getStringExtra("TrainerImageUrl");
-        /*if(uri.isEmpty())
-        {
-            Toast.makeText(getApplicationContext(),"null is recieved",Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Picasso.get().load(uri).into(mimageviewofspecificuser);
-        }*/
-
 
         mbtnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,6 +268,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         {
             messagesAdapter.notifyDataSetChanged();
         }
+        messagesArrayList.clear();
     }
 
 

@@ -90,14 +90,15 @@ public class ActivitySignUp extends AppCompatActivity {
         String Sphone = phone.getText().toString();
         String Spassword = password.getText().toString();
         String SCPassword = confirmPassword.getText().toString();
-        if(SCPassword==Spassword) {
+        String imageUri="null";
+        if(SCPassword.equalsIgnoreCase(Spassword)) {
             mAuth.createUserWithEmailAndPassword(Semail, Spassword)
                     .addOnCompleteListener(ActivitySignUp.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-                                Model model = new Model(fName, lName, Semail, Sphone, Sflag);
+                                Model model = new Model(fName, lName, Semail, Sphone, Sflag,imageUri);
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {

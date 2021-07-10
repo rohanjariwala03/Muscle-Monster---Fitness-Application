@@ -3,18 +3,26 @@ package com.example.musclemonster_fitnessapp.POJOClasses;
 public class Exercise_Sub_Pojo {
 
     //Initializing data
-        private String ExerciseName,ExerciseCat, ExerciseDesc,FKey,ImageUri;
+        private String ExerciseName,ExerciseCat, ExerciseDesc,FKey,ImageUri,steps;
 
-        public Exercise_Sub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc,String ImageUri, String FKey) {
+        public Exercise_Sub_Pojo(String ExerciseName, String ExerciseCat, String ExerciseDesc,String ImageUri, String FKey,String steps) {
             this.ExerciseName=ExerciseName;
             this.ExerciseCat=ExerciseCat;
             this.ExerciseDesc=ExerciseDesc;
             this.ImageUri=ImageUri;
-
+            this.steps=steps;
             this.FKey = FKey;
         }
 
-        public String getFKey() {
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
+    public String getFKey() {
             return FKey;
         }
 

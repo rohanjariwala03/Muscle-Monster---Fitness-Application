@@ -59,6 +59,7 @@ public class MyAdapter_Exercise_Sub extends RecyclerView.Adapter<MyAdapter_Exerc
                 intent.putExtra("ExerciseCat",list.get(position).getExerciseCat());
                 intent.putExtra("ExerciseDesc",list.get(position).getExerciseDesc());
                 intent.putExtra("ItemImageUri",list.get(position).getImageUri());
+                intent.putExtra("ExerciseSteps",list.get(position).getSteps());
                 v.getContext().startActivity(intent);
 
             }

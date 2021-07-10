@@ -57,6 +57,7 @@ public class Adapter_chat_Activity extends RecyclerView.Adapter {
         {
             SenderViewHolder viewHolder=(SenderViewHolder)holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
+
         }
         else
         {

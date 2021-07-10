@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/admin_background">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -40,14 +41,16 @@
                     android:layout_height="wrap_content"
                     android:text="Product Name :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -64,14 +67,16 @@
                     android:layout_height="wrap_content"
                     android:text="Product Price :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -88,14 +93,16 @@
                     android:layout_height="wrap_content"
                     android:text="Category :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemCat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -113,14 +120,16 @@
                     android:layout_height="wrap_content"
                     android:text="Gender :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemGen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -137,14 +146,16 @@
                     android:layout_height="wrap_content"
                     android:text="Per Item Weight :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -161,14 +172,16 @@
                     android:layout_height="wrap_content"
                     android:text="Description ↓"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemDesc"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -193,14 +206,16 @@
                     android:layout_height="wrap_content"
                     android:text="Publisher Name :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemPublisherName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
@@ -216,27 +231,28 @@
                     android:layout_height="wrap_content"
                     android:text="Publisher Email :"
                     android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    android:textColor="@color/adminTextColor"/>
 
                 <TextView
                     android:id="@+id/txtItemPublisherMail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/adminTextColor"/>
 
             </LinearLayout>
 
 
             <Button
-                android:id="@+id/BtnDelAd"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_button"
                 android:text="Delete Ad"
-                android:textColor="#7A1010"
-                app:backgroundTint="#E8655B" />
+                android:textColor="@color/adminTextColor"
+                app:backgroundTint="#A8A5A5" />
 
         </LinearLayout>
 

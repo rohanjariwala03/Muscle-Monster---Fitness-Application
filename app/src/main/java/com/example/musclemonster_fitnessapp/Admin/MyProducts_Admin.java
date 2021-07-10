@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Admin_Products;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
@@ -36,7 +37,7 @@ public class MyProducts_Admin extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Adapter_Admin_Products AdapterShopping;
+    Admin_Adp_Prod_Shopping AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
     EditText EditSearch;
     Button BtnSearch;
@@ -45,7 +46,11 @@ public class MyProducts_Admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_products_admin);
-        getSupportActionBar().setTitle("My Product");
+
+        getSupportActionBar().setTitle("Products");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
+
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
@@ -57,11 +62,11 @@ public class MyProducts_Admin extends AppCompatActivity {
         list=new ArrayList<ProductUpload_POJO>();
         /*AdapterShopping=new Admin_Adp_Prod_Shopping(getContext(),list);
         recyclerView.setAdapter(AdapterShopping);*/
-        AdapterShopping=new Adapter_Admin_Products(MyProducts_Admin.this,list);
+        AdapterShopping=new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,list);
         recyclerView.setAdapter(AdapterShopping);
 
-        /*GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_Admin.this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);*/
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_Admin.this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
 
         Log.i("Admin My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
@@ -75,10 +80,9 @@ public class MyProducts_Admin extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-                        String status = dataSnapshot.child("status").getValue(String.class);
-                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())&&
-                                (status == null) ){
-                            Log.i("MyProducts_Admin : ", "Key Matched" );
+
+                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+
                             list.add(AddData_ToList(dataSnapshot));
                         }
                     }
@@ -141,7 +145,6 @@ public class MyProducts_Admin extends AppCompatActivity {
         Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
         Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
-        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
         Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
         return Obj;
     }
@@ -162,18 +165,18 @@ public class MyProducts_Admin extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-                        String status = dataSnapshot.child("status").getValue(String.class);
-                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())&&
-                                (status == null) ){
-                            Alist.add(AddData_ToList(dataSnapshot));
-                            }
+
+                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+
+                            list.add(AddData_ToList(dataSnapshot));
+                        }
                     }
                     else
                     {
                         Log.i("MyProducts_Admin : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Adapter_Admin_Products(MyProducts_Admin.this,Alist);
+                AdapterShopping = new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 

@@ -1,6 +1,8 @@
 package com.example.musclemonster_fitnessapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +35,7 @@ public class Admin_Home_Activity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.support_toolbar);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         myAuth = FirebaseAuth.getInstance();
         LogOut = (ImageButton) findViewById(R.id.btnLogout);

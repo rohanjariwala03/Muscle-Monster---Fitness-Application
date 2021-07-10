@@ -1,19 +1,20 @@
 package com.example.musclemonster_fitnessapp.LoginSignUp;
 
 public class Model {
-    String firstName,lastName,email,phoneNumber;
+    String firstName,lastName,email,phoneNumber,imageUri;
     int Sflag;
 
     public Model(){
 
     }
 
-    public Model(String firstName, String lastName, String email, String phoneNumber, int sflag) {
+    public Model(String firstName, String lastName, String email, String phoneNumber, int sflag, String imageUri) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.Sflag=sflag;
+        this.imageUri=imageUri;
     }
 
     public String getFirstName() {
