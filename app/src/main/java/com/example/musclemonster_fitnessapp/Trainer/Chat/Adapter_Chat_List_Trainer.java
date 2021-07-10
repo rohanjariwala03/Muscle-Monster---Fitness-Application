@@ -33,6 +33,7 @@ public class Adapter_Chat_List_Trainer extends RecyclerView.Adapter<Adapter_Chat
 
     Context context;
     ArrayList<Chat_List_pojo> list;
+    String defaultUrl;
 
     public Adapter_Chat_List_Trainer(Context context, ArrayList<Chat_List_pojo> list) {
         this.context = context;
@@ -52,10 +53,17 @@ public class Adapter_Chat_List_Trainer extends RecyclerView.Adapter<Adapter_Chat
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_Chat_List_Trainer.MyViewHolder holder, int position) {
 
+        defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
         holder.txtTrainerName.setText(list.get(position).getTrainerName());
-        /*Glide.with(context)
-                .load(list.get(position).getTimgUrl())
-                .into(holder.ImgV);*/
+        if(list.get(position).getTimgUrl().equals("null")){
+            Glide.with(context)
+                    .load(defaultUrl)
+                    .into(holder.ImgV);
+        }else {
+            Glide.with(context)
+                    .load(list.get(position).getTimgUrl())
+                    .into(holder.ImgV);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

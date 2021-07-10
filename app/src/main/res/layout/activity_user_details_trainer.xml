@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Trainer.Chat.Activity_User_Details_Trainer"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_trainer">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp">
         <ImageView
-            android:id="@+id/imgViewUserProfileDetailsTrainer"
+            android:id="@+id/imgViewUserProfileDetailsTrainerChat2"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             tools:layout_editor_absoluteX="120dp"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtUserNameDetailsTrainer"
             android:textSize="30dp"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:gravity="center"
             />
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtUserEmailDetailsTrainer"
             android:textSize="30dp"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:gravity="center" />
     </LinearLayout>
@@ -64,6 +67,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtUserNumberDetailsTrainer"
             android:textSize="30dp"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:gravity="center" />
     </LinearLayout>

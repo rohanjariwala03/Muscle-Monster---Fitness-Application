@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.Admin_Cart">
+    tools:context=".Admin.Admin_Cart"
+    android:background="@drawable/admin_background">
 
     <TextView
         android:id="@+id/textView"
@@ -13,6 +14,7 @@
         android:text="Cart "
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

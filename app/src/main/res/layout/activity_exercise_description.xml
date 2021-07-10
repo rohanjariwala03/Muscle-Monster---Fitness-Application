@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
     android:orientation="vertical"
-    android:background="@color/BackgroundTheme">
+    android:background="@drawable/background_user">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
+    android:orientation="vertical"
+    android:background="@drawable/background_user">
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_marginTop="30dp">
+    android:background="@drawable/background_user"
+    android:layout_marginTop="30dp"
+    android:orientation="vertical">
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="331dp"
+        android:paddingBottom="5dp"
         tools:srcCompat="@tools:sample/avatars"
      />
-</LinearLayout>
-<LinearLayout
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/PlayVideo"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="right"
+        android:background="@drawable/ic_baseline_play_circle_filled_24"/>
+    </LinearLayout>
+    <!--<LinearLayout
         android:layout_width="40sp"
         android:layout_height="40dp"
         tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
@@ -29,23 +47,22 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="40sp"
         android:gravity="left"
-       >
+        android:background="@drawable/background_user">
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/PlayVideo"
-
+            android:backgroundTint="@color/white"
             android:background="@drawable/ic_baseline_play_circle_filled_24"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_textview_smalldata">
+        android:layout_marginTop="10dp">
     <TextView
         android:id="@+id/txtExerciseName"
         android:layout_width="match_parent"
@@ -54,9 +71,9 @@
         android:textSize="25sp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        />
+        android:textAlignment="center" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,22 +83,22 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/rounded_textview_smalldata">
+        android:layout_marginRight="30dp">
     <TextView
         android:id="@+id/txtExerciseType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:paddingLeft="5dp"
+        android:textColor="@color/white"
         android:paddingRight="5dp"
         android:textSize="25sp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
      />
-    </LinearLayout>
+    </LinearLayout>-->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
             android:orientation="vertical"
@@ -95,7 +112,7 @@
             <ScrollView
                 android:id="@+id/SCROLLER_ID"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:clipToPadding="false"
                 android:fillViewport="true"
                 android:scrollbars="vertical">
@@ -107,8 +124,28 @@
                     android:layout_gravity="center_horizontal"
                     android:scrollbars="vertical"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textAlignment="center"
                     android:textSize="25sp" />
             </ScrollView>
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="40sp"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:background="@drawable/background_user">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Info"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/ic_baseline_info_24"/>
+    </LinearLayout>
+
+
 </LinearLayout>
+</ScrollView>

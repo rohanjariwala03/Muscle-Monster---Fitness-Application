@@ -1,8 +1,11 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -33,6 +36,11 @@ public class ActivityTrainerViewDescription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer_view_description);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.support_toolbar);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
+
         EditFirstName = (TextView)findViewById(R.id.txtTrainerNameAd);
         EditLastName = (TextView)findViewById(R.id.txtTrainerLastNameAd);
         EditEmail = (TextView)findViewById(R.id.txtTrainerEmailAd);
@@ -65,9 +73,15 @@ public class ActivityTrainerViewDescription extends AppCompatActivity {
         EditExp.setText(TrainerExper);
 
 
-        Glide.with(this)
-                .load(ItemImageUri)
-                .into(ImgView);
+        if(ItemImageUri!=null) {
+            Glide.with(this)
+                    .load(ItemImageUri)
+                    .into(ImgView);
+        }/*else{
+            Glide.with(this)
+                    .load()
+                    .into(ImgView);
+        }*/
 
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override

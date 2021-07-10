@@ -1,9 +1,12 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +45,8 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         setContentView(R.layout.activity_prod_desc_admin);
 
         getSupportActionBar().setTitle("Product Description");
+        getSupportActionBar().setCustomView(R.layout.support_toolbar);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         fab = findViewById(R.id.fab);
 

@@ -2,6 +2,7 @@ package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class Adapter_View_Users_Admin extends RecyclerView.Adapter<Adapter_View_
 
     Context context;
     ArrayList<UsersPojo> list;
+    String defaultUrl;
 
     public Adapter_View_Users_Admin(Context context, ArrayList<UsersPojo> list) {
         this.context = context;
@@ -41,10 +43,17 @@ public class Adapter_View_Users_Admin extends RecyclerView.Adapter<Adapter_View_
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
 
+        defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
         holder.fitstName.setText(list.get(position).getFirstName());
-        Glide.with(context)
-                .load(list.get(position).getImageUrl())
-                .into(holder.ImgV);
+        if(list.get(position).getImageUrl().equals("null")){
+            Glide.with(context)
+                    .load(defaultUrl)
+                    .into(holder.ImgV);
+        }else{
+            Glide.with(context)
+                    .load(list.get(position).getImageUrl())
+                    .into(holder.ImgV);
+        }
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

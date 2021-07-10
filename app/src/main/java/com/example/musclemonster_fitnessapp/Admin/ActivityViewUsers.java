@@ -1,11 +1,14 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -39,6 +42,10 @@ public class ActivityViewUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_users);
+
+        getSupportActionBar().setTitle("Users");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
@@ -82,7 +89,11 @@ public class ActivityViewUsers extends AppCompatActivity {
                         Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
                         Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));
                         Obj.setPhoneNumber((dataSnapshot.child("phoneNumber").getValue(String.class)));
-                        Obj.setImageUrl((dataSnapshot.child("imageUri").getValue(String.class)));
+                        if(dataSnapshot.child("imageUri").getValue(String.class)!=null) {
+                            Obj.setImageUrl((dataSnapshot.child("imageUri").getValue(String.class)));
+                        }else{
+                            Obj.setImageUrl("null");
+                        }
                         // Obj.setSflag((dataSnapshot.child("sflag").getValue(String.class)));
                         list.add(Obj);
                     } else {
@@ -97,13 +108,14 @@ public class ActivityViewUsers extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-
             }
-
-
         });
 
-
-
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        list.clear();
+    }
+
 }

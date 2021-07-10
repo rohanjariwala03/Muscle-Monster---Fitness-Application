@@ -12,14 +12,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Exercise_Video;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.InfoDialog;
 import com.example.musclemonster_fitnessapp.R;
 
 public class Exercise_Description_Activity extends AppCompatActivity {
 
-    String ExerciseCat,ExerciseName,ExerciseDesc,ItemImageUri;
+    String ExerciseCat,ExerciseName,ExerciseDesc,ItemImageUri,steps;
     TextView Name,Catagory,Description;
     ImageView ImgView;
-    ImageButton playbtn;
+    ImageButton playbtn,info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +31,19 @@ public class Exercise_Description_Activity extends AppCompatActivity {
         ExerciseCat = getIntent().getStringExtra("ExerciseCat");
         ExerciseDesc = getIntent().getStringExtra("ExerciseDesc");
         ItemImageUri = getIntent().getStringExtra("ItemImageUri");
+        steps=getIntent().getStringExtra("ExerciseSteps");
+
+        info=findViewById(R.id.Info);
         //Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
         /*Log.i("asd", "Data : " + ExerciseCat);
         Log.i("asd", "Data : " + ExerciseName);
         Log.i("asd", "Data : " + ExerciseDesc);
 */
-        Catagory=findViewById(R.id.txtExerciseType);
-        Name=findViewById(R.id.txtExerciseName);
+        /*Catagory=findViewById(R.id.txtExerciseType);
+        Name=findViewById(R.id.txtExerciseName);*/
         Description =findViewById(R.id.txtExerciseDescription);
-        Name.setText(ExerciseName);
-        Catagory.setText(ExerciseCat);
+        /*Name.setText(ExerciseName);
+        Catagory.setText(ExerciseCat);*/
         Description.setText(ExerciseDesc);
         ImgView = (ImageView) findViewById(R.id.imgView);
         playbtn=findViewById(R.id.PlayVideo);
@@ -53,10 +57,22 @@ public class Exercise_Description_Activity extends AppCompatActivity {
             }
         });
 
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+
         Glide.with(this)
                 .load(ItemImageUri)
                 .into(ImgView);
 
 
+    }
+
+    private void openDialog() {
+        InfoDialog infoDialog=new InfoDialog(steps);
+        infoDialog.show(getSupportFragmentManager(),"Information");
     }
 }

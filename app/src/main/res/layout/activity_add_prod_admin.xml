@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/admin_background">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +11,7 @@
         android:layout_height="match_parent"
         tools:context=".Admin.Add_Prod_Admin"
         android:orientation="vertical"
-        android:background="@color/BackGroundColor">
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product Name : "
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
             android:layout_marginLeft="30dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Per Item Weight : "
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
 
             android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
@@ -87,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category : "
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
 
             android:layout_marginLeft="60dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
@@ -130,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="75dp"
             android:text="Gender : "
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <androidx.cardview.widget.CardView
@@ -167,7 +168,7 @@
             android:layout_marginLeft="86dp"
             android:text="Price : "
 
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -185,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" $"
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText,RtlHardcoded" />
@@ -205,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description : "
-            android:textColor="@color/textColor"
+            android:textColor="@color/adminTextColor"
 
             android:layout_marginLeft="45dp"
             tools:ignore="HardcodedText,RtlHardcoded" />

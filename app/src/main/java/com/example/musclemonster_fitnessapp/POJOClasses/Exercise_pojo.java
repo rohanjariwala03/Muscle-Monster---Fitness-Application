@@ -1,14 +1,23 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Exercise_pojo {
-    private String ExerciseName,ExerciseCat,ExerciseDesc,ImageUri,FKey,UserKey;;
+    private String ExerciseName,ExerciseCat,ExerciseDesc,ImageUri,FKey,UserKey,steps;;
 
-    public Exercise_pojo(String exerciseName, String exerciseCat, String exerciseDesc, String imageUri, String userKey) {
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
+    public Exercise_pojo(String exerciseName, String exerciseCat, String exerciseDesc, String imageUri, String userKey, String steps) {
         ExerciseName = exerciseName;
         ExerciseCat = exerciseCat;
         ExerciseDesc = exerciseDesc;
         ImageUri = imageUri;
         UserKey = userKey;
+        this.steps=steps;
     }
 
     public String getUserKey() {

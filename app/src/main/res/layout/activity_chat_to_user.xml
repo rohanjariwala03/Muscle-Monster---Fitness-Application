@@ -45,7 +45,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/Trainerspecificuserimageinimageview"
+                    android:id="@+id/TrainerspecificuserimageinimageviewChat1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_account_circle_24"/>
 

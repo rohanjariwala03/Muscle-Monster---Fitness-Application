@@ -82,6 +82,7 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
                         Obj.setExerciseCat((dataSnapshot.child("tCat").getValue(String.class)));
                         Obj.setExerciseDesc((dataSnapshot.child("tDesc").getValue(String.class)));
                         Obj.setImageUri((dataSnapshot.child("imgUri1").getValue(String.class)));
+                        Obj.setSteps((dataSnapshot.child("steps").getValue(String.class)));
 
                         list.add(Obj);
                         //Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();
