@@ -51,9 +51,12 @@ public class Activity_Shopping extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
     Adapter_Prod_Shopping AdapterShopping;
-    ArrayList<ProductUpload_POJO> list;
+    ArrayList<ProductUpload_POJO> list, Alist;
+    MenuItem item;
+    SearchView sv;
     Button BtnFiter;
-    String SEARCH = "N";
+    String SEARCHED = "N";
+    String CATEGORIZED = "N";
     String RBChecked = "Unisex", status,PuserKey,CurUserKey;
 
     private final int ID_Home=1;
@@ -87,6 +90,7 @@ public class Activity_Shopping extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Shopping.this));
 
         list=new ArrayList<ProductUpload_POJO>();
+        Alist=new ArrayList<ProductUpload_POJO>();
         AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,list);
         recyclerView.setAdapter(AdapterShopping);
 
@@ -114,7 +118,8 @@ public class Activity_Shopping extends AppCompatActivity {
             }
         });
 
-        SEARCH = "N";
+        SEARCHED = "N";
+        CATEGORIZED = "N";
 
         DefaultData();
 
@@ -133,6 +138,7 @@ public class Activity_Shopping extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                CATEGORIZED = "Y";
                 RBChecked = menuItem.toString();
                 menuItem.setChecked(true);
                 switch(menuItem.toString()) {
@@ -153,8 +159,17 @@ public class Activity_Shopping extends AppCompatActivity {
                     case "Female":
                         SortGen(menuItem.toString());
                         break;
+
                     case "Clear Filter":
+                        CATEGORIZED = "N";
+                        SEARCHED = "N";
+                        DefaultData();
+                        sv.setQuery(null,false);
+                        break;
+
                     default:
+                        SEARCHED = "N";
+                        CATEGORIZED = "N";
                         DefaultData();
                         break;
 
@@ -166,8 +181,8 @@ public class Activity_Shopping extends AppCompatActivity {
     }
 
     private void SortData(String SelectedItem) {
-        if(SEARCH == "N") {
-            list.clear();
+        if(SEARCHED == "N") {
+            Alist.clear();
             Query query = database.orderByChild("productCat").equalTo(SelectedItem.toLowerCase());
             query.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -176,12 +191,14 @@ public class Activity_Shopping extends AppCompatActivity {
 
                         if (dataSnapshot.exists()) {
                             if (ValidateData(dataSnapshot)) {
-                                list.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                                Alist.add(AddDataToPOJO(dataSnapshot, PuserKey));
                             }
                         } else {
                             Log.i("user View Prod", "NO Data : ");
                         }
                     }
+                    AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,Alist);
+                    recyclerView.setAdapter(AdapterShopping);
                     AdapterShopping.notifyDataSetChanged();
                 }
 
@@ -193,13 +210,16 @@ public class Activity_Shopping extends AppCompatActivity {
         }
         else
         {
-        for (int i = 0; i < list.size(); i++) {
-            if (!list.get(i).getProductCat().equalsIgnoreCase(SelectedItem)) {
-                list.remove(i);
-                AdapterShopping.notifyDataSetChanged();
+            Alist.clear();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getProductCat().equalsIgnoreCase(SelectedItem)) {
+                    Alist.add(list.get(i));
+                }
             }
+            AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,Alist);
+            recyclerView.setAdapter(AdapterShopping);
+            AdapterShopping.notifyDataSetChanged();
         }
-    }
     }
 
     private boolean ValidateData(DataSnapshot dataSnapshot)
@@ -215,11 +235,11 @@ public class Activity_Shopping extends AppCompatActivity {
 
     private void SortGen(String SelectedItem)
     {
-            for(int i=0;i< list.size();i++)
+            for(int i=0;i< Alist.size();i++)
             {
-                if(!list.get(i).getProdGen().equalsIgnoreCase(SelectedItem))
+                if(!Alist.get(i).getProdGen().equalsIgnoreCase(SelectedItem))
                 {
-                    list.remove(i);
+                    Alist.remove(i);
                     AdapterShopping.notifyDataSetChanged();
                 }
             }
@@ -245,8 +265,9 @@ public class Activity_Shopping extends AppCompatActivity {
                         Log.i("user View Prod", "NO Data : " );
                     }
                 }
+                AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), list);
+                recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
-                SEARCH = "N";
                 Log.i("Product Adapter ", "Product Binded ");
             }
             @Override
@@ -302,8 +323,8 @@ public class Activity_Shopping extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
-        MenuItem item = menu.findItem(R.id.search);
-        SearchView sv = (SearchView) item.getActionView();
+        item = menu.findItem(R.id.search);
+        sv = (SearchView) item.getActionView();
         recyclerView.clearOnChildAttachStateChangeListeners();
         recyclerView.removeAllViews();
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -326,7 +347,7 @@ public class Activity_Shopping extends AppCompatActivity {
         sv.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                SEARCH = "N";
+                SEARCHED = "N";
                 return false;
             }
         });
@@ -334,39 +355,53 @@ public class Activity_Shopping extends AppCompatActivity {
     }
 
     private void StartSearch(String SQuery) {
-        Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
-                .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
-        recyclerView.removeAllViews();
-        recyclerView.removeAllViewsInLayout();
-        list=new ArrayList<ProductUpload_POJO>();
-        AdapterShopping.notifyDataSetChanged();
-        //Database event listner for success or failure
-        query.addValueEventListener(new ValueEventListener() {
-            //If database get some data then this will fire
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+        if(SQuery.length()!=0)
+            SEARCHED = "Y";
+        else
+            SEARCHED = "N";
 
-                    if (dataSnapshot.exists()) {
-                        if(ValidateData(dataSnapshot)) {
-                            list.add(AddDataToPOJO(dataSnapshot,PuserKey));
+            Query query = FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
+                    .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
+            recyclerView.removeAllViews();
+            recyclerView.removeAllViewsInLayout();
+            list = new ArrayList<ProductUpload_POJO>();
+            Alist.clear();
+            AdapterShopping.notifyDataSetChanged();
+            //Database event listner for success or failure
+            query.addValueEventListener(new ValueEventListener() {
+                //If database get some data then this will fire
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        if (dataSnapshot.exists()) {
+                            if (ValidateData(dataSnapshot)) {
+                                if(CATEGORIZED == "N")
+                                    list.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                                else
+                                {
+                                    if(dataSnapshot.child("productCat").getValue(String.class).equalsIgnoreCase(RBChecked) ||
+                                            dataSnapshot.child("prodGen").getValue(String.class).equalsIgnoreCase(RBChecked))
+                                        Alist.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                                }
+                            }
+                        } else {
+                            Log.i("Frag_Shopping : ", "NO Data : Q");
                         }
                     }
+                    if(CATEGORIZED == "N")
+                        AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), list);
                     else
-                    {
-                        Log.i("Frag_Shopping : ", "NO Data : Q" );
-                    }
-                }
-                AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(),list);
-                recyclerView.setAdapter(AdapterShopping);
-                AdapterShopping.notifyDataSetChanged();
-                SEARCH = "Y";
-            }
+                        AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), Alist);
+                    recyclerView.setAdapter(AdapterShopping);
+                    AdapterShopping.notifyDataSetChanged();
 
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                Log.i("Frag_Shopping : ", "NO Data : Q" );
-            }
-        });
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                    Log.i("Frag_Shopping : ", "NO Data : Q");
+                }
+            });
     }
 }
