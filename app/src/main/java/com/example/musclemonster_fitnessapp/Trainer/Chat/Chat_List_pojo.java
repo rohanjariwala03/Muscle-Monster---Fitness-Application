@@ -1,16 +1,24 @@
 package com.example.musclemonster_fitnessapp.Trainer.Chat;
 
 public class Chat_List_pojo {
-    String UserFName,UserLName,UserID;
-    private String FKey;
+
+    String UserID;
+    String TrainerID;
+    String TrainerName;
+    String TimgUrl;
+    String FKey;
+    String TEmail;
+
+    public Chat_List_pojo(String trainerID, String trainerName, String timgUrl, String FKey, String TEmail) {
+        TrainerID = trainerID;
+        TrainerName = trainerName;
+        TimgUrl = timgUrl;
+        this.FKey = FKey;
+        this.TEmail = TEmail;
+    }
 
     public Chat_List_pojo(){
 
-    }
-    public Chat_List_pojo(String userFName, String userLName, String userEmail) {
-        UserFName = userFName;
-        UserLName = userLName;
-        UserID = userEmail;
     }
 
     public String getUserID() {
@@ -21,6 +29,30 @@ public class Chat_List_pojo {
         UserID = userID;
     }
 
+    public String getTrainerID() {
+        return TrainerID;
+    }
+
+    public void setTrainerID(String trainerID) {
+        TrainerID = trainerID;
+    }
+
+    public String getTrainerName() {
+        return TrainerName;
+    }
+
+    public void setTrainerName(String trainerName) {
+        TrainerName = trainerName;
+    }
+
+    public String getTimgUrl() {
+        return TimgUrl;
+    }
+
+    public void setTimgUrl(String timgUrl) {
+        TimgUrl = timgUrl;
+    }
+
     public String getFKey() {
         return FKey;
     }
@@ -29,27 +61,11 @@ public class Chat_List_pojo {
         this.FKey = FKey;
     }
 
-    public String getUserFName() {
-        return UserFName;
+    public String getTEmail() {
+        return TEmail;
     }
 
-    public void setUserFName(String userFName) {
-        UserFName = userFName;
-    }
-
-    public String getUserLName() {
-        return UserLName;
-    }
-
-    public void setUserLName(String userLName) {
-        UserLName = userLName;
-    }
-
-    public String getUserEmail() {
-        return UserID;
-    }
-
-    public void setUserEmail(String userEmail) {
-        UserID = userEmail;
+    public void setTEmail(String TEmail) {
+        this.TEmail = TEmail;
     }
 }

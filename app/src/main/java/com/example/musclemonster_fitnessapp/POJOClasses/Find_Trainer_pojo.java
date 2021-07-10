@@ -2,19 +2,28 @@ package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Find_Trainer_pojo {
 
-    String Tid,TFName,TLName,TEmail,TimgUrl;
+    String Tid,TFName,TLName,TEmail,TimgUrl,Tphone;
     private String FKey;
 
     public Find_Trainer_pojo(){
 
     }
 
-    public Find_Trainer_pojo(String tid, String TFName, String TLName, String temail, String timgUrl) {
+    public Find_Trainer_pojo(String tid, String TFName, String TLName, String temail, String timgUrl,String tphone) {
         this.Tid = tid;
         this.TFName = TFName;
         this.TLName = TLName;
         this.TEmail = temail;
         this.TimgUrl = timgUrl;
+        this.Tphone=tphone;
+    }
+
+    public String getTphone() {
+        return Tphone;
+    }
+
+    public void setTphone(String tphone) {
+        Tphone = tphone;
     }
 
     public String getTid() {

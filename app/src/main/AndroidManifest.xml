@@ -7,10 +7,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Muscle Monster"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
+        <activity android:name=".MoreMenuClasses.SubActivities.Find_Trainer_Description_Activity"></activity>
+        <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
         <activity android:name=".Admin.ActivityUserViewDescription"></activity>
         <activity android:name=".Admin.ActivityViewUsers" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video"></activity>

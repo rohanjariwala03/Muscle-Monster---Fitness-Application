@@ -35,25 +35,25 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/TrainerImageInFindTrainerList"
+                    android:id="@+id/TrainerImageInFindTrainerListS"
                     android:layout_toLeftOf="@+id/trainerNameChat"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_account_circle_24"/>
 
             </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:id="@+id/trainerNameChat"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            <TextView
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                android:id="@+id/trainer_Chat_list_user"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
         </RelativeLayout>
 
     </LinearLayout>

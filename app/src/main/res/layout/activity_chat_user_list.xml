@@ -11,6 +11,20 @@
         android:id="@+id/recyclerviewUserListTrainer">
 
     </androidx.recyclerview.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:id="@+id/NoChatTrainerSide"
+            android:textAlignment="center"
+            android:text="No Chat Available"/>
+    </RelativeLayout>
 
 
 
