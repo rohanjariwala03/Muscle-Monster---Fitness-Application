@@ -1,6 +1,7 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -46,6 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.in;
+
 
 public class Fragment_Shopping extends Fragment {
 
@@ -59,8 +63,6 @@ public class Fragment_Shopping extends Fragment {
     EditText EditSearch;
     Button BtnFiter;
     String RBChecked = "Unisex";
-    Spinner SpinnerCat;
-
 
     public Fragment_Shopping() {
         // Required empty public constructor
@@ -69,14 +71,13 @@ public class Fragment_Shopping extends Fragment {
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
+        Log.i("Freg Shop" , "Attached");
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
-
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-
                     if (dataSnapshot.exists()) {
                         String status = dataSnapshot.child("status").getValue(String.class);
                         String PuserKey = dataSnapshot.child("userKey").getValue(String.class);
@@ -92,6 +93,7 @@ public class Fragment_Shopping extends Fragment {
                             Obj.setUserKey(PuserKey);
                             Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
                             list.add(Obj);
+                            Log.i("Freg Shop Prod" , Obj.getProductName());
                         }
                     }
                     else
@@ -116,14 +118,33 @@ public class Fragment_Shopping extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        Log.i("Freg Shop" , "on create");
+    }
 
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.i("Freg Shop" , "on view created");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.i("Freg Shop" , "REsumed");
         /*list.clear();
         AdapterShopping.notifyDataSetChanged();*/
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("Freg Shop" , "Paused");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i("Freg Shop" , "Stopped");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -133,7 +154,7 @@ public class Fragment_Shopping extends Fragment {
         // Inflate the layout for this fragment
 
         View view=inflater.inflate(R.layout.fragment__shopping, container, false);
-
+        Log.i("Freg Shop" , "Create View");
         /*BtnSearch = (Button) view.findViewById(R.id.Btnsearch);*/
         BtnFiter = (Button) view.findViewById(R.id.BtnFilt);
         /*EditSearch = (EditText) view.findViewById(R.id.search);*/
@@ -158,17 +179,23 @@ public class Fragment_Shopping extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
         //  call the constructor of CustomAdapter to send the reference and data to Adapter
 
-        PopupMenu popup = new PopupMenu(view.getContext(), view);
+        BtnFiter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(),Activity_Shopping.class);
+                startActivity(intent);
+            }
+        });
+
+        /*PopupMenu popup = new PopupMenu(view.getContext(),  BtnFiter);
         popup.inflate(R.menu.cat_menu);
         popup.setGravity(Gravity.TOP);
         BtnFiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                     // This activity implements OnMenuItemClickListener
-                    /*popup.getMenu().getItem(RBChecked).setChecked(true);*/
+                    *//*popup.getMenu().getItem(RBChecked.).setChecked(true);*//*
                     popup.show();
-
             }
         });
 
@@ -176,11 +203,16 @@ public class Fragment_Shopping extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 RBChecked = menuItem.toString();
+                *//*switch(menuItem.toString()){
+                    case "Machines":
+
+                        break;
+                }*//*
                 menuItem.setChecked(true);
                 Toast.makeText(getContext(),"Item " + menuItem.toString(),Toast.LENGTH_SHORT).show();
                 return false;
             }
-        });
+        });*/
 
 
 
@@ -252,28 +284,12 @@ public class Fragment_Shopping extends Fragment {
         return view;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        /*switch (item.getItemId()) {
-            case R.id.vibrate:
-            case R.id.dont_vibrate:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }*/
-        Log.i("Item" , String.valueOf(item.getItemId()));
-        return false;
-    }
-
     private void StartSearch(String SQuery) {
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
                 .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
-        ArrayList<ProductUpload_POJO> Alist=new ArrayList<ProductUpload_POJO>();
+        list=new ArrayList<ProductUpload_POJO>();
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
@@ -297,7 +313,7 @@ public class Fragment_Shopping extends Fragment {
                             Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
                             Obj.setUserKey(PuserKey);
                             Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-                            Alist.add(Obj);
+                            list.add(Obj);
                         }
                     }
                     else
@@ -305,7 +321,7 @@ public class Fragment_Shopping extends Fragment {
                         Log.i("Frag_Shopping : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Adapter_Prod_Shopping(getContext(),Alist);
+                AdapterShopping = new Adapter_Prod_Shopping(getContext(),list);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 
@@ -323,7 +339,7 @@ public class Fragment_Shopping extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull @NotNull Menu menu, @NonNull @NotNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
+        Log.i("Freg Shop" , "oncreateOptionMenu");
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem item = menu.findItem(R.id.search);
         SearchView sv = (SearchView) item.getActionView();
@@ -336,8 +352,8 @@ public class Fragment_Shopping extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println("search query submit");
-                /*list.clear();
-                StartSearch(query);*/
+                /*list.clear();*/
+                /*StartSearch(query);*/
                 return false;
             }
 
@@ -348,18 +364,5 @@ public class Fragment_Shopping extends Fragment {
                 return false;
             }
         });
-
-        /*sv.setSubmitButtonEnabled(true);*/
-
-        /*sv.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Entered");
-                String q = sv.getQuery().toString();
-                list.clear();
-                AdapterShopping.notifyDataSetChanged();
-                StartSearch(q);
-            }
-        });*/
     }
 }

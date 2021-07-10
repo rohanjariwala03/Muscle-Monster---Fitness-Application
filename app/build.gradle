@@ -45,7 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31"
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     compile 'com.google.android.exoplayer:exoplayer:r2.4.0'
     compile 'com.google.android.exoplayer:exoplayer-core:r2.4.0'
     compile 'com.google.android.exoplayer:exoplayer-dash:r2.4.0'
@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.3.0'
     compile 'com.braintreepayments:card-form:3.1.1'
 
+    //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
 
 

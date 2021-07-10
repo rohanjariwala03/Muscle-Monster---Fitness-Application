@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".BottomBarFragments.Products.Activity_Shopping"
+        android:orientation="vertical"
+        android:background="@color/BackGroundColor">
+
+
+    <!--<LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    </LinearLayout>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_toStartOf="@+id/BtnFilt"
+        android:layout_toLeftOf="@+id/BtnFilt"
+        android:text="@string/Products"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlCompat,SpUsage" />
+
+    <Button
+        android:id="@+id/BtnFilt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Filter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="30dp"/>
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="-6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:mbn_backgroundBottomColor="@color/backgroundBottomColor"
+        app:mbn_circleColor="@color/circleColor"
+        app:mbn_countBackgroundColor="@color/countBackgroundColor"
+        app:mbn_countTextColor="@color/countTextColor"
+        app:mbn_defaultIconColor="@color/defaultIconColor"
+        app:mbn_selectedIconColor="@color/selectedIconColor"
+        app:mbn_shadowColor="@color/shadowColor" />
+
+</RelativeLayout>

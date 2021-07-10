@@ -13,33 +13,23 @@
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
         <activity android:name=".MoreMenuClasses.SubActivities.Find_Trainer_Description_Activity"></activity>
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
-        <activity android:name=".Admin.ActivityUserViewDescription"></activity>
+        <activity android:name=".BottomBarFragments.Products.Activity_Shopping"></activity>
+        <activity android:name=".Admin.ActivityUserViewDescription" />
         <activity android:name=".Admin.ActivityViewUsers" />
-        <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video"></activity>
         <activity
             android:name=".Admin.AdminGymPackages"
             android:exported="true" />
         <activity
             android:name=".Trainer.trainer_profile_update"
             android:exported="true" />
-        <activity android:name=".Admin.Admin_Del_Prod"/>
+        <activity android:name=".Admin.Admin_Del_Prod" />
         <activity android:name=".Admin.Admin_Update_Prod" />
         <activity android:name=".Admin.Admin_Profile" />
-        <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video"/>
-        <activity android:name=".Admin.ActivityUserViewDescription"></activity>
-        <activity android:name=".Admin.ActivityViewUsers" />
-        <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video"></activity>
-        <activity
-            android:name=".Admin.AdminGymPackages"
-            android:exported="true" />
-        <activity
-            android:name=".Trainer.trainer_profile_update"
-            android:exported="true" />
+        <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
         <activity android:name=".Trainer.Chat.Activity_User_Details_Trainer" />
         <activity android:name=".Trainer.Chat.Activity_Chat_User_List" />
         <activity android:name=".Trainer.Chat.Activity_Chat_to_user" />
         <activity android:name=".BottomBarFragments.Chat.Activity_Trainer_Details_User" />
-        <activity android:name=".Admin.Admin_Profile" />
         <activity android:name=".BottomBarFragments.Chat.Chat_Activity" />
         <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
         <activity android:name=".LoginSignUp.ActivityLogIn" />
@@ -66,7 +56,6 @@
             android:parentActivityName=".MoreMenuClasses.MyProducts_User" />
         <activity android:name=".BottomBarFragments.Products.product_cart" />
         <activity android:name=".BottomBarFragments.Products.Del_Product" />
-
         <activity
             android:name=".BottomBarFragments.Products.ViewProductDetail"
             android:parentActivityName=".MainActivity" />

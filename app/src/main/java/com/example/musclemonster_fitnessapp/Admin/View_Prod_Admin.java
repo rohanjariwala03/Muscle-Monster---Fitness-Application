@@ -146,7 +146,7 @@ public class View_Prod_Admin extends AppCompatActivity {
                 .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
-        ArrayList<ProductUpload_POJO> Alist=new ArrayList<ProductUpload_POJO>();
+        list=new ArrayList<ProductUpload_POJO>();
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
@@ -170,7 +170,7 @@ public class View_Prod_Admin extends AppCompatActivity {
                             Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
                             Obj.setUserKey(PuserKey);
                             Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-                            Alist.add(Obj);
+                            list.add(Obj);
                         }
                     }
                     else
@@ -178,7 +178,7 @@ public class View_Prod_Admin extends AppCompatActivity {
                         Log.i("Frag_Shopping : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Admin_Adp_Prod_Shopping(View_Prod_Admin.this,Alist);
+                AdapterShopping = new Admin_Adp_Prod_Shopping(View_Prod_Admin.this,list);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 

@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -12,6 +13,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Activity_Shopping;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Fragment_Shopping;
 //import com.example.musclemonster_fitnessapp.ExerciseSub.ExerciseSubFragment;
 
@@ -93,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 LoadFragment(FragmentChat);
                 break;
             case ID_Note:
+                /*Intent intent = new Intent(getApplicationContext(), Activity_Shopping.class);
+                intent.putExtra("fragmentNumber",3);
+                startActivity(intent);*/
                 name = "Shopping";
                 Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
                 LoadFragment(Fragmentshopping);
