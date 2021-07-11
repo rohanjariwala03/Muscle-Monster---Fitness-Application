@@ -8,16 +8,6 @@
         android:orientation="vertical"
         android:background="@color/BackGroundColor">
 
-
-    <!--<LinearLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-    </LinearLayout>-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +22,18 @@
         android:textSize="25dp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,RtlCompat,SpUsage" />
+
+    <TextView
+        android:id="@+id/TxtAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textSize="30sp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:text="Sorry !\n No Products Found."/>
 
     <Button
         android:id="@+id/BtnFilt"

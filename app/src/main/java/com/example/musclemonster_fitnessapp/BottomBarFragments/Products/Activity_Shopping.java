@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -58,6 +59,7 @@ public class Activity_Shopping extends AppCompatActivity {
     String SEARCHED = "N";
     String CATEGORIZED = "N";
     String RBChecked = "Unisex", status,PuserKey,CurUserKey;
+    TextView TxtAlert;
 
     private final int ID_Home=1;
     private final int ID_Message=2;
@@ -86,6 +88,7 @@ public class Activity_Shopping extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         BtnFiter = (Button) findViewById(R.id.BtnFilt);
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Shopping.this));
 
@@ -174,7 +177,6 @@ public class Activity_Shopping extends AppCompatActivity {
                         break;
 
                 }
-                Toast.makeText(getApplicationContext(),"Item " + menuItem.toString(),Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -197,14 +199,13 @@ public class Activity_Shopping extends AppCompatActivity {
                             Log.i("user View Prod", "NO Data : ");
                         }
                     }
-                    AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,Alist);
-                    recyclerView.setAdapter(AdapterShopping);
-                    AdapterShopping.notifyDataSetChanged();
+                    CheckAL(Alist);
+                    SetMyAdapter(Alist);
                 }
 
                 @Override
                 public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                    TxtAlert.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -216,9 +217,8 @@ public class Activity_Shopping extends AppCompatActivity {
                     Alist.add(list.get(i));
                 }
             }
-            AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,Alist);
-            recyclerView.setAdapter(AdapterShopping);
-            AdapterShopping.notifyDataSetChanged();
+            CheckAL(Alist);
+            SetMyAdapter(Alist);
         }
     }
 
@@ -232,18 +232,25 @@ public class Activity_Shopping extends AppCompatActivity {
             return false;
     }
 
+    private void SetMyAdapter(ArrayList<ProductUpload_POJO> AL)
+    {
+        AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,AL);
+        recyclerView.setAdapter(AdapterShopping);
+        AdapterShopping.notifyDataSetChanged();
+    }
+
 
     private void SortGen(String SelectedItem)
     {
-            for(int i=0;i< Alist.size();i++)
-            {
-                if(!Alist.get(i).getProdGen().equalsIgnoreCase(SelectedItem))
-                {
-                    Alist.remove(i);
-                    AdapterShopping.notifyDataSetChanged();
-                }
-            }
-
+         for(int i=0;i< Alist.size();i++)
+         {
+             if(!Alist.get(i).getProdGen().equalsIgnoreCase(SelectedItem))
+             {
+                 Alist.remove(i);
+                 AdapterShopping.notifyDataSetChanged();
+             }
+         }
+        CheckAL(Alist);
     }
 
     private void DefaultData()
@@ -265,14 +272,13 @@ public class Activity_Shopping extends AppCompatActivity {
                         Log.i("user View Prod", "NO Data : " );
                     }
                 }
-                AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), list);
-                recyclerView.setAdapter(AdapterShopping);
-                AdapterShopping.notifyDataSetChanged();
+                CheckAL(list);
+                SetMyAdapter(list);
                 Log.i("Product Adapter ", "Product Binded ");
             }
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                TxtAlert.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -354,6 +360,14 @@ public class Activity_Shopping extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
+    }
+
     private void StartSearch(String SQuery) {
         if(SQuery.length()!=0)
             SEARCHED = "Y";
@@ -381,7 +395,7 @@ public class Activity_Shopping extends AppCompatActivity {
                                 else
                                 {
                                     if(dataSnapshot.child("productCat").getValue(String.class).equalsIgnoreCase(RBChecked) ||
-                                            dataSnapshot.child("prodGen").getValue(String.class).equalsIgnoreCase(RBChecked))
+                                            RBChecked.equalsIgnoreCase(dataSnapshot.child("prodGen").getValue(String.class)))
                                         Alist.add(AddDataToPOJO(dataSnapshot, PuserKey));
                                 }
                             }
@@ -389,18 +403,18 @@ public class Activity_Shopping extends AppCompatActivity {
                             Log.i("Frag_Shopping : ", "NO Data : Q");
                         }
                     }
-                    if(CATEGORIZED == "N")
-                        AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), list);
-                    else
-                        AdapterShopping = new Adapter_Prod_Shopping(getApplicationContext(), Alist);
-                    recyclerView.setAdapter(AdapterShopping);
-                    AdapterShopping.notifyDataSetChanged();
-
+                    if(CATEGORIZED == "N") {
+                        SetMyAdapter(list);
+                        CheckAL(list);
+                    }else {
+                        SetMyAdapter(Alist);
+                        CheckAL(Alist);
+                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                    Log.i("Frag_Shopping : ", "NO Data : Q");
+                    TxtAlert.setVisibility(View.VISIBLE);
                 }
             });
     }
