@@ -6,13 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Trainer.Chat.Activity_User_Details_Trainer"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_user">
 
     <LinearLayout
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="30dp">
         <ImageView
             android:id="@+id/imgViewTrainerProfileDetailsUser"

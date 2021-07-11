@@ -96,7 +96,9 @@
         android:layout_marginRight="55dp"
         android:textColor="@color/black"
         android:textColorHint="#A8A7A7"
-        android:id="@+id/getmessage" />
+        android:id="@+id/getmessage"
+        android:gravity="start"
+        android:paddingRight="10dp" />
 
 
     <androidx.cardview.widget.CardView
@@ -112,10 +114,9 @@
 
 
         <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_baseline_send_24"
-            android:padding="5dp"
             android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"
             android:id="@+id/imageviewsendmessage"

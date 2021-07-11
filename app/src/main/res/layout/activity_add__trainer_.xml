@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Admin.Add_Trainer_Activity"
     android:orientation="vertical"
-    android:background="@drawable/admin_background">
+    android:background="@drawable/admin_background"
+    android:layout_gravity="center"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        tools:ignore="UselessParent"
-        >
+        android:gravity="center"
+        tools:ignore="UselessParent">
 
 
         <TextView
@@ -22,7 +24,6 @@
             android:layout_height="wrap_content"
             android:text="Email Id : "
             android:textColor="@color/white"
-            android:layout_marginLeft="50dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -30,7 +31,7 @@
             android:textAlignment="center"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="37dp"
+            android:layout_marginLeft="30dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Email Id"
             android:importantForAutofill="no"
@@ -45,6 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -53,7 +55,6 @@
             android:layout_height="wrap_content"
             android:text="Contact :"
             android:textColor="@color/white"
-            android:layout_marginLeft="50dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -61,7 +62,7 @@
             android:textAlignment="center"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="44dp"
+            android:layout_marginLeft="30dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Contact"
             android:importantForAutofill="no"
@@ -77,15 +78,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:text="Last Name : "
             android:textColor="@color/white"
+            android:layout_marginLeft="-20dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -93,7 +95,7 @@
             android:gravity="center_horizontal"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="29dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Last Name"
             android:importantForAutofill="no"
@@ -107,6 +109,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -115,7 +118,7 @@
             android:layout_height="wrap_content"
             android:text="First Name : "
             android:textColor="@color/white"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="-20dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
@@ -137,6 +140,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -145,14 +149,14 @@
             android:layout_height="wrap_content"
             android:text="Experience : "
             android:textColor="@color/white"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="-20dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditTrainerExperience"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="26dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Experience"
             android:importantForAutofill="no"
@@ -166,6 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="20dp"
         tools:ignore="UselessParent">
 
@@ -174,15 +179,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weight : "
+            android:layout_marginLeft="5dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="45dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditTrainerWeight"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="25dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Weight"
             android:importantForAutofill="no"
@@ -197,6 +202,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -205,19 +211,18 @@
             android:layout_height="wrap_content"
             android:text="Height : "
             android:textColor="@color/white"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="15dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditTrainerHeight"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Height"
             android:importantForAutofill="no"
             android:gravity="center_horizontal"
-
             android:background="@drawable/rounded_edittext"/>
 
     </LinearLayout>
@@ -227,6 +232,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -234,15 +240,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Age : "
+            android:layout_marginLeft="30dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="45dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditTrainerAge"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="25dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Age"
             android:importantForAutofill="no"
@@ -257,6 +263,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         tools:ignore="UselessParent">
 
 
@@ -265,14 +272,13 @@
             android:layout_height="wrap_content"
             android:text="Password : "
             android:textColor="@color/white"
-            android:layout_marginLeft="45dp"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
         <EditText
             android:id="@+id/EditTrainerPassword"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             tools:ignore="HardcodedText,RtlHardcoded,TextFields"
             android:hint="Enter Password"
             android:importantForAutofill="no"

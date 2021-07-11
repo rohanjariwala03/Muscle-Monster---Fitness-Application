@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -42,6 +44,10 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
         ExerciseCat = getIntent().getStringExtra("ExerciseCat");
         Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
         Log.i("asd", "Data : " + ExerciseCat);
+
+        getSupportActionBar().setTitle(ExerciseCat );
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
 
         //Giving drefernce to Firebase database References
         firebaseDatabase=FirebaseDatabase.getInstance();

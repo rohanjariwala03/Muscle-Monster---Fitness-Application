@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile_Page"
-    android:background="#222C3B">
+    android:background="@drawable/background_user">
 
     <RelativeLayout
         android:id="@+id/mainview"

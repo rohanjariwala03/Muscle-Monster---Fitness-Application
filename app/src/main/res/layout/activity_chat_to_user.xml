@@ -99,7 +99,9 @@
         android:layout_marginRight="55dp"
         android:textColor="@color/black"
         android:textColorHint="#A8A7A7"
-        android:id="@+id/Trainergetmessage" />
+        android:id="@+id/Trainergetmessage"
+        android:gravity="start"
+        android:paddingRight="10dp" />
 
 
     <androidx.cardview.widget.CardView
@@ -115,8 +117,8 @@
 
 
         <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_baseline_send_24"
             android:padding="5dp"
             android:backgroundTint="@android:color/transparent"

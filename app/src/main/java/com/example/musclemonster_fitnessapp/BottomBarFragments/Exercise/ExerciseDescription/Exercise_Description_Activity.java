@@ -3,6 +3,8 @@ package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Exercis
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +29,16 @@ public class Exercise_Description_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_description);
 
+
         ExerciseName = getIntent().getStringExtra("ExerciseName");
         ExerciseCat = getIntent().getStringExtra("ExerciseCat");
         ExerciseDesc = getIntent().getStringExtra("ExerciseDesc");
         ItemImageUri = getIntent().getStringExtra("ItemImageUri");
         steps=getIntent().getStringExtra("ExerciseSteps");
+
+        getSupportActionBar().setTitle(ExerciseName + " Exercise");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
 
         info=findViewById(R.id.Info);
         //Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();

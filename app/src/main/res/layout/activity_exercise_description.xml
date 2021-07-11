@@ -8,19 +8,13 @@
     android:orientation="vertical"
     android:background="@drawable/background_user">
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
-    android:orientation="vertical"
-    android:background="@drawable/background_user">
+    android:orientation="vertical">
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_user"
     android:layout_marginTop="30dp"
     android:orientation="vertical">
     <ImageView
@@ -97,6 +91,12 @@
         android:textAlignment="center"
      />
     </LinearLayout>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#A7BFE8"/>
+
         <LinearLayout
             android:layout_width="350dp"
             android:layout_height="wrap_content"
@@ -136,8 +136,7 @@
         android:orientation="vertical"
         android:layout_gravity="right"
         android:layout_marginTop="10dp"
-        android:gravity="left"
-        android:background="@drawable/background_user">
+        android:gravity="left">
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"

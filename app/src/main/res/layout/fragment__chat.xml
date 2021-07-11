@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_user">
 
    <!-- <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -38,13 +39,12 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/white">
+        android:layout_alignParentRight="true">
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_maps_ugc_24"
-            android:background="@color/white"
+            android:src="@drawable/ic_baseline_person_add_24"
+            android:background="#4CA1AF"
             android:id="@+id/AddTrainer"/>
     </RelativeLayout>
 
