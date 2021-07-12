@@ -1,15 +1,17 @@
-package com.example.musclemonster_fitnessapp.Admin;
+package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,15 +21,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Activity_Shopping;
+import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,13 +43,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class View_Prod_Admin extends AppCompatActivity {
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
+public class Activity_Shopping extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Admin_Adp_Prod_Shopping AdapterShopping;
+    Adapter_Prod_Shopping AdapterShopping;
     ArrayList<ProductUpload_POJO> list, Alist;
     MenuItem item;
     SearchView sv;
@@ -58,34 +61,66 @@ public class View_Prod_Admin extends AppCompatActivity {
     String RBChecked = "Unisex", status,PuserKey,CurUserKey;
     TextView TxtAlert;
 
+    private final int ID_Home=1;
+    private final int ID_Message=2;
+    private final int ID_Note=3;
+    private final int ID_More=4;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_prod_admin);
+        setContentView(R.layout.activity_shopping);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.support_toolbar);
 
-        getSupportActionBar().setTitle("My Products");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
+        MeowBottomNavigation bottomNavigation=findViewById(R.id.bottomNavigation);
 
-        BtnFiter = (Button) findViewById(R.id.BtnFilt);
-        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_Home,R.drawable.ic_baseline_home_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_Message,R.drawable.ic_baseline_message_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_Note,R.drawable.ic_baseline_add_shopping_cart_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_More,R.drawable.ic_baseline_more_horiz_24));
+
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(View_Prod_Admin.this));
+
+        BtnFiter = (Button) findViewById(R.id.BtnFilt);
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Shopping.this));
 
         list=new ArrayList<ProductUpload_POJO>();
         Alist=new ArrayList<ProductUpload_POJO>();
-        AdapterShopping=new Admin_Adp_Prod_Shopping(View_Prod_Admin.this,list);
+        AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,list);
         recyclerView.setAdapter(AdapterShopping);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(View_Prod_Admin.this,2);
+        CurUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(Activity_Shopping.this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        CurUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",3),true);
+
+        bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
+            @Override
+            public Unit invoke(MeowBottomNavigation.Model item) {
+                // Toast.makeText(MainActivity.this,"Clicked item : " + item.getId(),Toast.LENGTH_SHORT).show();
+
+                return null;
+            }
+        });
+
+        bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Unit>() {
+            @Override
+            public Unit invoke(MeowBottomNavigation.Model item) {
+                FragmentChoice(item.getId());
+                return null;
+            }
+        });
+
         SEARCHED = "N";
         CATEGORIZED = "N";
 
@@ -97,9 +132,9 @@ public class View_Prod_Admin extends AppCompatActivity {
         BtnFiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // This activity implements OnMenuItemClickListener
-                /*popup.getMenu().getItem(RBChecked).setChecked(true);*/
-                popup.show();
+                    // This activity implements OnMenuItemClickListener
+                    /*popup.getMenu().getItem(RBChecked).setChecked(true);*/
+                    popup.show();
             }
         });
 
@@ -131,7 +166,7 @@ public class View_Prod_Admin extends AppCompatActivity {
                     case "Clear Filter":
                         CATEGORIZED = "N";
                         SEARCHED = "N";
-                        /*DefaultData();*/
+                        DefaultData();
                         sv.setQuery(null,false);
                         break;
 
@@ -145,13 +180,6 @@ public class View_Prod_Admin extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void SetMyAdapter(ArrayList<ProductUpload_POJO> AL)
-    {
-        AdapterShopping=new Admin_Adp_Prod_Shopping(View_Prod_Admin.this,AL);
-        recyclerView.setAdapter(AdapterShopping);
-        AdapterShopping.notifyDataSetChanged();
     }
 
     private void SortData(String SelectedItem) {
@@ -204,30 +232,30 @@ public class View_Prod_Admin extends AppCompatActivity {
             return false;
     }
 
-    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    private void SetMyAdapter(ArrayList<ProductUpload_POJO> AL)
     {
-        if(AL.size() == 0)
-            TxtAlert.setVisibility(View.VISIBLE);
-        else
-            TxtAlert.setVisibility(View.GONE);
+        AdapterShopping=new Adapter_Prod_Shopping(Activity_Shopping.this,AL);
+        recyclerView.setAdapter(AdapterShopping);
+        AdapterShopping.notifyDataSetChanged();
     }
 
 
     private void SortGen(String SelectedItem)
     {
-        for(int i=0;i< Alist.size();i++) {
-            if (!Alist.get(i).getProdGen().equalsIgnoreCase(SelectedItem)) {
-                Alist.remove(i);
-                AdapterShopping.notifyDataSetChanged();
-            }
-        }
+         for(int i=0;i< Alist.size();i++)
+         {
+             if(!Alist.get(i).getProdGen().equalsIgnoreCase(SelectedItem))
+             {
+                 Alist.remove(i);
+                 AdapterShopping.notifyDataSetChanged();
+             }
+         }
         CheckAL(Alist);
     }
 
     private void DefaultData()
     {
         list.clear();
-        list = new ArrayList<ProductUpload_POJO>();
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -270,6 +298,33 @@ public class View_Prod_Admin extends AppCompatActivity {
         return Obj;
     }
 
+    public void FragmentChoice(int item)
+    {
+        String name;
+        Intent intent;
+        switch(item){
+            case ID_Home:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("fragmentNumber",1);
+                startActivity(intent);
+                break;
+            case ID_Message:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("fragmentNumber",2);
+                startActivity(intent);
+                break;
+            case ID_Note:
+                break;
+            case ID_More:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("fragmentNumber",4);
+                startActivity(intent);
+                break;
+            default:
+                name="";
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -305,6 +360,13 @@ public class View_Prod_Admin extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
+    }
 
     private void StartSearch(String SQuery) {
         if(SQuery.length()!=0)
@@ -312,48 +374,48 @@ public class View_Prod_Admin extends AppCompatActivity {
         else
             SEARCHED = "N";
 
-        Query query = FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
-                .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
-        recyclerView.removeAllViews();
-        recyclerView.removeAllViewsInLayout();
-        list = new ArrayList<ProductUpload_POJO>();
-        Alist.clear();
-        AdapterShopping.notifyDataSetChanged();
-        //Database event listner for success or failure
-        query.addValueEventListener(new ValueEventListener() {
-            //If database get some data then this will fire
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+            Query query = FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
+                    .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
+            recyclerView.removeAllViews();
+            recyclerView.removeAllViewsInLayout();
+            list = new ArrayList<ProductUpload_POJO>();
+            Alist.clear();
+            AdapterShopping.notifyDataSetChanged();
+            //Database event listner for success or failure
+            query.addValueEventListener(new ValueEventListener() {
+                //If database get some data then this will fire
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    if (dataSnapshot.exists()) {
-                        if (ValidateData(dataSnapshot)) {
-                            if(CATEGORIZED == "N")
-                                list.add(AddDataToPOJO(dataSnapshot, PuserKey));
-                            else
-                            {
-                                if(dataSnapshot.child("productCat").getValue(String.class).equalsIgnoreCase(RBChecked) ||
-                                        RBChecked.equalsIgnoreCase(dataSnapshot.child("prodGen").getValue(String.class)))
-                                    Alist.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                        if (dataSnapshot.exists()) {
+                            if (ValidateData(dataSnapshot)) {
+                                if(CATEGORIZED == "N")
+                                    list.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                                else
+                                {
+                                    if(dataSnapshot.child("productCat").getValue(String.class).equalsIgnoreCase(RBChecked) ||
+                                            RBChecked.equalsIgnoreCase(dataSnapshot.child("prodGen").getValue(String.class)))
+                                        Alist.add(AddDataToPOJO(dataSnapshot, PuserKey));
+                                }
                             }
+                        } else {
+                            Log.i("Frag_Shopping : ", "NO Data : Q");
                         }
-                    } else {
-                        Log.i("Frag_Shopping : ", "NO Data : Q");
+                    }
+                    if(CATEGORIZED == "N") {
+                        SetMyAdapter(list);
+                        CheckAL(list);
+                    }else {
+                        SetMyAdapter(Alist);
+                        CheckAL(Alist);
                     }
                 }
-                if(CATEGORIZED == "N") {
-                    CheckAL(list);
-                    SetMyAdapter(list);
-                }else {
-                    CheckAL(Alist);
-                    SetMyAdapter(Alist);
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                TxtAlert.setVisibility(View.VISIBLE);
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                    TxtAlert.setVisibility(View.VISIBLE);
+                }
+            });
     }
 }

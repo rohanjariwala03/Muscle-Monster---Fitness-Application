@@ -84,6 +84,7 @@ public class product_cart extends AppCompatActivity {
                             Intent intent = new Intent(product_cart.this, MainActivity.class);
                             intent.putExtra("fragmentNumber",3);
                             startActivity(intent);
+                            finish();
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -101,13 +102,6 @@ public class product_cart extends AppCompatActivity {
                 }
             }
         });
-
         Log.i("Cart",getIntent().getStringExtra("ItemName"));
-        /*ItemPrice = getIntent().getStringExtra("ItemPrice");
-        ItemDesc = getIntent().getStringExtra("ItemDesc");
-         ItemKey = getIntent().getStringExtra("ItemKey");
-        ItemCat = getIntent().getStringExtra("ItemCat");
-        ItemImageUri = getIntent().getStringExtra("ItemImageUri");
-        ItemWeight = getIntent().getStringExtra("ItemWeight");*/
     }
 }

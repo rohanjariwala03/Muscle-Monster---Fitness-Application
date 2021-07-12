@@ -4,21 +4,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".Admin.View_Prod_Admin"
+        tools:context=".BottomBarFragments.Products.Activity_Shopping"
         android:orientation="vertical"
-        android:background="@drawable/admin_background">
-
-    <TextView
-        android:id="@+id/TxtAlert"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:text="Sorry !\n No Products Found."
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:visibility="gone" />
+        android:background="@color/BackGroundColor">
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,6 +22,18 @@
         android:textSize="25dp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,RtlCompat,SpUsage" />
+
+    <TextView
+        android:id="@+id/TxtAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textSize="30sp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:text="Sorry !\n No Products Found."/>
 
     <Button
         android:id="@+id/BtnFilt"
@@ -52,5 +52,26 @@
         android:layout_marginTop="56dp"
         android:scrollbars="vertical"
         android:layout_marginBottom="30dp"/>
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="-6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:mbn_backgroundBottomColor="@color/backgroundBottomColor"
+        app:mbn_circleColor="@color/circleColor"
+        app:mbn_countBackgroundColor="@color/countBackgroundColor"
+        app:mbn_countTextColor="@color/countTextColor"
+        app:mbn_defaultIconColor="@color/defaultIconColor"
+        app:mbn_selectedIconColor="@color/selectedIconColor"
+        app:mbn_shadowColor="@color/shadowColor" />
 
 </RelativeLayout>

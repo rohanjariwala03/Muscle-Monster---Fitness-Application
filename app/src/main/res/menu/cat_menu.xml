@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/machines"
+            android:title="Machines" />
+        <item
+            android:id="@+id/dumbbell"
+            android:title="Dumbbell" />
+        <item
+            android:menuCategory="secondary"
+            android:id="@+id/clothing"
+            android:title="Clothing">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/ItemMale"
+                        android:title="Male" />
+                    <item
+                        android:id="@+id/ItemFemale"
+                        android:title="Female" />
+                </group>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/bench"
+            android:title="Bench" />
+        <item
+            android:id="@+id/barbell"
+            android:title="Barbell" />
+        <item
+            android:id="@+id/bicycle"
+            android:title="Bicycle" />
+        <item
+            android:id="@+id/balanceball"
+            android:title="Balanceball" />
+        <item
+            android:id="@+id/kettlebell"
+            android:title="Kettlebell" />
+        <item
+            android:id="@+id/plates"
+            android:title="Plates" />
+        <item
+            android:id="@+id/treadmill"
+            android:title="Treadmill" />
+        <item
+            android:id="@+id/ClearFilter"
+            android:title="Clear Filter" />
+
+
+
+    </group>
+</menu>

@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses;
+package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -25,6 +24,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.UpdateMyProduct;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class UpdateMyProduct extends AppCompatActivity {
+public class Admin_Update_Prod extends AppCompatActivity {
 
     private String Storage_Path,DDSelected,GENDER;
     private String Database_Path , FLAG;
@@ -67,7 +68,7 @@ public class UpdateMyProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_my_product);
+        setContentView(R.layout.activity_admin_update_prod);
 
         getSupportActionBar().setTitle("Update a Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,7 +82,7 @@ public class UpdateMyProduct extends AppCompatActivity {
         // Root Database Name for Firebase Database.
         Database_Path = "Product_Detail_Database";
 
-       /* myAuth = FirebaseAuth.getInstance();*/
+        /* myAuth = FirebaseAuth.getInstance();*/
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
 
@@ -96,7 +97,7 @@ public class UpdateMyProduct extends AppCompatActivity {
 
         ImgView = (ImageView) findViewById(R.id.ShowImageView);
 
-        progressDialog = new ProgressDialog(UpdateMyProduct.this);
+        progressDialog = new ProgressDialog(Admin_Update_Prod.this);
 
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
 
@@ -109,7 +110,7 @@ public class UpdateMyProduct extends AppCompatActivity {
         //ImageLL.setVisibility(View.INVISIBLE) ;
 
         spinner = (Spinner)findViewById(R.id.spinner1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(UpdateMyProduct.this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Admin_Update_Prod.this,
                 android.R.layout.simple_spinner_item,paths);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -134,7 +135,7 @@ public class UpdateMyProduct extends AppCompatActivity {
 
                     case 2:
                         LLGender.setVisibility(View.VISIBLE);
-                    break;
+                        break;
 
                     default:
                         LLGender.setVisibility(View.GONE);
@@ -151,12 +152,11 @@ public class UpdateMyProduct extends AppCompatActivity {
         });
 
         spinnerGen = (Spinner)findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(UpdateMyProduct.this,
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(Admin_Update_Prod.this,
                 android.R.layout.simple_spinner_item,gender);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGen.setAdapter(adapter1);
-        Log.i("UPMyPRO", String.valueOf(adapter1.getPosition(GENDER)) + " " + GENDER);
         spinnerGen.setSelection(adapter1.getPosition(GENDER));
         spinnerGen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -272,7 +272,7 @@ public class UpdateMyProduct extends AppCompatActivity {
         }
         else {
 
-            Toast.makeText(UpdateMyProduct.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_Update_Prod.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
 
         }
     }

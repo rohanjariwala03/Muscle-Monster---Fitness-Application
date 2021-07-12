@@ -37,6 +37,7 @@ public class MyProducts_User extends AppCompatActivity {
     DatabaseReference database;
     Adapter_MyProducts AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
+    String CurUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class MyProducts_User extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
        /* GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
         recyclerView.setLayoutManager(gridLayoutManager);*/
-
+        CurUser = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
         //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
@@ -69,8 +70,10 @@ public class MyProducts_User extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
+                        String UserKey = dataSnapshot.child("userKey").getValue(String.class);
+                        String status = dataSnapshot.child("status").getValue(String.class);
                         //Log.i("MyProducts_User : ", "Key Matched" );
-                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                        if(UserKey.equals(CurUser) && status == null) {
                             Log.i("MyProducts_User : ", "Key Matched" );
                             list.add(AddData_ToList(dataSnapshot));
                         }
@@ -135,6 +138,7 @@ public class MyProducts_User extends AppCompatActivity {
             Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
             Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
             Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+            Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
            return Obj;
     }
 
@@ -154,10 +158,11 @@ public class MyProducts_User extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-
-                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
-
-                            list.add(AddData_ToList(dataSnapshot));
+                        String UserKey = dataSnapshot.child("userKey").getValue(String.class);
+                        String status = dataSnapshot.child("status").getValue(String.class);
+                        //Log.i("MyProducts_User : ", "Key Matched" );
+                        if(UserKey.equals(CurUser) && status == null) {
+                            Alist.add(AddData_ToList(dataSnapshot));
                         }
                     }
                     else

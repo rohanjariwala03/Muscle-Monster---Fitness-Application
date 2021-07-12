@@ -1,6 +1,5 @@
 package com.example.musclemonster_fitnessapp.AdapterClasses;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -16,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.Admin.Admin_Del_Prod;
+import com.example.musclemonster_fitnessapp.Admin.Admin_Update_Prod;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Del_Product;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.UpdateMyProduct;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
@@ -25,13 +26,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.MyViewHolder>
+public class Adapter_Admin_Products extends RecyclerView.Adapter<Adapter_Admin_Products.MyViewHolder>
 {
     Context context;
     ArrayList<ProductUpload_POJO> list;
 
 
-    public Adapter_MyProducts(Context context, ArrayList<ProductUpload_POJO> list) {
+    public Adapter_Admin_Products(Context context, ArrayList<ProductUpload_POJO> list) {
         this.context = context;
         this.list = list;
     }
@@ -40,15 +41,15 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
     @NonNull
     @NotNull
     @Override
-    public Adapter_MyProducts.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public Adapter_Admin_Products.MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(context).inflate(R.layout.upd_del_prod_list_user,parent,false);
-        return new Adapter_MyProducts.MyViewHolder(v);
+        return new Adapter_Admin_Products.MyViewHolder(v);
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull Adapter_MyProducts.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull Adapter_Admin_Products.MyViewHolder holder, int position) {
         //ProductUpload_POJO Obj = list.get(position);
         holder.ProdName.setText(list.get(position).getProductName());
         holder.ProdPrice.setText(list.get(position).getProductPrice());
@@ -77,7 +78,8 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(),"Deleting......" ,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, Del_Product.class);
+                Log.i("AdpMyProAdmin" ,list.get(position).getFKey());
+                Intent intent = new Intent(view.getContext(), Admin_Del_Prod.class);
                 intent.putExtra("ItemKey",list.get(position).getFKey());
                 view.getContext().startActivity(intent);
 
@@ -87,7 +89,7 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
 
     private void PassData(int position, View v)
     {
-        Intent intent = new Intent(context, UpdateMyProduct.class);
+        Intent intent = new Intent(context, Admin_Update_Prod.class);
         intent.putExtra("ItemKey",list.get(position).getFKey());
         intent.putExtra("ItemName",list.get(position).getProductName());
         intent.putExtra("ItemPrice",list.get(position).getProductPrice());

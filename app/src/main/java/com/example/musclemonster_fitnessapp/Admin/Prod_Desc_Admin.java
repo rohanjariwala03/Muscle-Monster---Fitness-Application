@@ -10,9 +10,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.ViewProductDetail;
@@ -38,6 +40,7 @@ public class Prod_Desc_Admin extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reff;
     LinearLayout GenLL;
+    Button BtnDel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class Prod_Desc_Admin extends AppCompatActivity {
         TxtPubName = (TextView)findViewById(R.id.txtItemPublisherName);
         ImgView = (ImageView) findViewById(R.id.ItemImageView);
         TxtProGen = (TextView) findViewById(R.id.txtItemGen);
-
+        BtnDel = (Button) findViewById(R.id.BtnDelAd);
         GenLL = (LinearLayout) findViewById(R.id.LLGen);
 
         ItemKey = getIntent().getStringExtra("ItemKey");
@@ -148,6 +151,17 @@ public class Prod_Desc_Admin extends AppCompatActivity {
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("ItemWeight",ItemWeight);
                 intent.putExtra("UserKey",UserKey);
+                startActivity(intent);
+            }
+        });
+
+        BtnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reff = database.getReference("Product_Detail_Database").child(ItemKey);
+                reff.removeValue();
+                Toast.makeText(Prod_Desc_Admin.this,"Advertisement Deleted" , Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Prod_Desc_Admin.this,View_Prod_Admin.class);
                 startActivity(intent);
             }
         });
