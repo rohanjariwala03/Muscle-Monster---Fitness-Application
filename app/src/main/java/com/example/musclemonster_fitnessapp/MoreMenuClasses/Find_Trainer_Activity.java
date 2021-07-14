@@ -48,15 +48,17 @@ public class Find_Trainer_Activity extends AppCompatActivity {
 
         list=new ArrayList<Find_Trainer_pojo>();
 
-        /*AdapterChat_list=new Adapter_Fragment_Chat(getContext(),list);
-        recyclerView.setAdapter(AdapterChat_list);
+        /*Displaying list of trainer
+        which are in this app registered by admin or owner
 */
+        list.clear();
         Query query=FirebaseDatabase.getInstance().getReference("Trainer");
 
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
@@ -64,15 +66,15 @@ public class Find_Trainer_Activity extends AppCompatActivity {
                         Find_Trainer_pojo Obj = new Find_Trainer_pojo();
 
                         Obj.setFKey(dataSnapshot.getKey());
-                        // Obj.setTid(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+                        // Set all the data in pojo class from Firebase Database
                         Obj.setTFName((dataSnapshot.child("firstname").getValue(String.class)));
                         Obj.setTLName((dataSnapshot.child("lastName").getValue(String.class)));
                         Obj.setTEmail((dataSnapshot.child("email").getValue(String.class)));
                         Obj.setTphone((dataSnapshot.child("contact").getValue(String.class)));
-                        //Obj.setTid((dataSnapshot.child("trainerId").getValue(String.class)));
+                        //Only passing Trainer ImageUrl in realtime database and storing image in Firebase Storage
                         Obj.setTimgUrl((dataSnapshot.child("imgUri").getValue(String.class)));
                         list.add(Obj);
-                        /*Log.i("Chat Adapter ", "Chat List Binded ");
+                        /*Checking Data And Checking this part was perfectly running or not
                         Log.i("Chat Adapter ", String.valueOf(list.size()));
                         Log.i("Chat Name ", Obj.getTid());*/
                     }
@@ -95,4 +97,5 @@ public class Find_Trainer_Activity extends AppCompatActivity {
         });
 
     }
+
 }

@@ -166,7 +166,8 @@ public class Activity_Shopping extends AppCompatActivity {
                     case "Clear Filter":
                         CATEGORIZED = "N";
                         SEARCHED = "N";
-                        DefaultData();
+                        SetMyAdapter(list);
+                        /*DefaultData();*/
                         sv.setQuery(null,false);
                         break;
 
@@ -256,6 +257,8 @@ public class Activity_Shopping extends AppCompatActivity {
     private void DefaultData()
     {
         list.clear();
+        list = new ArrayList<ProductUpload_POJO>();
+        SetMyAdapter(list);
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override

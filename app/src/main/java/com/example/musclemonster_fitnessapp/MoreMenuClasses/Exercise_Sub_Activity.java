@@ -42,12 +42,13 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_sub);
 
         ExerciseCat = getIntent().getStringExtra("ExerciseCat");
-        Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
-        Log.i("asd", "Data : " + ExerciseCat);
+        //Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
+        //Log.i("asd", "Data : " + ExerciseCat);
 
         getSupportActionBar().setTitle(ExerciseCat );
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
+
 
         //Giving drefernce to Firebase database References
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -88,7 +89,7 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
                         Obj.setExerciseCat((dataSnapshot.child("tCat").getValue(String.class)));
                         Obj.setExerciseDesc((dataSnapshot.child("tDesc").getValue(String.class)));
                         Obj.setImageUri((dataSnapshot.child("imgUri1").getValue(String.class)));
-                        Obj.setSteps((dataSnapshot.child("steps").getValue(String.class)));
+                        Obj.setSteps((dataSnapshot.child("tSteps").getValue(String.class)));
 
                         list.add(Obj);
                         //Toast.makeText(Exercise_Sub_Activity.this,"Connect",Toast.LENGTH_SHORT).show();

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Exercise_Video;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Start_Exercise_Timer;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.InfoDialog;
 import com.example.musclemonster_fitnessapp.R;
 
@@ -22,7 +23,7 @@ public class Exercise_Description_Activity extends AppCompatActivity {
     String ExerciseCat,ExerciseName,ExerciseDesc,ItemImageUri,steps;
     TextView Name,Catagory,Description;
     ImageView ImgView;
-    ImageButton playbtn,info;
+    ImageButton playbtn,info,imgBtnstartWorkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Exercise_Description_Activity extends AppCompatActivity {
         ExerciseDesc = getIntent().getStringExtra("ExerciseDesc");
         ItemImageUri = getIntent().getStringExtra("ItemImageUri");
         steps=getIntent().getStringExtra("ExerciseSteps");
+        imgBtnstartWorkout=findViewById(R.id.imgBtnStartWorkout);
 
         getSupportActionBar().setTitle(ExerciseName + " Exercise");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,11 +77,20 @@ public class Exercise_Description_Activity extends AppCompatActivity {
                 .load(ItemImageUri)
                 .into(ImgView);
 
+        imgBtnstartWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Exercise_Description_Activity.this, Activity_Start_Exercise_Timer.class);
+                intent.putExtra("exName",ExerciseName);
+                intent.putExtra("imgUri",ItemImageUri);
+                startActivity(intent);
+            }
+        });
 
     }
 
     private void openDialog() {
         InfoDialog infoDialog=new InfoDialog(steps);
-        infoDialog.show(getSupportFragmentManager(),"Information");
+        infoDialog.show(getSupportFragmentManager(),"tSteps");
     }
 }

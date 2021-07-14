@@ -169,7 +169,6 @@ public class Product_Add_Home extends AppCompatActivity {
                         break;
                 }
                 DDSelected = adapterView.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
             }
 
             @Override

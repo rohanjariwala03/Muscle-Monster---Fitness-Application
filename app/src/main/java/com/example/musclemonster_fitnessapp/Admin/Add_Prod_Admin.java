@@ -176,7 +176,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
                         break;
                 }
                 DDSelected = adapterView.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
             }
 
             @Override

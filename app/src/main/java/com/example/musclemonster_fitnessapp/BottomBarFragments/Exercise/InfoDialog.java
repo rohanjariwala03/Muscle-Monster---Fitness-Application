@@ -23,7 +23,7 @@ public class InfoDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Information").setMessage(step)
+        builder.setTitle("Steps").setMessage(step)
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

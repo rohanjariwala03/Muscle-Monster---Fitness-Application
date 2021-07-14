@@ -67,7 +67,7 @@ public class ActivityViewUsers extends AppCompatActivity {
 
 
 
-        Query query=FirebaseDatabase.getInstance().getReference("Users").orderByKey();
+        /*Query query=FirebaseDatabase.getInstance().getReference("Users").orderByKey();
         String ema ;
         FirebaseUser firebaseUser;
         FirebaseAuth firebaseAuth;
@@ -109,13 +109,70 @@ public class ActivityViewUsers extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
             }
-        });
+        });*/
 
     }
     @Override
     protected void onStop() {
         super.onStop();
         list.clear();
+        AdapterUser.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list.clear();
+        AdapterUser.notifyDataSetChanged();
+        getData();
+    }
+
+    private void getData() {
+
+        Query query=FirebaseDatabase.getInstance().getReference("Users").orderByKey();
+        String ema ;
+        FirebaseUser firebaseUser;
+        FirebaseAuth firebaseAuth;
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    if (dataSnapshot.exists()) {
+
+                        //String K = dataSnapshot.getKey();
+                        //list.add(Description);
+                        //*for (DataSnapshot DtSnapshot : dataSnapshot.getChildren()) {
+                        UsersPojo Obj = new UsersPojo();
+                        // DtSnapshot.getValue(ProductUpload_POJO.class);
+                        // Obj.setFKey(dataSnapshot.getKey());
+                        Obj.setFirstName((dataSnapshot.child("firstName").getValue(String.class)));
+                        Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
+                        Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));
+                        Obj.setPhoneNumber((dataSnapshot.child("phoneNumber").getValue(String.class)));
+                        if(dataSnapshot.child("imageUri").getValue(String.class)!=null) {
+                            Obj.setImageUrl((dataSnapshot.child("imageUri").getValue(String.class)));
+                        }else{
+                            Obj.setImageUrl("null");
+                        }
+                        // Obj.setSflag((dataSnapshot.child("sflag").getValue(String.class)));
+                        list.add(Obj);
+                    } else {
+                        Log.i("Result UnSuccessfull", "NO Data : ");
+                    }
+                }
+                // set the Adapter to RecyclerView
+                AdapterUser.notifyDataSetChanged();
+
+                Log.i("Product Adapter ", "Product Binded ");
+            }
+
+            @Override
+            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+            }
+        });
+
+    }
 }

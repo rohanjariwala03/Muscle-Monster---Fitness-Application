@@ -41,6 +41,7 @@ public class Fragment_Chat extends Fragment {
     Adapter_TrainerList_Chat_User AdapterTrainerList;
     ArrayList<TrainerList_Chat_user_pojo> list;
     ImageButton imgChat;
+    TextView txt;
 
     public Fragment_Chat() {
     }
@@ -63,6 +64,7 @@ public class Fragment_Chat extends Fragment {
         recyclerView=view.findViewById(R.id.recyclerView_chat_Trainer_List_user);
         database=FirebaseDatabase.getInstance().getReference("Trainer");
         recyclerView.setHasFixedSize(true);
+        txt=view.findViewById(R.id.NoChatUserSide);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -79,7 +81,7 @@ public class Fragment_Chat extends Fragment {
             }
         });
 
-        Query query=FirebaseDatabase.getInstance().getReference("Trainer");
+        /*Query query=FirebaseDatabase.getInstance().getReference("Trainer");
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,8 +133,8 @@ public class Fragment_Chat extends Fragment {
 
                             }
                         });
-                        /*Log.i("Chat Adapter ", String.valueOf(list.size()));
-                        Log.i("Chat Name ", Obj.getTid());*/
+                        *//*Log.i("Chat Adapter ", String.valueOf(list.size()));
+                        Log.i("Chat Name ", Obj.getTid());*//*
                         AdapterTrainerList.notifyDataSetChanged();
                     }
                     else
@@ -149,7 +151,102 @@ public class Fragment_Chat extends Fragment {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });
+        });*/
+
+        //getData();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        AdapterTrainerList = new Adapter_TrainerList_Chat_User(getContext(), list);
+        recyclerView.setAdapter(AdapterTrainerList);
+        AdapterTrainerList.notifyDataSetChanged();
+        getData();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        list.clear();
+        AdapterTrainerList = new Adapter_TrainerList_Chat_User(getContext(), list);
+        recyclerView.setAdapter(AdapterTrainerList);
+        AdapterTrainerList.notifyDataSetChanged();
+    }
+
+    public void getData(){
+        Query query=FirebaseDatabase.getInstance().getReference("Trainer");
+        //Database event listner for success or failure
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    if (dataSnapshot.exists()) {
+
+                        TrainerList_Chat_user_pojo Obj = new TrainerList_Chat_user_pojo();
+
+                        //Obj.setUserID(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        //Obj.setTrainerID(dataSnapshot.getKey());
+                        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        String TID = dataSnapshot.getKey();
+
+                        //Obj.setTFName((dataSnapshot.child("firstname").getValue(String.class)));
+                        String room = UID + TID;
+                        Query que = FirebaseDatabase.getInstance().getReference("chats");
+                        que.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
+                                for (DataSnapshot dataSnapshot2 : snapshot.getChildren()) {
+                                    TrainerList_Chat_user_pojo Ob = new TrainerList_Chat_user_pojo();
+                                    if (dataSnapshot2.exists()) {
+                                        //Log.i("User",Obj.getUserID());
+                                        //Log.i("User",dataSnapshot2.getKey());
+                                        if (dataSnapshot2.getKey().toLowerCase().equals(room.toLowerCase())) {
+                                            /*TextView txt;
+                                            txt = findViewById(R.id.NoChatUserSide);*/
+                                            txt.setVisibility(View.GONE);
+                                            Ob.setTrainerName(dataSnapshot.child("firstname").getValue(String.class) + " " + dataSnapshot.child("lastName").getValue(String.class));
+                                            Ob.setFKey(dataSnapshot.getKey());
+                                            Ob.setTEmail(dataSnapshot.child("email").getValue(String.class));
+                                            Ob.setTimgUrl(dataSnapshot.child("imgUri").getValue(String.class));
+                                            list.add(Ob);
+                                            Log.i("USerP:", Ob.getTrainerName());
+
+
+                                        }
+                                    }
+                                }
+                                AdapterTrainerList = new Adapter_TrainerList_Chat_User(getContext(), list);
+                                recyclerView.setAdapter(AdapterTrainerList);
+                                AdapterTrainerList.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+
+                            }
+                        });
+                        /*Log.i("Chat Adapter ", String.valueOf(list.size()));
+                        Log.i("Chat Name ", Obj.getTid());*/
+                        AdapterTrainerList.notifyDataSetChanged();
+                    } else {
+                        Log.i("Data : ", "NO Data : ");
+                    }
+                }
+
+                // set the Adapter to RecyclerView
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -94,7 +94,6 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         //Image Display
 
         /*ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
-
         Glide.with(this)
                 .load(ImageUrl)
                 .into(mImageviewOfSpecificUser);*/

@@ -60,7 +60,7 @@ public class Adapter_View_Users_Admin extends RecyclerView.Adapter<Adapter_View_
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context,""+list.get(position).getFirstName(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,""+list.get(position).getFirstName(),Toast.LENGTH_SHORT).show();
 
 
                 Intent intent = new Intent(context, ActivityUserViewDescription.class);

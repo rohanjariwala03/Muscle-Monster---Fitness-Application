@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AdminGymPackages"
-    android:background="@drawable/admin_background">
+    tools:context=".MoreMenuClasses.Activity_Gym_Packages"
+    android:background="@drawable/background_user">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -331,7 +331,7 @@
             </LinearLayout>
 
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -381,7 +381,7 @@
                     android:textSize="20dp"
                     />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
             <LinearLayout
@@ -593,6 +593,58 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Price"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textStyle="bold|italic"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    android:id="@+id/txtSilverPrice"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    android:id="@+id/txtGoldPrice"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold|italic"
+                    android:textSize="20dp"
+                    android:id="@+id/txtPlatinumPrice"
+                    />
+
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -601,7 +653,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/descriptionLayout"
-            android:weightSum="5"
+
             android:orientation="horizontal">
 
             <TextView
@@ -610,13 +662,14 @@
                 android:layout_weight="2"/>
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:text="Select"
+                android:text="Edit"
                 android:id="@+id/silverButton"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:textSize="10dp"
                 android:background="@drawable/rounded_button"
                 />
@@ -624,19 +677,20 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Select"
+                android:text="Edit"
                 android:id="@+id/goldButton"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="10dp"
                 android:background="@drawable/rounded_button"
+                android:layout_marginRight="10dp"
                 />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Select"
+                android:text="Edit"
                 android:id="@+id/platinumButton"
                 android:textColor="@color/white"
                 android:gravity="center"

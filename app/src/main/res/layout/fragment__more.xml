@@ -5,9 +5,9 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/background_user">
-    android:layout_width="match_parent"
+    <!--android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">-->
 
 
     <LinearLayout
@@ -102,7 +102,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
-            android:text="My Calender"
+            android:text="My Calendar"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"

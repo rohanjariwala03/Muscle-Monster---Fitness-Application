@@ -70,7 +70,7 @@ public class ActivityViewTrainer extends AppCompatActivity {
 
 
 
-        Query query=FirebaseDatabase.getInstance().getReference("Trainer").orderByKey();
+        /*Query query=FirebaseDatabase.getInstance().getReference("Trainer").orderByKey();
         String ema ;
         FirebaseUser firebaseUser;
         FirebaseAuth firebaseAuth;
@@ -113,7 +113,7 @@ public class ActivityViewTrainer extends AppCompatActivity {
             }
 
 
-        });
+        });*/
 
     }
 
@@ -121,5 +121,62 @@ public class ActivityViewTrainer extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         list.clear();
+        AdapterTrainer.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list.clear();
+        AdapterTrainer.notifyDataSetChanged();
+        getData();
+    }
+
+    private void getData() {
+        Query query=FirebaseDatabase.getInstance().getReference("Trainer").orderByKey();
+        String ema ;
+        FirebaseUser firebaseUser;
+        FirebaseAuth firebaseAuth;
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    if (dataSnapshot.exists()) {
+
+                        //String K = dataSnapshot.getKey();
+                        //list.add(Description);
+                        //*for (DataSnapshot DtSnapshot : dataSnapshot.getChildren()) {
+                        TrainerPojo Obj = new TrainerPojo();
+                        // DtSnapshot.getValue(ProductUpload_POJO.class);
+                        // Obj.setFKey(dataSnapshot.getKey());
+
+                        Obj.setFirstname((dataSnapshot.child("firstname").getValue(String.class)));
+                        Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
+                        Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));
+                        Obj.setContact((dataSnapshot.child("contact").getValue(String.class)));
+                        Obj.setAge((dataSnapshot.child("age").getValue(String.class)));
+                        Obj.setExperience((dataSnapshot.child("experience").getValue(String.class)));
+                        Obj.setImgUri((dataSnapshot.child("imgUri").getValue(String.class)));
+                        list.add(Obj);
+                    } else {
+                        Log.i("Result UnSuccessfull", "NO Data : ");
+                    }
+                }
+                // set the Adapter to RecyclerView
+                AdapterTrainer.notifyDataSetChanged();
+
+                Log.i("Product Adapter ", "Product Binded ");
+            }
+
+            @Override
+            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+
+            }
+
+
+        });
     }
 }
