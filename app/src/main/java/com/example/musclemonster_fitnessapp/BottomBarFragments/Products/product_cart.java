@@ -25,7 +25,7 @@ public class product_cart extends AppCompatActivity {
 
     private CardForm cardForm;
     private Button buy;
-    private AlertDialog.Builder alertBuilder;
+    private AlertDialog.Builder alertBuilder , alertBuilder1;
     private TextView txtPrice;
     private String ItemPrice,ItemKey,UserKey;
     private String Database_Path;
@@ -69,22 +69,28 @@ public class product_cart extends AppCompatActivity {
                     alertBuilder.setTitle("Confirm before purchase");
                     alertBuilder.setMessage("Amount : $" + ItemPrice + "\n\n" +
                             "Confirm Purchase?");
-                   /* alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
-                            "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
-                            "Card CVV: " + cardForm.getCvv() + "\n" +
-                            "Postal code: " + cardForm.getPostalCode() + "\n" +
-                            "Phone number: " + cardForm.getMobileNumber());*/
                     alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            Toast.makeText(product_cart.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
-                            Intent intent = new Intent(product_cart.this, MainActivity.class);
-                            intent.putExtra("fragmentNumber",3);
-                            startActivity(intent);
-                            finish();
+
+                            alertBuilder1 = new AlertDialog.Builder(product_cart.this);
+                            alertBuilder1.setTitle("Purchase Confirmed");
+                            alertBuilder1.setMessage("CONGRATULATIONS,\n YOUR PURCHASE IS COMPLETED SUCCESSFULLY.");
+                            alertBuilder1.setCancelable(false);
+                            alertBuilder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(product_cart.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(product_cart.this, MainActivity.class);
+                                    intent.putExtra("fragmentNumber",3);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            AlertDialog alertDialog1 = alertBuilder1.create();
+                            alertDialog1.show();
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

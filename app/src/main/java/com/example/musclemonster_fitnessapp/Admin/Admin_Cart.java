@@ -25,7 +25,7 @@ public class Admin_Cart extends AppCompatActivity {
 
     private CardForm cardForm;
     private Button buy;
-    private AlertDialog.Builder alertBuilder;
+    private AlertDialog.Builder alertBuilder, alertBuilder1;
     private TextView txtPrice;
     private String ItemPrice, ItemKey, UserKey;
     private String Database_Path;
@@ -72,14 +72,24 @@ public class Admin_Cart extends AppCompatActivity {
                     alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            Toast.makeText(Admin_Cart.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
-                            Intent intent = new Intent(Admin_Cart.this, View_Prod_Admin.class);
-                            intent.putExtra("fragmentNumber", 3);
-                            startActivity(intent);
-                            finish();
+                            alertBuilder1 = new AlertDialog.Builder(Admin_Cart.this);
+                            alertBuilder1.setTitle("Purchase Confirmed");
+                            alertBuilder1.setMessage("CONGRATULATIONS,\n YOUR PURCHASE IS COMPLETED SUCCESSFULLY.");
+                            alertBuilder1.setCancelable(false);
+                            alertBuilder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(Admin_Cart.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(Admin_Cart.this, View_Prod_Admin.class);
+                                    intent.putExtra("fragmentNumber",3);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            AlertDialog alertDialog1 = alertBuilder1.create();
+                            alertDialog1.show();
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

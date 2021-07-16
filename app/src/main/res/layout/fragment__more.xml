@@ -42,7 +42,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
-            android:text="Find Trainer"
+            android:text="Search Trainer"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"
