@@ -44,7 +44,6 @@ import java.util.ArrayList;
 
 public class View_Prod_Admin extends AppCompatActivity {
 
-
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;

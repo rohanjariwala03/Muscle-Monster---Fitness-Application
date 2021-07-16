@@ -39,6 +39,7 @@
         <activity android:name=".BottomBarFragments.Chat.Activity_Trainer_Details_User" />
         <activity android:name=".BottomBarFragments.Chat.Chat_Activity" />
         <activity android:name=".MoreMenuClasses.Find_Trainer_Activity" />
+        <activity android:name=".BottomBarFragments.Products.Del_Product" />
         <activity android:name=".MoreMenuClasses.SubActivities.Find_Trainer_Description_Activity" />
         <activity android:name=".LoginSignUp.ActivityLogIn" />
         <activity

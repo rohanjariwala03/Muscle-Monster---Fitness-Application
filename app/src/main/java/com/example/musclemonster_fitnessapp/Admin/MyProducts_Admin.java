@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
+import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Admin_Products;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +37,7 @@ public class MyProducts_Admin extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Admin_Adp_Prod_Shopping AdapterShopping;
+    Adapter_Admin_Products AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
     EditText EditSearch;
     Button BtnSearch;
@@ -60,14 +60,14 @@ public class MyProducts_Admin extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(MyProducts_Admin.this));
 
         list=new ArrayList<ProductUpload_POJO>();
-        /*AdapterShopping=new Admin_Adp_Prod_Shopping(getContext(),list);
+        /*AdapterShopping=new Adapter_Admin_Products(getContext(),list);
         recyclerView.setAdapter(AdapterShopping);*/
-        AdapterShopping=new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,list);
+        AdapterShopping=new Adapter_Admin_Products(MyProducts_Admin.this,list);
         recyclerView.setAdapter(AdapterShopping);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_Admin.this,2);
+       /* GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_Admin.this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
-
+*/
 
         Log.i("Admin My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
 
@@ -176,7 +176,7 @@ public class MyProducts_Admin extends AppCompatActivity {
                         Log.i("MyProducts_Admin : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Admin_Adp_Prod_Shopping(MyProducts_Admin.this,Alist);
+                AdapterShopping = new Adapter_Admin_Products(MyProducts_Admin.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
 
