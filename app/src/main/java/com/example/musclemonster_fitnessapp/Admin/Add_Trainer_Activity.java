@@ -158,14 +158,14 @@ public class Add_Trainer_Activity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Uri uri) {
 
-                                                 String TrainerFirstname = firstName.getText().toString().trim();
-                                                String LastName = lastName.getText().toString().trim();
+                                                 String TrainerFirstname = firstName.getText().toString().trim().toLowerCase();
+                                                String LastName = lastName.getText().toString().trim().toLowerCase();
                                                 String TrainerID = "N";
-                                                String Experience = experience.getText().toString().trim();
-                                                String Weight = weight.getText().toString().trim();
-                                                String Height = height.getText().toString().trim();
-                                                String Age = age.getText().toString().trim();
-                                                String Contact = contact.getText().toString().trim();
+                                                String Experience = experience.getText().toString().trim().toLowerCase();
+                                                String Weight = weight.getText().toString().trim().toLowerCase();
+                                                String Height = height.getText().toString().trim().toLowerCase();
+                                                String Age = age.getText().toString().trim().toLowerCase();
+                                                String Contact = contact.getText().toString().trim().toLowerCase();
 
                                                 String ImgUri = uri.toString();
                                                 // Showing toast message after done uploading.

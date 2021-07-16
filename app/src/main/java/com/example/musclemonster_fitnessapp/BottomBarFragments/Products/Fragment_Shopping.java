@@ -147,14 +147,6 @@ public class Fragment_Shopping extends Fragment {
 
         DefaultData();
 
-        /*BtnFiter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(),Activity_Shopping.class);
-                startActivity(intent);
-            }
-        });*/
-
         PopupMenu popup = new PopupMenu(view.getContext(),  BtnFiter);
         popup.inflate(R.menu.cat_menu);
         popup.setGravity(Gravity.TOP);
@@ -208,72 +200,6 @@ public class Fragment_Shopping extends Fragment {
                 return false;
             }
         });
-
-        /*final Spinner spinner = (Spinner)view.findViewById(R.id.SpinnerCat);
-        List<Map<String, String>> items = new ArrayList<Map<String, String>>();
-
-        Map<String, String> item0 = new HashMap<String, String>(2);
-        item0.put("text", "Browse aisles...");
-        item0.put("subText", "(Upgrade required)");
-        items.add(item0);
-
-        Map<String, String> item1 = new HashMap<String, String>(2);
-        item1.put("text", "Option 1");
-        item1.put("subText", "(sub text 1)");
-        items.add(item1);
-
-        Map<String, String> item2 = new HashMap<String, String>(2);
-        item2.put("text", "Option 2");
-        item2.put("subText", "(sub text 2)");
-        items.add(item2);
-
-        SimpleAdapter adapter1 = new SimpleAdapter(getActivity(), items,
-                android.R.layout.simple_spinner_item, // This is the layout that will be used for the standard/static part of the spinner. (You can use android.R.layout.simple_list_item_2 if you want the subText to also be shown here.)
-                new String[] {"text", "subText"},
-                new int[] {android.R.id.text1, android.R.id.text2}
-        );
-        adapter1.setDropDownViewResource(android.R.layout.simple_list_item_2);
-
-        spinner.setAdapter(adapter1);*/
-
-
-       /* mySearchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StartSearch("");
-                Log.i(getTag(), "Clicked : " );
-            }
-        });*/
-
-        /*EditSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                StartSearch(s.toString());
-            }
-        });*/
-
-       /* mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                StartSearch(query);
-                Log.i(getTag(), "submit : " );
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                StartSearch(newText);
-                Log.i(getTag(), "Changed : " );
-                return false;
-            }
-        });*/
-
-
         return view;
     }
 
@@ -467,8 +393,6 @@ public class Fragment_Shopping extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println("search query submit");
-                /*list.clear();
-                StartSearch(query);*/
                 return false;
             }
 
