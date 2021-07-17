@@ -16,22 +16,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_chat_Activity;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
-import com.example.musclemonster_fitnessapp.POJOClasses.Chat_pojo;
 import com.example.musclemonster_fitnessapp.R;
+import com.example.musclemonster_fitnessapp.Trainer.AdapterClasses.Adapter_Activity_Chat_to_user;
+import com.example.musclemonster_fitnessapp.Trainer.PojoClasses.Activity_Chat_to_user_pojo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,7 +49,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
     String mRecieverName,mRecieverUID,mSenderUID,mReceiverEmail;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String Senderroom,Recieverroom,ImageUrl;
+    String Senderroom,Recieverroom,ImageUrl,imageUrl;
 
     ImageButton mbtnBackofSpecificChat;
 
@@ -63,8 +59,8 @@ public class Activity_Chat_to_user extends AppCompatActivity {
     //Calendar calendar;
     //SimpleDateFormat simpleDateFormat;
 
-    Adapter_chat_Activity messagesAdapter;
-    ArrayList<Chat_pojo> messagesArrayList;
+    Adapter_Activity_Chat_to_user messagesAdapter;
+    ArrayList<Activity_Chat_to_user_pojo> messagesArrayList;
 
 
 
@@ -83,11 +79,11 @@ public class Activity_Chat_to_user extends AppCompatActivity {
 
         messagesArrayList=new ArrayList<>();
         mMessageRecyclerview=findViewById(R.id.Trainerrecyclerviewofspecific);
-
+        imageUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerview.setLayoutManager(linearLayoutManager);
-        messagesAdapter=new Adapter_chat_Activity(Activity_Chat_to_user.this,messagesArrayList);
+        messagesAdapter=new Adapter_Activity_Chat_to_user(Activity_Chat_to_user.this,messagesArrayList);
         mMessageRecyclerview.setAdapter(messagesAdapter);
         intent=getIntent();
 
@@ -101,10 +97,10 @@ public class Activity_Chat_to_user extends AppCompatActivity {
 
         mGetMessage.setText(null);
         mReceiverEmail=getIntent().getStringExtra("UserEmail");
-        mSenderUID=firebaseAuth.getUid();
-        mRecieverUID=getIntent().getStringExtra("UserFKey");
+        mSenderUID=FirebaseAuth.getInstance().getUid();
+        mRecieverUID=getIntent().getStringExtra("UserFkey");
         mRecieverName=getIntent().getStringExtra("UserFName");
-        ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
+        ImageUrl=getIntent().getStringExtra("UserImageUrl");
 
         //setSupportActionBar(mToolbarofChat);
         mToolbarofChat.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +124,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         Log.i("Image nathi", ImageUrl);
 
 
-       /* String defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
+        String defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
         if(ImageUrl.equals("null")){
             Glide.with(this)
                     .load(defaultUrl)
@@ -137,23 +133,25 @@ public class Activity_Chat_to_user extends AppCompatActivity {
             Glide.with(this)
                     .load(ImageUrl)
                     .into(mImageviewOfSpecificUser);
-        }*/
+        }
 
         Senderroom=mSenderUID+mRecieverUID;
         Recieverroom=mRecieverUID+mSenderUID;
 
 
 
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(Senderroom).child("messages");
-        messagesAdapter=new Adapter_chat_Activity(Activity_Chat_to_user.this,messagesArrayList);
+        /*DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(Senderroom).child("messages");
+        messagesAdapter=new Adapter_Activity_Chat_to_user(Activity_Chat_to_user.this,messagesArrayList);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messagesArrayList.clear();
                 for(DataSnapshot snapshot1:snapshot.getChildren())
                 {
-                    Chat_pojo messages=snapshot1.getValue(Chat_pojo.class);
+                    Activity_Chat_to_user_pojo messages=snapshot1.getValue(Activity_Chat_to_user_pojo.class);
                     messagesArrayList.add(messages);
+                    mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Activity_Chat_to_user.this));
+                    mMessageRecyclerview.setAdapter(messagesAdapter);
                     messagesAdapter.notifyDataSetChanged();
                 }
                 messagesAdapter.notifyDataSetChanged();
@@ -163,7 +161,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
 
 
@@ -193,7 +191,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                 {
                     Date date=new Date();
                     //currenttime=simpleDateFormat.format(calendar.getTime());
-                    Chat_pojo messages=new Chat_pojo(EnteredMessage,firebaseAuth.getUid());
+                    Activity_Chat_to_user_pojo messages=new Activity_Chat_to_user_pojo(EnteredMessage,firebaseAuth.getUid());
                     firebaseDatabase=FirebaseDatabase.getInstance();
                     firebaseDatabase.getReference().child("chats")
                             .child(Senderroom)
@@ -215,7 +213,6 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                             messagesAdapter.notifyDataSetChanged();
                         }
                     });
-
                     mGetMessage.setText(null);
 
                 }
@@ -254,7 +251,7 @@ public class Activity_Chat_to_user extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
                         messagesAdapter.notifyDataSetChanged();
                     }
                 });
@@ -270,6 +267,51 @@ public class Activity_Chat_to_user extends AppCompatActivity {
         messagesArrayList.clear();
     }
 
+    public void onResume() {
+        super.onResume();
 
+        messagesAdapter.notifyDataSetChanged();
+
+        firebaseDatabase.getReference().child("chats")
+                .child(Senderroom)
+                .child("messages")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        Activity_Chat_to_user_pojo messages=snapshot.getValue(Activity_Chat_to_user_pojo.class);
+                        messagesArrayList.add(messages);
+                        mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Activity_Chat_to_user.this));
+                        mMessageRecyclerview.setAdapter(messagesAdapter);
+                        /* messagesArrayList.add(messages);*/
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        /*Activity_Chat_to_user_pojo messages=snapshot.getValue(Activity_Chat_to_user_pojo.class);
+                        messagesArrayList.add(messages);
+                        mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Activity_Chat_to_user.this));
+                        mMessageRecyclerview.setAdapter(messagesAdapter);*/
+                        /* messagesArrayList.add(messages);*/
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+                });
+
+    }
 
 }
