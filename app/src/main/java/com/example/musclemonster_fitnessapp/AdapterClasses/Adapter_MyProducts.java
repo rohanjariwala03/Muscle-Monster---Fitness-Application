@@ -60,9 +60,7 @@ public class Adapter_MyProducts extends RecyclerView.Adapter<Adapter_MyProducts.
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context,""+list.get(position).getProductName(),Toast.LENGTH_SHORT).show();
-
-                PassData(position,v);
+               PassData(position,v);
             }
         });
 

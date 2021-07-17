@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Admin_Products;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
@@ -39,8 +41,7 @@ public class MyProducts_Admin extends AppCompatActivity {
     DatabaseReference database;
     Adapter_Admin_Products AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
-    EditText EditSearch;
-    Button BtnSearch;
+    TextView TxtAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MyProducts_Admin extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         firebaseDatabase=FirebaseDatabase.getInstance();
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
@@ -81,16 +83,18 @@ public class MyProducts_Admin extends AppCompatActivity {
 
                     if (dataSnapshot.exists()) {
 
-                        if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                        if(FirebaseAuth.getInstance().getCurrentUser().getUid().toString().equals((dataSnapshot.child("userKey")).getValue(String.class))) {
 
                             list.add(AddData_ToList(dataSnapshot));
                         }
                     }
                     else
                     {
+                        TxtAlert.setVisibility(View.VISIBLE);
                         Log.i("Admin My Prod", "NO Data : " );
                     }
                 }
+                CheckAL(list);
                 // set the Adapter to RecyclerView
                 AdapterShopping.notifyDataSetChanged();
 
@@ -146,7 +150,16 @@ public class MyProducts_Admin extends AppCompatActivity {
         Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
         Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
         return Obj;
+    }
+
+    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
     }
 
 
@@ -168,23 +181,24 @@ public class MyProducts_Admin extends AppCompatActivity {
 
                         if((dataSnapshot.child("userKey")).getValue(String.class).equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
 
-                            list.add(AddData_ToList(dataSnapshot));
+                            Alist.add(AddData_ToList(dataSnapshot));
                         }
                     }
                     else
                     {
-                        Log.i("MyProducts_Admin : ", "NO Data : Q" );
+                       Log.i("MyProducts_Admin : ", "NO Data : Q" );
                     }
                 }
                 AdapterShopping = new Adapter_Admin_Products(MyProducts_Admin.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
-
+                CheckAL(Alist);
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
                 Log.i("MyProducts_Admin : ", "NO Data : Q" );
+                TxtAlert.setVisibility(View.VISIBLE);
             }
         });
     }

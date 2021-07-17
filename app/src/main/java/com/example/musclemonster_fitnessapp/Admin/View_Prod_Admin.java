@@ -63,7 +63,7 @@ public class View_Prod_Admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_prod_admin);
 
-        getSupportActionBar().setTitle("My Products");
+        getSupportActionBar().setTitle("Products");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 

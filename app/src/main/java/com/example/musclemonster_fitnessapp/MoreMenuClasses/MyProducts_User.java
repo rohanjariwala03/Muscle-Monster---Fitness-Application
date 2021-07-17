@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyProducts;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
@@ -38,6 +40,7 @@ public class MyProducts_User extends AppCompatActivity {
     Adapter_MyProducts AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
     String CurUser;
+    TextView TxtAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class MyProducts_User extends AppCompatActivity {
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(MyProducts_User.this));
@@ -80,18 +84,19 @@ public class MyProducts_User extends AppCompatActivity {
                     }
                     else
                     {
+                        TxtAlert.setVisibility(View.VISIBLE);
                         Log.i("User My Prod", "NO Data : " );
                     }
                 }
                 // set the Adapter to RecyclerView
                 AdapterShopping.notifyDataSetChanged();
-
+                CheckAL(list);
                 Log.i("Product Adapter ", "Product Binded ");
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                TxtAlert.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -142,6 +147,13 @@ public class MyProducts_User extends AppCompatActivity {
            return Obj;
     }
 
+    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
+    }
 
     private void StartSearch(String SQuery) {
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
@@ -173,12 +185,13 @@ public class MyProducts_User extends AppCompatActivity {
                 AdapterShopping = new Adapter_MyProducts(MyProducts_User.this,Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
-
+                CheckAL(Alist);
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
                 Log.i("MyProducts_User : ", "NO Data : Q" );
+                TxtAlert.setVisibility(View.VISIBLE);
             }
         });
     }
