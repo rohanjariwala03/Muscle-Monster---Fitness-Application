@@ -50,7 +50,7 @@ public class Chat_Activity extends AppCompatActivity {
     String mRecieverName,SenderName,mRecieverUID,mSenderUID;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String Senderroom,Recieverroom,ImageUrl,mReceiverEmail;
+    String Senderroom,Recieverroom,ImageUrl,mReceiverEmail,imageUrl;
 
     ImageButton mbtnBackofSpecificChat;
 
@@ -85,7 +85,7 @@ public class Chat_Activity extends AppCompatActivity {
         mMessageRecyclerview.setLayoutManager(linearLayoutManager);
         messagesAdapter=new Adapter_chat_Activity(Chat_Activity.this,messagesArrayList);
         mMessageRecyclerview.setAdapter(messagesAdapter);
-
+        imageUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
 
         intent=getIntent();
         mReceiverEmail=intent.getStringExtra("TrainerEmail");
@@ -117,17 +117,22 @@ public class Chat_Activity extends AppCompatActivity {
         mRecieverName=getIntent().getStringExtra("TrainerFName");
         ImageUrl=getIntent().getStringExtra("TrainerImageUrl");
 
-        Glide.with(this)
-                .load(ImageUrl)
-                .into(mImageviewOfSpecificUser);
-
+        if(ImageUrl.equals("null")){
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(mImageviewOfSpecificUser);
+        }else {
+            Glide.with(this)
+                    .load(ImageUrl)
+                    .into(mImageviewOfSpecificUser);
+        }
 
         Senderroom=mSenderUID+mRecieverUID;
         Recieverroom=mRecieverUID+mSenderUID;
 
 
 
-        DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(Senderroom).child("messages");
+        /*DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(Senderroom).child("messages");
         messagesAdapter=new Adapter_chat_Activity(Chat_Activity.this,messagesArrayList);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -137,6 +142,9 @@ public class Chat_Activity extends AppCompatActivity {
                 {
                     Chat_pojo messages=snapshot1.getValue(Chat_pojo.class);
                     messagesArrayList.add(messages);
+                    mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Chat_Activity.this));
+                    mMessageRecyclerview.setAdapter(messagesAdapter);
+                    *//* messagesArrayList.add(messages);*//*
                     messagesAdapter.notifyDataSetChanged();
                 }
                 messagesAdapter.notifyDataSetChanged();
@@ -146,7 +154,7 @@ public class Chat_Activity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
 
 
@@ -205,10 +213,10 @@ public class Chat_Activity extends AppCompatActivity {
                                     messagesAdapter.notifyDataSetChanged();
                                 }
                             });
+
                             messagesAdapter.notifyDataSetChanged();
                         }
                     });
-
                     mGetMessage.setText(null);
 
                 }
@@ -251,6 +259,55 @@ public class Chat_Activity extends AppCompatActivity {
                         messagesAdapter.notifyDataSetChanged();
                     }
                 });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        messagesAdapter.notifyDataSetChanged();
+
+        firebaseDatabase.getReference().child("chats")
+                .child(Senderroom)
+                .child("messages")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        Chat_pojo messages=snapshot.getValue(Chat_pojo.class);
+                        messagesArrayList.add(messages);
+                        mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Chat_Activity.this));
+                        mMessageRecyclerview.setAdapter(messagesAdapter);
+                        /* messagesArrayList.add(messages);*/
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        Chat_pojo messages=snapshot.getValue(Chat_pojo.class);
+                        messagesArrayList.add(messages);
+                        mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Chat_Activity.this));
+                        mMessageRecyclerview.setAdapter(messagesAdapter);
+                        /* messagesArrayList.add(messages);*/
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                        messagesAdapter.notifyDataSetChanged();
+                    }
+                });
+
 
     }
 

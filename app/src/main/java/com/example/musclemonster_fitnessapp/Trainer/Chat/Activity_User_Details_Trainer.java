@@ -31,7 +31,7 @@ public class Activity_User_Details_Trainer extends AppCompatActivity {
         txtName=findViewById(R.id.txtUserNameDetailsTrainer);
         txtEmail=findViewById(R.id.txtUserEmailDetailsTrainer);
         txtPhone=findViewById(R.id.txtUserNumberDetailsTrainer);
-        //img=findViewById(R.id.imgViewUserProfileDetailsTrainerChat2);
+        img=findViewById(R.id.imgViewUserProfileDetailsTrainerChat2);
 
         nam=getIntent().getStringExtra("UsrName");
         Emai=getIntent().getStringExtra("UsrEmail");
@@ -41,11 +41,11 @@ public class Activity_User_Details_Trainer extends AppCompatActivity {
         }else if(getIntent().getStringExtra("TreinaerImage").equals("null")){
             Log.i("abc","LLPOIJS");
         }*/
-        //ImageUrl=getIntent().getStringExtra("TreinaerImage");
+        ImageUrl=getIntent().getStringExtra("TreinaerImage");
 
 
         String defaultUrl="https://firebasestorage.googleapis.com/v0/b/muscle-monster-fitnessap-8b451.appspot.com/o/DefaultImage%2Fcircular.png?alt=media&token=783c1888-61d2-40fe-82aa-9f62c184e5ec";
-        /*if(ImageUrl.equals("null")){
+        if(ImageUrl.equals("null")){
             Glide.with(this)
                     .load(defaultUrl)
                     .into(img);
@@ -53,7 +53,7 @@ public class Activity_User_Details_Trainer extends AppCompatActivity {
             Glide.with(this)
                     .load(ImageUrl)
                     .into(img);
-        }*/
+        }
         txtName.setText(nam);
         txtEmail.setText(Emai);
     }

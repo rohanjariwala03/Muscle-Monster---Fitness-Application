@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.Trainer.Chat;
+package com.example.musclemonster_fitnessapp.Trainer.PojoClasses;
 
 public class Chat_List_pojo {
 

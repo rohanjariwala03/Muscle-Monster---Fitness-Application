@@ -1,29 +1,20 @@
-package com.example.musclemonster_fitnessapp.Trainer.Chat;
+package com.example.musclemonster_fitnessapp.Trainer.AdapterClasses;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Find_Trainer;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_TrainerList_Chat_User;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_chat_Activity;
-import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.Exercise_Sub_Activity;
-import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerList_Chat_user_pojo;
 import com.example.musclemonster_fitnessapp.R;
+import com.example.musclemonster_fitnessapp.Trainer.Chat.Activity_Chat_to_user;
+import com.example.musclemonster_fitnessapp.Trainer.PojoClasses.Chat_List_pojo;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -68,12 +59,12 @@ public class Adapter_Chat_List_Trainer extends RecyclerView.Adapter<Adapter_Chat
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Chat_Activity.class);
-                intent.putExtra("TrainerFName", list.get(position).getTrainerName());
-                intent.putExtra("TrainerID", list.get(position).getTrainerID());
-                intent.putExtra("TrainerImageUrl", list.get(position).getTimgUrl());
-                intent.putExtra("TrainerFkey", list.get(position).getFKey());
-                intent.putExtra("TrainerEmail", list.get(position).getTEmail());
+                Intent intent = new Intent(context, Activity_Chat_to_user.class);
+                intent.putExtra("UserFName", list.get(position).getTrainerName());
+                intent.putExtra("UserID", list.get(position).getTrainerID());
+                intent.putExtra("UserImageUrl", list.get(position).getTimgUrl());
+                intent.putExtra("UserFkey", list.get(position).getFKey());
+                intent.putExtra("UserEmail", list.get(position).getTEmail());
                 v.getContext().startActivity(intent);
             }
         });

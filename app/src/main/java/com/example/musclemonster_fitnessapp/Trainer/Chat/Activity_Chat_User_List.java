@@ -2,33 +2,24 @@ package com.example.musclemonster_fitnessapp.Trainer.Chat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_TrainerList_Chat_User;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_View_Trainer_Admin;
-import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerList_Chat_user_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
 import com.example.musclemonster_fitnessapp.R;
+import com.example.musclemonster_fitnessapp.Trainer.AdapterClasses.Adapter_Chat_List_Trainer;
+import com.example.musclemonster_fitnessapp.Trainer.PojoClasses.Chat_List_pojo;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
