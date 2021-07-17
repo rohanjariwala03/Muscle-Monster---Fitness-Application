@@ -2,7 +2,6 @@ package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,8 +15,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyProducts;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.Admin.MyProducts_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;

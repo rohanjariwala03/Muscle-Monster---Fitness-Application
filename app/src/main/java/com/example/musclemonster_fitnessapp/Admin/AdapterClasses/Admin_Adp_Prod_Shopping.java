@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.AdapterClasses;
+package com.example.musclemonster_fitnessapp.Admin.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.Admin.Prod_Desc_Admin;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.ViewProductDetail;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 
