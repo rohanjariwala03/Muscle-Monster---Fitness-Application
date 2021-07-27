@@ -21,16 +21,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class product_cart extends AppCompatActivity {
 
     private CardForm cardForm;
     private Button buy;
     private AlertDialog.Builder alertBuilder , alertBuilder1;
     private TextView txtPrice;
-    private String ItemPrice,ItemKey,UserKey;
+    private String ItemPrice,ItemKey,UserKey , CurrDate;
     private String Database_Path;
     private FirebaseAuth myAuth;
     private DatabaseReference databaseReference;
+    Calendar calendar;
+    SimpleDateFormat sdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,10 @@ public class product_cart extends AppCompatActivity {
         myAuth =FirebaseAuth.getInstance();
         UserKey = myAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path).child(ItemKey);
+
+        calendar = Calendar.getInstance();
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        CurrDate = sdf.format(calendar.getTime());
 
         cardForm = findViewById(R.id.card_form);
         buy = findViewById(R.id.btnBuy);
@@ -74,6 +83,7 @@ public class product_cart extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
+                            databaseReference.child("Buy Date").setValue(CurrDate);
 
                             alertBuilder1 = new AlertDialog.Builder(product_cart.this);
                             alertBuilder1.setTitle("Purchase Confirmed");

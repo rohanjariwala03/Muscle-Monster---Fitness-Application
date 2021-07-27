@@ -40,15 +40,18 @@ import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 public class Product_Add_Home extends AppCompatActivity {
 
     private String Storage_Path,DDSelected,GENDER;
-    private String Database_Path;
+    private String Database_Path,CurrDate;
     private Button BtnUpload,BtnSubmit;
     private EditText ProName,ProWeight,ProCat,ProPrice,ProDesc;
-
+    Calendar calendar;
+    SimpleDateFormat sdf;
     private ImageView ImgView;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
@@ -284,13 +287,16 @@ public class Product_Add_Home extends AppCompatActivity {
                             String ImgUri = uri.toString();
                             String UserKey = myAuth.getCurrentUser().getUid().toString();
                             String Gen = GENDER;
+                            calendar = Calendar.getInstance();
+                            sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            CurrDate = sdf.format(calendar.getTime());
                             progressDialog.dismiss();
 
                             // Showing toast message after done uploading.
                             Toast.makeText(getApplicationContext(), "Advertisement Published Successfully ", Toast.LENGTH_LONG).show();
 
                             @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey,Gen);
+                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProID,ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri,UserKey,Gen,CurrDate);
 
                             databaseReference.push().setValue(ProUploadPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

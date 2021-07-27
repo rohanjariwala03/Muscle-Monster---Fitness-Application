@@ -95,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
                 LoadFragment(FragmentChat);
                 break;
             case ID_Note:
-                /*Intent intent = new Intent(getApplicationContext(), Activity_Shopping.class);
+                Intent intent = new Intent(getApplicationContext(), Activity_Shopping.class);
                 intent.putExtra("fragmentNumber",3);
-                startActivity(intent);*/
+                startActivity(intent);
                 name = "Shopping";
-                Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
-                LoadFragment(Fragmentshopping);
+                /*Fragment_Shopping Fragmentshopping = new Fragment_Shopping();
+                LoadFragment(Fragmentshopping);*/
                 break;
             case ID_More:
                 name = "More";

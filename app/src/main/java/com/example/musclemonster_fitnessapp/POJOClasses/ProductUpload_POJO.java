@@ -3,7 +3,7 @@ package com.example.musclemonster_fitnessapp.POJOClasses;
 public class ProductUpload_POJO
 {
     private String  ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImageUri,FKey,UserKey;
-    private String ProdID,ProdGen;
+    private String ProdID,ProdGen,BuyDate,UploadDate;
 
     public ProductUpload_POJO(String prodID, String productName, String productWeight, String productPrice, String productCat, String productDesc, String imageUri, String userKey) {
         ProdID = prodID;
@@ -15,9 +15,10 @@ public class ProductUpload_POJO
         ImageUri = imageUri;
         UserKey = userKey;
         ProdGen = "NA";
+        BuyDate = "NA";
     }
 
-    public ProductUpload_POJO(String prodID,String productName, String productWeight, String productPrice, String productCat, String productDesc, String imageUri, String userKey, String prodGen) {
+    public ProductUpload_POJO(String prodID,String productName, String productWeight, String productPrice, String productCat, String productDesc, String imageUri, String userKey, String prodGen, String uploadDate) {
         ProductName = productName;
         ProductWeight = productWeight;
         ProductPrice = productPrice;
@@ -28,6 +29,24 @@ public class ProductUpload_POJO
         UserKey = userKey;
         ProdID = prodID;
         ProdGen = prodGen;
+        BuyDate = "NA";
+        UploadDate = uploadDate;
+    }
+
+    public String getUploadDate() {
+        return UploadDate;
+    }
+
+    public void setUploadDate(String uploadDate) {
+        UploadDate = uploadDate;
+    }
+
+    public String getBuyDate() {
+        return BuyDate;
+    }
+
+    public void setBuyDate(String buyDate) {
+        BuyDate = buyDate;
     }
 
     public String getProdGen() {
