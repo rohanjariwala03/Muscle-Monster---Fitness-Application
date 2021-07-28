@@ -122,7 +122,8 @@ public class Fragment_PurchasedProducts extends Fragment {
         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
         Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
         Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-        Obj.setBuyDate((dataSnapshot.child("Buy Date").getValue(String.class)));
+        Obj.setBuyDate((dataSnapshot.child("buyDate").getValue(String.class)));
+        Obj.setUploadDate((dataSnapshot.child("uploadDate").getValue(String.class)));
         return Obj;
     }
 

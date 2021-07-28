@@ -84,6 +84,7 @@ public class Adapter_Sold_Pur_Prods_User extends RecyclerView.Adapter<Adapter_So
                 "\nDescription : " + list.get(position).getProductDesc() +
                 "\nWeight : " + list.get(position).getProductWeight() +
                 "\nGender : " + list.get(position).getProdGen() +
+                "\nListed Date : " + list.get(position).getUploadDate() +
                 "\nPurchase Date : " + list.get(position).getBuyDate());
         alertBuilder1.setCancelable(true);
         AlertDialog alertDialog1 = alertBuilder1.create();

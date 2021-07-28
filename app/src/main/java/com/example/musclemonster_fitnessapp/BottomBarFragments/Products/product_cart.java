@@ -83,7 +83,7 @@ public class product_cart extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
-                            databaseReference.child("Buy Date").setValue(CurrDate);
+                            databaseReference.child("buyDate").setValue(CurrDate);
 
                             alertBuilder1 = new AlertDialog.Builder(product_cart.this);
                             alertBuilder1.setTitle("Purchase Confirmed");

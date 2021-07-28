@@ -239,26 +239,6 @@ public class Product_Add_Home extends AppCompatActivity {
 
     private void UploadData() {
 
-        /*String ProductName ;
-        String ProductWeight ;
-        String ProductPrice;
-        String ProductCat;
-        String ProductDesc;
-        String ImgUri = "Default";*/
-
-        /*ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
-        String id = databaseReference.push().getKey();
-        //databaseReference.child(id).setValue(ProUploadPOJO);
-        databaseReference.push().setValue(ProUploadPOJO);
-        Log.i("Product_Add_Home", "Datax : " + id);
-        Log.i("Product_Add_Home", "Datax : " + ProUploadPOJO.getProductName());
-        Toast.makeText(Product_Add_Home.this,"Inserted",Toast.LENGTH_LONG).show();
-
-        */
-
-
-
         // Checking whether FilePathUri Is empty or not.
         if (resultUri != null) {
 

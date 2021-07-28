@@ -298,6 +298,7 @@ public class Activity_Shopping extends AppCompatActivity {
         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
         Obj.setUserKey(UKey);
         Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
+        Obj.setUploadDate((dataSnapshot.child("uploadDate").getValue(String.class)));
         return Obj;
     }
 

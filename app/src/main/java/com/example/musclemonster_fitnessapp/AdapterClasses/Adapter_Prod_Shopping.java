@@ -69,6 +69,7 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
                 intent.putExtra("ItemWeight",list.get(position).getProductWeight());
                 intent.putExtra("ItemGen",list.get(position).getProdGen());
                 intent.putExtra("UserKey",list.get(position).getUserKey());
+                intent.putExtra("UploadDate",list.get(position).getUploadDate());
                 v.getContext().startActivity(intent);
             }
         });
