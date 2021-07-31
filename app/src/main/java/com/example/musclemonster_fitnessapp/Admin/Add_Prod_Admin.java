@@ -1,10 +1,5 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -15,7 +10,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -27,9 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.musclemonster_fitnessapp.Admin_Home_Activity;
-import com.example.musclemonster_fitnessapp.MainActivity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -97,11 +93,9 @@ public class Add_Prod_Admin extends AppCompatActivity {
         myAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
-        Log.i("Product_Add_Home", "Datax : " + databaseReference);
 
         ProName = (EditText) findViewById(R.id.EditProdName);
         ProWeight = (EditText) findViewById(R.id.EditProdWeight);
-       /* ProCat = (EditText) findViewById(R.id.EditProdCategory);*/
         ProPrice = (EditText) findViewById(R.id.EditProdPrice);
         ProDesc = (EditText) findViewById(R.id.EditProdDesc);
 
@@ -113,8 +107,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
         progressDialog = new ProgressDialog(Add_Prod_Admin.this);
 
         ImageLL = (LinearLayout) findViewById(R.id.ImgLinearLayout);
-
-        //ImageLL.setVisibility(View.INVISIBLE) ;
 
         LLGender = (LinearLayout) findViewById(R.id.LinearGender);
         spinner = (Spinner)findViewById(R.id.spinner1);
@@ -128,50 +120,52 @@ public class Add_Prod_Admin extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
+                        //case Machine
                         LLGender.setVisibility(View.GONE);
                         break;
                     case 1:
+                        //case dumbbells
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
                     case 2:
+                        //case Clothing
                         LLGender.setVisibility(View.VISIBLE);
                         break;
 
                     case 3:
+                        //case bench
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 4:
+                        //case barbell
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 5:
+                        // case bicycle
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 6:
+                        // case balanceball
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 7:
+                        //case kettlebell
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
 
                     case 8:
+                        //case plates
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     case 9:
+                        //case treadmill
                         LLGender.setVisibility(View.GONE);
-                        // Whatever you want to happen when the second item gets selected
                         break;
 
                     default:
@@ -247,25 +241,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
 
     private void UploadData() {
 
-        /*String ProductName ;
-        String ProductWeight ;
-        String ProductPrice;
-        String ProductCat;
-        String ProductDesc;
-        String ImgUri = "Default";*/
-
-        /*ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path);
-        String id = databaseReference.push().getKey();
-        //databaseReference.child(id).setValue(ProUploadPOJO);
-        databaseReference.push().setValue(ProUploadPOJO);
-        Log.i("Product_Add_Home", "Datax : " + id);
-        Log.i("Product_Add_Home", "Datax : " + ProUploadPOJO.getProductName());
-        Toast.makeText(Product_Add_Home.this,"Inserted",Toast.LENGTH_LONG).show();
-
-        */
-
-
         // Checking whether FilePathUri Is empty or not.
         if (resultUri != null) {
 
@@ -316,62 +291,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
                     });
                 }
             });
-
-            //Log.i("Product ADd",storageReference.getDownloadUrl().toString());
-            // Adding addOnSuccessListener to second StorageReference.
-           /* storageReference2nd.putFile(resultUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            // Getting image name from EditText and store into string variable.
-                            String ProductName = ProName.getText().toString().trim();
-                            String ProductWeight = ProWeight.getText().toString().trim();
-                            String ProductPrice = ProPrice.getText().toString().trim();
-                            String ProductCat = ProCat.getText().toString().trim();
-                            String ProductDesc = ProDesc.getText().toString().trim();
-                            String ImgUri = taskSnapshot.getMetadata().getPath();
-                            // Hiding the progressDialog after done uploading.
-                            progressDialog.dismiss();
-
-                            // Showing toast message after done uploading.
-                            Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
-
-                            @SuppressWarnings("VisibleForTests")
-                            ProductUpload_POJO ProUploadPOJO = new ProductUpload_POJO(ProductName,ProductWeight,ProductPrice,ProductCat,ProductDesc,ImgUri);
-                            //ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, taskSnapshot.getDownloadUrl().toString());
-
-                            // Getting image upload ID.
-                            String ImageUploadId = databaseReference.push().getKey();
-
-                            // Adding image upload id s child element into databaseReference.
-                            //databaseReference.child(ImageUploadId).setValue(ProUploadPOJO);
-                            databaseReference.push().setValue(ProUploadPOJO);
-                        }
-                    })
-                    // If something goes wrong .
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-
-                            // Hiding the progressDialog.
-                            progressDialog.dismiss();
-
-                            // Showing exception erro message.
-                            Toast.makeText(Product_Add_Home.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    })
-
-                    // On progress change upload time.
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            // Setting progressDialog Title.
-                            progressDialog.setTitle("Image is Uploading...");
-
-                        }
-                    });*/
         } else {
 
             Toast.makeText(Add_Prod_Admin.this, "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
@@ -398,8 +317,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             final Uri imageUri = data.getData();
             resultUri = imageUri;
-            //ImgView.setImageURI(resultUri);
-
             try {
 
                 // Getting selected image into Bitmap.
@@ -407,9 +324,6 @@ public class Add_Prod_Admin extends AppCompatActivity {
 
                 // Setting up bitmap selected image into ImageView.
                 ImgView.setImageBitmap(bitmap);
-
-                // After selecting image change choose button above text.
-                //BtnUpload.setText("Image Selected");
 
             } catch (IOException e) {
 

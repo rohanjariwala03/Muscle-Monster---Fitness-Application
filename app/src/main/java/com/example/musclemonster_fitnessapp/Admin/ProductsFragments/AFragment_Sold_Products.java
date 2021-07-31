@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses.ProductFragments;
+package com.example.musclemonster_fitnessapp.Admin.ProductsFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class Fragment_SoldProducts extends Fragment {
+public class AFragment_Sold_Products extends Fragment {
 
     private RecyclerView recyclerView;
     private FirebaseDatabase firebaseDatabase;
@@ -36,20 +36,22 @@ public class Fragment_SoldProducts extends Fragment {
     private String CurUser;
     private TextView TxtAlert;
 
-    public Fragment_SoldProducts() {
+    public AFragment_Sold_Products() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__sold_products, container, false);
+
+        View view = inflater.inflate(R.layout.frag_a_sold_products, container, false);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         recyclerView=view.findViewById(R.id.recyclerviewProduct);

@@ -1,5 +1,6 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses.ProductFragments;
+package com.example.musclemonster_fitnessapp.Admin.ProductsFragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,6 @@ import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -25,58 +25,56 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Fragment_SoldProducts extends Fragment {
+public class AFragment_Purchased_Products extends Fragment {
 
-    private RecyclerView recyclerView;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference database;
     private Adapter_Sold_Pur_Prods_User AdapterShopping;
     private ArrayList<ProductUpload_POJO> list;
     private String CurUser;
     private TextView TxtAlert;
 
-    public Fragment_SoldProducts() {
+    public AFragment_Purchased_Products() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment__sold_products, container, false);
+        View view = inflater.inflate(R.layout.frag_a_purchased_products, container, false);
 
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        recyclerView=view.findViewById(R.id.recyclerviewProduct);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerviewProduct);
         TxtAlert = (TextView) view.findViewById(R.id.TxtAlert);
-        database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list=new ArrayList<ProductUpload_POJO>();
+        list= new ArrayList<>();
         AdapterShopping=new Adapter_Sold_Pur_Prods_User(getContext(),list);
         recyclerView.setAdapter(AdapterShopping);
         recyclerView.setHasFixedSize(true);
-        CurUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        CurUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("LongLogTag")
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
-                        String UserKey = dataSnapshot.child("userKey").getValue(String.class);
-                        String status = dataSnapshot.child("status").getValue(String.class);
+                        String buyerKey = dataSnapshot.child("buyer").getValue(String.class);
 
-                        if(UserKey.equals(CurUser) && "1".equals(status)) {
+                        if(CurUser.equals(buyerKey)) {
                             list.add(AddData_ToList(dataSnapshot));
                         }
                     }
@@ -123,6 +121,4 @@ public class Fragment_SoldProducts extends Fragment {
         else
             TxtAlert.setVisibility(View.GONE);
     }
-
-
 }

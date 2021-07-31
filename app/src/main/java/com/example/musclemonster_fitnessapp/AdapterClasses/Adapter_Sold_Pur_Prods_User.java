@@ -2,24 +2,18 @@ package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Del_Product;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.product_cart;
-import com.example.musclemonster_fitnessapp.MainActivity;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.UpdateMyProduct;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 
@@ -51,7 +45,7 @@ public class Adapter_Sold_Pur_Prods_User extends RecyclerView.Adapter<Adapter_So
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_Sold_Pur_Prods_User.MyViewHolder holder, int position) {
-        //ProductUpload_POJO Obj = list.get(position);
+
         holder.ProdName.setText(list.get(position).getProductName());
         holder.ProdPrice.setText(list.get(position).getProductPrice());
         Glide.with(context)

@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses.ProductFragments;
+package com.example.musclemonster_fitnessapp.AdapterClasses;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

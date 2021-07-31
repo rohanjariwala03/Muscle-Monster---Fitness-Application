@@ -220,12 +220,13 @@ public class View_Prod_Admin extends AppCompatActivity {
 
     private void DefaultData()
     {
-        list.clear();
+
         list = new ArrayList<ProductUpload_POJO>();
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
@@ -311,13 +312,14 @@ public class View_Prod_Admin extends AppCompatActivity {
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
         list = new ArrayList<ProductUpload_POJO>();
-        Alist.clear();
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             //If database get some data then this will fire
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                Alist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {

@@ -2,17 +2,15 @@ package com.example.musclemonster_fitnessapp.MoreMenuClasses.ProductFragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Sold_Pur_Prods_User;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
@@ -56,7 +54,6 @@ public class Fragment_PurchasedProducts extends Fragment {
         View view = inflater.inflate(R.layout.fragment__purchased_products, container, false);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
-        //database=firebaseDatabase.getReference();
         recyclerView=view.findViewById(R.id.recyclerviewProduct);
         TxtAlert = (TextView) view.findViewById(R.id.TxtAlert);
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
@@ -67,13 +64,10 @@ public class Fragment_PurchasedProducts extends Fragment {
         AdapterShopping=new Adapter_Sold_Pur_Prods_User(getContext(),list);
         recyclerView.setAdapter(AdapterShopping);
         recyclerView.setHasFixedSize(true);
-       /* GridLayoutManager gridLayoutManager = new GridLayoutManager(MyProducts_User.this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);*/
+
         CurUser = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
-        //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
-
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             @SuppressLint("LongLogTag")
@@ -84,7 +78,7 @@ public class Fragment_PurchasedProducts extends Fragment {
 
                     if (dataSnapshot.exists()) {
                         String buyerKey = dataSnapshot.child("buyer").getValue(String.class);
-                        Log.i("Purchased User : ", buyerKey + " a " );
+
                         if(CurUser.equals(buyerKey)) {
                             list.add(AddData_ToList(dataSnapshot));
                         }
@@ -92,13 +86,11 @@ public class Fragment_PurchasedProducts extends Fragment {
                     else
                     {
                         TxtAlert.setVisibility(View.VISIBLE);
-                        Log.i("User My Prod", "NO Data : " );
                     }
                 }
                 // set the Adapter to RecyclerView
                 AdapterShopping.notifyDataSetChanged();
                 CheckAL(list);
-                Log.i("Product Adapter ", "Product Binded ");
             }
 
             @Override

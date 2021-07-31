@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.MoreMenuClasses.ProductFragments;
+package com.example.musclemonster_fitnessapp.Admin.ProductsFragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyProducts;
+import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Adapter_Admin_Products;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,18 +30,20 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Fragment_CurrentProducts extends Fragment {
+
+public class AFragment_Current_Prod extends Fragment {
 
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference database;
-    Adapter_MyProducts AdapterShopping;
+    Adapter_Admin_Products AdapterShopping;
     ArrayList<ProductUpload_POJO> list;
     String CurUser;
     TextView TxtAlert;
 
-    public Fragment_CurrentProducts() {
+    public AFragment_Current_Prod() {
         // Required empty public constructor
     }
 
@@ -54,27 +56,27 @@ public class Fragment_CurrentProducts extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment__current_products, container, false);
+       View view = inflater.inflate(R.layout.frag_a_current_products, container, false);
 
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        //database=firebaseDatabase.getReference();
-        recyclerView=view.findViewById(R.id.recyclerviewProduct);
+        firebaseDatabase= FirebaseDatabase.getInstance();
+
         TxtAlert = (TextView) view.findViewById(R.id.TxtAlert);
+        recyclerView=view.findViewById(R.id.recyclerviewProduct);
+
         database=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list=new ArrayList<ProductUpload_POJO>();
-        AdapterShopping=new Adapter_MyProducts(getContext(),list);
+        list= new ArrayList<>();
+        AdapterShopping=new Adapter_Admin_Products(getContext(),list);
         recyclerView.setAdapter(AdapterShopping);
         recyclerView.setHasFixedSize(true);
 
-        CurUser = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        CurUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
-        //Log.i("Usr My Prod id", FirebaseAuth.getInstance().getCurrentUser().getUid().toString() );
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database").orderByKey();
 
-        //Database event listner for success or failure
+        //Database event listener for success or failure
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -106,30 +108,7 @@ public class Fragment_CurrentProducts extends Fragment {
             }
         });
 
-        return view;
-    }
-
-    private ProductUpload_POJO AddData_ToList(DataSnapshot dataSnapshot)
-    {
-        ProductUpload_POJO Obj = new ProductUpload_POJO();
-        Obj.setFKey(dataSnapshot.getKey());
-        Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
-        Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
-        Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
-        Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
-        Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
-        Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
-        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
-        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
-        return Obj;
-    }
-
-    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
-    {
-        if(AL.size() == 0)
-            TxtAlert.setVisibility(View.VISIBLE);
-        else
-            TxtAlert.setVisibility(View.GONE);
+       return view;
     }
 
     @Override
@@ -156,12 +135,36 @@ public class Fragment_CurrentProducts extends Fragment {
         });
     }
 
+    private ProductUpload_POJO AddData_ToList(DataSnapshot dataSnapshot)
+    {
+        ProductUpload_POJO Obj = new ProductUpload_POJO();
+        Obj.setFKey(dataSnapshot.getKey());
+        Obj.setProductName((dataSnapshot.child("productName").getValue(String.class)));
+        Obj.setProductWeight((dataSnapshot.child("productWeight").getValue(String.class)));
+        Obj.setProductPrice((dataSnapshot.child("productPrice").getValue(String.class)));
+        Obj.setProductCat((dataSnapshot.child("productCat").getValue(String.class)));
+        Obj.setProductDesc((dataSnapshot.child("productDesc").getValue(String.class)));
+        Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
+        Obj.setUserKey((dataSnapshot.child("userKey").getValue(String.class)));
+        Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
+        return Obj;
+    }
+
+    private void CheckAL(ArrayList<ProductUpload_POJO> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
+    }
+
+
     private void StartSearch(String SQuery) {
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database")
                 .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
-        ArrayList<ProductUpload_POJO> Alist=new ArrayList<ProductUpload_POJO>();
+        ArrayList<ProductUpload_POJO> Alist= new ArrayList<>();
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
@@ -184,7 +187,7 @@ public class Fragment_CurrentProducts extends Fragment {
                         Log.i("MyProducts_User : ", "NO Data : Q" );
                     }
                 }
-                AdapterShopping = new Adapter_MyProducts(getContext(),Alist);
+                AdapterShopping = new Adapter_Admin_Products(getContext(),Alist);
                 recyclerView.setAdapter(AdapterShopping);
                 AdapterShopping.notifyDataSetChanged();
                 CheckAL(Alist);

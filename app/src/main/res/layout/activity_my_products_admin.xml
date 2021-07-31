@@ -1,64 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Admin.MyProducts_Admin"
-        android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Admin.MyProducts_Admin"
+    android:orientation="vertical"
     android:background="@drawable/admin_background">
 
-       <!-- <TextView
-            android:layout_width="match_parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="1dp"
-            android:text="@string/Products"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlCompat,SpUsage" />-->
+            android:text="ON SALE" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-            <!--<SearchView
-                android:id="@+id/SearchView"
-                android:layout_width="270dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search Here"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                tools:ignore="RtlHardcoded,UnusedAttribute" />-->
-        </LinearLayout>
+            android:text="SOLD" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="PURCHASED" />
+    </com.google.android.material.tabs.TabLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerviewProduct"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_marginTop="47dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tablayout" />
 
-    <TextView
-        android:id="@+id/TxtAlert"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_height="100dp"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Sorry !\n No Products Found."
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:visibility="gone" />
-
-    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
