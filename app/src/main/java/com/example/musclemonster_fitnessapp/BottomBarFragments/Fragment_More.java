@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Gym_Packages;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_My_Appointments;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Workout_History;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Find_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
@@ -24,7 +25,7 @@ public class Fragment_More extends Fragment {
     Button btn_addItem;
     Button btn_logout;
     Button btn_MyProfile, btn_MyProducts;
-    Button btn_findTrainer, btn_GymPackage,btnMyWorkoutHistory;
+    Button btn_findTrainer, btn_GymPackage,btnMyWorkoutHistory,btnMyAppointment;
     Button addTrainer;
 
 
@@ -58,6 +59,7 @@ public class Fragment_More extends Fragment {
         btn_findTrainer=view.findViewById(R.id.btnFindTrainer);
         btn_GymPackage=view.findViewById(R.id.btnGymPackage);
         btnMyWorkoutHistory=view.findViewById(R.id.btnMyWorkoutHistory);
+        btnMyAppointment=view.findViewById(R.id.btnMyCalender);
 
         btn_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +116,14 @@ public class Fragment_More extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Activity_Workout_History.class);
+                startActivity(intent);
+            }
+        });
+
+        btnMyAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_My_Appointments.class);
                 startActivity(intent);
             }
         });

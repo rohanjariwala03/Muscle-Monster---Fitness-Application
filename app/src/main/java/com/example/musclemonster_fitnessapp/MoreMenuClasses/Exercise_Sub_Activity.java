@@ -45,8 +45,8 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
         //Toast.makeText(this,"" + ExerciseCat,Toast.LENGTH_LONG).show();
         //Log.i("asd", "Data : " + ExerciseCat);
 
-        getSupportActionBar().setTitle(ExerciseCat );
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(ExerciseCat);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
 
 

@@ -3,6 +3,8 @@
     package="com.example.musclemonster_fitnessapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".MoreMenuClasses.Activity_Workout_History">
-
-        </activity>
+        <activity android:name=".MoreMenuClasses.Activity_My_Appointments"></activity>
+        <activity android:name=".MoreMenuClasses.Activity_Workout_History"></activity>
         <activity android:name=".BottomBarFragments.Exercise.Activity_Start_Exercise_Timer" />
+        <activity android:name=".MoreMenuClasses.Activity_Gym_Packages" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
         <activity android:name=".BottomBarFragments.Products.Activity_Shopping" />
         <activity android:name=".Admin.ActivityUserViewDescription" />

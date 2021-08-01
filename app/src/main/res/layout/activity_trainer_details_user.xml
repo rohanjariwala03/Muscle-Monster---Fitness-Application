@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,70 +8,110 @@
     tools:context=".Trainer.Chat.Activity_User_Details_Trainer"
     android:orientation="vertical"
     android:background="@drawable/background_user">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="30dp">
-        <ImageView
-            android:id="@+id/imgViewTrainerProfileDetailsUser"
-            android:layout_width="310dp"
-            android:layout_height="200dp"
-            tools:layout_editor_absoluteX="120dp"
-            tools:layout_editor_absoluteY="124dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        tools:context=".Trainer.Chat.Activity_User_Details_Trainer"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtTrainerNameDetailsUser"
-            android:textSize="30dp"
+            android:layout_height="200dp"
+            android:orientation="vertical"
             android:layout_gravity="center"
             android:gravity="center"
-            />
-    </LinearLayout>
+            android:layout_marginTop="30dp">
+            <ImageView
+                android:id="@+id/imgViewTrainerProfileDetailsUser"
+                android:layout_width="310dp"
+                android:layout_height="200dp"
+                tools:layout_editor_absoluteX="120dp"
+                tools:layout_editor_absoluteY="124dp"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrainerNameDetailsUser"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrainerEmailDetailsUser"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrainerNumberDetailsUser"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtTrainerEmailDetailsUser"
-            android:textSize="30dp"
-            android:layout_gravity="center"
-            android:gravity="center" />
+            tools:context=".MoreMenuClasses.Activity_My_Appointments">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/linerCalendar"
+                android:layout_centerHorizontal="true">
+                <CalendarView
+                    android:layout_width="wrap_content"
+                    android:layout_height="320dp"
+                    android:id="@+id/BookDateCalendar" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/myDate"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/linerCalendar"
+                android:textSize="23dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Date"
+                android:id="@+id/btnBookAppointment"
+                android:layout_below="@+id/myDate"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp"
+                android:visibility="invisible"/>
+        </RelativeLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtTrainerNumberDetailsUser"
-            android:textSize="30dp"
-            android:layout_gravity="center"
-            android:gravity="center" />
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
+</ScrollView>

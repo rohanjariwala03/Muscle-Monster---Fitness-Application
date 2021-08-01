@@ -49,6 +49,7 @@ public class Adapter_activity_workout_history extends RecyclerView.Adapter<Adapt
         holder.ExerciseTime.setText(list.get(position).getExTime());
         holder.ExerciseDate.setText(list.get(position).getExDate());
         imgUri=list.get(position).getExImageUri();
+        holder.exerciseTime.setText(list.get(position).getTime());
 
         Glide.with(context)
                 .load(imgUri)
@@ -80,7 +81,7 @@ public class Adapter_activity_workout_history extends RecyclerView.Adapter<Adapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView ExerciseName,ExerciseTime,ExerciseDate;
+        TextView ExerciseName,ExerciseTime,ExerciseDate,exerciseTime;
         ImageView imgView;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -88,6 +89,7 @@ public class Adapter_activity_workout_history extends RecyclerView.Adapter<Adapt
             ExerciseDate=itemView.findViewById(R.id.history_exerciseDate);
             ExerciseTime=itemView.findViewById(R.id.history_exerciseTime);
             imgView=itemView.findViewById(R.id.history_exerciseImage);
+            exerciseTime=itemView.findViewById(R.id.txtExerciseTime);
         }
     }
 }

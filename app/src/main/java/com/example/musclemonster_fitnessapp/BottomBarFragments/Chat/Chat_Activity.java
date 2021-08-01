@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -50,7 +51,7 @@ public class Chat_Activity extends AppCompatActivity {
     String mRecieverName,SenderName,mRecieverUID,mSenderUID;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    String Senderroom,Recieverroom,ImageUrl,mReceiverEmail,imageUrl;
+    String Senderroom,Recieverroom,ImageUrl,mReceiverEmail,imageUrl,chatSize;
 
     ImageButton mbtnBackofSpecificChat;
 
@@ -102,6 +103,10 @@ public class Chat_Activity extends AppCompatActivity {
                 intent.putExtra("TrainerName",mRecieverName);
                 intent.putExtra("TrainerEmail",mReceiverEmail);
                 intent.putExtra("ImageUrl",ImageUrl);
+                chatSize= String.valueOf(messagesArrayList.size());
+                intent.putExtra("ChatSizes",chatSize);
+                intent.putExtra("TrainerFKey",getIntent().getStringExtra("TrainerFkey"));
+                //messagesArrayList.clear();
                 startActivity(intent);
             }
         });
@@ -284,12 +289,12 @@ public class Chat_Activity extends AppCompatActivity {
 
                     @Override
                     public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                        Chat_pojo messages=snapshot.getValue(Chat_pojo.class);
+                        /*Chat_pojo messages=snapshot.getValue(Chat_pojo.class);
                         messagesArrayList.add(messages);
                         mMessageRecyclerview.setLayoutManager(new LinearLayoutManager(Chat_Activity.this));
                         mMessageRecyclerview.setAdapter(messagesAdapter);
-                        /* messagesArrayList.add(messages);*/
-                        messagesAdapter.notifyDataSetChanged();
+                        *//* messagesArrayList.add(messages);*//*
+                        messagesAdapter.notifyDataSetChanged();*/
                     }
 
                     @Override

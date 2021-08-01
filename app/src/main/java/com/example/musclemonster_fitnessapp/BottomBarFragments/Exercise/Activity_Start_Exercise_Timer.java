@@ -1,171 +1,178 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_History_pojo;
 import com.example.musclemonster_fitnessapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
-import org.jetbrains.annotations.NotNull;
+import android.os.SystemClock;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+import java.util.Objects;
+
 
 public class Activity_Start_Exercise_Timer extends AppCompatActivity {
-
-    private static final long START_TIME_IN_MILLIS = 600000;
-    private TextView mTextViewCountDown;
-    private Button mButtonStartPause;
-    private Button mButtonReset;
-    private CountDownTimer mCountDownTimer;
-    private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-    FirebaseAuth mAuth;
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
+    Button btnStart,btnPause,btnReset;
+    boolean Flag=false,Flg=false;
     String currentUser,ExerciseName,ExerciseImageUri;
-    FirebaseDatabase firebaseDatabase;
+    String stopTime,date,time;
     Task<Void> databaseReference;
-    int Flag=0;
+    ImageView imgView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_exercise_timer);
 
-        currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //databaseReference=FirebaseDatabase.getInstance().getReference();
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
-        mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonReset = findViewById(R.id.button_reset);
-
+        chronometer = findViewById(R.id.chronometer);
+        chronometer.setFormat("Time: %s");
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        btnPause=findViewById(R.id.btnPause);
+        btnStart=findViewById(R.id.btnStart);
+        btnReset=findViewById(R.id.btnReset);
         ExerciseName=getIntent().getStringExtra("exName");
         ExerciseImageUri=getIntent().getStringExtra("imgUri");
+        currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        imgView=findViewById(R.id.imgViewStartWorkout);
+        if(ExerciseImageUri!=null) {
+            Glide.with(this).load(ExerciseImageUri).into(imgView);
+        }
 
-        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
+        getSupportActionBar().setTitle(ExerciseName + " Exercise");
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
+        date=dateformat.format(new Date());
+        time=timeformat.format(new Date());
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
-            public void onClick(View v) {
-                if (mTimerRunning) {
-                    pauseTimer();
-                } else {
-                    startTimer();
+            public void onChronometerTick(Chronometer chronometer) {
+                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 100000) {
+                    chronometer.setBase(SystemClock.elapsedRealtime());
+                    Toast.makeText(Activity_Start_Exercise_Timer.this, "Time Over!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        mButtonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetTimer();
-            }
-        });
-        updateCountDownText();
-
     }
 
-    private void startTimer() {
+    public void startChronometer(View v) {
+        if (!running) {
+            if(!Flg) {
+                Glide.with(this).load(ExerciseImageUri).into(imgView);
+                chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+                chronometer.start();
+                running = true;
+                btnStart.setVisibility(View.GONE);
+                btnReset.setVisibility(View.VISIBLE);
+                btnPause.setVisibility(View.VISIBLE);
+            }else{
+                chronometer.start();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                running = true;
+                btnStart.setVisibility(View.GONE);
+                btnReset.setVisibility(View.VISIBLE);
+                btnPause.setVisibility(View.VISIBLE);
+            }
+        }
+        btnStart.setVisibility(View.GONE);
+        btnReset.setVisibility(View.VISIBLE);
+        btnPause.setVisibility(View.VISIBLE);
+    }
 
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
-        String date=dateformat.format(new Date());
-        String time=timeformat.format(new Date());
-        //Toast.makeText(Activity_Start_Exercise_Timer.this, "Time : " + time, Toast.LENGTH_LONG).show();
+    @SuppressLint("UseCompatLoadingForDrawables")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void pauseChronometer(View v) {
+        if (running) {
+            Glide.with(this).load(getDrawable(R.drawable.rest)).into(imgView);
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+            Flg=false;
+            btnStart.setVisibility(View.VISIBLE);
+            btnPause.setVisibility(View.GONE);
+            btnReset.setVisibility(View.VISIBLE);
+        }
+        btnStart.setVisibility(View.VISIBLE);
+        btnPause.setVisibility(View.GONE);
+        btnReset.setVisibility(View.VISIBLE);
+    }
 
-        if(Flag==0) {
-            Exercise_History_pojo exercise_history_pojo = new Exercise_History_pojo(ExerciseName, date,time,ExerciseImageUri);
+    public void resetChronometer(View v) {
+        stopTime= (String) chronometer.getText();
+        running = false;
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.stop();
+        pauseOffset = 0;
+        btnStart.setVisibility(View.VISIBLE);
+        btnPause.setVisibility(View.GONE);
+        btnReset.setVisibility(View.GONE);
+        if(!Flag){
+            Exercise_History_pojo exercise_history_pojo = new Exercise_History_pojo(ExerciseName, date,time,ExerciseImageUri,stopTime);
             databaseReference = FirebaseDatabase.getInstance().getReference().child("WorkoutHistory").child(currentUser)
-                    /*.child(his)*/
                     .push().setValue(exercise_history_pojo).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Flag = 1;
+                            Flag=true;
+                            Flg=true;
                             //Toast.makeText(Activity_Start_Exercise_Timer.this, "Success : ", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull @NotNull Exception e) {
-                            Toast.makeText(Activity_Start_Exercise_Timer.this, "FAil : ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Start_Exercise_Timer.this, "Fail : ", Toast.LENGTH_LONG).show();
                         }
                     });
         }
-
-        //Toast.makeText(Activity_Start_Exercise_Timer.this,"Current Time : "+ dateFormat.format(new Date()).toString(),Toast.LENGTH_SHORT).show();
-        /*databaseReference=FirebaseDatabase.getInstance().getReference().child("WorkoutHistory").child(currentUser)
-                .child(his)
-                .push().setValue(ExerciseName).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        databaseReference=FirebaseDatabase.getInstance().getReference().child("WorkoutHistory").child(currentUser)
-                                .child(his)
-                                .push().setValue(date).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-
-                                    }
-                                });
-                       // Toast.makeText(Activity_Start_Exercise_Timer.this,"Success : ",Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-
-                        Toast.makeText(Activity_Start_Exercise_Timer.this,"Fail : ",Toast.LENGTH_LONG).show();
-                    }
-                });*/
-
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-                mButtonStartPause.setText("Start");
-                mButtonStartPause.setVisibility(View.INVISIBLE);
-                mButtonReset.setVisibility(View.VISIBLE);
-            }
-        }.start();
-        mTimerRunning = true;
-        mButtonStartPause.setText("pause");
-        mButtonReset.setVisibility(View.INVISIBLE);
     }
 
-    private void pauseTimer() {
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-        mButtonStartPause.setText("Start");
-        mButtonReset.setVisibility(View.VISIBLE);
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopTime= (String) chronometer.getText();
+        if(!Flag){
+            Exercise_History_pojo exercise_history_pojo = new Exercise_History_pojo(ExerciseName, date,time,ExerciseImageUri,stopTime);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("WorkoutHistory").child(currentUser)
+                    .push().setValue(exercise_history_pojo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Flag=true;
+                            //Toast.makeText(Activity_Start_Exercise_Timer.this, "Success : ", Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            Toast.makeText(Activity_Start_Exercise_Timer.this, "Fail : ", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
     }
-    private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
-        mButtonReset.setVisibility(View.INVISIBLE);
-        mButtonStartPause.setVisibility(View.VISIBLE);
-    }
-    private void updateCountDownText() {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }
-
 }
