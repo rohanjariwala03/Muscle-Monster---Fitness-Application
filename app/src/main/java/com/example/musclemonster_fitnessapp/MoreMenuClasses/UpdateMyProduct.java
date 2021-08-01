@@ -141,7 +141,6 @@ public class UpdateMyProduct extends AppCompatActivity {
                         break;
                 }
                 DDSelected = adapterView.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
             }
 
             @Override
@@ -308,6 +307,7 @@ public class UpdateMyProduct extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), MyProducts_User.class);
         startActivity(intent);
+        finish();
     }
 
 

@@ -1,25 +1,25 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.braintreepayments.cardform.view.CardForm;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.product_cart;
-import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Admin_Cart extends AppCompatActivity {
 
@@ -27,10 +27,12 @@ public class Admin_Cart extends AppCompatActivity {
     private Button buy;
     private AlertDialog.Builder alertBuilder, alertBuilder1;
     private TextView txtPrice;
-    private String ItemPrice, ItemKey, UserKey;
+    private String ItemPrice, ItemKey, UserKey , CurrDate;
     private String Database_Path;
     private FirebaseAuth myAuth;
     private DatabaseReference databaseReference;
+    Calendar calendar;
+    SimpleDateFormat sdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,10 @@ public class Admin_Cart extends AppCompatActivity {
         Database_Path = "Product_Detail_Database";
         ItemPrice = getIntent().getStringExtra("ItemPrice");
         ItemKey = getIntent().getStringExtra("ItemKey");
+
+        calendar = Calendar.getInstance();
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        CurrDate = sdf.format(calendar.getTime());
 
         myAuth = FirebaseAuth.getInstance();
         UserKey = myAuth.getCurrentUser().getUid();
@@ -74,6 +80,8 @@ public class Admin_Cart extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
+                            databaseReference.child("buyDate").setValue(CurrDate);
+
                             alertBuilder1 = new AlertDialog.Builder(Admin_Cart.this);
                             alertBuilder1.setTitle("Purchase Confirmed");
                             alertBuilder1.setMessage("CONGRATULATIONS,\n YOUR PURCHASE IS COMPLETED SUCCESSFULLY.");

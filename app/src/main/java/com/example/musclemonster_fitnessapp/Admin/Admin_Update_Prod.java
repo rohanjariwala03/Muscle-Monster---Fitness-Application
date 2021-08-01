@@ -1,9 +1,5 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -23,9 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.UpdateMyProduct;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -142,7 +140,6 @@ public class Admin_Update_Prod extends AppCompatActivity {
                         break;
                 }
                 DDSelected = adapterView.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), "Item : " + DDSelected,Toast.LENGTH_LONG).show();;
             }
 
             @Override
@@ -227,6 +224,7 @@ public class Admin_Update_Prod extends AppCompatActivity {
         ItemWeight = getIntent().getStringExtra("ItemWeight");
         UserKey = getIntent().getStringExtra("UserKey");
         GENDER = getIntent().getStringExtra("ItemGen");
+
         DDSelected = ItemCat;
     }
 
@@ -306,8 +304,9 @@ public class Admin_Update_Prod extends AppCompatActivity {
         progressDialog.dismiss();
 
 
-        Intent intent = new Intent(getApplicationContext(), MyProducts_User.class);
+        Intent intent = new Intent(getApplicationContext(), MyProducts_Admin.class);
         startActivity(intent);
+        finish();
     }
 
 

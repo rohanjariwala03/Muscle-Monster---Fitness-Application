@@ -1,7 +1,6 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_View_Trainer_Admin;
+import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Adapter_View_Trainer_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.TrainerPojo;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;

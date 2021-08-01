@@ -1,4 +1,4 @@
-package com.example.musclemonster_fitnessapp.AdapterClasses;
+package com.example.musclemonster_fitnessapp.Admin.AdapterClasses;
 
 import android.content.Context;
 import android.content.Intent;

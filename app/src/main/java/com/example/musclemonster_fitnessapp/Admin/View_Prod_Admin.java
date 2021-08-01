@@ -2,7 +2,6 @@ package com.example.musclemonster_fitnessapp.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,15 +18,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Activity_Shopping;
+import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Admin_Adp_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,7 +58,7 @@ public class View_Prod_Admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_prod_admin);
 
-        getSupportActionBar().setTitle("My Products");
+        getSupportActionBar().setTitle("Products");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
@@ -225,12 +220,13 @@ public class View_Prod_Admin extends AppCompatActivity {
 
     private void DefaultData()
     {
-        list.clear();
+
         list = new ArrayList<ProductUpload_POJO>();
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
@@ -316,13 +312,14 @@ public class View_Prod_Admin extends AppCompatActivity {
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
         list = new ArrayList<ProductUpload_POJO>();
-        Alist.clear();
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             //If database get some data then this will fire
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                Alist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {

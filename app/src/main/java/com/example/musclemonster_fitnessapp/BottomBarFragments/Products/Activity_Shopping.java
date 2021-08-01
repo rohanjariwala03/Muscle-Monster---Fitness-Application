@@ -185,11 +185,11 @@ public class Activity_Shopping extends AppCompatActivity {
 
     private void SortData(String SelectedItem) {
         if(SEARCHED == "N") {
-            Alist.clear();
             Query query = database.orderByChild("productCat").equalTo(SelectedItem.toLowerCase());
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    Alist.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                         if (dataSnapshot.exists()) {
@@ -256,13 +256,13 @@ public class Activity_Shopping extends AppCompatActivity {
 
     private void DefaultData()
     {
-        list.clear();
         list = new ArrayList<ProductUpload_POJO>();
         SetMyAdapter(list);
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
@@ -298,6 +298,7 @@ public class Activity_Shopping extends AppCompatActivity {
         Obj.setImageUri((dataSnapshot.child("imageUri").getValue(String.class)));
         Obj.setUserKey(UKey);
         Obj.setProdGen((dataSnapshot.child("prodGen").getValue(String.class)));
+        Obj.setUploadDate((dataSnapshot.child("uploadDate").getValue(String.class)));
         return Obj;
     }
 
@@ -381,14 +382,16 @@ public class Activity_Shopping extends AppCompatActivity {
                     .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
             recyclerView.removeAllViews();
             recyclerView.removeAllViewsInLayout();
-            list = new ArrayList<ProductUpload_POJO>();
-            Alist.clear();
+            /*list = new ArrayList<ProductUpload_POJO>();
+            Alist.clear();*/
             AdapterShopping.notifyDataSetChanged();
             //Database event listner for success or failure
             query.addValueEventListener(new ValueEventListener() {
                 //If database get some data then this will fire
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    list.clear();
+                    Alist.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                         if (dataSnapshot.exists()) {

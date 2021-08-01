@@ -17,9 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ViewProductDetail extends AppCompatActivity {
 
-    String ItemKey,ItemName,ItemPrice,ItemDesc,ItemCat,ItemImageUri,ItemWeight,Gen,UserKey;
+    String ItemKey,ItemName,ItemPrice,ItemDesc,ItemCat,ItemImageUri,ItemWeight,Gen,UserKey,UploadDate;
     ImageView ImgView;
-    TextView EditProName, EditProPrice, EditProCat, EditProDesc, EditProWeight,TxtProGen;
+    TextView EditProName, EditProPrice, EditProCat, EditProDesc, EditProWeight,TxtProGen,TxtUploadDate;
     FloatingActionButton fab;
     LinearLayout GenLL;
 
@@ -41,6 +41,7 @@ public class ViewProductDetail extends AppCompatActivity {
         EditProDesc = (TextView)findViewById(R.id.txtItemDesc);
         EditProWeight = (TextView)findViewById(R.id.txtItemWeight);
         TxtProGen = (TextView) findViewById(R.id.txtItemGen);
+        TxtUploadDate = (TextView) findViewById(R.id.txtUploadDate);
         ImgView = (ImageView) findViewById(R.id.ItemImageView);
 
         ItemKey = getIntent().getStringExtra("ItemKey");
@@ -52,12 +53,15 @@ public class ViewProductDetail extends AppCompatActivity {
         ItemWeight = getIntent().getStringExtra("ItemWeight");
         UserKey = getIntent().getStringExtra("UserKey");
         Gen = getIntent().getStringExtra("ItemGen");
+        UploadDate = getIntent().getStringExtra("UploadDate");
 
         EditProName.setText(ItemName);
         EditProPrice.setText(ItemPrice);
         EditProCat.setText(ItemCat);
         EditProWeight.setText(ItemWeight);
         EditProDesc.setText(ItemDesc);
+        TxtUploadDate.setText(UploadDate);
+
         if(ItemCat.equals("clothing")) {
             TxtProGen.setText(Gen);
             GenLL.setVisibility(View.VISIBLE);

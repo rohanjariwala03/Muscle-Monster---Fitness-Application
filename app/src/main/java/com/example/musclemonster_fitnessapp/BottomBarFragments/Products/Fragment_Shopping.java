@@ -1,7 +1,6 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,13 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,10 +24,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Admin_Adp_Prod_Shopping;
-import com.example.musclemonster_fitnessapp.Admin.View_Prod_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,16 +34,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.collection.RBTreeSortedMap;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static java.lang.System.in;
 
 
 public class Fragment_Shopping extends Fragment {
@@ -217,6 +203,7 @@ public class Fragment_Shopping extends Fragment {
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    Alist.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                         if (dataSnapshot.exists()) {
@@ -277,11 +264,11 @@ public class Fragment_Shopping extends Fragment {
 
     private void DefaultData()
     {
-        list.clear();
         Query query=FirebaseDatabase.getInstance().getReference("Product_Detail_Database");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
@@ -330,14 +317,16 @@ public class Fragment_Shopping extends Fragment {
                 .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
-        list = new ArrayList<ProductUpload_POJO>();
-        Alist.clear();
+        /*list = new ArrayList<ProductUpload_POJO>();
+        Alist.clear();*/
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
             //If database get some data then this will fire
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                list.clear();
+                Alist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     if (dataSnapshot.exists()) {
