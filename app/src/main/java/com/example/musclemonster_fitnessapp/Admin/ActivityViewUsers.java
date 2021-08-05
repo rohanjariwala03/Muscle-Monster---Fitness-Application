@@ -1,16 +1,16 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Adapter_View_Users_Admin;
 import com.example.musclemonster_fitnessapp.POJOClasses.UsersPojo;
@@ -53,8 +53,6 @@ public class ActivityViewUsers extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list=new ArrayList<UsersPojo>();
-    /*AdapterShopping=new Adapter_Prod_Shopping(getContext(),list);
-    recyclerView.setAdapter(AdapterShopping);*/
         AdapterUser=new Adapter_View_Users_Admin(this,list);
         recyclerView.setAdapter(AdapterUser);
 
@@ -144,7 +142,7 @@ public class ActivityViewUsers extends AppCompatActivity {
                         //*for (DataSnapshot DtSnapshot : dataSnapshot.getChildren()) {
                         UsersPojo Obj = new UsersPojo();
                         // DtSnapshot.getValue(ProductUpload_POJO.class);
-                        // Obj.setFKey(dataSnapshot.getKey());
+                        Obj.setSflag(dataSnapshot.getKey());
                         Obj.setFirstName((dataSnapshot.child("firstName").getValue(String.class)));
                         Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
                         Obj.setLastName((dataSnapshot.child("lastName").getValue(String.class)));

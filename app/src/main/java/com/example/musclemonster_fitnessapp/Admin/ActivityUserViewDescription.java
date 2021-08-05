@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,20 +25,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class ActivityUserViewDescription extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
-    String ItemKey;
-    String TrainerName,TrainerLastName,TrainerEmail,TrainerCon,TrainerAge,TrainerExper,ItemImageUri;
+public class ActivityUserViewDescription extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
+
+    String CurrDate, ExpiryDate;
+    String TrainerName,TrainerLastName,TrainerEmail,TrainerCon,UserKey,ItemImageUri;
     ImageView ImgView;
     TextView EditFirstName,EditLastName, EditEmail,EditPhone,EditAge,EditExp;
     ImageButton imgbtn;
     String defaultUrl;
-
+    FloatingActionButton fab;
     DatabaseReference drRef;
+    private Calendar calendar;
+    private SimpleDateFormat sdf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_view_description);
+
+        fab = findViewById(R.id.fab);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.support_toolbar);
@@ -56,6 +70,7 @@ public class ActivityUserViewDescription extends AppCompatActivity {
         TrainerEmail = getIntent().getStringExtra("UserEmail");
         ItemImageUri = getIntent().getStringExtra("UserImageUri");
         TrainerCon = getIntent().getStringExtra("Phone");
+        UserKey = getIntent().getStringExtra("UserKey");
 
         EditFirstName.setText(TrainerName);
         EditLastName.setText(TrainerLastName);
@@ -98,6 +113,47 @@ public class ActivityUserViewDescription extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
+
+    }
+
+    public void openDialog() {
+        ExampleDialog exampleDialog = new ExampleDialog();
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @Override
+    public void applyTexts(String Discount) {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Coupons");
+        calendar = Calendar.getInstance();
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        CurrDate = sdf.format(calendar.getTime());
+
+        calendar.add(Calendar.MONTH, 6);
+        ExpiryDate =  sdf.format(calendar.getTime());
+
+        Map<String,String> CouponData = new HashMap<>();
+        CouponData.put("UserKey",UserKey);
+        CouponData.put("Discount",Discount);
+        CouponData.put("CreateDate",CurrDate);
+        CouponData.put("ExpiryDate",ExpiryDate);
+        CouponData.put("Code", UUID.randomUUID().toString());
+
+
+        ref.push().setValue(CouponData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext() , "Coupon Added To " + TrainerName + " " + TrainerLastName, Toast.LENGTH_SHORT).show();
             }
         });
 

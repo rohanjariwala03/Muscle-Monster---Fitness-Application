@@ -1,16 +1,5 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +13,14 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Prod_Shopping;
@@ -60,6 +56,7 @@ public class Activity_Shopping extends AppCompatActivity {
     String CATEGORIZED = "N";
     String RBChecked = "Unisex", status,PuserKey,CurUserKey;
     TextView TxtAlert;
+    /*private ViewPager viewPager;*/
 
     private final int ID_Home=1;
     private final int ID_Message=2;
@@ -81,6 +78,7 @@ public class Activity_Shopping extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_Note,R.drawable.ic_baseline_add_shopping_cart_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_More,R.drawable.ic_baseline_more_horiz_24));
 
+       /* viewPager = findViewById(R.id.viewpager);*/
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerviewProduct);
@@ -91,6 +89,10 @@ public class Activity_Shopping extends AppCompatActivity {
         TxtAlert = (TextView) findViewById(R.id.TxtAlert);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(Activity_Shopping.this));
+        /* ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+                viewPagerAdapter.AddFragment(new Fragment_Shopping(), "Shopping");
+                viewPager.showContextMenu();
+                viewPager.setAdapter(viewPagerAdapter);*/
 
         list=new ArrayList<ProductUpload_POJO>();
         Alist=new ArrayList<ProductUpload_POJO>();
@@ -101,7 +103,6 @@ public class Activity_Shopping extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(Activity_Shopping.this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
-
         bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",3),true);
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
@@ -133,7 +134,6 @@ public class Activity_Shopping extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                     // This activity implements OnMenuItemClickListener
-                    /*popup.getMenu().getItem(RBChecked).setChecked(true);*/
                     popup.show();
             }
         });
@@ -167,7 +167,7 @@ public class Activity_Shopping extends AppCompatActivity {
                         CATEGORIZED = "N";
                         SEARCHED = "N";
                         SetMyAdapter(list);
-                        /*DefaultData();*/
+                        DefaultData();
                         sv.setQuery(null,false);
                         break;
 
@@ -341,8 +341,8 @@ public class Activity_Shopping extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println("search query submit");
-                /*list.clear();
-                StartSearch(query);*/
+                list.clear();
+                StartSearch(query);
                 return false;
             }
 

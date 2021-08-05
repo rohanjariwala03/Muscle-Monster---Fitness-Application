@@ -65,6 +65,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/adminTextColor"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,6 +136,28 @@
                 android:textSize="20sp"
                 android:textColor="@color/adminTextColor"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|right">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="Add Coupon"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="Add Coupon"
+                android:src="@drawable/ic_baseline_post_add_24"
+                android:textAlignment="center"
+                app:layout_anchorGravity="bottom|right|end"
+                tools:ignore="RtlCompat" />
         </LinearLayout>
 
 

@@ -68,6 +68,7 @@ public class Adapter_View_Users_Admin extends RecyclerView.Adapter<Adapter_View_
                 intent.putExtra("UserEmail",list.get(position).getEmail());
                 intent.putExtra("Phone",list.get(position).getPhoneNumber());
                 intent.putExtra("UserImageUri",list.get(position).getImageUrl());
+                intent.putExtra("UserKey",list.get(position).getSflag());
                 //intent.putExtra("ItemWeight",list.get(position).getProductWeight());
                 v.getContext().startActivity(intent);
             }

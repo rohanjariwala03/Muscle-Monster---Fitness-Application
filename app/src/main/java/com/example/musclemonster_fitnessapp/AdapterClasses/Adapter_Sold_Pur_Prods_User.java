@@ -80,6 +80,12 @@ public class Adapter_Sold_Pur_Prods_User extends RecyclerView.Adapter<Adapter_So
                 "\nGender : " + list.get(position).getProdGen() +
                 "\nListed Date : " + list.get(position).getUploadDate() +
                 "\nPurchase Date : " + list.get(position).getBuyDate());
+        alertBuilder1.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         alertBuilder1.setCancelable(true);
         AlertDialog alertDialog1 = alertBuilder1.create();
         alertDialog1.setCancelable(true);

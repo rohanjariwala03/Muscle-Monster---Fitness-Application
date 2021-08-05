@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -7,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Fragment_Chat;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Fragment_Exercise_Home;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Fragment_More;
+import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Activity_Shopping;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Fragment_Shopping;
 
 import kotlin.Unit;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment_Chat FragmentChat;
     Fragment_Shopping Fragmentshopping;
     Fragment_More Fragmentmore;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",1),true);
 
-
+        viewPager = findViewById(R.id.viewpager);
 
        /* bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
@@ -95,12 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 LoadFragment(FragmentChat);
                 break;
             case ID_Note:
-                /*Intent intent = new Intent(getApplicationContext(), Activity_Shopping.class);
+                Intent intent = new Intent(getApplicationContext(), Activity_Shopping.class);
                 intent.putExtra("fragmentNumber",3);
-                startActivity(intent);*/
-                name = "Shopping";
+                startActivity(intent);
+
+                /*name = "Shopping";
                 Fragmentshopping = new Fragment_Shopping();
-                LoadFragment(Fragmentshopping);
+                LoadFragment(Fragmentshopping);*/
+               /* ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+                viewPagerAdapter.AddFragment(new Fragment_Shopping(), "Shopping");
+                viewPager.showContextMenu();
+                viewPager.setAdapter(viewPagerAdapter);*/
                 break;
             case ID_More:
                 name = "More";
@@ -119,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.FrameLayout,fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

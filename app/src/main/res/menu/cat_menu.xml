@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group
+        android:checkableBehavior="single"
+        android:menuCategory="container">
         <item
             android:id="@+id/machines"
             android:title="Machines" />
@@ -9,8 +11,8 @@
             android:id="@+id/dumbbell"
             android:title="Dumbbell" />
         <item
-            android:menuCategory="secondary"
             android:id="@+id/clothing"
+            android:menuCategory="secondary"
             android:title="Clothing">
             <menu>
                 <group android:checkableBehavior="single">
@@ -47,7 +49,6 @@
         <item
             android:id="@+id/ClearFilter"
             android:title="Clear Filter" />
-
 
 
     </group>

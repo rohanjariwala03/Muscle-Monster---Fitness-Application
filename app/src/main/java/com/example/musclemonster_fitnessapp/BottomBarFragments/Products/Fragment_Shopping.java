@@ -55,7 +55,7 @@ public class Fragment_Shopping extends Fragment {
     String SEARCHED = "N";
     String CATEGORIZED = "N";
     String RBChecked = "Unisex", status,PuserKey,CurUserKey;
-    TextView TxtAlert;
+    private TextView TxtAlert1;
 
     public Fragment_Shopping() {
         // Required empty public constructor
@@ -109,7 +109,7 @@ public class Fragment_Shopping extends Fragment {
         View view=inflater.inflate(R.layout.fragment__shopping, container, false);
         Log.i("Freg Shop" , "Create View");
         BtnFiter = (Button) view.findViewById(R.id.BtnFilt);
-        TxtAlert = (TextView) view.findViewById(R.id.TxtAlert);
+        TxtAlert1 = (TextView) view.findViewById(R.id.TxtAlert);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         recyclerView=view.findViewById(R.id.recyclerviewProduct);
@@ -220,7 +220,7 @@ public class Fragment_Shopping extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                    TxtAlert.setVisibility(View.VISIBLE);
+
                 }
             });
         }
@@ -287,7 +287,7 @@ public class Fragment_Shopping extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                TxtAlert.setVisibility(View.VISIBLE);
+
             }
         });
     }
@@ -356,7 +356,7 @@ public class Fragment_Shopping extends Fragment {
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                TxtAlert.setVisibility(View.VISIBLE);
+
             }
         });
     }
@@ -364,9 +364,10 @@ public class Fragment_Shopping extends Fragment {
     private void CheckAL(ArrayList<ProductUpload_POJO> AL)
     {
         if(AL.size() == 0)
-            TxtAlert.setVisibility(View.VISIBLE);
+            TxtAlert1.setVisibility(View.VISIBLE);
         else
-            TxtAlert.setVisibility(View.GONE);
+            TxtAlert1.setVisibility(View.GONE);
+        Log.i("VISIBILITY : ", String.valueOf(TxtAlert1.isShown()));
     }
 
     @Override
