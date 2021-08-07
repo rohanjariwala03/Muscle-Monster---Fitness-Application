@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.fragment.app.Fragment;
 
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Coupon;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Gym_Packages;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_My_Appointments;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Workout_History;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Find_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
