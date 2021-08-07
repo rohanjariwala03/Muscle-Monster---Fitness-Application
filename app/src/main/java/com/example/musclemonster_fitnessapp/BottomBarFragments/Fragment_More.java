@@ -17,6 +17,7 @@ import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_Workout_His
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Find_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Product_Add_Home;
+import com.example.musclemonster_fitnessapp.MoreMenuClasses.UserFeedbackListActivity;
 import com.example.musclemonster_fitnessapp.R;
 import com.example.musclemonster_fitnessapp.Update_Profile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ public class Fragment_More extends Fragment {
     Button btn_addItem;
     Button btn_logout, btn_MyCoupons;
     Button btn_MyProfile, btn_MyProducts;
-    Button btn_findTrainer, btn_GymPackage,btnMyWorkoutHistory,btnMyAppointment;
+    Button btn_findTrainer, btn_GymPackage,btnMyWorkoutHistory,btnMyAppointment,btnFeedback;
     Button addTrainer;
 
 
@@ -64,6 +65,15 @@ public class Fragment_More extends Fragment {
         btn_MyCoupons=view.findViewById(R.id.btnMyCoupons);
 
         btnMyAppointment=view.findViewById(R.id.btnMyCalender);
+
+        btnFeedback=view.findViewById(R.id.btnFeedback);
+        btnFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), UserFeedbackListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
