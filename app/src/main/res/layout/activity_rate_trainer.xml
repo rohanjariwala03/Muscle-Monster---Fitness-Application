@@ -1,9 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreMenuClasses.RateTrainerActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/timage"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/trainername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="14dp"
+            android:text="Trainer Name"
+
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tvtraineremail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="14dp"
+            android:text="Trainer Email"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="14dp"
+            android:text="Name"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:hint="Enter Name"
+            android:padding="15dp" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="14dp"
+            android:text="Email"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:hint="Enter Email"
+            android:padding="15dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Rating"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/rv_rating"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:numStars="5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Write Review"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="13dp"
+            android:hint="Enter Description"
+            android:padding="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Rating"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
+
+
+
+
+    </LinearLayout>
+</ScrollView>
