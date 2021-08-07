@@ -70,6 +70,7 @@ public class Activity_Workout_History extends AppCompatActivity {
                         obj.setExName((dataSnapshot.child("exName").getValue(String.class)));
                         obj.setExTime((dataSnapshot.child("exTime").getValue(String.class)));
                         obj.setExDate((dataSnapshot.child("exDate").getValue(String.class)));
+                        obj.setTime((dataSnapshot.child("time").getValue(String.class)));
                         obj.setExImageUri((dataSnapshot.child("exImageUri").getValue(String.class)));
                         list.add(obj);
 

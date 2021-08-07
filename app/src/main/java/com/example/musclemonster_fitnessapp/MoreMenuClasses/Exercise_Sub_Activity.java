@@ -1,18 +1,19 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise_Sub;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_Sub_Pojo;
+import com.example.musclemonster_fitnessapp.AdapterClasses.MyAdapter_Exercise_Sub;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +46,7 @@ public class Exercise_Sub_Activity extends AppCompatActivity {
         //Log.i("asd", "Data : " + ExerciseCat);
 
         getSupportActionBar().setTitle(ExerciseCat);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
 
 

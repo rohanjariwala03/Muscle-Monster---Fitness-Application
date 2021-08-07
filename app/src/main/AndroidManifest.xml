@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
+        <activity android:name=".MoreMenuClasses.Activity_My_Appointments"></activity>
+        <activity android:name=".MoreMenuClasses.Activity_Workout_History"></activity>
         <activity android:name=".MoreMenuClasses.Activity_Coupon"></activity>
-        <activity android:name=".MoreMenuClasses.Activity_Workout_History" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Start_Exercise_Timer" />
         <activity android:name=".BottomBarFragments.Exercise.Activity_Exercise_Video" />
         <activity android:name=".BottomBarFragments.Products.Activity_Shopping" />
@@ -54,7 +55,7 @@
         <activity android:name=".MoreMenuClasses.Exercise_Sub_Activity" />
         <activity
             android:name=".MoreMenuClasses.UpdateMyProduct"
-            android:parentActivityName=".MoreMenuClasses.MyProducts_User" />
+            android:parentActivityName=".MoreMenuClasses.MyProducts_User"/>
         <activity android:name=".BottomBarFragments.Products.product_cart" />
         <activity
             android:name=".BottomBarFragments.Products.ViewProductDetail"

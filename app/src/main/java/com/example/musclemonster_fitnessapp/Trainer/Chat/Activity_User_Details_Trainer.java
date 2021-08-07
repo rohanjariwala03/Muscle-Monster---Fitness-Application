@@ -26,7 +26,7 @@ public class Activity_User_Details_Trainer extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.support_toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         txtName=findViewById(R.id.txtUserNameDetailsTrainer);
         txtEmail=findViewById(R.id.txtUserEmailDetailsTrainer);
