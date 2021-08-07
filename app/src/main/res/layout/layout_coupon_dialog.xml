@@ -14,18 +14,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:text="Select Coupon :"
+        android:text="Enter Code :"
         android:textColor="@color/black"
-        android:textSize="17sp"
+        android:textSize="15sp"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner1"
+
+    <EditText
+        android:id="@+id/editCouponCode"
         android:layout_width="105dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:drawSelectorOnTop="true"
-        android:hint="Select Coupon"
-        android:spinnerMode="dropdown" />
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Enter Code"/>
+
 
 </LinearLayout>

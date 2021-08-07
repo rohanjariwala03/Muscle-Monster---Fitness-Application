@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,9 +54,7 @@ public class Adapter_Prod_Shopping extends RecyclerView.Adapter<Adapter_Prod_Sho
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context,""+list.get(position).getProductName(),Toast.LENGTH_SHORT).show();
-
-                // Fragment ExerciseSubFragment=new ExerciseSubFragment();
+               // Fragment ExerciseSubFragment=new ExerciseSubFragment();
                 //FragmentManager fragmentManager=context.getSupportFragmentManager();
                 Intent intent = new Intent(context, ViewProductDetail.class);
                 intent.putExtra("ItemKey",list.get(position).getFKey());

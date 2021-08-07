@@ -1,5 +1,7 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Products;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import com.braintreepayments.cardform.view.CardForm;
 import com.example.musclemonster_fitnessapp.MainActivity;
 import com.example.musclemonster_fitnessapp.POJOClasses.CouponPOJO;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,14 +41,17 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
     private Button buy, btnCoupon;
     private AlertDialog.Builder alertBuilder , alertBuilder1;
     private TextView txtPrice;
-    private String ItemPrice,ItemKey,UserKey , CurrDate;
-    private String Database_Path;
+    private String ItemPrice,ItemKey,UserKey , CurrDate, FBCouponKey;
+    private String Database_Path , CouponKey, CouponDiscount , CouponExpiryDate;
     private FirebaseAuth myAuth;
     private DatabaseReference databaseReference;
     private Calendar calendar;
     private SimpleDateFormat sdf;
     private ArrayList<CouponPOJO> lstCoupons = new ArrayList<>();
+    private ProgressDialog progressDialog ;
+    private Float DiscountedPrice;
 
+    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,8 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
         myAuth =FirebaseAuth.getInstance();
         UserKey = myAuth.getCurrentUser().getUid();
 
+        CouponKey = "NULL";
+        CouponDiscount = "NULL";
 
         calendar = Calendar.getInstance();
         sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -71,6 +79,8 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
         txtPrice = findViewById(R.id.TxtAmount);
 
         txtPrice.setText("AMOUNT : $" + ItemPrice);
+
+        progressDialog = new ProgressDialog(product_cart.this);
 
         cardForm.cardRequired(true)
                 .expirationRequired(true)
@@ -89,14 +99,29 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
 
                     alertBuilder = new AlertDialog.Builder(product_cart.this);
                     alertBuilder.setTitle("Confirm before purchase");
-                    alertBuilder.setMessage("Amount : $" + ItemPrice + "\n\n" +
+                    if(CouponDiscount.equals("NULL"))
+                        alertBuilder.setMessage("Amount : $" + ItemPrice + "\n\n" +
                             "Confirm Purchase?");
+                    else
+                        alertBuilder.setMessage("Amount : $" + DiscountedPrice + "\n\n" +
+                                "Confirm Purchase?");
                     alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseReference.child("status").setValue("1");
                             databaseReference.child("buyer").setValue(UserKey);
                             databaseReference.child("buyDate").setValue(CurrDate);
+
+                            try {
+                                FirebaseDatabase.getInstance().getReference("Coupons").child(FBCouponKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        System.out.println("Coupon Deleted");
+                                    }
+                                });
+                            }catch (Exception e) {
+                                    System.out.println("Error While Deleting Coupon!! " + e.getMessage());
+                            }
 
                             alertBuilder1 = new AlertDialog.Builder(product_cart.this);
                             alertBuilder1.setTitle("Purchase Confirmed");
@@ -130,54 +155,96 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
                     Toast.makeText(product_cart.this, "Please complete the form", Toast.LENGTH_LONG).show();
                 }
             }
+
         });
 
         btnCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(cardForm.isValid()) {*/
-                    Query DataQuery = FirebaseDatabase.getInstance().getReference("Coupons")
-                            .orderByChild("UserKey").equalTo(UserKey);
-                    DataQuery.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                if(dataSnapshot.exists()) {
-                                    CouponPOJO couponPOJO = new CouponPOJO();
-                                    couponPOJO.setSKey(dataSnapshot.getKey());
-                                    couponPOJO.setCode((dataSnapshot.child("Code").getValue(String.class)));
-                                    couponPOJO.setCreateDate((dataSnapshot.child("CreateDate").getValue(String.class)));
-                                    couponPOJO.setDiscount((dataSnapshot.child("Discount").getValue(String.class)));
-                                    couponPOJO.setExpiryDate((dataSnapshot.child("ExpiryDate").getValue(String.class)));
-                                    couponPOJO.setUserKey((dataSnapshot.child("UserKey").getValue(String.class)));
-                                    Log.i("PRODUCT CART : ", couponPOJO.getDiscount());
-                                    lstCoupons.add(couponPOJO);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                        }
-                    });
-
+                if(cardForm.isValid()) {
+                if(btnCoupon.getText().equals("APPLY COUPON"))
+                {
                     openDialog();
+                }
+                else
+                {
+                    txtPrice.setText("AMOUNT : $" + ItemPrice);
+                    btnCoupon.setText("APPLY COUPON");
+                    CouponDiscount="NULL";
+                }
 
-               /* } else {
+                } else {
                     Toast.makeText(product_cart.this, "Please complete the form", Toast.LENGTH_LONG).show();
-                }*/
+                }
             }
         });
     }
 
     public void openDialog() {
-        CouponDialog couponDialog = new CouponDialog(lstCoupons);
+        CouponDialog couponDialog = new CouponDialog();
         couponDialog.show(getSupportFragmentManager(), "coupon dialog");
     }
 
     @Override
-    public void applyTexts(CouponPOJO couponPOJO) {
+    public void applyTexts(String Str) {
+        // Setting progressDialog Title.
+        progressDialog.setTitle("Applying Coupon....");
+
+        // Showing progressDialog.
+        progressDialog.show();
+
+        CouponKey = Str;
+        databaseReference=FirebaseDatabase.getInstance().getReference("Coupons");
+        Query query=databaseReference.orderByChild("Code").equalTo(CouponKey);
+
+        //Database event listner for success or failure
+        query.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+                    if (dataSnapshot.exists()) {
+                        FBCouponKey = dataSnapshot.getKey();
+                        CouponDiscount = dataSnapshot.child("Discount").getValue(String.class);
+                        CouponExpiryDate = dataSnapshot.child("ExpiryDate").getValue(String.class);
+                        DiscountedPrice = Float.parseFloat(ItemPrice) - Float.parseFloat(CouponDiscount.substring(1));
+                        txtPrice.setText("      Amount : $" + ItemPrice +
+                                "\n - Coupon Discount :" + CouponDiscount +
+                                "\n --------------------------------------\n" +
+                                "Discounted Price : " + DiscountedPrice);
+                        btnCoupon.setText("CANCLE COUPON");
+                        Toast.makeText(getApplicationContext(),"Coupon Applied.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                txtPrice.setText("AMOUNT : $" + ItemPrice);
+                btnCoupon.setText("APPLY COUPON");
+            }
+        });
+        Log.i("Product_CART1" , CouponKey + "   " + CouponDiscount + "  " + CouponExpiryDate);
+        progressDialog.dismiss();
+        /*ApplyCoupon(CouponDiscount.substring(1));*/
+        /*if(CurrDate.compareTo(CouponExpiryDate) < 0)
+            ApplyCoupon();
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Coupon is Expired.", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }*/
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void ApplyCoupon(String Price)
+    {
+
+        /*try {*/
+
+        /*} catch(NumberFormatException nfe) {
+            Toast.makeText(getApplicationContext(),"Something Went Wrong!" + nfe.getMessage(), Toast.LENGTH_LONG).show();
+        }*/
 
     }
 }

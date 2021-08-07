@@ -61,7 +61,7 @@ public class Adapter_MyCoupons extends RecyclerView.Adapter<Adapter_MyCoupons.My
             public void onClick(View view) {
                 myClip = ClipData.newPlainText("text", list.get(position).getCode());
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(view.getContext(), "Text Copied",Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Coupon Code Copied",Toast.LENGTH_SHORT).show();
             }
         });
 
