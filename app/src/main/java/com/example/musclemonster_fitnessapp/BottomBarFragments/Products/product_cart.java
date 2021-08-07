@@ -4,36 +4,47 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.braintreepayments.cardform.view.CardForm;
 import com.example.musclemonster_fitnessapp.MainActivity;
+import com.example.musclemonster_fitnessapp.POJOClasses.CouponPOJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-public class product_cart extends AppCompatActivity {
+public class product_cart extends AppCompatActivity  implements CouponDialog.CouponDialogListener{
 
     private CardForm cardForm;
-    private Button buy;
+    private Button buy, btnCoupon;
     private AlertDialog.Builder alertBuilder , alertBuilder1;
     private TextView txtPrice;
     private String ItemPrice,ItemKey,UserKey , CurrDate;
     private String Database_Path;
     private FirebaseAuth myAuth;
     private DatabaseReference databaseReference;
-    Calendar calendar;
-    SimpleDateFormat sdf;
+    private Calendar calendar;
+    private SimpleDateFormat sdf;
+    private ArrayList<CouponPOJO> lstCoupons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +59,7 @@ public class product_cart extends AppCompatActivity {
 
         myAuth =FirebaseAuth.getInstance();
         UserKey = myAuth.getCurrentUser().getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path).child(ItemKey);
+
 
         calendar = Calendar.getInstance();
         sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -56,6 +67,7 @@ public class product_cart extends AppCompatActivity {
 
         cardForm = findViewById(R.id.card_form);
         buy = findViewById(R.id.btnBuy);
+        btnCoupon = findViewById(R.id.btnCoupon);
         txtPrice = findViewById(R.id.TxtAmount);
 
         txtPrice.setText("AMOUNT : $" + ItemPrice);
@@ -68,10 +80,13 @@ public class product_cart extends AppCompatActivity {
                 .mobileNumberExplanation("SMS is required on this number")
                 .setup(product_cart.this);
         cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (cardForm.isValid()) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child(Database_Path).child(ItemKey);
+
                     alertBuilder = new AlertDialog.Builder(product_cart.this);
                     alertBuilder.setTitle("Confirm before purchase");
                     alertBuilder.setMessage("Amount : $" + ItemPrice + "\n\n" +
@@ -116,5 +131,53 @@ public class product_cart extends AppCompatActivity {
                 }
             }
         });
+
+        btnCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*if(cardForm.isValid()) {*/
+                    Query DataQuery = FirebaseDatabase.getInstance().getReference("Coupons")
+                            .orderByChild("UserKey").equalTo(UserKey);
+                    DataQuery.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                if(dataSnapshot.exists()) {
+                                    CouponPOJO couponPOJO = new CouponPOJO();
+                                    couponPOJO.setSKey(dataSnapshot.getKey());
+                                    couponPOJO.setCode((dataSnapshot.child("Code").getValue(String.class)));
+                                    couponPOJO.setCreateDate((dataSnapshot.child("CreateDate").getValue(String.class)));
+                                    couponPOJO.setDiscount((dataSnapshot.child("Discount").getValue(String.class)));
+                                    couponPOJO.setExpiryDate((dataSnapshot.child("ExpiryDate").getValue(String.class)));
+                                    couponPOJO.setUserKey((dataSnapshot.child("UserKey").getValue(String.class)));
+                                    Log.i("PRODUCT CART : ", couponPOJO.getDiscount());
+                                    lstCoupons.add(couponPOJO);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
+
+                    openDialog();
+
+               /* } else {
+                    Toast.makeText(product_cart.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                }*/
+            }
+        });
+    }
+
+    public void openDialog() {
+        CouponDialog couponDialog = new CouponDialog(lstCoupons);
+        couponDialog.show(getSupportFragmentManager(), "coupon dialog");
+    }
+
+    @Override
+    public void applyTexts(CouponPOJO couponPOJO) {
+
     }
 }

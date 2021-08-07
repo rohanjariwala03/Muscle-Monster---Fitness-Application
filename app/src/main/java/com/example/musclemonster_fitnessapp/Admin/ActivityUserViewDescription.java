@@ -15,6 +15,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.POJOClasses.CouponPOJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,8 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class ActivityUserViewDescription extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
@@ -142,15 +141,8 @@ public class ActivityUserViewDescription extends AppCompatActivity implements Ex
         calendar.add(Calendar.MONTH, 6);
         ExpiryDate =  sdf.format(calendar.getTime());
 
-        Map<String,String> CouponData = new HashMap<>();
-        CouponData.put("UserKey",UserKey);
-        CouponData.put("Discount",Discount);
-        CouponData.put("CreateDate",CurrDate);
-        CouponData.put("ExpiryDate",ExpiryDate);
-        CouponData.put("Code", UUID.randomUUID().toString());
-
-
-        ref.push().setValue(CouponData).addOnSuccessListener(new OnSuccessListener<Void>() {
+        CouponPOJO couponPOJO = new CouponPOJO(UserKey,Discount,CurrDate,ExpiryDate,UUID.randomUUID().toString());
+        ref.push().setValue(couponPOJO).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext() , "Coupon Added To " + TrainerName + " " + TrainerLastName, Toast.LENGTH_SHORT).show();
