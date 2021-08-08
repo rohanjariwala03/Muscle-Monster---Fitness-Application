@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Trainer.Chat.Activity_User_Details_Trainer"
     android:orientation="vertical"
-    android:background="@drawable/background_user">
+    android:background="@drawable/background_user"
+    android:id="@+id/layoutC">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,14 +83,17 @@
             tools:context=".MoreMenuClasses.Activity_My_Appointments">
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/linerCalendar"
-                android:layout_centerHorizontal="true">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="#FAF2F2"
+                android:gravity="center">
+
                 <CalendarView
+                    android:id="@+id/BookDateCalendar"
                     android:layout_width="wrap_content"
-                    android:layout_height="320dp"
-                    android:id="@+id/BookDateCalendar" />
+                    android:layout_height="320dp" />
             </LinearLayout>
 
             <TextView

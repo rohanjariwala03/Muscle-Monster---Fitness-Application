@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,31 +7,48 @@
     tools:context=".Trainer.Activity_My_Appointments_With_Users"
     android:background="@color/BackGroundColor">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewAppointmentTrainer"
+  <!--  <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/searchCalendar"
+        tools:ignore="MissingConstraints">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linerCalendar"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:background="#E1DADA">
+
+            <CalendarView
+                android:id="@+id/SearchDateCalendarTrainer"
+                android:layout_width="wrap_content"
+                android:layout_height="320dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewAppointmentTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linerCalendar"
+            android:layout_marginTop="20dp"/>
+    <!--</RelativeLayout>-->
 
     <TextView
         android:id="@+id/TxtAlertTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="Sorry !\n You Don't Have Any Appointment."
         android:textColor="@color/white"
-        android:layout_marginTop="100dp"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerviewAppointmentTrainer"
-        app:layout_constraintVertical_bias="0.189"
-        tools:ignore="HardcodedText,ObsoleteLayoutParam" />
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/linerCalendar"
+        android:layout_marginTop="20dp"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

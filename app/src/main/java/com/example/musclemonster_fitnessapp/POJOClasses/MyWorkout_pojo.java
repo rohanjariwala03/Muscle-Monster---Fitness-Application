@@ -1,7 +1,7 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class MyWorkout_pojo {
-    String userId, WorkoutName,flag;
+    String userId, WorkoutName,flag,imgUrl,tCat,tDesc,tSteps;
 
     public MyWorkout_pojo(String userId, String workoutName,String flag) {
         this.userId = userId;
@@ -32,5 +32,37 @@ public class MyWorkout_pojo {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String gettCat() {
+        return tCat;
+    }
+
+    public void settCat(String tCat) {
+        this.tCat = tCat;
+    }
+
+    public String gettDesc() {
+        return tDesc;
+    }
+
+    public void settDesc(String tDesc) {
+        this.tDesc = tDesc;
+    }
+
+    public String gettSteps() {
+        return tSteps;
+    }
+
+    public void settSteps(String tSteps) {
+        this.tSteps = tSteps;
     }
 }

@@ -34,8 +34,12 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Activity_My_Appointments extends AppCompatActivity {
 
@@ -46,6 +50,7 @@ public class Activity_My_Appointments extends AppCompatActivity {
     Adapter_Activity_My_Appointment adapter;
     ArrayList<Pojo_Activity_My_Appointments> list;
     TextView TxtAlert;
+    Date date;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -66,6 +71,16 @@ public class Activity_My_Appointments extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         userID= FirebaseAuth.getInstance().getUid();
 
+        Date c = Calendar.getInstance().getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("d/M/yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        try {
+            date=df.parse(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         dataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -79,16 +94,32 @@ public class Activity_My_Appointments extends AppCompatActivity {
                                 list.clear();
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
                                     if (dataSnapshot.exists()) {
+                                        Date d = null;
                                         String flg=dataSnapshot.child("flag").getValue(String.class);
+                                        String dat=dataSnapshot.child("date").getValue(String.class);
+                                        try {
+                                            d=df.parse(dat);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
                                         if(flg.equals("0")) {
-                                            TxtAlert.setVisibility(View.GONE);
-                                            Pojo_Activity_My_Appointments ob = dataSnapshot.getValue(Pojo_Activity_My_Appointments.class);
-                                            ob.setUserID(dataSnapshot1.getKey());
-                                            ob.setFKey(dataSnapshot.getKey());
-                                            recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments.this));
-                                            recyclerView.setAdapter(adapter);
-                                            list.add(ob);
-                                            adapter.notifyDataSetChanged();
+                                            if(d.after(date) || d.equals(date)) {
+                                                TxtAlert.setVisibility(View.GONE);
+                                                Pojo_Activity_My_Appointments ob = dataSnapshot.getValue(Pojo_Activity_My_Appointments.class);
+                                                ob.setImageUri(dataSnapshot1.child("imgUri").getValue(String.class));
+                                                ob.setUserID(dataSnapshot1.getKey());
+                                                ob.setFKey(dataSnapshot.getKey());
+                                                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments.this));
+                                                recyclerView.setAdapter(adapter);
+                                                list.add(ob);
+                                                adapter.notifyDataSetChanged();
+                                            }/*else if(d.before(date)){
+                                                FirebaseDatabase.getInstance().getReference("Appointments").child(userID)
+                                                        .child(room).child(dataSnapshot.getKey()).child("flag").setValue("1");
+                                            }else if(d.after(date)){
+                                                FirebaseDatabase.getInstance().getReference("Appointments").child(userID)
+                                                        .child(room).child(dataSnapshot.getKey()).child("flag").setValue("0");
+                                            }*/
                                         }
                                     }else {
                                         adapter.notifyDataSetChanged();

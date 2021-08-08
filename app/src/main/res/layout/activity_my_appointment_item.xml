@@ -9,21 +9,35 @@
     android:scrollbars="vertical"
     app:cardCornerRadius="20dp"
     android:background="@drawable/rounded_imageview">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="horizontal"
         android:gravity="center">
 
+        <ImageView
+            android:id="@+id/Appointment_Trainer_Image"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:src="@drawable/rest"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true" />
+
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtLayout"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/history_exerciseImage">
             <TextView
                 android:id="@+id/txtTrainerNameAppointment"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
@@ -36,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:id="@+id/txtAppointmentDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
@@ -46,14 +60,17 @@
                 android:textSize="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_delete_24"
-            android:id="@+id/dltAppointment"/>
+            android:id="@+id/dltAppointment"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/txtLayout"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

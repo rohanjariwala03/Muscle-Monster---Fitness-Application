@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Products.Del_Product;
 import com.example.musclemonster_fitnessapp.POJOClasses.CouponPOJO;
 import com.example.musclemonster_fitnessapp.POJOClasses.Pojo_Activity_My_Appointments;
@@ -55,6 +57,12 @@ public class Adapter_Activity_My_Appointment extends RecyclerView.Adapter<Adapte
         trainerID=list.get(position).getUserID();
         holder.txtName.setText(list.get(position).getName());
         holder.txtDate.setText(list.get(position).getDate());
+        String imguri=list.get(position).getImageUri();
+
+        Glide.with(context)
+                .load(imguri)
+                .into(holder.imgView);
+
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +81,13 @@ public class Adapter_Activity_My_Appointment extends RecyclerView.Adapter<Adapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txtName,txtDate;
         ImageButton btnDelete;
+        ImageView imgView;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             txtName=itemView.findViewById(R.id.txtTrainerNameAppointment);
             txtDate=itemView.findViewById(R.id.txtAppointmentDate);
             btnDelete=itemView.findViewById(R.id.dltAppointment);
+            imgView=itemView.findViewById(R.id.Appointment_Trainer_Image);
         }
     }
 }

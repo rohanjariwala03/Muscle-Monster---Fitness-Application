@@ -1,7 +1,7 @@
 package com.example.musclemonster_fitnessapp.POJOClasses;
 
 public class Pojo_Activity_My_Appointments {
-    String Name,Date,Flag,FKey,userID;
+    String Name,Date,Flag,FKey,userID,imageUri;
 
     public Pojo_Activity_My_Appointments(String Name,String date,String Flag) {
         Date = date;
@@ -49,5 +49,13 @@ public class Pojo_Activity_My_Appointments {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 }

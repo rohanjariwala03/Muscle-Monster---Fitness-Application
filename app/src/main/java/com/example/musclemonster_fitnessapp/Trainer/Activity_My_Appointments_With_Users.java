@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SearchEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Activity_My_Appointment;
 import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_My_Appointments;
@@ -26,17 +30,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Activity_My_Appointments_With_Users extends AppCompatActivity {
 
     DatabaseReference databaseReference,dataRef;
-    String userID,room,trainerId;
+    String userID,room,trainerId,date;
     ImageButton btnDelete;
     private RecyclerView recyclerView;
     Adapter_Activity_My_Appointments_With_Users adapter;
     ArrayList<Pojo_Activity_My_Appointments_With_Users> list;
     TextView TxtAlert;
+    CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,7 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
         dataRef=FirebaseDatabase.getInstance().getReference("Users");
         recyclerView=findViewById(R.id.recyclerviewAppointmentTrainer);
         TxtAlert=findViewById(R.id.TxtAlertTrainer);
+        calendarView=findViewById(R.id.SearchDateCalendarTrainer);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         list=new ArrayList<Pojo_Activity_My_Appointments_With_Users>();
@@ -56,16 +67,49 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         trainerId= FirebaseAuth.getInstance().getUid();
 
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("d/M/yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+
+        Calendar today = Calendar.getInstance();
+        long now = today.getTimeInMillis();
+        calendarView.setMinDate(now);
+        date=  formattedDate;
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                date=dayOfMonth+"/"+(month+1)+"/"+year;
+                getData();
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments_With_Users.this));
+        recyclerView.setAdapter(adapter);
         list.clear();
+        adapter.notifyDataSetChanged();
+        getData();
+    }
+
+    public void getData(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments_With_Users.this));
+        recyclerView.setAdapter(adapter);
+        list.clear();
+        adapter.notifyDataSetChanged();
         dataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments_With_Users.this));
+                recyclerView.setAdapter(adapter);
                 list.clear();
+                adapter.notifyDataSetChanged();
                 for(DataSnapshot dataSnapshot1:snapshot.getChildren()){
                     if(dataSnapshot1.exists()){
                         room=dataSnapshot1.getKey();
@@ -75,15 +119,18 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
                                     if (dataSnapshot.exists()) {
                                         String flg=dataSnapshot.child("flag").getValue(String.class);
+                                        String Date=dataSnapshot.child("date").getValue(String.class);
                                         if(flg.equals("0")) {
-                                            TxtAlert.setVisibility(View.GONE);
-                                            Pojo_Activity_My_Appointments_With_Users ob = dataSnapshot.getValue(Pojo_Activity_My_Appointments_With_Users.class);
-                                            ob.setUserID(dataSnapshot1.getKey());
-                                            ob.setFKey(dataSnapshot.getKey());
-                                            recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments_With_Users.this));
-                                            recyclerView.setAdapter(adapter);
-                                            list.add(ob);
-                                            adapter.notifyDataSetChanged();
+                                            if(Date.equals(date)) {
+                                                TxtAlert.setVisibility(View.GONE);
+                                                Pojo_Activity_My_Appointments_With_Users ob = dataSnapshot.getValue(Pojo_Activity_My_Appointments_With_Users.class);
+                                                ob.setUserID(dataSnapshot1.getKey());
+                                                ob.setFKey(dataSnapshot.getKey());
+                                                recyclerView.setLayoutManager(new LinearLayoutManager(Activity_My_Appointments_With_Users.this));
+                                                recyclerView.setAdapter(adapter);
+                                                list.add(ob);
+                                                adapter.notifyDataSetChanged();
+                                            }
                                         }
                                     }else {
                                         adapter.notifyDataSetChanged();
@@ -100,6 +147,10 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
                         });
                     }
                 }
+                if(list.size()==0){
+                    TxtAlert.setVisibility(View.VISIBLE);
+                    TxtAlert.setText("You Don't Have Any Appointment On " + date);
+                }
             }
 
             @Override
@@ -107,6 +158,5 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
 
             }
         });
-
     }
 }

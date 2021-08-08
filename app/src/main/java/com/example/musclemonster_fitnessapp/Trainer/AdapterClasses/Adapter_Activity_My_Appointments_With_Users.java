@@ -44,7 +44,6 @@ public class Adapter_Activity_My_Appointments_With_Users extends RecyclerView.Ad
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
-
         databaseReference= FirebaseDatabase.getInstance().getReference("Appointments");
         userID= list.get(position).getUserID();
         trainerId=FirebaseAuth.getInstance().getUid();
