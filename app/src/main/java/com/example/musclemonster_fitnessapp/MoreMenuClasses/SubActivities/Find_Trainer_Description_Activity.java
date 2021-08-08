@@ -1,26 +1,19 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses.SubActivities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActionBar;
-import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.AdapterClasses.AdapterTrainerRating;
@@ -50,7 +43,7 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
     ArrayList<RatingPojo> list;
 
     TextView txtFName, txtLName, txtContact,txtEmail;
-    String imgUri,TrainerID,FKey;
+    String imgUri,TrainerID,FKey,UserEmail;
     ImageView img;
     ImageButton imgChat;
     Button btnratenow;
@@ -121,6 +114,21 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
 
     }
 
+    public String GetTrainerName()
+    {
+        return getIntent().getStringExtra("TrainerFName");
+    }
+
+    public String GetTrainerImg()
+    {
+        return getIntent().getStringExtra("TrainerImageUrl");
+    }
+
+    public String GetTrainerEmail()
+    {
+        return getIntent().getStringExtra("TrainerEmail");
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -137,13 +145,25 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
     }
 
     private void getData() {
-        //  Query applesQuery = ref.child("Users").orderByChild("email").equalTo(EditEmail.getText().toString());
-
-        Query query=FirebaseDatabase.getInstance().getReference("Rating").orderByChild("traineremail").equalTo(getIntent().getStringExtra("TrainerEmail"));
-        String ema ;
         FirebaseUser firebaseUser;
         FirebaseAuth firebaseAuth;
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        Query query = FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("email");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                UserEmail = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+        query=FirebaseDatabase.getInstance().getReference("Rating").orderByChild("traineremail").equalTo(getIntent().getStringExtra("TrainerEmail"));
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @com.google.firebase.database.annotations.NotNull DataSnapshot snapshot) {
@@ -157,7 +177,16 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
                         Obj.setEmail((dataSnapshot.child("email").getValue(String.class)));
                         Obj.setMsg((dataSnapshot.child("msg").getValue(String.class)));
                         Obj.setRating((dataSnapshot.child("rating").getValue(String.class)));
-                        list.add(Obj);
+                        Obj.setFirstname((dataSnapshot.child("firstname").getValue(String.class)));
+                        Obj.setTraineremail((dataSnapshot.child("traineremail").getValue(String.class)));
+                        Obj.setDate(dataSnapshot.getKey());
+                        if(Obj.getEmail().equalsIgnoreCase(UserEmail)) {
+                            list.add(0, Obj);
+                            btnratenow.setVisibility(View.GONE);
+                        }
+                        else{
+                            list.add(Obj);
+                        }
                     } else {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
@@ -172,7 +201,6 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
             }
         });
-
     }
 
 }

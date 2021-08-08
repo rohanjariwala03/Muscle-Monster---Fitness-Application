@@ -129,21 +129,16 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-
         <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#227B9E"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="#fff" />
 
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textColor="#fff" />
-
-
-
-
-    </LinearLayout>
+        </LinearLayout>
 </ScrollView>
