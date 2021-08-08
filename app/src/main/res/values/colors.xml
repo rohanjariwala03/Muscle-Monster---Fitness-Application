@@ -38,4 +38,7 @@
     <color name="adminMenuColor">#c94b4b</color>
     <color name="adminTextColor">#FFFFFFFF</color>
 
+    <color name="PlatinumTextColor">#E5E4E2</color>
+    <color name="GoldTextColor">#d4af37</color>
+    <color name="SilverTextColor">#C0C0C0</color>
 </resources>

@@ -87,7 +87,9 @@ public class Activity_Start_Exercise_Timer extends AppCompatActivity {
     public void startChronometer(View v) {
         if (!running) {
             if(!Flg) {
-                Glide.with(this).load(ExerciseImageUri).into(imgView);
+                if(ExerciseImageUri!=null) {
+                    Glide.with(this).load(ExerciseImageUri).into(imgView);
+                }
                 chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
                 chronometer.start();
                 running = true;

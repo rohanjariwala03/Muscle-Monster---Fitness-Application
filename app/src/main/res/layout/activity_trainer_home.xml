@@ -79,6 +79,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/abc"
+        android:layout_marginTop="50dp"
+        android:id="@+id/xyz">
         android:layout_marginTop="20dp">
         <Button
             android:id="@+id/btnchat"
@@ -86,6 +88,30 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Chat"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xyz"
+        android:layout_marginTop="50dp">
+        <Button
+            android:id="@+id/btnViewAppointment"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Appointments"
             android:textAlignment="center"
             tools:ignore="RtlCompat"
             android:layout_centerInParent="true"

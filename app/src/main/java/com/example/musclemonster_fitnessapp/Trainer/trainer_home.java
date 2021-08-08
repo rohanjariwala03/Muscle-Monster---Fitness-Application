@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class trainer_home extends AppCompatActivity {
 
-    Button chatbtn, btnviewprofile,btnRatings;
+    Button chatbtn, btnviewprofile,btnRatings,btnAppointments;
     ImageButton btnhome, btnlogout;
     FirebaseAuth firebaseAuth;
 
@@ -38,6 +38,14 @@ public class trainer_home extends AppCompatActivity {
 
         btnRatings = findViewById(R.id.btnViewRatings);
         btnviewprofile = findViewById(R.id.btnviewprofile);
+        btnAppointments=findViewById(R.id.btnViewAppointment);
+
+        btnAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(trainer_home.this, Activity_My_Appointments_With_Users.class));
+            }
+        });
 
         btnhome.setOnClickListener(new View.OnClickListener() {
             @Override

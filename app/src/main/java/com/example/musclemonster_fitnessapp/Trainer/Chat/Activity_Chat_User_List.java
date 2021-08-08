@@ -85,11 +85,7 @@ public class Activity_Chat_User_List extends AppCompatActivity {
                                             Ob.setTrainerName(dataSnapshot.child("firstName").getValue(String.class)+ " " + dataSnapshot.child("lastName").getValue(String.class));
                                             Ob.setFKey(dataSnapshot.getKey());
                                             Ob.setTEmail(dataSnapshot.child("email").getValue(String.class));
-                                            if(dataSnapshot.child("imageUri").getValue(String.class).equals("null")){
-                                                Ob.setTimgUrl("null");
-                                            }else {
-                                                Ob.setTimgUrl(dataSnapshot.child("imageUri").getValue(String.class));
-                                            }
+                                            Ob.setTimgUrl("null");
                                             list.add(Ob);
                                             //Log.i("USerP:" , Ob.getTrainerName());
                                             TextView txt;

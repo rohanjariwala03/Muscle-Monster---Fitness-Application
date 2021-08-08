@@ -50,10 +50,11 @@ public class Adapter_activity_workout_history extends RecyclerView.Adapter<Adapt
         holder.ExerciseDate.setText(list.get(position).getExDate());
         imgUri=list.get(position).getExImageUri();
         holder.exerciseTime.setText(list.get(position).getTime());
-
-        Glide.with(context)
-                .load(imgUri)
-                .into(holder.imgView);
+        if(imgUri!=null) {
+            Glide.with(context)
+                    .load(imgUri)
+                    .into(holder.imgView);
+        }
 
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

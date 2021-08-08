@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreMenuClasses.Activity_My_Appointments"
+    tools:context=".Trainer.Activity_My_Appointments_With_Users"
     android:background="@color/BackGroundColor">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewAppointment"
+        android:id="@+id/recyclerviewAppointmentTrainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TxtAlert"
+        android:id="@+id/TxtAlertTrainer"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_centerVertical="true"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerviewAppointment"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerviewAppointmentTrainer"
         app:layout_constraintVertical_bias="0.189"
         tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
