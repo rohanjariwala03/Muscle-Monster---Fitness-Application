@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.ActivityUserViewDescription"
+    tools:context=".MoreMenuClasses.SubActivities.Find_Trainer_Description_Activity"
     android:orientation="vertical"
     android:background="@drawable/background_user">
 
@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center">
         <ImageButton
@@ -22,7 +22,7 @@
             android:background="#4CA1AF"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="350dp"
+            android:layout_marginLeft="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_message_24" />
     </RelativeLayout>
@@ -159,6 +159,7 @@
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp"
+            android:background="@drawable/background_user"
             android:id="@+id/ratingview"
             tools:ignore="MissingConstraints" />
 

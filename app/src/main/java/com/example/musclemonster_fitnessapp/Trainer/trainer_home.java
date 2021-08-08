@@ -1,8 +1,5 @@
 package com.example.musclemonster_fitnessapp.Trainer;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.musclemonster_fitnessapp.LoginSignUp.ActivityLogIn;
 import com.example.musclemonster_fitnessapp.R;
 import com.example.musclemonster_fitnessapp.Trainer.Chat.Activity_Chat_User_List;
@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class trainer_home extends AppCompatActivity {
 
-    Button chatbtn, btnviewprofile;
+    Button chatbtn, btnviewprofile,btnRatings;
     ImageButton btnhome, btnlogout;
     FirebaseAuth firebaseAuth;
 
@@ -35,6 +35,8 @@ public class trainer_home extends AppCompatActivity {
         btnlogout =findViewById(R.id.btnLogout);
         chatbtn = findViewById(R.id.btnchat);
         btnhome = findViewById(R.id.btnhomepage);
+
+        btnRatings = findViewById(R.id.btnViewRatings);
         btnviewprofile = findViewById(R.id.btnviewprofile);
 
         btnhome.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,13 @@ public class trainer_home extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(trainer_home.this, ActivityLogIn.class));
 
+            }
+        });
+
+        btnRatings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(trainer_home.this, Activity_View_Ratings.class));
             }
         });
     }

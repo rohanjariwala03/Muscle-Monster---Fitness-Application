@@ -1,11 +1,10 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +13,22 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,13 +37,17 @@ import java.util.HashMap;
 
 public class RateTrainerActivity extends AppCompatActivity {
 
-    ImageView timage;
-    TextView trainername,tvtraineremail;
-    EditText etname,etreview,etemail;
-    RatingBar rv_rating;
-    Button btn_submit;
-    String imgUri;
-    ProgressDialog loadingBar;
+    private ImageView timage;
+    private TextView trainername,tvtraineremail;
+    private EditText etname,etreview,etemail;
+    private RatingBar rv_rating;
+    private Button btn_submit;
+    private String imgUri,CurUser;
+    private ProgressDialog loadingBar;
+    private Query query;
+    private FirebaseAuth myAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +57,8 @@ public class RateTrainerActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        myAuth =FirebaseAuth.getInstance();
+        CurUser = myAuth.getCurrentUser().getUid().toString();
 
         timage=(ImageView)findViewById(R.id.timage);
         trainername=(TextView)findViewById(R.id.trainername);
@@ -65,14 +77,40 @@ public class RateTrainerActivity extends AppCompatActivity {
         rv_rating=(RatingBar)findViewById(R.id.rv_rating);
         btn_submit=(Button)findViewById(R.id.btn_submit);
 
+        query=FirebaseDatabase.getInstance().getReference("Users").child(CurUser);
+        query.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    etname.setText(snapshot.child("firstName").getValue(String.class)
+                            + " " + snapshot.child("lastName").getValue(String.class));
+                    etemail.setText(snapshot.child("email").getValue(String.class));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadingBar.setTitle("Rating");
-                loadingBar.setMessage("Please wait, while we are Adding the Rating.");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
-                giveRating();
+                if(ValidateData()) {
+                    loadingBar.setTitle("Rating");
+                    loadingBar.setMessage("Please wait, while we are Adding the Rating.");
+                    loadingBar.setCanceledOnTouchOutside(false);
+                    loadingBar.show();
+                    giveRating();
+                }
+                else
+                {
+                    Toast.makeText(RateTrainerActivity.this,"Please Fill All the Fields", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -88,9 +126,9 @@ public class RateTrainerActivity extends AppCompatActivity {
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
 
-                DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm:ss");
+                @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm:ss");
                 String date = df.format(Calendar.getInstance().getTime());
                 String rating = String.valueOf(rv_rating.getRating());
                 HashMap<String, Object> userdataMap = new HashMap<>();
@@ -125,5 +163,21 @@ public class RateTrainerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Boolean ValidateData()
+    {
+        String str = etemail.getText().toString();
+        String str1 =  etname.getText().toString();
+        String str2 =  etreview.getText().toString();
+        if(TextUtils.isEmpty(str)) {
+            etemail.setError("Please Enter Data");
+        }if(TextUtils.isEmpty(str1)){
+            etname.setError("Please Enter name");
+        }if(TextUtils.isEmpty(str2)) {
+            etreview.setError("Please Enter review");
+           return false;
+        }
+        return true;
     }
 }

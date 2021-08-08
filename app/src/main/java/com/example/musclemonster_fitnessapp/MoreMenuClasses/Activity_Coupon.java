@@ -53,7 +53,7 @@ public class Activity_Coupon extends AppCompatActivity {
 
         CurUser = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
-        Query query=database.orderByChild("UserKey").equalTo(CurUser);
+        Query query=database.orderByChild("userKey").equalTo(CurUser);
 
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
@@ -86,11 +86,11 @@ public class Activity_Coupon extends AppCompatActivity {
     {
         CouponPOJO Obj = new CouponPOJO();
         Obj.setSKey(dataSnapshot.getKey());
-        Obj.setUserKey(dataSnapshot.child("UserKey").getValue(String.class));
-        Obj.setExpiryDate((dataSnapshot.child("ExpiryDate").getValue(String.class)));
-        Obj.setDiscount((dataSnapshot.child("Discount").getValue(String.class)));
-        Obj.setCreateDate((dataSnapshot.child("CreateDate").getValue(String.class)));
-        Obj.setCode((dataSnapshot.child("Code").getValue(String.class)));
+        Obj.setUserKey(dataSnapshot.child("userKey").getValue(String.class));
+        Obj.setExpiryDate((dataSnapshot.child("expiryDate").getValue(String.class)));
+        Obj.setDiscount((dataSnapshot.child("discount").getValue(String.class)));
+        Obj.setCreateDate((dataSnapshot.child("createDate").getValue(String.class)));
+        Obj.setCode((dataSnapshot.child("code").getValue(String.class)));
         return Obj;
     }
 

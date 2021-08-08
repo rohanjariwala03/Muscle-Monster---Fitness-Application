@@ -1,18 +1,15 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.widget.CalendarView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.musclemonster_fitnessapp.R;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Locale;
 
 public class Activity_My_Appointments extends AppCompatActivity {
 
@@ -31,6 +28,10 @@ public class Activity_My_Appointments extends AppCompatActivity {
     DatabaseReference databaseReference;
     String userID,TrainerID="9r9DRb6eIgVL14Hpi0S5AYQD2tA3",room;
     ArrayList<String> appointmentBooked;
+    String s;
+
+    CompactCalendarView compactCalendar;
+    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class Activity_My_Appointments extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
-                        String s = dataSnapshot.getValue(String.class);
+                         s = dataSnapshot.getValue(String.class);
                         Toast.makeText(getApplicationContext(), "Dates:" + s, Toast.LENGTH_SHORT).show();
                     }
                 }

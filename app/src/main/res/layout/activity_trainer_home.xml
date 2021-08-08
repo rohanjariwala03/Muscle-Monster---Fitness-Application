@@ -23,17 +23,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtPageName"
         android:layout_marginTop="200dp"
-        android:id="@+id/abc">
+        android:id="@+id/Rat">
 
         <Button
-        android:id="@+id/btnviewprofile"
+        android:id="@+id/btnViewRatings"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="View Profile"
-
+        android:text="View Ratings"
         android:textAlignment="center"
-            tools:ignore="RtlCompat"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlCompat"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
@@ -50,8 +49,37 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/Rat"
+        android:layout_marginTop="20dp"
+        android:id="@+id/abc">
+
+        <Button
+            android:id="@+id/btnviewprofile"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View Profile"
+
+            android:textAlignment="center"
+            tools:ignore="RtlCompat"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/MenuButtonColor"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:backgroundTint="@color/MenuButtonColor"
+            android:textColor="@color/black"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/abc"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
         <Button
             android:id="@+id/btnchat"
             android:layout_width="350dp"

@@ -39,7 +39,6 @@ public class AdapterTrainerRating extends RecyclerView.Adapter<AdapterTrainerRat
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
 
         holder.tvusername.setText(list.get(position).getName());
-        holder.tvemail.setText(list.get(position).getEmail());
         holder.tvmsg.setText(list.get(position).getMsg());
         holder.rv_rating.setRating(Float.parseFloat(list.get(position).getRating()));
     }
@@ -51,13 +50,12 @@ public class AdapterTrainerRating extends RecyclerView.Adapter<AdapterTrainerRat
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvusername,tvemail,tvmsg;
+        TextView tvusername,tvmsg;
         RatingBar rv_rating;
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             rv_rating= itemView.findViewById(R.id.getrv_rating);
             tvusername=itemView.findViewById(R.id.tvusername);
-            tvemail=itemView.findViewById(R.id.tvemail);
             tvmsg=itemView.findViewById(R.id.tvmsg);
         }
     }

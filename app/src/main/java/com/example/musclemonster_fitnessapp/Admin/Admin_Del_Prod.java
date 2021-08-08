@@ -1,15 +1,13 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.MyProducts_User;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,10 +30,11 @@ public class Admin_Del_Prod extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 Toast.makeText(getApplicationContext(),"Advertisement Deleted" ,Toast.LENGTH_LONG).show();
+                finish();
                 Intent intent = new Intent(getApplicationContext(), MyProducts_Admin.class);
                 progressDialog.dismiss();
                 startActivity(intent);
-                finish();
+
             }
         });
 

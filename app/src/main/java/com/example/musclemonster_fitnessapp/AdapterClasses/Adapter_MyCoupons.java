@@ -1,5 +1,6 @@
 package com.example.musclemonster_fitnessapp.AdapterClasses;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -49,12 +50,13 @@ public class Adapter_MyCoupons extends RecyclerView.Adapter<Adapter_MyCoupons.My
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adapter_MyCoupons.MyViewHolder holder, int position) {
         //CouponPOJO Obj = list.get(position);
         holder.TCouponCode.setText(list.get(position).getCode());
         holder.TDiscount.setText(list.get(position).getDiscount());
-        holder.TExpiryDate.setText(list.get(position).getExpiryDate());
+        holder.TExpiryDate.setText("Expiry Date : " + list.get(position).getExpiryDate());
 
         holder.ImgBtnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +80,7 @@ public class Adapter_MyCoupons extends RecyclerView.Adapter<Adapter_MyCoupons.My
         alertBuilder1 = new AlertDialog.Builder(v.getContext());
         alertBuilder1.setTitle("Coupon Information");
         alertBuilder1.setMessage("Code : " + list.get(position).getCode() +
-                "\nDiscount : " + list.get(position).getDiscount() + "%" +
+                "\nDiscount : " + list.get(position).getDiscount() +
                 "\nAllocate Date : " + list.get(position).getCreateDate() +
                 "\nExpiry Date : " + list.get(position).getExpiryDate());
         alertBuilder1.setNegativeButton("OK", new DialogInterface.OnClickListener() {

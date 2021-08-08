@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".MoreMenuClasses.UserGiveFeedbackActivity"></activity>
+        <activity android:name=".Trainer.Activity_View_Ratings"></activity>
+        <activity android:name=".MoreMenuClasses.UserGiveFeedbackActivity" />
         <activity android:name=".MoreMenuClasses.UserFeedbackListActivity" />
         <activity android:name=".MoreMenuClasses.RateTrainerActivity" />
         <activity android:name=".Admin.AdminViewFeedbacksActivity" />

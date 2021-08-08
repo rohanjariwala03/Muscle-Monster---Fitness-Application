@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="2dp"
+    android:fillViewport="true"
+    android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
-        android:orientation="vertical">
-
-
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -28,58 +29,58 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
                     android:id="@+id/tvusername"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="5dp"
                     android:text="Name"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvemail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Email"
-                    android:textSize="12dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvmsg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="2dp"
                     android:text="comment"
-                    android:textSize="12dp"
+                    android:textColor="#fff"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <RatingBar
-                    android:layout_gravity="right"
                     android:id="@+id/getrv_rating"
-                    android:layout_marginLeft="3dp"
-                    android:scaleX=".3"
-                    android:scaleY=".3"
-                    android:focusable="false"
-                    android:clickable="false"
-                    android:isIndicator="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="13dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:numStars="5"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="1dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:outlineAmbientShadowColor="#fff"
+                    android:outlineSpotShadowColor="#fff"
+                    android:scaleX=".6"
+                    android:scaleY=".6" />
+
+                <View
+                    android:id="@+id/v1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/white"
+                    tools:ignore="MissingConstraints" />
 
             </LinearLayout>
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -195,7 +195,7 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
 
         CouponKey = Str;
         databaseReference=FirebaseDatabase.getInstance().getReference("Coupons");
-        Query query=databaseReference.orderByChild("Code").equalTo(CouponKey);
+        Query query=databaseReference.orderByChild("code").equalTo(CouponKey);
 
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {
@@ -205,15 +205,16 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         FBCouponKey = dataSnapshot.getKey();
-                        CouponDiscount = dataSnapshot.child("Discount").getValue(String.class);
-                        CouponExpiryDate = dataSnapshot.child("ExpiryDate").getValue(String.class);
-                        DiscountedPrice = Float.parseFloat(ItemPrice) - Float.parseFloat(CouponDiscount.substring(1));
-                        txtPrice.setText("      Amount : $" + ItemPrice +
-                                "\n - Coupon Discount :" + CouponDiscount +
-                                "\n --------------------------------------\n" +
-                                "Discounted Price : " + DiscountedPrice);
-                        btnCoupon.setText("CANCLE COUPON");
-                        Toast.makeText(getApplicationContext(),"Coupon Applied.", Toast.LENGTH_SHORT).show();
+                        CouponDiscount = dataSnapshot.child("discount").getValue(String.class);
+                        CouponExpiryDate = dataSnapshot.child("expiryDate").getValue(String.class);
+                        if(Float.parseFloat(ItemPrice) < (Float.parseFloat(CouponDiscount.substring(1)) + 5))
+                        {
+                            CouponDiscount = "NULL";
+                            CouponExpiryDate = "NULL";
+                            FBCouponKey = "NULL";
+                            Toast.makeText(product_cart.this,"Unable to apply Coupon!",Toast.LENGTH_LONG).show();
+                        }else
+                            SetData();
                     }
                 }
             }
@@ -226,25 +227,16 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
         });
         Log.i("Product_CART1" , CouponKey + "   " + CouponDiscount + "  " + CouponExpiryDate);
         progressDialog.dismiss();
-        /*ApplyCoupon(CouponDiscount.substring(1));*/
-        /*if(CurrDate.compareTo(CouponExpiryDate) < 0)
-            ApplyCoupon();
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Coupon is Expired.", Toast.LENGTH_LONG).show();
-            progressDialog.dismiss();
-        }*/
     }
 
-    @SuppressLint("SetTextI18n")
-    private void ApplyCoupon(String Price)
+    private void SetData()
     {
-
-        /*try {*/
-
-        /*} catch(NumberFormatException nfe) {
-            Toast.makeText(getApplicationContext(),"Something Went Wrong!" + nfe.getMessage(), Toast.LENGTH_LONG).show();
-        }*/
-
+        DiscountedPrice = Float.parseFloat(ItemPrice) - Float.parseFloat(CouponDiscount.substring(1));
+        txtPrice.setText("      Amount : $" + ItemPrice +
+                "\n - Coupon Discount :" + CouponDiscount +
+                "\n --------------------------------------\n" +
+                "Discounted Price : " + DiscountedPrice);
+        btnCoupon.setText("CANCLE COUPON");
+        Toast.makeText(getApplicationContext(),"Coupon Applied.", Toast.LENGTH_SHORT).show();
     }
 }
