@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleMonsterFitnessApp">
-        <activity android:name=".Trainer.Activity_My_Appointments_With_Users"></activity>
+        <activity android:name=".MoreMenuClasses.Activity_FinancingPlans"></activity>
+        <activity android:name=".Trainer.Activity_My_Appointments_With_Users" />
         <activity android:name=".Admin.GymPackage.Admin_Activity_Manage_Gym_Package" />
         <activity android:name=".MoreMenuClasses.UserGiveFeedbackActivity" />
-        <activity android:name=".Trainer.Activity_View_Ratings"></activity>
+        <activity android:name=".Trainer.Activity_View_Ratings" />
         <activity android:name=".MoreMenuClasses.UserGiveFeedbackActivity" />
         <activity android:name=".MoreMenuClasses.UserFeedbackListActivity" />
         <activity android:name=".MoreMenuClasses.RateTrainerActivity" />

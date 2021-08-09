@@ -1,16 +1,15 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -79,6 +78,36 @@ public class Activity_Gym_Packages extends AppCompatActivity {
         cbGroupClassPlatinum=findViewById(R.id.txtGroupPlatinum);
 
         getPackageData();
+
+        golenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Activity_FinancingPlans.class);
+                intent.putExtra("PackageName","Gold");
+                intent.putExtra("PackagePrice",etPriceGold.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        silverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Activity_FinancingPlans.class);
+                intent.putExtra("PackageName","Silver");
+                intent.putExtra("PackagePrice",etPrice.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        platinumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Activity_FinancingPlans.class);
+                intent.putExtra("PackageName","Platinum");
+                intent.putExtra("PackagePrice",etPricePlatinum.getText().toString());
+                startActivity(intent);
+            }
+        });
 
     }
 

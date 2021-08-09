@@ -611,7 +611,7 @@
             <Button
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:text="Edit"
+                android:text="Select"
                 android:id="@+id/silverButton"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -624,7 +624,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Edit"
+                android:text="Select"
                 android:id="@+id/goldButton"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -637,7 +637,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Edit"
+                android:text="Select"
                 android:id="@+id/platinumButton"
                 android:textColor="@color/white"
                 android:gravity="center"
