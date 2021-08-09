@@ -1,18 +1,16 @@
 package com.example.musclemonster_fitnessapp.Trainer.Chat;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.R;
+
+import java.util.Objects;
 
 public class Activity_User_Details_Trainer extends AppCompatActivity {
 
@@ -26,6 +24,7 @@ public class Activity_User_Details_Trainer extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.support_toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 
         txtName=findViewById(R.id.txtUserNameDetailsTrainer);

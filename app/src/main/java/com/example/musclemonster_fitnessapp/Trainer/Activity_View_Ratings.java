@@ -2,6 +2,8 @@ package com.example.musclemonster_fitnessapp.Trainer;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,12 +35,13 @@ public class Activity_View_Ratings extends AppCompatActivity {
     private ArrayList<RatingPojo> list;
     private String CurrUser, TrainerEmail;
     private Query query;
+    TextView TxtAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ratings);
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         recyclerView=findViewById(R.id.ratingview1);
         myAuth = FirebaseAuth.getInstance();
         CurrUser = Objects.requireNonNull(myAuth.getCurrentUser().getUid()).toString();
@@ -46,6 +49,7 @@ public class Activity_View_Ratings extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list=new ArrayList<RatingPojo>();
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
 
         AdapterUser=new AdapterTrainerRating(this,list);
         recyclerView.setAdapter(AdapterUser);
@@ -54,6 +58,14 @@ public class Activity_View_Ratings extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
         getEmail();
+    }
+
+    private void CheckAL(ArrayList<RatingPojo> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
     }
 
     private void getEmail()
@@ -69,7 +81,7 @@ public class Activity_View_Ratings extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                CheckAL(list);
             }
         });
 
@@ -98,12 +110,14 @@ public class Activity_View_Ratings extends AppCompatActivity {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
                 }
+                CheckAL(list);
                 // set the Adapter to RecyclerView
                 AdapterUser.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+                CheckAL(list);
             }
         });
 

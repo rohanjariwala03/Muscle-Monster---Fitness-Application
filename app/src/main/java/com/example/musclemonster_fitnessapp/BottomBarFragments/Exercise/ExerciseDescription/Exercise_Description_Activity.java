@@ -1,37 +1,27 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.ExerciseDescription;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_TrainerList_Chat_User;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Exercise_Video;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.Activity_Start_Exercise_Timer;
 import com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise.InfoDialog;
-import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_History_pojo;
 import com.example.musclemonster_fitnessapp.POJOClasses.MyWorkout_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.TrainerList_Chat_user_pojo;
 import com.example.musclemonster_fitnessapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -44,9 +34,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.text.DateFormat;
-import java.util.HashMap;
 
 public class Exercise_Description_Activity extends AppCompatActivity {
 

@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Activity_Coupon extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class Activity_Coupon extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         recyclerView=findViewById(R.id.recyclerviewCoupon);

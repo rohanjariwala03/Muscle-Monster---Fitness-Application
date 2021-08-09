@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Find_Trainer_Description_Activity extends AppCompatActivity {
 
@@ -51,6 +52,8 @@ public class Find_Trainer_Description_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_trainer_description);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         imgChat=findViewById(R.id.imgChatFindTrainer);
         txtFName=findViewById(R.id.txtUserNameProfile);

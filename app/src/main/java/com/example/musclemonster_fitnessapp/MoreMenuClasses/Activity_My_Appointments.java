@@ -1,30 +1,20 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Activity_My_Appointment;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyCoupons;
-import com.example.musclemonster_fitnessapp.BottomBarFragments.Chat.Chat_Activity;
-import com.example.musclemonster_fitnessapp.POJOClasses.CouponPOJO;
 import com.example.musclemonster_fitnessapp.POJOClasses.Pojo_Activity_My_Appointments;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,13 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Activity_My_Appointments extends AppCompatActivity {
 
@@ -57,6 +47,7 @@ public class Activity_My_Appointments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_appointments);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         btnDelete=findViewById(R.id.dltAppointment);
         databaseReference=FirebaseDatabase.getInstance().getReference("Appointments");

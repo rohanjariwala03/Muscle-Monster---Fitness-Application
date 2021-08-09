@@ -1,12 +1,5 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -21,6 +14,13 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Admin_Adp_Prod_Shopping;
 import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
@@ -150,11 +150,11 @@ public class View_Prod_Admin extends AppCompatActivity {
 
     private void SortData(String SelectedItem) {
         if(SEARCHED == "N") {
-            Alist.clear();
             Query query = database.orderByChild("productCat").equalTo(SelectedItem.toLowerCase());
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    Alist.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                         if (dataSnapshot.exists()) {
@@ -277,8 +277,8 @@ public class View_Prod_Admin extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println("search query submit");
-                /*list.clear();
-                StartSearch(query);*/
+                list.clear();
+                StartSearch(query);
                 return false;
             }
 
@@ -311,7 +311,7 @@ public class View_Prod_Admin extends AppCompatActivity {
                 .orderByChild("productName").startAt(SQuery).endAt(SQuery + "\uf8ff");
         recyclerView.removeAllViews();
         recyclerView.removeAllViewsInLayout();
-        list = new ArrayList<ProductUpload_POJO>();
+        /*list = new ArrayList<ProductUpload_POJO>();*/
         AdapterShopping.notifyDataSetChanged();
         //Database event listner for success or failure
         query.addValueEventListener(new ValueEventListener() {

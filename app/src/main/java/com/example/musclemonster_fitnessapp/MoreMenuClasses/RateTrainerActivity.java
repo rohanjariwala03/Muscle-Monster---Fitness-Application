@@ -57,8 +57,8 @@ public class RateTrainerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_trainer);
         getSupportActionBar().setTitle("Give Rating");
+
         loadingBar = new ProgressDialog(RateTrainerActivity.this);
-        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myAuth =FirebaseAuth.getInstance();
@@ -169,19 +169,28 @@ public class RateTrainerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        loadingBar.setTitle("Rating");
-        loadingBar.setMessage("Please wait, while we are Deleting the Rating.");
-        loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
-        FirebaseDatabase.getInstance().getReference("Rating").child(RatingKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                Toast.makeText(getApplicationContext(),"Rating Deleted" ,Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), Find_Trainer_Activity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
+        switch (item.getItemId())
+        {
+            case R.id.mybutton :
+                loadingBar.setTitle("Rating");
+                 loadingBar.setMessage("Please wait, while we are Deleting the Rating.");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+                FirebaseDatabase.getInstance().getReference("Rating").child(RatingKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                 @Override
+                 public void onComplete(@NonNull @NotNull Task<Void> task) {
+                    Toast.makeText(getApplicationContext(),"Rating Deleted" ,Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), Find_Trainer_Activity.class);
+                    startActivity(intent);
+                    finish();
+                 }
+                 });
+                break;
+
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 

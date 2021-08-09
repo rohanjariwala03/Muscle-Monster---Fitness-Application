@@ -1,23 +1,16 @@
 package com.example.musclemonster_fitnessapp.Trainer;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CalendarView;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.SearchEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Activity_My_Appointment;
-import com.example.musclemonster_fitnessapp.MoreMenuClasses.Activity_My_Appointments;
-import com.example.musclemonster_fitnessapp.POJOClasses.Pojo_Activity_My_Appointments;
 import com.example.musclemonster_fitnessapp.R;
 import com.example.musclemonster_fitnessapp.Trainer.AdapterClasses.Adapter_Activity_My_Appointments_With_Users;
 import com.example.musclemonster_fitnessapp.Trainer.PojoClasses.Pojo_Activity_My_Appointments_With_Users;
@@ -30,12 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Activity_My_Appointments_With_Users extends AppCompatActivity {
 
@@ -53,6 +46,7 @@ public class Activity_My_Appointments_With_Users extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_appointments_with_users);
 
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         btnDelete=findViewById(R.id.dltAppointmentTrainer);
         databaseReference= FirebaseDatabase.getInstance().getReference("Appointments");
         dataRef=FirebaseDatabase.getInstance().getReference("Users");

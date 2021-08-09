@@ -7,6 +7,21 @@
     android:background="@drawable/background_trainer"
     tools:context=".Trainer.Activity_View_Ratings">
 
+    <TextView
+        android:id="@+id/TxtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="Sorry !\n No Ratings Found."
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ratingview1"
         android:layout_width="match_parent"

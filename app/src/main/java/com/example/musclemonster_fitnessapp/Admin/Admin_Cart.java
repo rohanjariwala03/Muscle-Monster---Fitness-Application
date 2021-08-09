@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Admin_Cart extends AppCompatActivity {
 
@@ -40,6 +41,7 @@ public class Admin_Cart extends AppCompatActivity {
         setContentView(R.layout.activity_admin_cart);
 
         getSupportActionBar().setTitle("Purchase");
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Database_Path = "Product_Detail_Database";
         ItemPrice = getIntent().getStringExtra("ItemPrice");

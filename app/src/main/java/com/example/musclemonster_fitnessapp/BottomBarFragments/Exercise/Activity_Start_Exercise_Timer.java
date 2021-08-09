@@ -1,15 +1,20 @@
 package com.example.musclemonster_fitnessapp.BottomBarFragments.Exercise;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.musclemonster_fitnessapp.POJOClasses.Exercise_History_pojo;
@@ -21,17 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.NotNull;
 
-import android.os.SystemClock;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 
 public class Activity_Start_Exercise_Timer extends AppCompatActivity {
@@ -64,7 +60,6 @@ public class Activity_Start_Exercise_Timer extends AppCompatActivity {
             Glide.with(this).load(ExerciseImageUri).into(imgView);
         }
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2C3E50")));
         getSupportActionBar().setTitle(ExerciseName + " Exercise");
 

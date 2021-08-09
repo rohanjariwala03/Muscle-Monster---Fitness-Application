@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ActivityUserViewDescription extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
@@ -51,6 +52,7 @@ public class ActivityUserViewDescription extends AppCompatActivity implements Ex
         fab = findViewById(R.id.fab);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setCustomView(R.layout.support_toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
 

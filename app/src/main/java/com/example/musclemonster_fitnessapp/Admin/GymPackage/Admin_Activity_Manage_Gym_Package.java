@@ -1,8 +1,5 @@
 package com.example.musclemonster_fitnessapp.Admin.GymPackage;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +7,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,6 +21,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class Admin_Activity_Manage_Gym_Package extends AppCompatActivity {
 
@@ -38,6 +41,7 @@ public class Admin_Activity_Manage_Gym_Package extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_manage_gym_package);
 
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         btnUpdateData=findViewById(R.id.btnUpdatePackageData);
 
         etPrice=findViewById(R.id.SilverPriceText);

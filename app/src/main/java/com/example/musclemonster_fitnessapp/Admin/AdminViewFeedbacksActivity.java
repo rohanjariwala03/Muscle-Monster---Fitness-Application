@@ -1,17 +1,19 @@
 package com.example.musclemonster_fitnessapp.Admin;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.musclemonster_fitnessapp.Admin.AdapterClasses.Adapter_View_Feedbacks;
 import com.example.musclemonster_fitnessapp.POJOClasses.FeedbackPojo;
@@ -36,6 +38,8 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
     ArrayList<FeedbackPojo> list;
     ImageButton btnDelete;
     Button btn_submitfeedback;
+    TextView TxtAlert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,7 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerUserAdmin);
         database=FirebaseDatabase.getInstance().getReference("Feedback");
         recyclerView.setHasFixedSize(true);
+        TxtAlert = (TextView) findViewById(R.id.TxtAlert);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,10 +66,20 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
     }
+
+    private void CheckAL(ArrayList<FeedbackPojo> AL)
+    {
+        if(AL.size() == 0)
+            TxtAlert.setVisibility(View.VISIBLE);
+        else
+            TxtAlert.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
         list.clear();
+        CheckAL(list);
         AdapterUser.notifyDataSetChanged();
     }
 
@@ -72,6 +87,7 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         list.clear();
+        CheckAL(list);
         AdapterUser.notifyDataSetChanged();
         getData();
     }
@@ -101,6 +117,7 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
                         Log.i("Result UnSuccessfull", "NO Data : ");
                     }
                 }
+                CheckAL(list);
                 // set the Adapter to RecyclerView
                 AdapterUser.notifyDataSetChanged();
 
@@ -109,6 +126,7 @@ public class AdminViewFeedbacksActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+                CheckAL(list);
             }
         });
 

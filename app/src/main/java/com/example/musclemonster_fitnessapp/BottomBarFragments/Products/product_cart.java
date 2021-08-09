@@ -58,6 +58,7 @@ public class product_cart extends AppCompatActivity  implements CouponDialog.Cou
         setContentView(R.layout.activity_product_cart);
 
         getSupportActionBar().setTitle("Purchase");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Database_Path = "Product_Detail_Database";
         ItemPrice = getIntent().getStringExtra("ItemPrice");

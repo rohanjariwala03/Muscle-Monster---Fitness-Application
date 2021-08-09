@@ -15,6 +15,22 @@
         android:layout_margin="10dp"
         android:background="@color/black" />
 
+    <TextView
+        android:id="@+id/TxtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginRight="87dp"
+        android:gravity="center"
+        android:text="Sorry !\n No Feedbacks Found."
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
         android:layout_height="wrap_content"

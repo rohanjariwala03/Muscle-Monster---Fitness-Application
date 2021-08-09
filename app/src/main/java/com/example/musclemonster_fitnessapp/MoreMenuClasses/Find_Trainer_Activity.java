@@ -1,23 +1,19 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_Find_Trainer;
-import com.example.musclemonster_fitnessapp.AdapterClasses.Adapter_MyProducts;
 import com.example.musclemonster_fitnessapp.POJOClasses.Find_Trainer_pojo;
-import com.example.musclemonster_fitnessapp.POJOClasses.ProductUpload_POJO;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,8 +39,10 @@ public class Find_Trainer_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_trainer);
+
         getSupportActionBar().setTitle("Trainers");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         firebaseDatabase=FirebaseDatabase.getInstance();
         //database=firebaseDatabase.getReference();
         recyclerView=findViewById(R.id.recyclerView_Find_Trainer);

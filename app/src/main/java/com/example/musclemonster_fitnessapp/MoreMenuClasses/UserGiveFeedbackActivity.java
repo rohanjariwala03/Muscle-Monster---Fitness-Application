@@ -1,8 +1,5 @@
 package com.example.musclemonster_fitnessapp.MoreMenuClasses;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class UserGiveFeedbackActivity extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class UserGiveFeedbackActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_user_give_feedback);
         loadingBar = new ProgressDialog(UserGiveFeedbackActivity.this);
         etemail=(EditText)findViewById(R.id.etemail);

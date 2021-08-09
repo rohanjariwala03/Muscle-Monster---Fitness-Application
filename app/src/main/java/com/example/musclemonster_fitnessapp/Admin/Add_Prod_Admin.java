@@ -43,6 +43,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Add_Prod_Admin extends AppCompatActivity {
@@ -77,6 +78,7 @@ public class Add_Prod_Admin extends AppCompatActivity {
         setContentView(R.layout.activity_add_prod_admin);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4b134f")));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         DDSelected = "";
         GENDER="NA";
