@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
-    android:orientation="vertical"
-    android:background="@drawable/background_user">
-
     <LinearLayout
+        android:background="@drawable/background_user"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".BottomBarFragments.Exercise.ExerciseDescription.Exercise_Description_Activity"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,24 +172,4 @@
                     android:textSize="25sp" />
             </ScrollView>
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-
-
-            <!--<ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/Info"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/ic_baseline_info_24"/>-->
-        </RelativeLayout>
-
-
     </LinearLayout>
-</ScrollView>

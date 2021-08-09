@@ -143,7 +143,7 @@
             android:textSize="20sp"
             app:backgroundTint="#A8A5A5"
             android:textColor="@color/white"
-            android:layout_marginBottom="65dp"/>
+            android:layout_marginBottom="15dp"/>
 
      <!--   <View
             android:layout_width="match_parent"

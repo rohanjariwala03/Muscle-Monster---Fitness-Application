@@ -102,7 +102,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/MenuButtonColor"
             android:gravity="center"
-            android:text="My Calendar"
+            android:text="My Appointments"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:backgroundTint="@color/MenuButtonColor"

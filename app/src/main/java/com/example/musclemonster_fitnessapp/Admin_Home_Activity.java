@@ -16,6 +16,7 @@ import com.example.musclemonster_fitnessapp.Admin.ActivityViewUsers;
 import com.example.musclemonster_fitnessapp.Admin.Add_Prod_Admin;
 import com.example.musclemonster_fitnessapp.Admin.Add_Trainer_Activity;
 import com.example.musclemonster_fitnessapp.Admin.AdminViewFeedbacksActivity;
+import com.example.musclemonster_fitnessapp.Admin.GymPackage.Admin_Activity_Manage_Gym_Package;
 import com.example.musclemonster_fitnessapp.Admin.Admin_Profile;
 import com.example.musclemonster_fitnessapp.Admin.MyProducts_Admin;
 import com.example.musclemonster_fitnessapp.Admin.View_Prod_Admin;
@@ -127,8 +128,8 @@ public class Admin_Home_Activity extends AppCompatActivity {
         btnGymPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(Admin_Home_Activity.this, AdminGymPackages.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(Admin_Home_Activity.this, Admin_Activity_Manage_Gym_Package.class);
+                startActivity(intent);
             }
         });
 

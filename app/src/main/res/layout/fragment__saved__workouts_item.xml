@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:id="@+id/saved_exerciseImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/rest"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/saved_exerciseName"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:hint="ExerciseName"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/saved_exerciseImage"
+                android:layout_marginLeft="40dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/saved_exerciseImage"/>
+    </RelativeLayout>

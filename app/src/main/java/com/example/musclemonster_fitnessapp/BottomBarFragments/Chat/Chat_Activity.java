@@ -272,7 +272,7 @@ public class Chat_Activity extends AppCompatActivity {
         super.onResume();
 
         messagesAdapter.notifyDataSetChanged();
-
+        messagesArrayList.clear();
         firebaseDatabase.getReference().child("chats")
                 .child(Senderroom)
                 .child("messages")

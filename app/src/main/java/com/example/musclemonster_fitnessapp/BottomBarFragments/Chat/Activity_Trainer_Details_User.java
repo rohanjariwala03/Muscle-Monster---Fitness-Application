@@ -12,12 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.musclemonster_fitnessapp.POJOClasses.Pojo_Activity_My_Appointments;
 import com.example.musclemonster_fitnessapp.R;
+import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,14 +34,15 @@ import java.util.Calendar;
 public class Activity_Trainer_Details_User extends AppCompatActivity {
 
     TextView txtName, txtEmail,txtPhone;
-    String nam,Emai,Num,ImgUrl,chatSize,date,userID,trainerID,room;
+    String nam,Emai,Num,ImgUrl,chatSize,date,userID,trainerID,room,Flag="0";
     ImageView imgView;
     CalendarView calendarView;
     TextView myAppointment;
     int size;
     Button btnBookAppointment;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    Task<Void> databaseReference;
+    DatabaseReference dataref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,7 @@ public class Activity_Trainer_Details_User extends AppCompatActivity {
         chatSize=getIntent().getStringExtra("ChatSizes");
         trainerID=getIntent().getStringExtra("TrainerFKey");
         size= Integer.parseInt(chatSize);
+        dataref=FirebaseDatabase.getInstance().getReference("Appointment");
 
         Glide.with(this)
                 .load(ImgUrl)
@@ -111,13 +121,27 @@ public class Activity_Trainer_Details_User extends AppCompatActivity {
                 if(date==null){
                     Toast.makeText(getApplicationContext(),"You cannot select today's date",Toast.LENGTH_SHORT).show();
                 }else {
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Appointments");
-                    databaseReference.child(room).push().setValue(date).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            Toast.makeText(getApplicationContext(), "Appointment taken successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                   Pojo_Activity_My_Appointments obj=new Pojo_Activity_My_Appointments(nam,date,Flag);
+                    databaseReference=FirebaseDatabase.getInstance().getReference("Appointments")
+                            .child(userID).child(trainerID).push().setValue(obj)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                    Snackbar snackbar=Snackbar.make(findViewById(R.id.layoutC),
+                                            "Appointment Taken Successfully",
+                                            Snackbar.LENGTH_LONG);
+                                    snackbar.show();
+                                    date=null;
+                                    myAppointment.setText("");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull @NotNull Exception e) {
+
+                                }
+                            });
+
                 }
             }
         });

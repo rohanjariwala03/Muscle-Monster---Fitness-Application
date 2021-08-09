@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreMenuClasses.Activity_My_Appointments">
+    tools:context=".MoreMenuClasses.Activity_My_Appointments"
+    android:background="@color/BackGroundColor">
 
-    <LinearLayout
-        android:layout_width="300dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewAppointment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="60dp">
-        <CalendarView
-            android:layout_width="wrap_content"
-            android:layout_height="320dp"
-            android:id="@+id/AppointmentCalendar"/>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/TxtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Sorry !\n You Don't Have Any Appointment."
+        android:textColor="@color/white"
+        android:layout_marginTop="100dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerviewAppointment"
+        app:layout_constraintVertical_bias="0.189"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

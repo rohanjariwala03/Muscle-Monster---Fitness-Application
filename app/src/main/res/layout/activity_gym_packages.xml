@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Personal Trainer"
+                android:text="24/7 Access"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="2"
@@ -95,7 +95,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold|italic"
                 android:textSize="20dp"
-                />
+                android:id="@+id/txtAccessSilver"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -106,18 +106,18 @@
                 android:layout_weight="1"
                 android:textStyle="bold|italic"
                 android:textSize="20dp"
-                />
+                android:id="@+id/txtAccessGold"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="\u2713"
-                android:textColor="@color/green"
+                android:text="X"
+                android:textColor="@color/red"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textStyle="bold|italic"
                 android:textSize="20dp"
-                />
+                android:id="@+id/txtAccessPlatinum"/>
 
         </LinearLayout>
 
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Tracks"
+                    android:text="Training programs"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -147,7 +147,7 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtProgramSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -158,18 +158,18 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtProgramGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtProgramPlatinum"/>
 
             </LinearLayout>
 
@@ -184,7 +184,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Physiotherapy"
+                    android:text="Shower"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -200,7 +200,7 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtShowerSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -211,18 +211,18 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtShowerGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtShowerPlatinum"/>
 
             </LinearLayout>
 
@@ -236,7 +236,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="locker"
+                    android:text="Personal Trainer"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -252,29 +252,29 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtPersonalSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtPersonalGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtPersonalPlatinum"/>
 
             </LinearLayout>
 
@@ -288,7 +288,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Massage therapy"
+                    android:text="Massage chairs"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -304,29 +304,29 @@
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtChairSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtChairGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtChairPlatinum"/>
 
             </LinearLayout>
 
@@ -363,7 +363,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
@@ -374,7 +374,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
@@ -394,7 +394,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Tanning"
+                    android:text="Virtual Classes"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -404,35 +404,35 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtClassesSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtClassesGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtClassesPlatinum"/>
 
             </LinearLayout>
 
@@ -447,7 +447,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Excercise Classes"
+                    android:text="Hydro Massage Beds"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -455,37 +455,37 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/txtBedsSilver"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
-                    android:gravity="center"
                     android:layout_weight="1"
-                    android:textStyle="bold|italic"
+                    android:gravity="center"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:textSize="20dp"
-                    />
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtBedsGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtBedsPlatinum"/>
 
             </LinearLayout>
 
@@ -499,7 +499,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Refreshment Area"
+                    android:text="Live Group Classes"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_weight="2"
@@ -509,90 +509,37 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtGroupSilver"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtGroupGold"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
+                    android:text="X"
+                    android:textColor="@color/red"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
-                    />
+                    android:id="@+id/txtGroupPlatinum"/>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:weightSum="5"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Showers"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:layout_weight="2"
-                    android:textStyle="bold|italic"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:textStyle="bold|italic"
-                    android:textSize="20dp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:textStyle="bold|italic"
-                    android:textSize="20dp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="\u2713"
-                    android:textColor="@color/green"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:textStyle="bold|italic"
-                    android:textSize="20dp"
-                    />
-
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -619,7 +566,7 @@
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
                     android:id="@+id/txtSilverPrice"
-                    />
+                    android:textColor="@color/SilverTextColor"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -630,7 +577,7 @@
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
                     android:id="@+id/txtGoldPrice"
-                    />
+                    android:textColor="@color/GoldTextColor"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -641,7 +588,7 @@
                     android:textStyle="bold|italic"
                     android:textSize="20dp"
                     android:id="@+id/txtPlatinumPrice"
-                    />
+                    android:textColor="@color/PlatinumTextColor"/>
 
             </LinearLayout>
 

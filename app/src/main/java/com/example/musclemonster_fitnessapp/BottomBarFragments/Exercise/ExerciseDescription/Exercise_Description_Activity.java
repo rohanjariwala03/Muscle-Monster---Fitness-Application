@@ -111,10 +111,11 @@ public class Exercise_Description_Activity extends AppCompatActivity {
                 openDialog();
             }
         });
-
-        Glide.with(this)
-                .load(ItemImageUri)
-                .into(ImgView);
+        if(ItemImageUri!=null) {
+            Glide.with(this)
+                    .load(ItemImageUri)
+                    .into(ImgView);
+        }
 
         imgBtnstartWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
