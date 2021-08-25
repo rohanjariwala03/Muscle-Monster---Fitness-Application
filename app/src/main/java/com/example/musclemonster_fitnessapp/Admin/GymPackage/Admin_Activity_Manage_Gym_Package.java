@@ -87,52 +87,100 @@ public class Admin_Activity_Manage_Gym_Package extends AppCompatActivity {
             public void onClick(View v) {
                 if(cbAccess.isChecked())
                     s1="true";
+                else
+                    s1="false";
                 if(cbProgram.isChecked())
                     s2="true";
+                else
+                    s2="false";
                 if(cbShower.isChecked())
                     s3="true";
+                else
+                    s3="false";
                 if(cbPersonal.isChecked())
                     s4="true";
+                else
+                    s4="false";
                 if(cbChair.isChecked())
                     s5="true";
+                else
+                    s5="false";
                 if(cbClasses.isChecked())
                     s6="true";
+                else
+                    s6="false";
                 if(cbBeds.isChecked())
                     s7="true";
+                else
+                    s7="false";
                 if(cbGroupClass.isChecked())
                     s8="true";
+                else
+                    s8="false";
                 if(cbAccessGold.isChecked())
                     s9="true";
+                else
+                    s9="false";
                 if(cbProgramGold.isChecked())
                     s10="true";
+                else
+                    s10="false";
                 if(cbShowerGold.isChecked())
                     s11="true";
+                else
+                    s11="false";
                 if(cbPersonalGold.isChecked())
                     s12="true";
+                else
+                    s12="false";
                 if(cbChairGold.isChecked())
                     s13="true";
+                else
+                    s13="false";
                 if(cbClassesGold.isChecked())
                     s14="true";
+                else
+                    s14="false";
                 if(cbBedsGold.isChecked())
                     s15="true";
+                else
+                    s15="false";
                 if(cbGroupClassGold.isChecked())
                     s16="true";
+                else
+                    s16="false";
                 if(cbAccessPlatinum.isChecked())
                     s17="true";
+                else
+                    s17="false";
                 if(cbProgramPlatinum.isChecked())
                     s18="true";
+                else
+                    s18="false";
                 if(cbShowerPlatinum.isChecked())
                     s19="true";
+                else
+                    s19="false";
                 if(cbPersonalPlatinum.isChecked())
                     s20="true";
+                else
+                    s20="false";
                 if(cbChairPlatinum.isChecked())
                     s21="true";
+                else
+                    s21="false";
                 if(cbClassesPlatinum.isChecked())
                     s22="true";
+                else
+                    s22="false";
                 if(cbBedsPlatinum.isChecked())
                     s23="true";
+                else
+                    s23="false";
                 if(cbGroupClassPlatinum.isChecked())
                     s24="true";
+                else
+                    s24="false";
 
 
                 Pojo_Admin_Activity_Manage_Gym_Package obj=new Pojo_Admin_Activity_Manage_Gym_Package(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,
@@ -145,6 +193,7 @@ public class Admin_Activity_Manage_Gym_Package extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 //Data successfully Saved
+                                Toast.makeText(getApplicationContext(),"Package Successfully Updated",Toast.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -214,7 +263,6 @@ public class Admin_Activity_Manage_Gym_Package extends AppCompatActivity {
                     etPrice.setText(snapshot.child("silverPrice").getValue(String.class));
                     etPriceGold.setText(snapshot.child("goldPrice").getValue(String.class));
                     etPricePlatinum.setText(snapshot.child("platinumPrice").getValue(String.class));
-                    Toast.makeText(getApplicationContext(),"Package Successfully Updated",Toast.LENGTH_LONG).show();
                 }
             }
             @Override

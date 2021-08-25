@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_Note,R.drawable.ic_baseline_add_shopping_cart_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_More,R.drawable.ic_baseline_more_horiz_24));
 
-        bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",1),true);
+        bottomNavigation.show(getIntent().getIntExtra("fragmentNumber",4),true);
 
         viewPager = findViewById(R.id.viewpager);
 

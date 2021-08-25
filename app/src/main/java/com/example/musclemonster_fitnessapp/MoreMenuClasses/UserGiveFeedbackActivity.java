@@ -15,12 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.musclemonster_fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,7 +40,7 @@ public class UserGiveFeedbackActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     ProgressDialog loadingBar;
     LinearLayout LLGender;
-
+    String uid;
     private Uri resultUri;
 
     private ProgressDialog progressDialog;
@@ -52,6 +55,8 @@ public class UserGiveFeedbackActivity extends AppCompatActivity {
         etmsg=(EditText)findViewById(R.id.etmsg);
         btn_submit=(Button) findViewById(R.id.btn_submit);
 
+        databaseReference=FirebaseDatabase.getInstance().getReference("Users");
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +69,25 @@ public class UserGiveFeedbackActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        uid= FirebaseAuth.getInstance().getUid();
+
+        databaseReference.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                etemail.setText(snapshot.child("email").getValue(String.class));
+                etname.setText(snapshot.child("firstName").getValue(String.class) + " "
+                        + snapshot.child("lastName").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
 
     private void submitFeedback() {
 

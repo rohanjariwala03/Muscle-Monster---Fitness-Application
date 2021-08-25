@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/feed"
-            />
+            android:layout_marginTop="50dp"/>
 
         <TextView
             android:id="@+id/tvname"
@@ -38,7 +38,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginRight="13dp"
             android:hint="Enter Email"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:editable="false"/>
 
 
         <TextView
@@ -59,7 +60,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginRight="13dp"
             android:hint="Enter Name"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:editable="false"/>
 
         <TextView
             android:layout_width="wrap_content"
